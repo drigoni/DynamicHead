@@ -1,0 +1,14 @@
+*/__pycache__
+*/_C.*
+dyhead.egg-info/*
+Dockerfile
+
+
+datasets/*
+output/*
+build/*
+*.pth
+
+corpora/*
+.vector_cache/*
+.idea/*
