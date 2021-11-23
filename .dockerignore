@@ -1,0 +1,6 @@
+./datasets/coco/*
+./.idea/*
+./.vector_cache/*
+./output/*
+./output_old/*
+*/__*

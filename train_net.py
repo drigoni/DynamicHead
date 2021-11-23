@@ -28,9 +28,14 @@ from detectron2.engine import SimpleTrainer, DefaultTrainer, default_argument_pa
 from detectron2.evaluation import COCOEvaluator, verify_results
 from detectron2.solver.build import maybe_add_gradient_clipping
 from detectron2.utils.logger import setup_logger
-
+from detectron2.data import MetadataCatalog
 from dyhead import add_dyhead_config
 from extra import add_extra_config
+from extra import ConceptMapper
+from extra import ConceptFinder, add_concept_config
+import os
+import nltk
+from nltk.corpus import wordnet as wn
 
 
 class Trainer(DefaultTrainer):
@@ -49,9 +54,15 @@ class Trainer(DefaultTrainer):
             setup_logger()
         cfg = DefaultTrainer.auto_scale_workers(cfg, comm.get_world_size())
 
+        # TODO: drigoni: add concepts to classes
+        concept_finder = ConceptFinder(cfg.CONCEPT.FILE)
+        self.coco2synset = concept_finder.extend_descendants(depth=cfg.CONCEPT.DEPTH,
+                                                             unique=cfg.CONCEPT.UNIQUE,
+                                                             only_name=cfg.CONCEPT.ONLY_NAME)
+
         model = self.build_model(cfg)
         optimizer = self.build_optimizer(cfg, model)
-        data_loader = self.build_train_loader(cfg)
+        data_loader = self.build_train_loader(cfg, self.coco2synset)
         # Build DDP Model with find_unused_parameters to add flexibility.
         if comm.get_world_size() > 1:
             model = DistributedDataParallel(
@@ -86,7 +97,7 @@ class Trainer(DefaultTrainer):
         return COCOEvaluator(dataset_name, cfg, True, output_folder)
 
     @classmethod
-    def build_train_loader(cls, cfg):
+    def build_train_loader(cls, cfg, coco2synset):
         dataset = get_detection_dataset_dicts(
             cfg.DATASETS.TRAIN,
             filter_empty=cfg.DATALOADER.FILTER_EMPTY_ANNOTATIONS,
@@ -96,7 +107,10 @@ class Trainer(DefaultTrainer):
             proposal_files=cfg.DATASETS.PROPOSAL_FILES_TRAIN if cfg.MODEL.LOAD_PROPOSALS else None,
         )
 
-        mapper = None
+        # TODO drigoni: introduces a new mapper
+        mapper = ConceptMapper(cfg, True, coco2synset=coco2synset)
+        # mapper = cls.concept_mapper
+
         if cfg.SEED!=-1:
             sampler = TrainingSampler(len(dataset), seed=cfg.SEED)
         else:
@@ -118,9 +132,18 @@ class Trainer(DefaultTrainer):
             # Avoid duplicating parameters
             if value in memo:
                 continue
+            # TODO drigoni: stop backpropagation in the backbone
+            # stop backpropagation in the backbones parameters
+            if "backbone" in key:
+                print("Gradient stop for layer: ", key)
+                value.requires_grad = False
+                continue
             memo.add(value)
             lr = cfg.SOLVER.BASE_LR
             weight_decay = cfg.SOLVER.WEIGHT_DECAY
+            # TODO drigoni: the following if causes a problem and need to be fixed/removed.
+            # The problem is that no WEIGHT_DECAY_BIAS parameter is used in the config file.
+            # print("bias" in key, key, weight_decay, cfg.SOLVER.WEIGHT_DECAY_BIAS)
             if "bias" in key:
                 lr = cfg.SOLVER.BASE_LR * cfg.SOLVER.BIAS_LR_FACTOR
                 weight_decay = cfg.SOLVER.WEIGHT_DECAY_BIAS
@@ -164,6 +187,7 @@ class Trainer(DefaultTrainer):
             self.start_iter = checkpoint.get("iteration", -1) + 1
 
 
+
 def setup(args):
     """
     Create configs and perform basic setups.
@@ -171,6 +195,7 @@ def setup(args):
     cfg = get_cfg()
     add_dyhead_config(cfg)
     add_extra_config(cfg)
+    add_concept_config(cfg)
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
     cfg.freeze()
@@ -197,6 +222,9 @@ def main(args):
 if __name__ == "__main__":
     args = default_argument_parser().parse_args()
     print("Command Line Args:", args)
+    if not os.path.exists('/root/nltk_data/wordnet.zip'):
+        # nltk.download('wordnet')
+        nltk.download('wordnet', download_dir='/root/nltk_data')
     launch(
         main,
         args.num_gpus,
