@@ -38,7 +38,7 @@ class ConceptFinder:
         descendants = descendants + [(i, jump + 1) for i in childrens]
         if len(childrens) > 0 and jump <= depth:
             for child in childrens:
-                new_descendants = ConceptFinder.find_descendants(child, jump + 1)
+                new_descendants = ConceptFinder.find_descendants(child, jump=jump + 1, depth=depth)
                 descendants = descendants + new_descendants
             return descendants
         else:
@@ -48,7 +48,7 @@ class ConceptFinder:
         coco2synset = copy.deepcopy(self.coco2synset)
         for ids, category in coco2synset.items():
             # find descendant
-            tmp_descendants = ConceptFinder.find_descendants(wn.synset(category['synset']), 0, depth)
+            tmp_descendants = ConceptFinder.find_descendants(entity=wn.synset(category['synset']), jump=0, depth=depth)
             tmp_descendants = [(synset.name(), jump) for synset, jump in tmp_descendants]
             # if we need an unique set as synsets.
             # NOTE: if synsets are the same but has different levels, we keep the one with lower level
