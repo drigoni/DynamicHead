@@ -142,7 +142,7 @@ class ConceptMapper:
         # In COCO datasets there are 90 idx but only 80 are used. These ids are not contiguous, so the model
         # defines 80 contiguous indexes.
         metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
-        metaMapping = {val:key for key, val in metaMapping.items()}
+        metaMapping = {val: key for key, val in metaMapping.items()}
         # here we select the unique list of categories in the filtered annotations
         unique_cat = list(set({metaMapping[ann['category_id']] for ann in annos}))
         selected_cat = random.sample(unique_cat, random.randint(1, len(unique_cat)))  # at least one element
@@ -210,14 +210,16 @@ class ConceptMapper:
                 dataset_dict, image_shape, transforms, proposal_topk=self.proposal_topk
             )
 
+        if "annotations" in dataset_dict:
+            self._transform_annotations(dataset_dict, transforms, image_shape)
+
         if not self.is_train:
             # USER: Modify this if you want to keep them for some reason.
-            dataset_dict.pop("annotations", None)
+            # dataset_dict.pop("annotations", None)
             dataset_dict.pop("sem_seg_file_name", None)
             return dataset_dict
 
-        if "annotations" in dataset_dict:
-            self._transform_annotations(dataset_dict, transforms, image_shape)
+
 
 
         # print("KEYS: ", dataset_dict.keys())

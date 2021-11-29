@@ -18,7 +18,7 @@ import torch
 from torch.nn.parallel import DistributedDataParallel
 
 import detectron2.utils.comm as comm
-
+from typing import Any, Callable, Dict, List, Optional, Union
 from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.config import get_cfg
 from detectron2.data import build_detection_train_loader, build_detection_test_loader
@@ -29,6 +29,21 @@ from detectron2.evaluation import COCOEvaluator, verify_results
 from detectron2.solver.build import maybe_add_gradient_clipping
 from detectron2.utils.logger import setup_logger
 from detectron2.data import MetadataCatalog
+from collections import OrderedDict
+from detectron2.evaluation import (
+    DatasetEvaluator,
+    inference_on_dataset,
+    print_csv_format,
+    verify_results,
+)
+from detectron2.data.dataset_mapper import DatasetMapper
+from detectron2.data.common import AspectRatioGroupedDataset, DatasetFromList, MapDataset, ToIterableDataset
+from detectron2.data.samplers import (
+    InferenceSampler,
+    RandomSubsetTrainingSampler,
+    RepeatFactorTrainingSampler,
+    TrainingSampler,
+)
 from dyhead import add_dyhead_config
 from extra import add_extra_config
 from extra import ConceptMapper
@@ -109,7 +124,6 @@ class Trainer(DefaultTrainer):
 
         # TODO drigoni: introduces a new mapper
         mapper = ConceptMapper(cfg, True, coco2synset=coco2synset)
-        # mapper = cls.concept_mapper
 
         if cfg.SEED!=-1:
             sampler = TrainingSampler(len(dataset), seed=cfg.SEED)
@@ -118,9 +132,83 @@ class Trainer(DefaultTrainer):
         return build_detection_train_loader(cfg, dataset=dataset, mapper=mapper, sampler=sampler)
 
     @classmethod
-    def build_test_loader(cls, cfg, dataset_name):
-        mapper = None
-        return build_detection_test_loader(cfg, mapper=mapper, dataset_name=dataset_name)
+    def build_test_loader(cls, cfg, dataset_name, coco2synset):
+        if isinstance(dataset_name, str):
+            dataset_name = [dataset_name]
+
+        dataset = get_detection_dataset_dicts(
+            dataset_name,
+            filter_empty=True,  # TODO drigoni: True instead of False. We need at least one annotation.
+            proposal_files=[
+                cfg.DATASETS.PROPOSAL_FILES_TEST[list(cfg.DATASETS.TEST).index(x)] for x in dataset_name
+            ]
+            if cfg.MODEL.LOAD_PROPOSALS
+            else None,
+        )
+        # TODO drigoni: introduces a new mapper for the test and remove images with 0 annotations.
+        mapper = ConceptMapper(cfg, False, coco2synset=coco2synset)
+        return build_detection_test_loader(dataset=dataset, mapper=mapper,
+                                           num_workers=cfg.DATALOADER.NUM_WORKERS,
+                                           sampler=InferenceSampler(len(dataset)))
+
+    @classmethod
+    def test(cls, cfg, model, evaluators=None):
+        """
+        Evaluate the given model. The given model is expected to already contain
+        weights to evaluate.
+        Args:
+            cfg (CfgNode):
+            model (nn.Module):
+            evaluators (list[DatasetEvaluator] or None): if None, will call
+                :meth:`build_evaluator`. Otherwise, must have the same length as
+                ``cfg.DATASETS.TEST``.
+        Returns:
+            dict: a dict of result metrics
+        """
+        concept_finder = ConceptFinder(cfg.CONCEPT.FILE)
+        coco2synset = concept_finder.extend_descendants(depth=cfg.CONCEPT.DEPTH,
+                                                        unique=cfg.CONCEPT.UNIQUE,
+                                                        only_name=cfg.CONCEPT.ONLY_NAME)
+
+        logger = logging.getLogger(__name__)
+        if isinstance(evaluators, DatasetEvaluator):
+            evaluators = [evaluators]
+        if evaluators is not None:
+            assert len(cfg.DATASETS.TEST) == len(evaluators), "{} != {}".format(
+                len(cfg.DATASETS.TEST), len(evaluators)
+            )
+
+        results = OrderedDict()
+        for idx, dataset_name in enumerate(cfg.DATASETS.TEST):
+            data_loader = cls.build_test_loader(cfg, dataset_name, coco2synset)
+            # When evaluators are passed in as arguments,
+            # implicitly assume that evaluators can be created before data_loader.
+            if evaluators is not None:
+                evaluator = evaluators[idx]
+            else:
+                try:
+                    evaluator = cls.build_evaluator(cfg, dataset_name)
+                except NotImplementedError:
+                    logger.warn(
+                        "No evaluator found. Use `DefaultTrainer.test(evaluators=)`, "
+                        "or implement its `build_evaluator` method."
+                    )
+                    results[dataset_name] = {}
+                    continue
+            results_i = inference_on_dataset(model, data_loader, evaluator)
+            results[dataset_name] = results_i
+            if comm.is_main_process():
+                assert isinstance(
+                    results_i, dict
+                ), "Evaluator must return a dict on the main process. Got {} instead.".format(
+                    results_i
+                )
+                logger.info("Evaluation results for {} in csv format:".format(dataset_name))
+                print_csv_format(results_i)
+
+        if len(results) == 1:
+            results = list(results.values())[0]
+        return results
 
     @classmethod
     def build_optimizer(cls, cfg, model):
@@ -185,7 +273,6 @@ class Trainer(DefaultTrainer):
         checkpoint = self.checkpointer.resume_or_load(self.cfg.MODEL.WEIGHTS, resume=resume)
         if resume and self.checkpointer.has_checkpoint():
             self.start_iter = checkpoint.get("iteration", -1) + 1
-
 
 
 def setup(args):
