@@ -148,14 +148,14 @@ class ConceptNet(torch.nn.Module):
                                                                 self.emb_dim, self.emb_freeze)
         self.deepset = _DeepSets(self.emb_dim, self.output_dim)
 
-    def forward(self, x):
+    def forward(self, x, x_mask):
         x = self.concept_emb(x)
         x = self.deepset(x)
         return x
 
     def preprocess_concepts(self, batched_inputs: List[Dict[str, List]]):
         """
-        Batch the input concepts.
+        Batch the input concepts with vectors of zeros.
         """
         concepts = [x["concepts"] for x in batched_inputs]      # [b, annotations, concepts]
         # print("CONCEPTS: ", len(concepts), len(concepts[0]))
@@ -170,11 +170,14 @@ class ConceptNet(torch.nn.Module):
 
         # creating the padding tensor
         results = np.zeros([batch_size, max_n_concepts_for_example])
+        mask = np.zeros([batch_size, max_n_concepts_for_example])
         for concept_i, concept_data in enumerate(concepts_tokenized):
-                results[concept_i, :len(concept_data)] = concept_data
+            results[concept_i, :len(concept_data)] = concept_data
+            mask[concept_i, :len(concept_data)] = [1] * len(concept_data)
 
         results = torch.tensor(results, dtype=torch.int64)
-        return results
+        mask = torch.tensor(mask, dtype=torch.int32)
+        return results, mask
 
     def concept_tokenization(self, data: List[List[str]]):
         """
