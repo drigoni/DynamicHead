@@ -60,11 +60,13 @@ class _DeepSets(torch.nn.Module):
         self.mlp1 = MLP(input_size, input_size, [input_size, input_size])
         self.mlp2 = MLP(input_size, output_size, [input_size])
 
-    def forward(self, x):
-        # batch input as [batch, n_concepts, input_size]
-        x = self.mlp1(x)            # [batch, n_concepts, input_size]
-        x = torch.sum(x, dim=1)     # [batch, input_size]
-        x = self.mlp2(x)            # [batch, output_size]
+    def forward(self, x, x_mask):
+        # x input as [batch, n_concepts, input_size]
+        # x_mask input as [batch, n_concepts] with ones where it is not padding.
+        x = self.mlp1(x)                    # [batch, n_concepts, input_size]
+        x = x * x_mask.unsqueeze(-1)        # [batch, n_concepts, input_size]
+        x = torch.sum(x, dim=1)             # [batch, input_size]
+        x = self.mlp2(x)                    # [batch, output_size]
         return x
 
 
@@ -148,9 +150,9 @@ class ConceptNet(torch.nn.Module):
                                                                 self.emb_dim, self.emb_freeze)
         self.deepset = _DeepSets(self.emb_dim, self.output_dim)
 
-    def forward(self, x):
+    def forward(self, x, x_mask):
         x = self.concept_emb(x)
-        x = self.deepset(x)
+        x = self.deepset(x, x_mask)
         return x
 
     def preprocess_concepts(self, batched_inputs: List[Dict[str, List]]):
@@ -170,11 +172,14 @@ class ConceptNet(torch.nn.Module):
 
         # creating the padding tensor
         results = np.zeros([batch_size, max_n_concepts_for_example])
+        mask = np.zeros([batch_size, max_n_concepts_for_example])
         for concept_i, concept_data in enumerate(concepts_tokenized):
             results[concept_i, :len(concept_data)] = concept_data
+            mask[concept_i, :len(concept_data)] = [1] * len(concept_data)
 
         results = torch.tensor(results, dtype=torch.int64)
-        return results
+        mask = torch.tensor(mask, dtype=torch.int32)
+        return results, mask
 
     def concept_tokenization(self, data: List[List[str]]):
         """
