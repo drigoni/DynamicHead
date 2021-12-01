@@ -215,11 +215,10 @@ class CATSS(nn.Module):
 
         # TODO drigoni: add new input. FIX PRE_TRAINED WEIGHTS
         # concepts batching and tokenization
-        concepts, concepts_mask = self.concept_net.preprocess_concepts(batched_inputs)
+        concepts = self.concept_net.preprocess_concepts(batched_inputs)
         concepts = concepts.to(self.device)
-        concepts_mask = concepts_mask.to(self.device)
         # conceptnet execution
-        concepts_features = self.concept_net(concepts, concepts_mask)  # [b, 150]
+        concepts_features = self.concept_net(concepts)  # [b, 150]
         concepts_features = concepts_features.unsqueeze(-1).unsqueeze(-1)       # [b, 150, 1, 1]
         # features concatenation
         features = [torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)

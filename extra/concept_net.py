@@ -148,7 +148,7 @@ class ConceptNet(torch.nn.Module):
                                                                 self.emb_dim, self.emb_freeze)
         self.deepset = _DeepSets(self.emb_dim, self.output_dim)
 
-    def forward(self, x, x_mask):
+    def forward(self, x):
         x = self.concept_emb(x)
         x = self.deepset(x)
         return x
@@ -170,14 +170,11 @@ class ConceptNet(torch.nn.Module):
 
         # creating the padding tensor
         results = np.zeros([batch_size, max_n_concepts_for_example])
-        mask = np.zeros([batch_size, max_n_concepts_for_example])
         for concept_i, concept_data in enumerate(concepts_tokenized):
             results[concept_i, :len(concept_data)] = concept_data
-            mask[concept_i, :len(concept_data)] = [1] * len(concept_data)
 
         results = torch.tensor(results, dtype=torch.int64)
-        mask = torch.tensor(mask, dtype=torch.int32)
-        return results, mask
+        return results
 
     def concept_tokenization(self, data: List[List[str]]):
         """
