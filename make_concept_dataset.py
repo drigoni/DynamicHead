@@ -148,7 +148,7 @@ def create_concept_dataset(annotations_file, concepts, level, unique):
     results['concept_data'] = annotations['concept_data']
 
     # save new dataset
-    save_dataset(results, annotations)
+    save_dataset(annotations_file, results)
     print("Dataset {} processed. ".format(annotations_file))
 
 
