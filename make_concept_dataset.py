@@ -75,7 +75,7 @@ def powerset(iterable):
     return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
 
 
-def _generate_examples(annotations, concepts):
+def _generate_examples(annotations, concepts, subset):
     image_to_annotations = defaultdict(list)
     for i, ann in enumerate(annotations['annotations']):
         image_id = ann['image_id']
@@ -90,14 +90,11 @@ def _generate_examples(annotations, concepts):
         if len(curr_annotations_indexes) > 0:
             curr_annotations = [annotations['annotations'][idx] for idx in curr_annotations_indexes]    # annotations
             list_unique_cat = list(set({ann['category_id'] for ann in curr_annotations}))   # unique list of categories
-            # samples a set of categories. At least one. This or powerset
-            # selected_cat = random.sample(list_unique_cat, random.randint(1, len(list_unique_cat)))
-            # annos_filtered = [ann for ann in curr_annotations if ann['category_id'] in selected_cat]
-            # execute powerset
-            all_combinations = list(powerset(list_unique_cat))
-            for ps in all_combinations[1:]: # no the empty one
+            if subset:
+                # samples a set of categories. At least one. This or powerset
+                selected_cat = random.sample(list_unique_cat, random.randint(1, len(list_unique_cat)))
                 # filter out the annotations not aligned with the sampled categories
-                annos_filtered = [ann for ann in curr_annotations if ann['category_id'] in ps]
+                annos_filtered = [ann for ann in curr_annotations if ann['category_id'] in selected_cat]
                 # generate the associated concepts
                 gen_concepts = []
                 for ann in annos_filtered:
@@ -108,18 +105,39 @@ def _generate_examples(annotations, concepts):
                     else:
                         tmp_concept = concepts[cat_idx]['synset']
                     gen_concepts.append(tmp_concept)
-
                 tmp_dict = {
                     'image_id': image_id,
                     'concepts': gen_concepts,
                     'annotation_id': [ann['id'] for ann in annos_filtered]
                 }
                 new_examples.append(tmp_dict)
-                # print(tmp_dict)
+            else:
+                # execute powerset
+                all_combinations = list(powerset(list_unique_cat))[1:]  # no the empty one
+                for ps in all_combinations:
+                    # filter out the annotations not aligned with the sampled categories
+                    annos_filtered = [ann for ann in curr_annotations if ann['category_id'] in ps]
+                    # generate the associated concepts
+                    gen_concepts = []
+                    for ann in annos_filtered:
+                        cat_idx = ann['category_id']
+                        descendants = concepts[cat_idx]['descendants']
+                        if len(descendants) > 0:
+                            tmp_concept = random.choice(descendants)
+                        else:
+                            tmp_concept = concepts[cat_idx]['synset']
+                        gen_concepts.append(tmp_concept)
+                    tmp_dict = {
+                        'image_id': image_id,
+                        'concepts': gen_concepts,
+                        'annotation_id': [ann['id'] for ann in annos_filtered]
+                    }
+                    new_examples.append(tmp_dict)
+
     annotations['concept_data'] = new_examples
 
 
-def create_concept_dataset(annotations_file, concepts, level, unique):
+def create_concept_dataset(annotations_file, concepts, level, unique, subset):
     # read coco annotation file
     annotations = load_dataset(annotations_file)
 
@@ -138,7 +156,7 @@ def create_concept_dataset(annotations_file, concepts, level, unique):
     # update concepts related to each category
     _update_category_concepts(annotations, concepts)
     # generate syntetic examples
-    _generate_examples(annotations, concepts)
+    _generate_examples(annotations, concepts, subset)
 
     # generate external file
     results = {}
@@ -173,6 +191,10 @@ def parse_args():
                         help='Generating considering unique property.',
                         default='True',
                         type=lambda x: True if x.lower() == 'true' else False)
+    parser.add_argument('--subset', dest='subset',
+                        help='Generating considering subsets or use powerset',
+                        default='True',
+                        type=lambda x: True if x.lower() == 'true' else False)
     args = parser.parse_args()
     return args
 
@@ -181,6 +203,6 @@ if __name__ == "__main__":
     args = parse_args()
     concept_finder = ConceptFinder(args.coco2concepts)
     concepts = concept_finder.extend_descendants(args.level, args.unique)
-    create_concept_dataset('datasets/coco/annotations/instances_train2017.json', concepts, args.level, args.unique)
-    create_concept_dataset('datasets/coco/annotations/instances_val2017.json', concepts, args.level, args.unique)
+    create_concept_dataset('datasets/coco/annotations/instances_train2017.json', concepts, args.level, args.unique, args.subset)
+    create_concept_dataset('datasets/coco/annotations/instances_val2017.json', concepts, args.level, args.unique, args.subset)
 
