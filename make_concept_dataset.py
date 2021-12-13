@@ -144,7 +144,7 @@ def create_concept_dataset(annotations_file, concepts, level, unique):
     results = {}
     results['info'] = annotations['info']
     results['licenses'] = annotations['licenses']
-    results['category'] = annotations['category']
+    results['categories'] = annotations['categories']
     results['concept_data'] = annotations['concept_data']
 
     # save new dataset
