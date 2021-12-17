@@ -17,6 +17,7 @@ from itertools import chain, combinations
 import distutils
 from nltk.corpus import wordnet as wn
 from extra import ConceptFinder
+import copy
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 nltk.download('wordnet')
@@ -75,6 +76,12 @@ def powerset(iterable):
     return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
 
 
+def _search_image_by_id(images, image_id):
+    result = [i for i in images if i['id'] == image_id]
+    assert len(result) == 1
+    return result[0]
+
+
 def _generate_examples(annotations, concepts, subset):
     image_to_annotations = defaultdict(list)
     for i, ann in enumerate(annotations['annotations']):
@@ -82,7 +89,11 @@ def _generate_examples(annotations, concepts, subset):
         image_to_annotations[image_id].append(i)
 
     n_images = len(image_to_annotations)
-    new_examples = []
+    new_annotations = []
+    # params initialization needed just for the powerset case
+    new_images = []
+    images_counter = 0
+    annotations_counter = 0
     for n, image_id in enumerate(image_to_annotations):
         print("Done {}/{}. ".format(n , n_images), end='\r')
         curr_annotations_indexes = image_to_annotations[image_id]   # annotations indexes
@@ -95,31 +106,31 @@ def _generate_examples(annotations, concepts, subset):
                 selected_cat = random.sample(list_unique_cat, random.randint(1, len(list_unique_cat)))
                 # filter out the annotations not aligned with the sampled categories
                 annos_filtered = [ann for ann in curr_annotations if ann['category_id'] in selected_cat]
-                new_examples.extend(annos_filtered)
+                new_annotations.extend(annos_filtered)
             else:
                 # execute powerset
+                current_image = _search_image_by_id(annotations['images'], image_id)
                 all_combinations = list(powerset(list_unique_cat))[1:]  # no the empty one
                 for ps in all_combinations:
-                    # filter out the annotations not aligned with the sampled categories
-                    annos_filtered = [ann for ann in curr_annotations if ann['category_id'] in ps]
-                    # generate the associated concepts
-                    gen_concepts = []
-                    for ann in annos_filtered:
-                        cat_idx = ann['category_id']
-                        descendants = concepts[cat_idx]['descendants']
-                        if len(descendants) > 0:
-                            tmp_concept = random.choice(descendants)
-                        else:
-                            tmp_concept = concepts[cat_idx]['synset']
-                        gen_concepts.append(tmp_concept)
-                    tmp_dict = {
-                        'image_id': image_id,
-                        'concepts': gen_concepts,
-                        'annotation_id': [ann['id'] for ann in annos_filtered]
-                    }
-                    new_examples.append(tmp_dict)
+                    # new image
+                    current_tmp_image = copy.deepcopy(current_image)
+                    current_tmp_image['id'] = images_counter
+                    new_images.append(current_image)
 
-    annotations['annotations'] = new_examples
+                    # filter out the annotations not aligned with the sampled categories
+                    annos_filtered = copy.deepcopy([ann for ann in curr_annotations if ann['category_id'] in ps])
+                    # deep copy needed to change annotations values
+                    for ann in annos_filtered:
+                        ann['id'] = annotations_counter
+                        ann['image_id'] = images_counter
+                    new_annotations.append(annos_filtered)
+                    annotations_counter += 1
+                    images_counter += 1
+
+    annotations['annotations'] = new_annotations
+    # only if we are doing powerset we need to update the images_list
+    if not subset:
+        annotations['images'] = new_images
 
 
 def create_concept_dataset(annotations_file, concepts, level, unique, subset):
