@@ -149,9 +149,9 @@ class CATSS(nn.Module):
         backbone_shape = backbone.output_shape()
         feature_shapes = [backbone_shape[f] for f in cfg.MODEL.ATSS.IN_FEATURES]
         # TODO drigoni: this code is needed for using more than one convolutional (currently 0) network in the head.
-        # deepsets_dim = cfg.DEEPSETS.OUTPUT_DIM
-        # feature_shapes = [ShapeSpec(channels=f.channels + deepsets_dim, height=f.height, width=f.width, stride=f.stride)
-        #                   for f in feature_shapes]
+        deepsets_dim = cfg.DEEPSETS.OUTPUT_DIM
+        feature_shapes = [ShapeSpec(channels=f.channels + deepsets_dim, height=f.height, width=f.width, stride=f.stride)
+                          for f in feature_shapes]
         concept_net = ConceptNet(cfg)
         head = CATSSHead(cfg, feature_shapes)
         anchor_generator = build_anchor_generator(cfg, feature_shapes)
@@ -224,7 +224,6 @@ class CATSS(nn.Module):
         # features concatenation
         features = [torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
                     for f in features]
-
 
         pred_logits, pred_anchor_deltas, pred_centers = self.head(features)
 
@@ -545,7 +544,7 @@ class CATSSHead(torch.nn.Module):
         assert len(set(in_channels)) == 1, "Each level must have the same channel!"
         in_channels = in_channels[0]
 
-        if cfg.MODEL.ATSS.NUM_CONVS>0:
+        if cfg.MODEL.ATSS.NUM_CONVS > 0:
             cls_tower = []
             bbox_tower = []
             for i in range(cfg.MODEL.ATSS.NUM_CONVS):
@@ -560,7 +559,7 @@ class CATSSHead(torch.nn.Module):
                     )
                 )
                 if use_gn:
-                    cls_tower.append(nn.GroupNorm(32, channels))
+                    cls_tower.append(nn.GroupNorm(29, channels))
 
                 cls_tower.append(nn.ReLU())
 
@@ -575,7 +574,7 @@ class CATSSHead(torch.nn.Module):
                     )
                 )
                 if use_gn:
-                    bbox_tower.append(nn.GroupNorm(32, channels))
+                    bbox_tower.append(nn.GroupNorm(29, channels))
 
                 bbox_tower.append(nn.ReLU())
 
