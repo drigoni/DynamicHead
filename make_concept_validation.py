@@ -115,16 +115,16 @@ def _generate_examples(annotations, concepts, subset):
                     # new image
                     current_tmp_image = copy.deepcopy(current_image)
                     current_tmp_image['id'] = images_counter
-                    new_images.append(current_image)
+                    new_images.append(current_tmp_image)
 
                     # filter out the annotations not aligned with the sampled categories
                     annos_filtered = copy.deepcopy([ann for ann in curr_annotations if ann['category_id'] in ps])
                     # deep copy needed to change annotations values
                     for ann in annos_filtered:
-                        ann['id'] = annotations_counter
                         ann['image_id'] = images_counter
-                    new_annotations.append(annos_filtered)
-                    annotations_counter += 1
+                        ann['id'] = annotations_counter
+                        annotations_counter += 1
+                    new_annotations.extend(annos_filtered)
                     images_counter += 1
 
     annotations['annotations'] = new_annotations
