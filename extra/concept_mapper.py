@@ -143,10 +143,16 @@ class ConceptMapper:
         # defines 80 contiguous indexes.
         metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
         metaMapping = {val: key for key, val in metaMapping.items()}
-        # here we select the unique list of categories in the filtered annotations
-        unique_cat = list(set({metaMapping[ann['category_id']] for ann in annos}))
-        selected_cat = random.sample(unique_cat, random.randint(1, len(unique_cat)))  # at least one element
-        annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
+        if self.is_train:
+            # here we select the unique list of categories in the filtered annotations
+            unique_cat = list(set({metaMapping[ann['category_id']] for ann in annos}))
+            # sample some concepts and clean annotations
+            selected_cat = random.sample(unique_cat, random.randint(1, len(unique_cat)))  # at least one element
+            annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
+        else:
+            # we use all the annotations concepts because the validation set is already cleaned.
+            # see make_concept_validation.py
+            annos_filtered = annos
         concepts = []
         for annotation in annos_filtered:
             cat_idx = metaMapping[annotation['category_id']]
@@ -157,6 +163,7 @@ class ConceptMapper:
                 concept = self.coco2synset[cat_idx]['synset']
             concepts.append(concept)
         annos = annos_filtered
+
         dataset_dict["concepts"] = concepts
 
         instances = utils.annotations_to_instances(
