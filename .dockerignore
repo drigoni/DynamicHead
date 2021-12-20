@@ -1,6 +1,5 @@
-./datasets/coco/*
+./datasets/*
 ./.idea/*
 ./.vector_cache/*
-./output/*
-./output_old/*
+./output*
 */__*

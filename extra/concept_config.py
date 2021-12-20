@@ -7,7 +7,7 @@ def add_concept_config(cfg):
     cfg.CONCEPT = CN()
     cfg.CONCEPT.FILE = './concept/coco_to_synset.json'
     cfg.CONCEPT.VOCAB = './concept/vocab.json'
-    cfg.CONCEPT.DEPTH = 10
+    cfg.CONCEPT.DEPTH = 5
     cfg.CONCEPT.UNIQUE = True
     cfg.CONCEPT.ONLY_NAME = True
 
