@@ -22,11 +22,18 @@ import tqdm
 import detectron2.data.transforms as T
 from detectron2.data import MetadataCatalog
 from detectron2.utils.visualizer import ColorMode, Visualizer
+from detectron2.engine import default_setup
 from detectron2.config import get_cfg
 from detectron2.data.detection_utils import read_image
 from detectron2.utils.logger import setup_logger
 from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.modeling import build_model
+
+from dyhead import add_dyhead_config
+from extra import add_extra_config
+from extra import add_concept_config
+from .train_net import Trainer
+
 
 # constants
 WINDOW_NAME = "COCO detections"
@@ -57,13 +64,15 @@ class DefaultPredictor:
 
     def __init__(self, cfg):
         self.cfg = cfg.clone()  # cfg can be modified by model
-        self.model = build_model(self.cfg)
+        # self.model = build_model(self.cfg)
+        self.model = Trainer.build_model(cfg)
         self.model.eval()
         if len(cfg.DATASETS.TEST):
             self.metadata = MetadataCatalog.get(cfg.DATASETS.TEST[0])
 
-        checkpointer = DetectionCheckpointer(self.model)
-        checkpointer.load(cfg.MODEL.WEIGHTS)
+        # checkpointer = DetectionCheckpointer(self.model)
+        # checkpointer.load(cfg.MODEL.WEIGHTS)
+        DetectionCheckpointer(self.model, save_dir=cfg.OUTPUT_DIR).resume_or_load(cfg.MODEL.WEIGHTS, resume=args.resume)
 
         self.aug = T.ResizeShortestEdge(
             [cfg.INPUT.MIN_SIZE_TEST, cfg.INPUT.MIN_SIZE_TEST], cfg.INPUT.MAX_SIZE_TEST
@@ -241,11 +250,13 @@ class AsyncPredictor:
 
 
 def setup_cfg(args):
-    # load config from file and command-line arguments
+    """
+    Create configs and perform basic setups.
+    """
     cfg = get_cfg()
-    # To use demo for Panoptic-DeepLab, please uncomment the following two lines.
-    # from detectron2.projects.panoptic_deeplab import add_panoptic_deeplab_config  # noqa
-    # add_panoptic_deeplab_config(cfg)
+    add_dyhead_config(cfg)
+    add_extra_config(cfg)
+    add_concept_config(cfg)
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
     # Set score_threshold for builtin models
@@ -253,6 +264,7 @@ def setup_cfg(args):
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = args.confidence_threshold
     cfg.MODEL.PANOPTIC_FPN.COMBINE.INSTANCES_CONFIDENCE_THRESH = args.confidence_threshold
     cfg.freeze()
+    default_setup(cfg, args)
     return cfg
 
 
