@@ -32,8 +32,7 @@ from detectron2.modeling import build_model
 from dyhead import add_dyhead_config
 from extra import add_extra_config
 from extra import add_concept_config
-from .train_net import Trainer
-
+from train_net import Trainer
 
 # constants
 WINDOW_NAME = "COCO detections"
@@ -72,7 +71,7 @@ class DefaultPredictor:
 
         # checkpointer = DetectionCheckpointer(self.model)
         # checkpointer.load(cfg.MODEL.WEIGHTS)
-        DetectionCheckpointer(self.model, save_dir=cfg.OUTPUT_DIR).resume_or_load(cfg.MODEL.WEIGHTS, resume=args.resume)
+        DetectionCheckpointer(self.model, save_dir=cfg.OUTPUT_DIR).resume_or_load(cfg.MODEL.WEIGHTS, resume=True)
 
         self.aug = T.ResizeShortestEdge(
             [cfg.INPUT.MIN_SIZE_TEST, cfg.INPUT.MIN_SIZE_TEST], cfg.INPUT.MAX_SIZE_TEST
@@ -88,7 +87,7 @@ class DefaultPredictor:
         Returns:
             predictions (dict):
                 the output of the model for one image only.
-                See :doc:`/tutorials/models` for details about the format.
+                See :doc:`/tutorials/models` for details about the/myothermodule. format.
         """
         with torch.no_grad():  # https://github.com/sphinx-doc/sphinx/issues/4258
             # Apply pre-processing to image.
@@ -99,7 +98,7 @@ class DefaultPredictor:
             image = self.aug.get_transform(original_image).apply_image(original_image)
             image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
 
-            inputs = {"image": image, "height": height, "width": width}
+            inputs = {"image": image, "height": height, "width": width, 'concepts': ['person.n.01']}
             predictions = self.model([inputs])[0]
             return predictions
 
@@ -257,21 +256,20 @@ def setup_cfg(args):
     add_dyhead_config(cfg)
     add_extra_config(cfg)
     add_concept_config(cfg)
-    cfg.merge_from_file(args.config_file)
+    cfg.merge_from_file(args.config)
     cfg.merge_from_list(args.opts)
     # Set score_threshold for builtin models
     cfg.MODEL.RETINANET.SCORE_THRESH_TEST = args.confidence_threshold
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = args.confidence_threshold
     cfg.MODEL.PANOPTIC_FPN.COMBINE.INSTANCES_CONFIDENCE_THRESH = args.confidence_threshold
     cfg.freeze()
-    default_setup(cfg, args)
     return cfg
 
 
 def get_parser():
     parser = argparse.ArgumentParser(description="Detectron2 demo for Concept ATSS")
     parser.add_argument(
-        "--config-file",
+        "--config",
         default="configs/drigoni_dyhead_swint_catss_fpn_2x_ms_pretrained_bigger_head.yaml",
         metavar="FILE",
         help="path to config file",
@@ -300,6 +298,11 @@ def get_parser():
         default=[],
         nargs=argparse.REMAINDER,
     )
+    parser.add_argument(
+        "--parallel",
+        help="=True if the GPUs are used",
+        default=lambda x: True if x.lower() == 'true' else False,
+    )
     return parser
 
 
@@ -312,7 +315,7 @@ if __name__ == "__main__":
 
     cfg = setup_cfg(args)
 
-    demo = VisualizationDemo(cfg)
+    demo = VisualizationDemo(cfg, args.parallel)
 
     if args.input:
         if len(args.input) == 1:
