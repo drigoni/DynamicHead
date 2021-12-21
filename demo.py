@@ -259,10 +259,11 @@ def setup_cfg(args):
     cfg.merge_from_file(args.config)
     cfg.merge_from_list(args.opts)
     # Set score_threshold for builtin models
-    cfg.MODEL.RETINANET.SCORE_THRESH_TEST = args.confidence_threshold
-    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = args.confidence_threshold
-    cfg.MODEL.PANOPTIC_FPN.COMBINE.INSTANCES_CONFIDENCE_THRESH = args.confidence_threshold
+    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = args.confidence
+    cfg.MODEL.ATSS.INFERENCE_TH = args.confidence
+
     cfg.freeze()
+    default_setup(cfg, args)
     return cfg
 
 
@@ -282,14 +283,14 @@ def get_parser():
     )
     parser.add_argument(
         "--output",
+        default='./demo/',
         help="A file or directory to save output visualizations. "
         "If not given, will show output in an OpenCV window.",
     )
-
     parser.add_argument(
-        "--confidence-threshold",
+        "--confidence",
         type=float,
-        default=0.5,
+        default=0.7,
         help="Minimum score for instance predictions to be shown",
     )
     parser.add_argument(
