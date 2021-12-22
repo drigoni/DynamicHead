@@ -207,7 +207,7 @@ class ConceptNet(torch.nn.Module):
         vocab_size = len(concept_vocab) if concept_vocab is not None else 0
         out_of_vocabulary = 0
         if embedding_type == 'random':
-            return nn.Embedding(vocab_size, emb_size)
+            return nn.Embedding(vocab_size + 1, emb_size)
         else:
             embedding_matrix_values = torch.zeros((vocab_size + 1, emb_size),
                                                   requires_grad=(not freeze))  # special char
