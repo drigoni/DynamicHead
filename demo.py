@@ -119,7 +119,7 @@ class VisualizationDemo(object):
         self.instance_mode = instance_mode
 
         self.parallel = parallel
-        if parallel:
+        if self.parallel == True:
             num_gpu = torch.cuda.device_count()
             self.predictor = AsyncPredictor(cfg, num_gpus=num_gpu)
         else:
@@ -279,13 +279,13 @@ def get_parser():
         "--input",
         nargs="+",
         help="A list of space separated input images; "
-        "or a single glob pattern such as 'directory/*.jpg'",
+             "or a single glob pattern such as 'directory/*.jpg'",
     )
     parser.add_argument(
         "--output",
         default='./demo/',
         help="A file or directory to save output visualizations. "
-        "If not given, will show output in an OpenCV window.",
+             "If not given, will show output in an OpenCV window.",
     )
     parser.add_argument(
         "--confidence",

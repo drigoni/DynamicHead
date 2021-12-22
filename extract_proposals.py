@@ -29,6 +29,7 @@ from detectron2.data.detection_utils import read_image
 from detectron2.utils.logger import setup_logger
 from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.modeling import build_model
+from detectron2.structures.boxes import Boxes
 
 from dyhead import add_dyhead_config
 from extra import add_extra_config
@@ -102,6 +103,45 @@ class DefaultPredictor:
             inputs = {"image": image, "height": height, "width": width, 'concepts': ['person.n.01']}
             predictions = self.model([inputs])[0]
             return predictions
+
+
+class ProposalExtractor(object):
+    def __init__(self, cfg, parallel=False):
+        """
+        Args:
+            cfg (CfgNode):
+            parallel (bool): whether to run the model in different processes from visualization.
+                Useful since the visualization logic can be slow.
+        """
+        self.cpu_device = torch.device("cpu")
+        self.parallel = parallel
+        if self.parallel == True:
+            num_gpu = torch.cuda.device_count()
+            self.predictor = AsyncPredictor(cfg, num_gpus=num_gpu)
+        else:
+            os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+            self.predictor = DefaultPredictor(cfg)
+
+    def run_on_image(self, image):
+        """
+        Args:
+            image (np.ndarray): an image of shape (H, W, C) (in BGR order).
+                This is the format used by OpenCV.
+
+        Returns:
+            predictions (dict): the output of the model.
+            vis_output (VisImage): the visualized image output.
+        """
+        predictions = self.predictor(image)
+        instances = predictions["instances"].to(self.cpu_device)
+        instances_converted = dict()
+        for k, v in instances.get_fields().items():
+            if isinstance(v, Boxes):
+                boxes_list = v.tensor
+                instances_converted[k] = boxes_list.tolist()
+            else:
+                instances_converted[k] = v.tolist()
+        return instances_converted
 
 
 class AsyncPredictor:
@@ -259,39 +299,31 @@ if __name__ == "__main__":
     setup_logger(name="fvcore")
     logger = setup_logger()
     logger.info("Arguments: " + str(args))
-    # set config file
+
     cfg = setup_cfg(args)
 
-    # set parallelism
-    if args.parallel:
-        num_gpu = torch.cuda.device_count()
-        predictor = AsyncPredictor(cfg, num_gpus=num_gpu)
-    else:
-        predictor = DefaultPredictor(cfg)
+    extractor = ProposalExtractor(cfg, args.parallel)
 
-    if len(args.input) == 1:
-        args.input = glob.glob(os.path.expanduser(args.input[0]))
-        assert args.input, "The input path(s) was not found"
-    for path in tqdm.tqdm(args.input, disable=not args.output):
-        # use PIL, to be consistent with evaluation
-        img = read_image(path, format="BGR")
-        start_time = time.time()
-        predictions = predictor(img)
-        logger.info(
-            "{}: {} in {:.2f}s".format(
-                path,
-                "detected {} instances".format(len(predictions["instances"]))
-                if "instances" in predictions
-                else "finished",
-                time.time() - start_time,
+    if args.input:
+        if len(args.input) == 1:
+            args.input = glob.glob(os.path.expanduser(args.input[0]))
+            assert args.input, "The input path(s) was not found"
+        for path in tqdm.tqdm(args.input, disable=not args.output):
+            # use PIL, to be consistent with evaluation
+            img = read_image(path, format="BGR")
+            start_time = time.time()
+            predictions = extractor.run_on_image(img)
+            logger.info(
+                "Done {} in {:.2f}s with {} proposals".format(
+                    path,
+                    time.time() - start_time,
+                    len(predictions['pred_boxes'])
+                )
             )
-        )
-        if os.path.isdir(args.output):
-            assert os.path.isdir(args.output), args.output
+
+            # save predictions
             out_filename = os.path.join(args.output, os.path.basename(path))
-        else:
-            assert len(args.input) == 1, "Please specify a directory with args.output"
-            out_filename = args.output
-        # save predictions
-        with open('{}.json'.format(out_filename[-4]), 'w') as outfile:
-            json.dump(predictions, outfile)
+            out_filename = '{}.json'.format(out_filename[:-4])
+            # logger.info(out_filename)
+            with open(out_filename, 'w') as outfile:
+                json.dump(predictions, outfile)
