@@ -6,6 +6,8 @@ Dockerfile
 
 datasets/*
 output/*
+demo/*
+extracted_features/*
 build/*
 *.pth
 

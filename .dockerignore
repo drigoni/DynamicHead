@@ -2,4 +2,6 @@
 ./.idea/*
 ./.vector_cache/*
 ./output*
+demo/*
+extracted_features/*
 */__*

@@ -20,6 +20,8 @@ elif [[ $MODE == "exec" ]]; then
     -v $PATH_FOLDER/:/home/drigoni/repository/DynamicHead/ \
     -v $PATH_FOLDER/datasets:/home/drigoni/repository/DynamicHead/datasets \
     -v $PATH_FOLDER/output:/home/drigoni/repository/DynamicHead/output \
+    -v $PATH_FOLDER/demo:/home/drigoni/repository/DynamicHead/demo \
+    -v $PATH_FOLDER/extracted_features:/home/drigoni/repository/DynamicHead/extracted_features \
     -v $PATH_FOLDER/.vector_cache:/home/drigoni/repository/DynamicHead/.vector_cache \
     -v $PATH_DATASETS/COCO/annotations:/home/drigoni/repository/DynamicHead/datasets/coco/annotations \
     -v $PATH_DATASETS/COCO/images/train2017:/home/drigoni/repository/DynamicHead/datasets/coco/train2017 \
