@@ -225,7 +225,7 @@ class CATSS(nn.Module):
         features = [torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
                     for f in features]
 
-        pred_logits, pred_anchor_deltas, pred_centers = self.head(features)
+        pred_logits, pred_anchor_deltas, pred_centers, features = self.head(features)
 
         if self.training:
             assert not torch.jit.is_scripting(), "Not supported"
@@ -611,7 +611,9 @@ class CATSSHead(torch.nn.Module):
         logits = []
         bbox_reg = []
         centerness = []
+        features = []
         for l, feature in enumerate(x):
+            features.append(feature)
             if self.cls_tower is None:
                 cls_tower = feature
             else:
@@ -628,4 +630,4 @@ class CATSSHead(torch.nn.Module):
             bbox_reg.append(bbox_pred)
 
             centerness.append(self.centerness(box_tower))
-        return logits, bbox_reg, centerness
+        return logits, bbox_reg, centerness, features

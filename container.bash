@@ -28,6 +28,7 @@ elif [[ $MODE == "exec" ]]; then
     -v $PATH_DATASETS/COCO/images/val2017:/home/drigoni/repository/DynamicHead/datasets/coco/val2017 \
     -v $PATH_DATASETS/COCO/images/test2017:/home/drigoni/repository/DynamicHead/datasets/coco/test2017 \
     -v $PATH_FOLDER/datasets/flickr30k:/home/drigoni/repository/DynamicHead/datasets/flickr30k \
+    -v $PATH_FOLDER/datasets/flickr30k/out_ewiser:/home/drigoni/repository/DynamicHead/datasets/flickr30k/out_ewiser \
     --runtime=nvidia \
     --ipc=host \
     $VERSION \
