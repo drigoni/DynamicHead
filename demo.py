@@ -18,6 +18,7 @@ import tempfile
 import time
 import warnings
 import tqdm
+import json
 
 import detectron2.data.transforms as T
 from detectron2.data import MetadataCatalog
@@ -28,6 +29,7 @@ from detectron2.data.detection_utils import read_image
 from detectron2.utils.logger import setup_logger
 from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.modeling import build_model
+from detectron2.structures.boxes import Boxes
 
 from dyhead import add_dyhead_config
 from extra import add_extra_config
@@ -36,6 +38,82 @@ from train_net import Trainer
 
 # constants
 WINDOW_NAME = "COCO detections"
+
+
+class AsyncPredictor:
+    """
+    A predictor that runs the model asynchronously, possibly on >1 GPUs.
+    Because rendering the visualization takes considerably amount of time,
+    this helps improve throughput a little bit when rendering videos.
+    """
+
+    class _StopToken:
+        pass
+
+    class _PredictWorker(mp.Process):
+        def __init__(self, cfg, task_queue, result_queue):
+            self.cfg = cfg
+            self.task_queue = task_queue
+            self.result_queue = result_queue
+            super().__init__()
+
+        def run(self):
+            predictor = DefaultPredictor(self.cfg)
+
+            while True:
+                task = self.task_queue.get()
+                if isinstance(task, AsyncPredictor._StopToken):
+                    break
+                idx, data, concepts = task
+                result = predictor(data, concepts)
+                self.result_queue.put((idx, result))
+
+    def __init__(self, cfg, num_gpus: int = 1):
+        """
+        Args:
+            cfg (CfgNode):
+            num_gpus (int): if 0, will run on CPU
+        """
+        num_workers = max(num_gpus, 1)
+        self.task_queue = mp.Queue(maxsize=num_workers * 3)
+        self.result_queue = mp.Queue(maxsize=num_workers * 3)
+        self.procs = []
+        for gpuid in range(max(num_gpus, 1)):
+            cfg = cfg.clone()
+            cfg.defrost()
+            cfg.MODEL.DEVICE = "cuda:{}".format(gpuid) if num_gpus > 0 else "cpu"
+            self.procs.append(
+                AsyncPredictor._PredictWorker(cfg, self.task_queue, self.result_queue)
+            )
+
+        self.put_idx = 0
+        self.get_idx = 0
+        self.result_rank = []
+        self.result_data = []
+
+        for p in self.procs:
+            p.start()
+        atexit.register(self.shutdown)
+
+    def put(self, image, concepts):
+        self.put_idx += 1
+        self.task_queue.put((self.put_idx, image, concepts))
+
+    def get(self):
+        self.get_idx += 1  # the index needed for this request
+        if len(self.result_rank) and self.result_rank[0] == self.get_idx:
+            res = self.result_data[0]
+            del self.result_data[0], self.result_rank[0]
+            return res
+
+        while True:
+            # make sure the results are returned in the correct order
+            idx, res, concepts = self.result_queue.get()
+            if idx == self.get_idx:
+                return res, concepts
+            insert = bisect.bisect(self.result_rank, idx)
+            self.result_rank.insert(insert, idx)
+            self.result_data.insert(insert, (res, concepts))
 
 
 class DefaultPredictor:
@@ -80,10 +158,11 @@ class DefaultPredictor:
         self.input_format = cfg.INPUT.FORMAT
         assert self.input_format in ["RGB", "BGR"], self.input_format
 
-    def __call__(self, original_image):
+    def __call__(self, original_image, concepts):
         """
         Args:
             original_image (np.ndarray): an image of shape (H, W, C) (in BGR order).
+            concepts (list of strings): list of concepts.
         Returns:
             predictions (dict):
                 the output of the model for one image only.
@@ -98,7 +177,7 @@ class DefaultPredictor:
             image = self.aug.get_transform(original_image).apply_image(original_image)
             image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
 
-            inputs = {"image": image, "height": height, "width": width, 'concepts': ['person.n.01']}
+            inputs = {"image": image, "height": height, "width": width, 'concepts': concepts}
             predictions = self.model([inputs])[0]
             return predictions
 
@@ -123,20 +202,21 @@ class VisualizationDemo(object):
             num_gpu = torch.cuda.device_count()
             self.predictor = AsyncPredictor(cfg, num_gpus=num_gpu)
         else:
+            os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
             self.predictor = DefaultPredictor(cfg)
 
-    def run_on_image(self, image):
+    def run_on_image(self, image, concepts):
         """
         Args:
             image (np.ndarray): an image of shape (H, W, C) (in BGR order).
                 This is the format used by OpenCV.
-
+            concepts (list of strings): list of concepts.
         Returns:
             predictions (dict): the output of the model.
             vis_output (VisImage): the visualized image output.
         """
         vis_output = None
-        predictions = self.predictor(image)
+        predictions = self.predictor(image, concepts)
         # Convert image from OpenCV BGR format to Matplotlib RGB format.
         image = image[:, :, ::-1]
         visualizer = Visualizer(image, self.metadata, instance_mode=self.instance_mode)
@@ -154,98 +234,40 @@ class VisualizationDemo(object):
                 instances = predictions["instances"].to(self.cpu_device)
                 vis_output = visualizer.draw_instance_predictions(predictions=instances)
 
-        return predictions, vis_output
+        instances = predictions["instances"].to(self.cpu_device)
+        instances_converted = dict()
+        for k, v in instances.get_fields().items():
+            if isinstance(v, Boxes):
+                boxes_list = v.tensor
+                instances_converted[k] = boxes_list.tolist()
+            else:
+                instances_converted[k] = v.tolist()
+        return instances_converted, vis_output
 
 
-class AsyncPredictor:
-    """
-    A predictor that runs the model asynchronously, possibly on >1 GPUs.
-    Because rendering the visualization takes considerably amount of time,
-    this helps improve throughput a little bit when rendering videos.
-    """
-
-    class _StopToken:
-        pass
-
-    class _PredictWorker(mp.Process):
-        def __init__(self, cfg, task_queue, result_queue):
-            self.cfg = cfg
-            self.task_queue = task_queue
-            self.result_queue = result_queue
-            super().__init__()
-
-        def run(self):
-            predictor = DefaultPredictor(self.cfg)
-
-            while True:
-                task = self.task_queue.get()
-                if isinstance(task, AsyncPredictor._StopToken):
-                    break
-                idx, data = task
-                result = predictor(data)
-                self.result_queue.put((idx, result))
-
-    def __init__(self, cfg, num_gpus: int = 1):
-        """
-        Args:
-            cfg (CfgNode):
-            num_gpus (int): if 0, will run on CPU
-        """
-        num_workers = max(num_gpus, 1)
-        self.task_queue = mp.Queue(maxsize=num_workers * 3)
-        self.result_queue = mp.Queue(maxsize=num_workers * 3)
-        self.procs = []
-        for gpuid in range(max(num_gpus, 1)):
-            cfg = cfg.clone()
-            cfg.defrost()
-            cfg.MODEL.DEVICE = "cuda:{}".format(gpuid) if num_gpus > 0 else "cpu"
-            self.procs.append(
-                AsyncPredictor._PredictWorker(cfg, self.task_queue, self.result_queue)
-            )
-
-        self.put_idx = 0
-        self.get_idx = 0
-        self.result_rank = []
-        self.result_data = []
-
-        for p in self.procs:
-            p.start()
-        atexit.register(self.shutdown)
-
-    def put(self, image):
-        self.put_idx += 1
-        self.task_queue.put((self.put_idx, image))
-
-    def get(self):
-        self.get_idx += 1  # the index needed for this request
-        if len(self.result_rank) and self.result_rank[0] == self.get_idx:
-            res = self.result_data[0]
-            del self.result_data[0], self.result_rank[0]
-            return res
-
-        while True:
-            # make sure the results are returned in the correct order
-            idx, res = self.result_queue.get()
-            if idx == self.get_idx:
-                return res
-            insert = bisect.bisect(self.result_rank, idx)
-            self.result_rank.insert(insert, idx)
-            self.result_data.insert(insert, res)
-
-    def __len__(self):
-        return self.put_idx - self.get_idx
-
-    def __call__(self, image):
-        self.put(image)
-        return self.get()
-
-    def shutdown(self):
-        for _ in self.procs:
-            self.task_queue.put(AsyncPredictor._StopToken())
-
-    @property
-    def default_buffer_size(self):
-        return len(self.procs) * 5
+def extract_flickr30k_concepts(ewiser_path):
+    # reading data from file
+    with open(ewiser_path, 'r') as f:
+        ewiser_data = json.load(f)
+    # extracting synsets
+    all_synsets = []
+    for sentence in ewiser_data:
+        ewiser = sentence['ewiser']
+        for part in ewiser:
+            n = part['n_synsets']
+            offsets = part['offsets']
+            synsets = part['synsets']
+            # select just one synset among the top10 and filter them to be just noun
+            if n > 0:
+                synsets_filtered = [s for s in synsets if '.n.' in s]
+                if len(synsets_filtered) > 0:
+                    best_synset = synsets_filtered[0]
+                    all_synsets.append(best_synset)
+                else:
+                    print("No noun synset for {}.".format(ewiser_path))
+    all_synsets_unique = list(set(all_synsets))
+    print(all_synsets_unique)
+    return all_synsets_unique
 
 
 def setup_cfg(args):
@@ -276,10 +298,13 @@ def get_parser():
         help="path to config file",
     )
     parser.add_argument(
-        "--input",
+        "--images_folder",
+        help="Images folder. "
+    )
+    parser.add_argument(
+        "--concepts",
         nargs="+",
-        help="A list of space separated input images; "
-             "or a single glob pattern such as 'directory/*.jpg'",
+        help="A list of concepts file . "
     )
     parser.add_argument(
         "--output",
@@ -318,29 +343,35 @@ if __name__ == "__main__":
 
     demo = VisualizationDemo(cfg, args.parallel)
 
-    if args.input:
-        if len(args.input) == 1:
-            args.input = glob.glob(os.path.expanduser(args.input[0]))
-            assert args.input, "The input path(s) was not found"
-        for path in tqdm.tqdm(args.input, disable=not args.output):
+    if args.images_folder and args.concepts:
+        images_folder = args.images_folder
+        concepts_folder = os.path.dirname(args.concepts[0])
+        for concept_path in tqdm.tqdm(args.concepts, disable=not args.output):
+            concept_filename = os.path.basename(concept_path)
+            image_filename = '{}.jpg'.format(concept_filename[:-9])  # remove ".txt.json" and add ".jpg"
+            image_path = os.path.join(images_folder, image_filename)
+
+            # get concepts
+            current_concepts = extract_flickr30k_concepts(concept_path)
+
             # use PIL, to be consistent with evaluation
-            img = read_image(path, format="BGR")
+            # use PIL, to be consistent with evaluation
+            img = read_image(image_path, format="BGR")
             start_time = time.time()
-            predictions, visualized_output = demo.run_on_image(img)
+            predictions, visualized_output = demo.run_on_image(img, current_concepts)
             logger.info(
-                "{}: {} in {:.2f}s".format(
-                    path,
-                    "detected {} instances".format(len(predictions["instances"]))
-                    if "instances" in predictions
-                    else "finished",
+                "Done {} in {:.2f}s with {} proposals and {} concepts".format(
+                    image_path,
                     time.time() - start_time,
+                    len(predictions['pred_boxes']),
+                    len(current_concepts)
                 )
             )
 
             if args.output:
                 if os.path.isdir(args.output):
                     assert os.path.isdir(args.output), args.output
-                    out_filename = os.path.join(args.output, os.path.basename(path))
+                    out_filename = os.path.join(args.output, os.path.basename(image_path))
                 else:
                     assert len(args.input) == 1, "Please specify a directory with args.output"
                     out_filename = args.output
