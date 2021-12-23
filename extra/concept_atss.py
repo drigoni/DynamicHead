@@ -71,8 +71,8 @@ def concat_box_prediction_layers(box_cls, box_regression):
 
 def permute_and_flatten(layer, N, A, C, H, W):
     layer = layer.view(N, -1, C, H, W)
-    layer = layer.permute(0, 3, 4, 1, 2)
-    layer = layer.reshape(N, -1, C)
+    layer = layer.permute(0, 3, 4, 1, 2)        # [N, H, W, A, C]
+    layer = layer.reshape(N, -1, C)     # [N, A*H*W, C]
     return layer
 
 
@@ -225,7 +225,7 @@ class CATSS(nn.Module):
         features = [torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
                     for f in features]
 
-        pred_logits, pred_anchor_deltas, pred_centers, features = self.head(features)
+        pred_logits, pred_anchor_deltas, pred_centers, pred_features = self.head(features)
 
         if self.training:
             assert not torch.jit.is_scripting(), "Not supported"
@@ -237,15 +237,16 @@ class CATSS(nn.Module):
 
             return losses
         else:
-            results = self.inference(anchors, pred_logits, pred_anchor_deltas, pred_centers, images.image_sizes)
+            res_instances, res_features = self.inference(anchors, pred_logits, pred_anchor_deltas, pred_centers, pred_features, images.image_sizes)
             if torch.jit.is_scripting():
-                return results
+                return res_instances
             processed_results = []
-            for results_per_image, input_per_image, image_size in zip(results, batched_inputs, images.image_sizes):
+            for results_per_image, features_per_image, input_per_image, image_size in \
+                    zip(res_instances, res_features, batched_inputs, images.image_sizes):
                 height = input_per_image.get("height", image_size[0])
                 width = input_per_image.get("width", image_size[1])
                 r = detector_postprocess(results_per_image, height, width)
-                processed_results.append({"instances": r})
+                processed_results.append({"instances": r, "features": features_per_image})
             return processed_results
 
     def losses(self, anchors, pred_logits, gt_labels, pred_anchor_deltas, gt_boxes, pred_centers):
@@ -421,7 +422,7 @@ class CATSS(nn.Module):
             assert losses.numel() != 0
             return losses.sum()
 
-    def inference(self, anchors, pred_logits, pred_anchor_deltas, pred_centers, image_sizes):
+    def inference(self, anchors, pred_logits, pred_anchor_deltas, pred_centers, pred_features, image_sizes):
         """
         Arguments:
             anchors (list[Boxes]): A list of #feature level Boxes.
@@ -434,25 +435,29 @@ class CATSS(nn.Module):
             results (List[Instances]): a list of #images elements.
         """
         results: List[Instances] = []
+        results_features = []
 
-        boxes_all, scores_all, labels_all = [], [], []
-        for anchor_per_feat, pred_logits_per_feat, deltas_per_feat, centers_per_feat in \
-                zip(anchors, pred_logits, pred_anchor_deltas, pred_centers):
-            boxes, scores, labels = self.inference_single_feature_map(
-                anchor_per_feat, pred_logits_per_feat, deltas_per_feat, centers_per_feat, image_sizes
+        boxes_all, scores_all, labels_all, features_all = [], [], [], []
+        for anchor_per_feat, pred_logits_per_feat, deltas_per_feat, centers_per_feat, features_per_box in \
+                zip(anchors, pred_logits, pred_anchor_deltas, pred_centers, pred_features):
+
+            boxes, scores, labels, features = self.inference_single_feature_map(
+                anchor_per_feat, pred_logits_per_feat, deltas_per_feat, centers_per_feat, features_per_box, image_sizes
             )
             boxes_all.append(boxes)
             scores_all.append(scores)
             labels_all.append(labels)
+            features_all.append(features)
 
         boxes_all = list(zip(*boxes_all))
         scores_all = list(zip(*scores_all))
         labels_all = list(zip(*labels_all))
+        features_all = list(zip(*features_all))
 
-        for boxes_per_image, scores_per_image, labels_per_image, image_size \
-                in zip(boxes_all, scores_all, labels_all, image_sizes):
-            boxes_per_image, scores_per_image, labels_per_image = [
-                cat(x) for x in [boxes_per_image, scores_per_image, labels_per_image]
+        for boxes_per_image, scores_per_image, labels_per_image, features_per_box, image_size \
+                in zip(boxes_all, scores_all, labels_all, features_all, image_sizes):
+            boxes_per_image, scores_per_image, labels_per_image, features_per_box = [
+                cat(x) for x in [boxes_per_image, scores_per_image, labels_per_image, features_per_box]
             ]
             keep = batched_nms(boxes_per_image, scores_per_image, labels_per_image, self.nms_thresh)
             keep = keep[: self.max_detections_per_image]
@@ -462,33 +467,45 @@ class CATSS(nn.Module):
             result.scores = scores_per_image[keep]
             result.pred_classes = labels_per_image[keep]
             results.append(result)
-        return results
+            results_features.append(features_per_box[keep])
+        return results, results_features
 
-    def inference_single_feature_map(self, anchors, box_cls, box_delta, centerness, image_sizes):
+    def inference_single_feature_map(self, anchors, box_cls, box_delta, centerness, features, image_sizes):
         N, _, H, W = box_cls.shape
         A = box_delta.size(1) // 4
         C = box_cls.size(1) // A
+        F = features.size(1)
+
+        # print("features.shape: ", features.shape)       # features.shape: [1, 406, 14, 20]
+        # print("box_cls.shape: ", box_cls.shape)     # box_cls.shape: [1, 80, 14, 20]
+        # print("box_delta.shape: ", box_delta.shape)     # box_delta.shape: [1, 4, 14, 20]
+        # print("centerness.shape: ", centerness.shape)     # centerness.shape: [1, 1, 14, 20]
+        # print("A: ", A)     # A: 1
+        # print("C: ", C)     # C: 80
 
         # put in the same format as anchors
-        box_cls = permute_and_flatten(box_cls, N, A, C, H, W)
+        box_features = permute_and_flatten(features, N, A, F, H, W)       # [N, H*W, C]
+        box_features = box_features.reshape(N, -1, F)
+
+        box_cls = permute_and_flatten(box_cls, N, A, C, H, W)       # [N, H*W, C]
         box_cls = box_cls.sigmoid()
 
-        box_regression = permute_and_flatten(box_delta, N, A, 4, H, W)
+        box_regression = permute_and_flatten(box_delta, N, A, 4, H, W)      # [N, H*W, 4]
         box_regression = box_regression.reshape(N, -1, 4)
 
         candidate_inds = box_cls > self.pre_nms_thresh
         pre_nms_top_n = candidate_inds.reshape(N, -1).sum(1)
         pre_nms_top_n = pre_nms_top_n.clamp(max=self.pre_nms_top_n)
 
-        centerness = permute_and_flatten(centerness, N, A, 1, H, W)
+        centerness = permute_and_flatten(centerness, N, A, 1, H, W)     # [N, A*H*W, 1]
         centerness = centerness.reshape(N, -1).sigmoid()
 
         # multiply the classification scores with centerness scores
         box_cls = box_cls * centerness[:, :, None]
 
-        boxes, scores, labels = [], [], []
-        for per_box_cls, per_box_regression, per_pre_nms_top_n, per_candidate_inds, per_imsize \
-                in zip(box_cls, box_regression, pre_nms_top_n, candidate_inds, image_sizes):
+        boxes, scores, labels, feats = [], [], [], []
+        for per_box_cls, per_box_regression, per_box_features, per_pre_nms_top_n, per_candidate_inds, per_imsize \
+                in zip(box_cls, box_regression, box_features, pre_nms_top_n, candidate_inds, image_sizes):
 
             per_box_cls = per_box_cls[per_candidate_inds]
             per_box_cls, top_k_indices = per_box_cls.topk(per_pre_nms_top_n, sorted=False)
@@ -502,11 +519,14 @@ class CATSS(nn.Module):
                 anchors.tensor[per_box_loc, :].view(-1, 4)
             )
 
+            per_feat = per_box_features[per_box_loc, :]
+
             boxes.append(detections)
             scores.append(per_box_cls)
             labels.append(per_class)
+            feats.append(per_feat)
 
-        return boxes, scores, labels
+        return boxes, scores, labels, feats
 
     def preprocess_image(self, batched_inputs: List[Dict[str, Tensor]]):
         """

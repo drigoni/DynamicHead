@@ -226,14 +226,18 @@ class ProposalExtractor(object):
         """
         predictions = self.predictor(image, concepts)
         instances = predictions["instances"].to(self.cpu_device)
-        instances_converted = dict()
+        results = dict()
         for k, v in instances.get_fields().items():
             if isinstance(v, Boxes):
                 boxes_list = v.tensor
-                instances_converted[k] = boxes_list.tolist()
+                results[k] = boxes_list.tolist()
             else:
-                instances_converted[k] = v.tolist()
-        return instances_converted
+                results[k] = v.tolist()
+
+        features = predictions["features"].to(self.cpu_device)
+        features = [i.tolist() for i in features]
+        results['features'] = features
+        return results
 
 
 def extract_flickr30k_concepts(ewiser_path):
@@ -359,6 +363,7 @@ if __name__ == "__main__":
             out_filename = os.path.join(args.output, os.path.basename(image_path))
             out_filename = '{}.json'.format(out_filename[:-4])
             # logger.info(out_filename)
+            # print('Features: ', len(predictions['features']), len(predictions['features'][0]))
             with open(out_filename, 'w') as outfile:
                 json.dump(predictions, outfile)
     else:
