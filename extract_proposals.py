@@ -237,6 +237,9 @@ class ProposalExtractor(object):
         features = predictions["features"].to(self.cpu_device)
         features = [i.tolist() for i in features]
         results['features'] = features
+        probs = predictions["probs"].to(self.cpu_device)
+        probs = [i.tolist() for i in probs]
+        results['probs'] = probs
         return results
 
 
@@ -258,9 +261,11 @@ def extract_flickr30k_concepts(ewiser_path):
                 if len(synsets_filtered) > 0:
                     best_synset = synsets_filtered[0]
                     all_synsets.append(best_synset)
-                else:
-                    print("No noun synset for {}.".format(ewiser_path))
-    return all_synsets
+    # check if there are at least one concept
+    if len(all_synsets) == 0:
+        print("No noun synset for {}.".format(ewiser_path))
+    all_synsets_unique = list(set(all_synsets))
+    return all_synsets_unique
 
 
 def setup_cfg(args):
@@ -274,8 +279,11 @@ def setup_cfg(args):
     cfg.merge_from_file(args.config)
     cfg.merge_from_list(args.opts)
     # Set score_threshold for builtin models
-    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = args.confidence
-    cfg.MODEL.ATSS.INFERENCE_TH = args.confidence
+    cfg.MODEL.ATSS.INFERENCE_TH = args.inference_th
+    cfg.MODEL.ATSS.PRE_NMS_TOP_N = args.pre_nms_top_n
+    cfg.MODEL.ATSS.NMS_TH = args.nms_th
+    cfg.TEST.DETECTIONS_PER_IMAGE = args.detection_per_image
+
     cfg.freeze()
     default_setup(cfg, args)
     return cfg
@@ -305,10 +313,28 @@ def get_parser():
         "If not given, will show output in an OpenCV window.",
     )
     parser.add_argument(
-        "--confidence",
+        "--inference_th",
         type=float,
-        default=0.7,
+        default=0.05,
         help="Minimum score for instance predictions to be shown",
+    )
+    parser.add_argument(
+        "--pre_nms_top_n",
+        type=int,
+        default=1000,
+        help="cfg.MODEL.ATSS.PRE_NMS_TOP_N.",
+    )
+    parser.add_argument(
+        "--nms_th",
+        type=float,
+        default=0.6,
+        help="cfg.MODEL.ATSS.NMS_TH",
+    )
+    parser.add_argument(
+        "--detection_per_image",
+        type=int,
+        default=100,
+        help="cfg.TEST.DETECTIONS_PER_IMAGE.",
     )
     parser.add_argument(
         "--opts",
@@ -335,6 +361,9 @@ if __name__ == "__main__":
 
     extractor = ProposalExtractor(cfg, args.parallel)
 
+    n_proposals = []
+    n_concepts = []
+
     if args.images_folder and args.concepts:
         images_folder = args.images_folder
         concepts_folder = os.path.dirname(args.concepts[0])
@@ -359,6 +388,10 @@ if __name__ == "__main__":
                 )
             )
 
+            # update statistics
+            n_proposals.append(len(predictions['pred_boxes']))
+            n_concepts.append(len(current_concepts))
+
             # save predictions
             out_filename = os.path.join(args.output, os.path.basename(image_path))
             out_filename = '{}.json'.format(out_filename[:-4])
@@ -366,5 +399,20 @@ if __name__ == "__main__":
             # print('Features: ', len(predictions['features']), len(predictions['features'][0]))
             with open(out_filename, 'w') as outfile:
                 json.dump(predictions, outfile)
+
+        logger.info(
+            "Statistics about extracted proposals. Mean: {}, Max: {}, Min: {} .".format(
+                sum(n_proposals)/len(n_proposals),
+                max(n_proposals),
+                min(n_proposals)
+            )
+        )
+        logger.info(
+            "Statistics about number of concepts. Mean: {}, Max: {}, Min: {} .".format(
+                sum(n_concepts)/len(n_concepts),
+                max(n_concepts),
+                min(n_concepts)
+            )
+        )
     else:
         print('Specify the folder of images and the folder of concepts. ')

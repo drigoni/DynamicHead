@@ -237,16 +237,16 @@ class CATSS(nn.Module):
 
             return losses
         else:
-            res_instances, res_features = self.inference(anchors, pred_logits, pred_anchor_deltas, pred_centers, pred_features, images.image_sizes)
+            res_instances, res_features, res_probs = self.inference(anchors, pred_logits, pred_anchor_deltas, pred_centers, pred_features, images.image_sizes)
             if torch.jit.is_scripting():
                 return res_instances
             processed_results = []
-            for results_per_image, features_per_image, input_per_image, image_size in \
-                    zip(res_instances, res_features, batched_inputs, images.image_sizes):
+            for results_per_image, features_per_image, probs_per_image, input_per_image, image_size in \
+                    zip(res_instances, res_features, res_probs, batched_inputs, images.image_sizes):
                 height = input_per_image.get("height", image_size[0])
                 width = input_per_image.get("width", image_size[1])
                 r = detector_postprocess(results_per_image, height, width)
-                processed_results.append({"instances": r, "features": features_per_image})
+                processed_results.append({"instances": r, "features": features_per_image, 'probs': probs_per_image})
             return processed_results
 
     def losses(self, anchors, pred_logits, gt_labels, pred_anchor_deltas, gt_boxes, pred_centers):
@@ -436,28 +436,31 @@ class CATSS(nn.Module):
         """
         results: List[Instances] = []
         results_features = []
+        results_probs = []
 
-        boxes_all, scores_all, labels_all, features_all = [], [], [], []
+        boxes_all, scores_all, labels_all, features_all, probs_all = [], [], [], [], []
         for anchor_per_feat, pred_logits_per_feat, deltas_per_feat, centers_per_feat, features_per_box in \
                 zip(anchors, pred_logits, pred_anchor_deltas, pred_centers, pred_features):
 
-            boxes, scores, labels, features = self.inference_single_feature_map(
+            boxes, scores, labels, features, probs = self.inference_single_feature_map(
                 anchor_per_feat, pred_logits_per_feat, deltas_per_feat, centers_per_feat, features_per_box, image_sizes
             )
             boxes_all.append(boxes)
             scores_all.append(scores)
             labels_all.append(labels)
             features_all.append(features)
+            probs_all.append(probs)
 
         boxes_all = list(zip(*boxes_all))
         scores_all = list(zip(*scores_all))
         labels_all = list(zip(*labels_all))
         features_all = list(zip(*features_all))
+        probs_all = list(zip(*probs_all))
 
-        for boxes_per_image, scores_per_image, labels_per_image, features_per_box, image_size \
-                in zip(boxes_all, scores_all, labels_all, features_all, image_sizes):
-            boxes_per_image, scores_per_image, labels_per_image, features_per_box = [
-                cat(x) for x in [boxes_per_image, scores_per_image, labels_per_image, features_per_box]
+        for boxes_per_image, scores_per_image, labels_per_image, features_per_box, probs_per_image, image_size \
+                in zip(boxes_all, scores_all, labels_all, features_all, probs_all, image_sizes):
+            boxes_per_image, scores_per_image, labels_per_image, features_per_box, probs_per_image = [
+                cat(x) for x in [boxes_per_image, scores_per_image, labels_per_image, features_per_box, probs_per_image]
             ]
             keep = batched_nms(boxes_per_image, scores_per_image, labels_per_image, self.nms_thresh)
             keep = keep[: self.max_detections_per_image]
@@ -468,7 +471,8 @@ class CATSS(nn.Module):
             result.pred_classes = labels_per_image[keep]
             results.append(result)
             results_features.append(features_per_box[keep])
-        return results, results_features
+            results_probs.append(probs_per_image[keep])
+        return results, results_features, results_probs
 
     def inference_single_feature_map(self, anchors, box_cls, box_delta, centerness, features, image_sizes):
         N, _, H, W = box_cls.shape
@@ -484,7 +488,7 @@ class CATSS(nn.Module):
         # print("C: ", C)     # C: 80
 
         # put in the same format as anchors
-        box_features = permute_and_flatten(features, N, A, F, H, W)       # [N, H*W, C]
+        box_features = permute_and_flatten(features, N, A, F, H, W)       # [N, H*W, F]
         box_features = box_features.reshape(N, -1, F)
 
         box_cls = permute_and_flatten(box_cls, N, A, C, H, W)       # [N, H*W, C]
@@ -493,22 +497,23 @@ class CATSS(nn.Module):
         box_regression = permute_and_flatten(box_delta, N, A, 4, H, W)      # [N, H*W, 4]
         box_regression = box_regression.reshape(N, -1, 4)
 
-        candidate_inds = box_cls > self.pre_nms_thresh
-        pre_nms_top_n = candidate_inds.reshape(N, -1).sum(1)
-        pre_nms_top_n = pre_nms_top_n.clamp(max=self.pre_nms_top_n)
-
         centerness = permute_and_flatten(centerness, N, A, 1, H, W)     # [N, A*H*W, 1]
         centerness = centerness.reshape(N, -1).sigmoid()
+
+        candidate_inds = box_cls > self.pre_nms_thresh
+        pre_nms_top_n = candidate_inds.reshape(N, -1).sum(1)                # [N, 1]
+        pre_nms_top_n = pre_nms_top_n.clamp(max=self.pre_nms_top_n)
 
         # multiply the classification scores with centerness scores
         box_cls = box_cls * centerness[:, :, None]
 
-        boxes, scores, labels, feats = [], [], [], []
+        boxes, probs, scores, labels, feats = [], [], [], [], []
         for per_box_cls, per_box_regression, per_box_features, per_pre_nms_top_n, per_candidate_inds, per_imsize \
                 in zip(box_cls, box_regression, box_features, pre_nms_top_n, candidate_inds, image_sizes):
 
-            per_box_cls = per_box_cls[per_candidate_inds]
-            per_box_cls, top_k_indices = per_box_cls.topk(per_pre_nms_top_n, sorted=False)
+            per_box_cls_list = per_box_cls[per_candidate_inds]               # list of scores bigger than treshold
+            per_box_cls_list, top_k_indices = per_box_cls_list.topk(per_pre_nms_top_n, sorted=False)
+            # per_candidate_inds.nonzero() -> matrix to list containing only the positives values coordinates
             per_candidate_nonzeros = per_candidate_inds.nonzero()[top_k_indices, :]
 
             per_box_loc = per_candidate_nonzeros[:, 0]
@@ -520,13 +525,15 @@ class CATSS(nn.Module):
             )
 
             per_feat = per_box_features[per_box_loc, :]
+            probabilities = per_box_cls[per_box_loc]
 
             boxes.append(detections)
-            scores.append(per_box_cls)
+            probs.append(probabilities)
+            scores.append(per_box_cls_list)
             labels.append(per_class)
             feats.append(per_feat)
 
-        return boxes, scores, labels, feats
+        return boxes, scores, labels, feats, probs
 
     def preprocess_image(self, batched_inputs: List[Dict[str, Tensor]]):
         """

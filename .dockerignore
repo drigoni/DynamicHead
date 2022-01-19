@@ -2,6 +2,8 @@
 ./.idea/*
 ./.vector_cache/*
 ./output*
-demo/*
-extracted_features/*
+./demo*
+./extracted_features*
 */__*
+dyhead_swint_atss_fpn_2x_ms.pth
+swin_tiny_patch4_window7_224_d2.pth

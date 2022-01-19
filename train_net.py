@@ -293,6 +293,13 @@ def setup(args):
 def main(args):
     cfg = setup(args)
 
+    # metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
+    # thing_classes = MetadataCatalog.get('coco_2017_train').thing_classes  # from origin ids to contiguos one
+    # metaMapping = {val: key for key, val in metaMapping.items()}
+    # print('metaMapping', metaMapping, len(metaMapping.keys()), max(metaMapping.values()))
+    # print('thing_classes', thing_classes, len(thing_classes))
+    # exit(1)
+
     if args.eval_only:
         model = Trainer.build_model(cfg)
         DetectionCheckpointer(model, save_dir=cfg.OUTPUT_DIR).resume_or_load(cfg.MODEL.WEIGHTS, resume=args.resume)

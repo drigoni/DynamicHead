@@ -263,10 +263,10 @@ def extract_flickr30k_concepts(ewiser_path):
                 if len(synsets_filtered) > 0:
                     best_synset = synsets_filtered[0]
                     all_synsets.append(best_synset)
-                else:
-                    print("No noun synset for {}.".format(ewiser_path))
+    # check if there are at least one concept
+    if len(all_synsets) == 0:
+        print("No noun synset for {}.".format(ewiser_path))
     all_synsets_unique = list(set(all_synsets))
-    print(all_synsets_unique)
     return all_synsets_unique
 
 
@@ -281,8 +281,10 @@ def setup_cfg(args):
     cfg.merge_from_file(args.config)
     cfg.merge_from_list(args.opts)
     # Set score_threshold for builtin models
-    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = args.confidence
-    cfg.MODEL.ATSS.INFERENCE_TH = args.confidence
+    cfg.MODEL.ATSS.INFERENCE_TH = args.inference_th
+    cfg.MODEL.ATSS.PRE_NMS_TOP_N = args.pre_nms_top_n
+    cfg.MODEL.ATSS.NMS_TH = args.nms_th
+    cfg.TEST.DETECTIONS_PER_IMAGE = args.detection_per_image
 
     cfg.freeze()
     default_setup(cfg, args)
@@ -313,10 +315,28 @@ def get_parser():
              "If not given, will show output in an OpenCV window.",
     )
     parser.add_argument(
-        "--confidence",
+        "--inference_th",
         type=float,
-        default=0.7,
+        default=0.05,
         help="Minimum score for instance predictions to be shown",
+    )
+    parser.add_argument(
+        "--pre_nms_top_n",
+        type=int,
+        default=1000,
+        help="cfg.MODEL.ATSS.PRE_NMS_TOP_N.",
+    )
+    parser.add_argument(
+        "--nms_th",
+        type=float,
+        default=0.6,
+        help="cfg.MODEL.ATSS.NMS_TH",
+    )
+    parser.add_argument(
+        "--detection_per_image",
+        type=int,
+        default=100,
+        help="cfg.TEST.DETECTIONS_PER_IMAGE.",
     )
     parser.add_argument(
         "--opts",
