@@ -234,12 +234,7 @@ class ProposalExtractor(object):
             else:
                 results[k] = v.tolist()
 
-        features = predictions["features"].to(self.cpu_device)
-        features = [i.tolist() for i in features]
-        results['features'] = features
-        probs = predictions["probs"].to(self.cpu_device)
-        probs = [i.tolist() for i in probs]
-        results['probs'] = probs
+        assert len(results['features']) ==  len(results['pred_boxes']) == len(results['probs']), 'Error in the results.'
         return results
 
 

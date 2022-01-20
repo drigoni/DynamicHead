@@ -237,16 +237,16 @@ class CATSS(nn.Module):
 
             return losses
         else:
-            res_instances, res_features, res_probs = self.inference(anchors, pred_logits, pred_anchor_deltas, pred_centers, pred_features, images.image_sizes)
+            res_instances = self.inference(anchors, pred_logits, pred_anchor_deltas, pred_centers, pred_features, images.image_sizes)
             if torch.jit.is_scripting():
                 return res_instances
             processed_results = []
-            for results_per_image, features_per_image, probs_per_image, input_per_image, image_size in \
-                    zip(res_instances, res_features, res_probs, batched_inputs, images.image_sizes):
+            for results_per_image, input_per_image, image_size in \
+                    zip(res_instances, batched_inputs, images.image_sizes):
                 height = input_per_image.get("height", image_size[0])
                 width = input_per_image.get("width", image_size[1])
                 r = detector_postprocess(results_per_image, height, width)
-                processed_results.append({"instances": r, "features": features_per_image, 'probs': probs_per_image})
+                processed_results.append({"instances": r})
             return processed_results
 
     def losses(self, anchors, pred_logits, gt_labels, pred_anchor_deltas, gt_boxes, pred_centers):
@@ -469,10 +469,10 @@ class CATSS(nn.Module):
             result.pred_boxes = Boxes(boxes_per_image[keep])
             result.scores = scores_per_image[keep]
             result.pred_classes = labels_per_image[keep]
+            result.features = features_per_box[keep]
+            result.probs = probs_per_image[keep]
             results.append(result)
-            results_features.append(features_per_box[keep])
-            results_probs.append(probs_per_image[keep])
-        return results, results_features, results_probs
+        return results
 
     def inference_single_feature_map(self, anchors, box_cls, box_delta, centerness, features, image_sizes):
         N, _, H, W = box_cls.shape
