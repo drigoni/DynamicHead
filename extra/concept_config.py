@@ -5,14 +5,14 @@ def add_concept_config(cfg):
 
     # extra configs for concepts and deepsets
     cfg.CONCEPT = CN()
-    cfg.CONCEPT.FILE = './concept/vg_to_synset.json'
+    cfg.CONCEPT.FILE = './concept/coco_to_synset.json'
     cfg.CONCEPT.VOCAB = './concept/vocab.json'
     cfg.CONCEPT.DEPTH = 3
     cfg.CONCEPT.UNIQUE = True
     cfg.CONCEPT.ONLY_NAME = True
 
     cfg.DEEPSETS = CN()
-    cfg.DEEPSETS.EMB = 'wordnet'   # 'random' # 'wordnet'
+    cfg.DEEPSETS.EMB = 'random'   # 'random' # 'wordnet'
     cfg.DEEPSETS.FILE = './concept/wn30_holE_500_150_0.1_0.2_embeddings.pickle'
     cfg.DEEPSETS.EMB_DIM = 150
     cfg.DEEPSETS.FREEZE = True

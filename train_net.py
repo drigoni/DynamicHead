@@ -222,10 +222,10 @@ class Trainer(DefaultTrainer):
                 continue
             # TODO drigoni: stop backpropagation in the backbone
             # stop backpropagation in the backbones parameters
-            if "backbone" in key:
-                print("Gradient stop for layer: ", key)
-                value.requires_grad = False
-                continue
+            # if "backbone" in key:
+            #     print("Gradient stop for layer: ", key)
+            #     value.requires_grad = False
+            #     continue
             memo.add(value)
             lr = cfg.SOLVER.BASE_LR
             weight_decay = cfg.SOLVER.WEIGHT_DECAY
@@ -316,9 +316,8 @@ def main(args):
 if __name__ == "__main__":
     args = default_argument_parser().parse_args()
     print("Command Line Args:", args)
-    if not os.path.exists('/root/nltk_data/wordnet.zip'):
-        # nltk.download('wordnet')
-        nltk.download('wordnet', download_dir='/root/nltk_data')
+    nltk.download('omw-1.4')
+    nltk.download('wordnet')
     launch(
         main,
         args.num_gpus,
