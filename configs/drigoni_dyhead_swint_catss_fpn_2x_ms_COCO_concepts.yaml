@@ -1,6 +1,6 @@
 MODEL:
   META_ARCHITECTURE: "CATSS"
-  WEIGHTS: "./pretrained/model_final_VG_concepts_empty.pth"
+  WEIGHTS: "./pretrained/dyhead_swint_atss_fpn_2x_ms.pth"
   PIXEL_MEAN: [123.675, 116.28, 103.53]
   PIXEL_STD: [58.395, 57.12, 57.375]
   BACKBONE:
