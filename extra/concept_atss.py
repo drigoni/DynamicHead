@@ -213,7 +213,6 @@ class CATSS(nn.Module):
         features = [features[f] for f in self.head_in_features]  # List[Tensors] five element with shape [b, 256, w, h]
         anchors = self.anchor_generator(features)
 
-        # TODO drigoni: add new input. FIX PRE_TRAINED WEIGHTS
         # concepts batching and tokenization
         concepts, concepts_mask = self.concept_net.preprocess_concepts(batched_inputs)
         concepts = concepts.to(self.device)
@@ -222,7 +221,7 @@ class CATSS(nn.Module):
         concepts_features = self.concept_net(concepts, concepts_mask)  # [b, 150]
         concepts_features = concepts_features.unsqueeze(-1).unsqueeze(-1)       # [b, 150, 1, 1]
         # features concatenation
-        features = [torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
+        features = [torch.add(f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3]))
                     for f in features]
 
         pred_logits, pred_anchor_deltas, pred_centers, pred_features = self.head(features)
@@ -559,11 +558,12 @@ class CATSSHead(torch.nn.Module):
         super(CATSSHead, self).__init__()
         self.cfg = cfg
         num_classes = cfg.MODEL.ATSS.NUM_CLASSES
+        num_attributes = cfg.MODEL.ATSS.NUM_ATTRIBUTES
         num_anchors = len(cfg.MODEL.ANCHOR_GENERATOR.ASPECT_RATIOS)
         use_gn = cfg.MODEL.ATSS.USE_GN
         deepsets_channel = cfg.DEEPSETS.OUTPUT_DIM
         # TODO drigoni: add deepsets dimension in the channel
-        channels = cfg.MODEL.ATSS.CHANNELS + deepsets_channel
+        channels = cfg.MODEL.ATSS.CHANNELS # + deepsets_channel
 
         in_channels = [s.channels for s in input_shape]
         assert len(set(in_channels)) == 1, "Each level must have the same channel!"

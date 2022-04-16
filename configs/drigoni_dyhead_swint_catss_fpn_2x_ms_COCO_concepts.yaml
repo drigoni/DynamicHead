@@ -1,6 +1,6 @@
 MODEL:
   META_ARCHITECTURE: "CATSS"
-  WEIGHTS: "./dyhead_swint_atss_fpn_2x_ms.pth"
+  WEIGHTS: "./pretrained/model_final_VG_concepts_empty.pth"
   PIXEL_MEAN: [123.675, 116.28, 103.53]
   PIXEL_STD: [58.395, 57.12, 57.375]
   BACKBONE:
@@ -21,13 +21,15 @@ MODEL:
 DATASETS:
   TRAIN: ("coco_2017_train",)
   TEST: ("coco_2017_val",)
+DATALOADER:
+  NUM_WORKERS: 10
 SOLVER:
-  IMS_PER_BATCH: 64
+  IMS_PER_BATCH: 10
   BASE_LR: 0.0001
   WEIGHT_DECAY: 0.05
   WEIGHT_DECAY_BIAS: 0.05
   STEPS: (60000, 80000)
-  MAX_ITER: 120000
+  MAX_ITER: 240000
   OPTIMIZER: "ADAMW"
 INPUT:
   FORMAT: "RGB"
