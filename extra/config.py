@@ -20,10 +20,7 @@ def add_extra_config(cfg):
     # extra configs for atss
     cfg.MODEL.ATSS = CN()
     cfg.MODEL.ATSS.TOPK = 9
-    cfg.MODEL.ATSS.NUM_CLASSES = 1600
-    # cfg.MODEL.ATSS.NUM_CLASSES = 80
-    cfg.MODEL.ATSS.NUM_ATTRIBUTES = 400
-    cfg.MODEL.ATSS.WEIGHT_ATTRIBUTES = 0.1  # il training iniziale e' stato fatto a 0.2
+    cfg.MODEL.ATSS.NUM_CLASSES = 80
     cfg.MODEL.ATSS.IN_FEATURES = ["p3", "p4", "p5", "p6", "p7"]
     cfg.MODEL.ATSS.NUM_CONVS = 4
     cfg.MODEL.ATSS.CHANNELS = 256
@@ -39,7 +36,3 @@ def add_extra_config(cfg):
     cfg.MODEL.ATSS.PRE_NMS_TOP_N = 1000
     cfg.MODEL.ATSS.NMS_TH = 0.6
     cfg.SOLVER.OPTIMIZER = 'SGD'
-
-    # extra config for vg
-    cfg.MODEL.ATTRIBUTE_ON = True  # Whether to have attribute prediction
-    cfg.INPUT.MAX_ATTR_PER_INS = 16  # Maximum number of attributes per foreground instance

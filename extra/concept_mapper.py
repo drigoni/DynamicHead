@@ -16,8 +16,27 @@ from detectron2.config import configurable
 import detectron2.data.detection_utils as utils
 import detectron2.data.transforms as T
 from detectron2.data import MetadataCatalog
-# from . import detection_utils as utils
-# from . import transforms as T
+
+import copy
+import logging
+import numpy as np
+import torch
+from fvcore.common.file_io import PathManager
+from PIL import Image
+import pycocotools.mask as mask_util
+
+from detectron2.data import detection_utils as utils
+from detectron2.data import transforms as T
+from detectron2.data import DatasetMapper
+from detectron2.structures import (
+    BitMasks,
+    Boxes,
+    BoxMode,
+    Instances,
+    Keypoints,
+    PolygonMasks,
+    polygons_to_bitmask,
+)
 
 
 class ConceptMapper:
@@ -50,7 +69,7 @@ class ConceptMapper:
             keypoint_hflip_indices: Optional[np.ndarray] = None,
             precomputed_proposal_topk: Optional[int] = None,
             recompute_boxes: bool = False,
-            coco2synset: dict = None
+            coco2synset: dict = None,
     ):
         """
         NOTE: this interface is experimental.
@@ -141,29 +160,40 @@ class ConceptMapper:
         # NOTE: the categories ids in the annotations is not the same of the COCO datasets.
         # In COCO datasets there are 90 idx but only 80 are used. These ids are not contiguous, so the model
         # defines 80 contiguous indexes.
+        # metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
         metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
         metaMapping = {val: key for key, val in metaMapping.items()}
+        empty = False
         if self.is_train:
             # here we select the unique list of categories in the filtered annotations
             unique_cat = list(set({metaMapping[ann['category_id']] for ann in annos}))
             # sample some concepts and clean annotations
-            selected_cat = random.sample(unique_cat, random.randint(1, len(unique_cat)))  # at least one element
-            annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
+            random_int = random.randint(0, len(unique_cat))
+            if random_int > 0:
+                selected_cat = random.sample(unique_cat, random_int)  # at least one element
+                annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
+            else:
+                empty = True   # meaning no synsets
+                # we keep all the annotations
+                annos_filtered = annos
         else:
             # we use all the annotations concepts because the validation set is already cleaned.
-            # see make_concept_validation.py
+            # see make_concept_dataset.py
             annos_filtered = annos
-        concepts = []
-        for annotation in annos_filtered:
-            cat_idx = metaMapping[annotation['category_id']]
-            descendants = self.coco2synset[cat_idx]['descendants']
-            if len(descendants) > 0:
-                concept = random.choice(descendants)
-            else:
-                concept = self.coco2synset[cat_idx]['synset']
-            concepts.append(concept)
-        annos = annos_filtered
 
+        if empty:
+            concepts = ['entity.n.01']
+        else:
+            concepts = []
+            for annotation in annos_filtered:
+                cat_idx = metaMapping[annotation['category_id']]
+                descendants = self.coco2synset[cat_idx]['descendants']
+                if len(descendants) > 0:
+                    concept = random.choice(descendants)
+                else:
+                    concept = self.coco2synset[cat_idx]['synset']
+                concepts.append(concept)
+        annos = annos_filtered
         dataset_dict["concepts"] = concepts
 
         instances = utils.annotations_to_instances(

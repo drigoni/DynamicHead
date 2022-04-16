@@ -558,7 +558,6 @@ class CATSSHead(torch.nn.Module):
         super(CATSSHead, self).__init__()
         self.cfg = cfg
         num_classes = cfg.MODEL.ATSS.NUM_CLASSES
-        num_attributes = cfg.MODEL.ATSS.NUM_ATTRIBUTES
         num_anchors = len(cfg.MODEL.ANCHOR_GENERATOR.ASPECT_RATIOS)
         use_gn = cfg.MODEL.ATSS.USE_GN
         deepsets_channel = cfg.DEEPSETS.OUTPUT_DIM
