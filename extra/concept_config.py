@@ -5,6 +5,8 @@ def add_concept_config(cfg):
 
     # extra configs for concepts and deepsets
     cfg.CONCEPT = CN()
+    cfg.CONCEPT.APPLY_CONDITION = True
+    cfg.CONCEPT.APPLY_FILTER = True
     cfg.CONCEPT.FILE = './concept/coco_to_synset.json'
     cfg.CONCEPT.VOCAB = './concept/vocab.json'
     cfg.CONCEPT.DEPTH = 3

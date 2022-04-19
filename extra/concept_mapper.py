@@ -70,6 +70,8 @@ class ConceptMapper:
             precomputed_proposal_topk: Optional[int] = None,
             recompute_boxes: bool = False,
             coco2synset: dict = None,
+            apply_condition: bool = True,
+            apply_filter: bool = True,
     ):
         """
         NOTE: this interface is experimental.
@@ -101,6 +103,8 @@ class ConceptMapper:
         self.proposal_topk = precomputed_proposal_topk
         self.recompute_boxes = recompute_boxes
         self.coco2synset = coco2synset
+        self.apply_condition = apply_condition
+        self.apply_filter = apply_filter
         # fmt: on
         logger = logging.getLogger(__name__)
         mode = "training" if is_train else "inference"
@@ -123,6 +127,8 @@ class ConceptMapper:
             "instance_mask_format": cfg.INPUT.MASK_FORMAT,
             "use_keypoint": cfg.MODEL.KEYPOINT_ON,
             "recompute_boxes": recompute_boxes,
+            "apply_condition": cfg.CONCEPT.APPLY_CONDITION,
+            "apply_filter": cfg.CONCEPT.APPLY_FILTER,
         }
 
         if cfg.MODEL.KEYPOINT_ON:
@@ -164,35 +170,43 @@ class ConceptMapper:
         metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
         metaMapping = {val: key for key, val in metaMapping.items()}
         empty = False
-        if self.is_train:
-            # here we select the unique list of categories in the filtered annotations
-            unique_cat = list(set({metaMapping[ann['category_id']] for ann in annos}))
-            # sample some concepts and clean annotations
-            random_int = random.randint(0, len(unique_cat))
-            if random_int > 0:
-                selected_cat = random.sample(unique_cat, random_int)  # at least one element
-                annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
-            else:
-                empty = True   # meaning no synsets
-                # we keep all the annotations
-                annos_filtered = annos
-        else:
-            # we use all the annotations concepts because the validation set is already cleaned.
-            # see make_concept_dataset.py
-            annos_filtered = annos
-
-        if empty:
-            concepts = ['entity.n.01']
-        else:
-            concepts = []
-            for annotation in annos_filtered:
-                cat_idx = metaMapping[annotation['category_id']]
-                descendants = self.coco2synset[cat_idx]['descendants']
-                if len(descendants) > 0:
-                    concept = random.choice(descendants)
+        # TODO drigoni: This function decides to apply the condition and to generate de concepts.
+        # TODO It apply the condition only if self.apply_condition=True
+        # TODO It apply the filtering of the annotations only if self.apply_filter=True
+        if self.apply_condition:
+            if self.apply_filter:
+                # here we select the unique list of categories in the filtered annotations
+                unique_cat = list(set({metaMapping[ann['category_id']] for ann in annos}))
+                # sample some concepts and clean annotations
+                random_int = random.randint(0, len(unique_cat))
+                if random_int > 0:
+                    selected_cat = random.sample(unique_cat, random_int)  # at least one element
+                    annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
                 else:
-                    concept = self.coco2synset[cat_idx]['synset']
-                concepts.append(concept)
+                    empty = True  # meaning no synsets
+                    # we keep all the annotations
+                    annos_filtered = annos
+            else:
+                # we use all the annotations concepts because the validation set is already cleaned.
+                # see make_concept_dataset.py
+                annos_filtered = annos
+
+            if empty:
+                concepts = ['entity.n.01']
+            else:
+                concepts = []
+                for annotation in annos_filtered:
+                    cat_idx = metaMapping[annotation['category_id']]
+                    descendants = self.coco2synset[cat_idx]['descendants']
+                    if len(descendants) > 0:
+                        concept = random.choice(descendants)
+                    else:
+                        concept = self.coco2synset[cat_idx]['synset']
+                    concepts.append(concept)
+        else:
+            annos_filtered = annos
+            concepts = ['entity.n.01']
+
         annos = annos_filtered
         dataset_dict["concepts"] = concepts
 
