@@ -221,7 +221,7 @@ class CATSS(nn.Module):
         concepts_features = self.concept_net(concepts, concepts_mask)  # [b, 150]
         concepts_features = concepts_features.unsqueeze(-1).unsqueeze(-1)       # [b, 150, 1, 1]
         # features concatenation
-        features = [torch.add(f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3]))
+        features = [torch.mul(f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3]))
                     for f in features]
 
         pred_logits, pred_anchor_deltas, pred_centers, pred_features = self.head(features)
