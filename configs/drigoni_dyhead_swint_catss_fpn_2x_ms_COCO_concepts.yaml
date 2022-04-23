@@ -17,7 +17,7 @@ MODEL:
     ASPECT_RATIOS: [1.0,]
     OFFSET: 0.5
   ATSS:
-    NUM_CONVS: 0
+    NUM_CONVS: 2
 DATASETS:
   TRAIN: ("coco_2017_train",)
   TEST: ("coco_2017_val",)

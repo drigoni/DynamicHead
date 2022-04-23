@@ -221,7 +221,7 @@ class CATSS(nn.Module):
         concepts_features = self.concept_net(concepts, concepts_mask)  # [b, 150]
         concepts_features = concepts_features.unsqueeze(-1).unsqueeze(-1)       # [b, 150, 1, 1]
         # features concatenation
-        features = [torch.mul(f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3]))
+        features = [torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
                     for f in features]
 
         pred_logits, pred_anchor_deltas, pred_centers, pred_features = self.head(features)
@@ -562,7 +562,7 @@ class CATSSHead(torch.nn.Module):
         use_gn = cfg.MODEL.ATSS.USE_GN
         deepsets_channel = cfg.DEEPSETS.OUTPUT_DIM
         # TODO drigoni: add deepsets dimension in the channel
-        channels = cfg.MODEL.ATSS.CHANNELS # + deepsets_channel
+        channels = cfg.MODEL.ATSS.CHANNELS + deepsets_channel
 
         in_channels = [s.channels for s in input_shape]
         assert len(set(in_channels)) == 1, "Each level must have the same channel!"
