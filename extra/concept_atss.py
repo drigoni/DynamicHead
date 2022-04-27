@@ -583,7 +583,7 @@ class CATSSHead(torch.nn.Module):
                     )
                 )
                 if use_gn:
-                    cls_tower.append(nn.GroupNorm(29, channels))
+                    cls_tower.append(nn.GroupNorm(32, channels))
 
                 cls_tower.append(nn.ReLU())
 
@@ -598,7 +598,7 @@ class CATSSHead(torch.nn.Module):
                     )
                 )
                 if use_gn:
-                    bbox_tower.append(nn.GroupNorm(29, channels))
+                    bbox_tower.append(nn.GroupNorm(32, channels))
 
                 bbox_tower.append(nn.ReLU())
 
