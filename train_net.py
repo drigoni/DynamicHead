@@ -327,6 +327,7 @@ def main(args):
 
 if __name__ == "__main__":
     args = default_argument_parser().parse_args()
+    args.machine_rank = int(os.environ['SLURM_PROCID']) if 'SLURM_PROCID' in os.environ else args.machine_rank
     print("Command Line Args:", args)
     nltk.download('omw-1.4')
     nltk.download('wordnet')
@@ -334,7 +335,7 @@ if __name__ == "__main__":
         main,
         args.num_gpus,
         num_machines=args.num_machines,
-        machine_rank=int(os.environ['SLURM_PROCID']) if 'SLURM_PROCID' in os.environ else args.machine_rank,
-        dist_url=os.environ['SLURM_MASTER_URL'] if 'SLURM_MASTER_URL' in os.environ else args.dist_url,
+        machine_rank=args.machine_rank,
+        dist_url=args.dist_url,
         args=(args,),
     )
