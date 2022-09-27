@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG_FILE=./configs/dh_COCO_concepts_train_zeros.yaml
+CONFIG_FILE=./configs/dh_COCO_train.yaml
 MODEL_WEIGHTS=./pretrained/dyhead_swint_atss_fpn_2x_ms.pth
 NUM_GPUS=1
 DEEPSETS_EMB='random'
