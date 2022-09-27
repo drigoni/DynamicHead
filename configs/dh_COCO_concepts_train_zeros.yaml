@@ -1,0 +1,23 @@
+_BASE_: "dh_COCO_base.yaml"
+MODEL:
+  META_ARCHITECTURE: "CATSS"
+  WEIGHTS: "./pretrained/dyhead_swint_atss_fpn_2x_ms.pth"
+  BACKBONE:
+    NAME: "build_retinanet_swint_fpn_dyhead_backbone"
+  ATSS:
+    NUM_CONVS: 2
+DATALOADER:
+  NUM_WORKERS: 32
+CONCEPT:
+  CONCEPT_FUSION: "zeros" # ["cat", "mul", "sum", "zeros"]
+  APPLY_CONDITION: TRUE
+  APPLY_FILTER: TRUE
+  DEPTH: "3"
+  UNIQUE: TRUE
+DEEPSETS:
+  EMB: 'wordnet'   # 'random' # 'wordnet'
+  EMB_DIM: 150
+  FREEZE: TRUE
+  AGGREGATE: 'sum'
+  OUTPUT_DIM: 256
+OUTPUT_DIR: "./results/COCO/dh_concepts_zeros/"
