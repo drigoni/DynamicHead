@@ -9,7 +9,7 @@ MODEL:
 DATALOADER:
   NUM_WORKERS: 32
 CONCEPT:
-  CONCEPT_FUSION: "mul" # ["cat", "mul", "sum", "zeros"]
+  CONCEPT_FUSION: "mul" # ["cat", "mul", "add", "zeros"]
   APPLY_CONDITION: TRUE
   APPLY_FILTER: TRUE
   DEPTH: "3"

@@ -48,9 +48,12 @@ from dyhead import add_dyhead_config
 from extra import add_extra_config
 from extra import ConceptMapper
 from extra import ConceptFinder, add_concept_config
+from extra import flatten_json, unflatten_json
 import os
 import nltk
 from nltk.corpus import wordnet as wn
+import wandb
+import yaml
 
 
 class Trainer(DefaultTrainer):
@@ -293,6 +296,14 @@ def setup(args):
 def main(args):
     cfg = setup(args)
 
+    # wandb init only in rank0 and on device 0
+    if args.machine_rank == 0 and torch.cuda.current_device() == 0:
+        raw_cfg = yaml.safe_load(cfg.dump())
+        # make flat the nested dictionary from yaml
+        flatten_json(raw_cfg)
+        wandb.init(project="CATSS", sync_tensorboard=True, config=raw_cfg)
+        # unflatten_json(raw_cfg)
+
     # metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
     # thing_classes = MetadataCatalog.get('coco_2017_train').thing_classes  # from origin ids to contiguos one
     # metaMapping = {val: key for key, val in metaMapping.items()}
@@ -313,6 +324,7 @@ def main(args):
     return trainer.train()
 
 
+
 if __name__ == "__main__":
     args = default_argument_parser().parse_args()
     print("Command Line Args:", args)
@@ -322,9 +334,7 @@ if __name__ == "__main__":
         main,
         args.num_gpus,
         num_machines=args.num_machines,
-        machine_rank=int(os.environ['AZ_BATCHAI_TASK_INDEX']) \
-                        if 'AZ_BATCHAI_TASK_INDEX' in os.environ else args.machine_rank,
-        dist_url="tcp://"+os.environ['AZ_BATCH_MASTER_NODE'] \
-                        if 'AZ_BATCH_MASTER_NODE' in os.environ else args.dist_url,
+        machine_rank=int(os.environ['SLURM_PROCID']) if 'SLURM_PROCID' in os.environ else args.machine_rank,
+        dist_url=os.environ['SLURM_MASTER_URL'] if 'SLURM_MASTER_URL' in os.environ else args.dist_url,
         args=(args,),
     )

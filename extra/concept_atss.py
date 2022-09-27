@@ -105,6 +105,7 @@ class CATSS(nn.Module):
         input_format="BGR",
         anchor_aspect_ratio,
         anchor_topk,
+        concept_fusion,
         concept_net: nn.Module,
     ):
         super().__init__()
@@ -121,6 +122,7 @@ class CATSS(nn.Module):
 
         # Concept Net
         self.concept_net = concept_net
+        self.concept_fusion = concept_fusion
 
         # Anchors
         self.anchor_generator = anchor_generator
@@ -150,8 +152,22 @@ class CATSS(nn.Module):
         feature_shapes = [backbone_shape[f] for f in cfg.MODEL.ATSS.IN_FEATURES]
         # TODO drigoni: this code is needed for using more than one convolutional (currently 0) network in the head.
         deepsets_dim = cfg.DEEPSETS.OUTPUT_DIM
-        feature_shapes = [ShapeSpec(channels=f.channels + deepsets_dim, height=f.height, width=f.width, stride=f.stride)
+        concept_fusion = cfg.CONCEPT.CONCEPT_FUSION
+        if concept_fusion == "cat":
+            feature_shapes = [ShapeSpec(channels=f.channels + deepsets_dim, height=f.height, width=f.width, stride=f.stride)
                           for f in feature_shapes]
+        elif concept_fusion == "mul":
+            feature_shapes = [ShapeSpec(channels=f.channels, height=f.height, width=f.width, stride=f.stride)
+                          for f in feature_shapes]
+        elif concept_fusion == "add":
+            feature_shapes = [ShapeSpec(channels=f.channels, height=f.height, width=f.width, stride=f.stride)
+                          for f in feature_shapes]
+        elif concept_fusion == "zeros":
+            feature_shapes = [ShapeSpec(channels=f.channels + deepsets_dim, height=f.height, width=f.width, stride=f.stride)
+                          for f in feature_shapes]
+        else:
+            logger.error("Error. CONCEPT.FUSION={} not valid. ".format(concept_fusion))
+            exit(1)
         concept_net = ConceptNet(cfg)
         head = CATSSHead(cfg, feature_shapes)
         anchor_generator = build_anchor_generator(cfg, feature_shapes)
@@ -181,7 +197,8 @@ class CATSS(nn.Module):
             "input_format": cfg.INPUT.FORMAT,
             "anchor_aspect_ratio": cfg.MODEL.ANCHOR_GENERATOR.ASPECT_RATIOS,
             "anchor_topk": cfg.MODEL.ATSS.TOPK,
-            "concept_net": concept_net
+            "concept_net": concept_net,
+            "concept_fusion": cfg.CONCEPT.CONCEPT_FUSION,
         }
 
     @property
@@ -221,8 +238,22 @@ class CATSS(nn.Module):
         concepts_features = self.concept_net(concepts, concepts_mask)  # [b, 150]
         concepts_features = concepts_features.unsqueeze(-1).unsqueeze(-1)       # [b, 150, 1, 1]
         # features concatenation
-        features = [torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
+        if self.concept_fusion == "cat":
+            features = [torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
+                        for f in features]
+        elif self.concept_fusion == "mul":
+            features = [torch.mul(f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3]))
                     for f in features]
+        elif self.concept_fusion == "add":
+            features = [torch.add(f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3]))
+                    for f in features]
+        elif self.concept_fusion == "zeros":
+            concepts_features = torch.zeros_like(concepts_features, requires_grad=False)
+            features = [torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
+                    for f in features]
+        else:
+            logger.error("Error. CONCEPT.FUSION={} not valid. ".format(self.concept_fusion))
+            exit(1)
 
         pred_logits, pred_anchor_deltas, pred_centers, pred_features = self.head(features)
 
@@ -561,8 +592,18 @@ class CATSSHead(torch.nn.Module):
         num_anchors = len(cfg.MODEL.ANCHOR_GENERATOR.ASPECT_RATIOS)
         use_gn = cfg.MODEL.ATSS.USE_GN
         deepsets_channel = cfg.DEEPSETS.OUTPUT_DIM
-        # TODO drigoni: add deepsets dimension in the channel
-        channels = cfg.MODEL.ATSS.CHANNELS + deepsets_channel
+        concept_fusion = cfg.CONCEPT.CONCEPT_FUSION
+        if concept_fusion == "cat":
+            channels = cfg.MODEL.ATSS.CHANNELS + deepsets_channel
+        elif concept_fusion == "mul":
+            channels = cfg.MODEL.ATSS.CHANNELS
+        elif concept_fusion == "add":
+            channels = cfg.MODEL.ATSS.CHANNELS
+        elif concept_fusion == "zeros":
+            channels = cfg.MODEL.ATSS.CHANNELS + deepsets_channel
+        else:
+            logger.error("Error. CONCEPT.FUSION={} not valid. ".format(concept_fusion))
+            exit(1)
 
         in_channels = [s.channels for s in input_shape]
         assert len(set(in_channels)) == 1, "Each level must have the same channel!"

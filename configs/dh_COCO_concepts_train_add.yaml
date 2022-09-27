@@ -9,7 +9,7 @@ MODEL:
 DATALOADER:
   NUM_WORKERS: 32
 CONCEPT:
-  CONCEPT_FUSION: "sum" # ["cat", "mul", "sum", "zeros"]
+  CONCEPT_FUSION: "add" # ["cat", "mul", "add", "zeros"]
   APPLY_CONDITION: TRUE
   APPLY_FILTER: TRUE
   DEPTH: "3"
@@ -20,4 +20,4 @@ DEEPSETS:
   FREEZE: TRUE
   AGGREGATE: 'sum'
   OUTPUT_DIM: 256
-OUTPUT_DIR: "./results/COCO/dh_concepts_sum/"
+OUTPUT_DIR: "./results/COCO/dh_concepts_add/"

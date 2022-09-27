@@ -35,7 +35,7 @@ export SLURM_MASTER_ADDR=$SLURM_MASTER_ADDR
 # model variables
 NUM_GPUS=${SLURM_GPUS_PER_NODE}
 NUM_MACHINES=${SLURM_NNODES}
-BATCH_SIZE=$(expr 1 \* $(echo -n ${SLURM_JOB_NUM_NODES}) \* $(echo -n ${SLURM_GPUS_PER_NODE})) # max 5 per A100
+BATCH_SIZE=1
 MAX_ITER=$(expr 32 \* 90000 \/ $(echo -n ${BATCH_SIZE}))
 
 ### ============ SOME PRINT COMMANDS
@@ -61,28 +61,7 @@ echo "MODEL_MAX_ITER: " ${MAX_ITER}
 echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX "
 echo ''
 
-
-# model config
-CONFIG_FILE=./configs/dh_COCO_concepts_train_zeros.yaml
-MODEL_WEIGHTS=./pretrained/dyhead_swint_atss_fpn_2x_ms.pth
-DEEPSETS_EMB='random'  # or wordnet
-CONCEPT_APPLY_CONDITION=False
-CONCEPT_APPLY_FILTER=False
-OUTPUT_DIR="./output/debug/"
-
-srun python train_net.py \
-                    --config  ${CONFIG_FILE} \
-                    --num-gpus ${NUM_GPUS} \
-                    --num-machines ${NUM_MACHINES} \
-                    --dist-url ${SLURM_MASTER_URL} \
-                    MODEL.WEIGHTS ${MODEL_WEIGHTS}  \
-                    DEEPSETS.EMB ${DEEPSETS_EMB} \
-                    CONCEPT.APPLY_CONDITION ${CONCEPT_APPLY_CONDITION} \
-                    CONCEPT.APPLY_FILTER ${CONCEPT_APPLY_FILTER} \
-                    SOLVER.IMS_PER_BATCH ${BATCH_SIZE} \
-                    SOLVER.MAX_ITER ${MAX_ITER} \
-                    OUTPUT_DIR ${OUTPUT_DIR} 
-
+srun bash debug.bash
 
 # last default print
 echo ''
