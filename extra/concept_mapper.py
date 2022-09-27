@@ -216,6 +216,9 @@ class ConceptMapper:
         elif self.meta_architecture == "ATSS":
             # the standard object detector is used
             pass
+        elif self.meta_architecture == "GeneralizedRCNN":
+            # the standard object detector is used
+            pass
         else:
             logger.error("Error. MODEL.META_ARCHITECTURE={} not valid. ".format(self.meta_architecture))
             exit(1)
