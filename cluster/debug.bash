@@ -2,6 +2,8 @@
 
 # CONFIG_FILE=./configs/dh_COCO_train.yaml
 CONFIG_FILE=./configs/dh_COCO_concepts_train_add.yaml
+# CONFIG_FILE=./configs/frcnn_COCO_train.yaml
+# CONFIG_FILE=./configs/frcnn_drigoni_COCO_train.yaml
 MODEL_WEIGHTS=./pretrained/dyhead_swint_atss_fpn_2x_ms.pth
 NUM_GPUS=1
 DEEPSETS_EMB='random'
@@ -16,4 +18,4 @@ python train_net.py --config  ${CONFIG_FILE} \
                     CONCEPT.APPLY_CONDITION ${CONCEPT_APPLY_CONDITION} \
                     CONCEPT.APPLY_FILTER ${CONCEPT_APPLY_FILTER} \
                     OUTPUT_DIR ${OUTPUT_DIR} \
-                    SOLVER.IMS_PER_BATCH 2
+                    SOLVER.IMS_PER_BATCH 5

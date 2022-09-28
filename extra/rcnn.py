@@ -17,11 +17,13 @@ from detectron2.modeling.proposal_generator import build_proposal_generator
 from detectron2.modeling.roi_heads import build_roi_heads
 from detectron2.modeling.meta_arch.build import META_ARCH_REGISTRY
 
-__all__ = ["GeneralizedRCNN", "ProposalNetwork"]
+__all__ = ["drigoniGeneralizedRCNN", "drigoniProposalNetwork"]
+
+logger = logging.getLogger(__name__)
 
 
 @META_ARCH_REGISTRY.register()
-class GeneralizedRCNN(nn.Module):
+class drigoniGeneralizedRCNN(nn.Module):
     """
     Generalized R-CNN. Any models that contains the following three components:
     1. Per-image feature extraction (aka backbone)
@@ -224,8 +226,7 @@ class GeneralizedRCNN(nn.Module):
         images = [(x - self.pixel_mean) / self.pixel_std for x in images]
         images = ImageList.from_tensors(
             images,
-            self.backbone.size_divisibility,
-            padding_constraints=self.backbone.padding_constraints,
+            self.backbone.size_divisibility
         )
         return images
 
@@ -247,7 +248,7 @@ class GeneralizedRCNN(nn.Module):
 
 
 @META_ARCH_REGISTRY.register()
-class ProposalNetwork(nn.Module):
+class drigoniProposalNetwork(nn.Module):
     """
     A meta architecture that only predicts object proposals.
     """
@@ -304,8 +305,7 @@ class ProposalNetwork(nn.Module):
         images = [(x - self.pixel_mean) / self.pixel_std for x in images]
         images = ImageList.from_tensors(
             images,
-            self.backbone.size_divisibility,
-            padding_constraints=self.backbone.padding_constraints,
+            self.backbone.size_divisibility
         )
         features = self.backbone(images.tensor)
 

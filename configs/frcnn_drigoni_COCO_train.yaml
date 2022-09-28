@@ -1,0 +1,10 @@
+_BASE_: "frcnn_drigoni_COCO_base.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+OUTPUT_DIR: "./results/COCO/frcnn_drigoni/"
+SOLVER:
+  BASE_LR: 0.0025       # one 1 GPU
+  IMS_PER_BATCH: 16     # one 1 GPU

@@ -37,7 +37,9 @@ from detectron2.structures import (
     PolygonMasks,
     polygons_to_bitmask,
 )
+from .parser_EWISER import extract_COCO_concepts
 
+logger = logging.getLogger(__name__)
 
 class ConceptMapper:
     """
@@ -71,6 +73,8 @@ class ConceptMapper:
             recompute_boxes: bool = False,
             coco2synset: dict = None,
             apply_condition: bool = True,
+            apply_condition_from_file: bool = False,
+            external_concepts_folder: str = "./datasets/ewiser_concepts_COCO_valid/",
             apply_filter: bool = True,
             meta_architecture = "ATSS",
     ):
@@ -105,10 +109,15 @@ class ConceptMapper:
         self.recompute_boxes = recompute_boxes
         self.coco2synset = coco2synset
         self.apply_condition = apply_condition
+        self.apply_condition_from_file = apply_condition_from_file
+        self.external_concepts_folder = external_concepts_folder
         self.apply_filter = apply_filter
         self.meta_architecture = meta_architecture
+        # List with all accepted concepts
+        all_accepted_concepts = [val_dict['synset'] for k, val_dict in self.coco2synset.items()]
+        all_accepted_concepts.extend([v for k, val_dict in self.coco2synset.items() for v in val_dict['descendants']])
+        self.all_accepted_concepts = list(set(all_accepted_concepts))
         # fmt: on
-        logger = logging.getLogger(__name__)
         mode = "training" if is_train else "inference"
         logger.info(f"[DatasetMapper] Augmentations used in {mode}: {augmentations}")
 
@@ -130,6 +139,8 @@ class ConceptMapper:
             "use_keypoint": cfg.MODEL.KEYPOINT_ON,
             "recompute_boxes": recompute_boxes,
             "apply_condition": cfg.CONCEPT.APPLY_CONDITION,
+            "apply_condition_from_file": cfg.CONCEPT.APPLY_CONDITION_FROM_FILE,
+            "external_concepts_folder": cfg.CONCEPT.EXTERNAL_CONCEPTS_FOLDER,
             "apply_filter": cfg.CONCEPT.APPLY_FILTER,
             "meta_architecture": cfg.MODEL.META_ARCHITECTURE,
         }
@@ -163,7 +174,7 @@ class ConceptMapper:
         ]
 
         if self.meta_architecture == "CATSS":
-            # TODO drigoni: here we should make the new input for the concept branch
+            # NOTE drigoni: here we should make the new input for the concept branch
             # print("Annotations : ", annos)
             # [ ... {'iscrowd': 0, 'bbox': array([512.43009375, 478.76096875, 578.3961875 , 508.25215625]), 'category_id': 2, 'bbox_mode': <BoxMode.XYXY_ABS: 0>}]
             # make concepts
@@ -174,49 +185,78 @@ class ConceptMapper:
             metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
             metaMapping = {val: key for key, val in metaMapping.items()}
             empty = False
-            # TODO drigoni: This function decides to apply the condition and to generate de concepts.
-            # TODO It apply the condition only if self.apply_condition=True
-            # TODO It apply the filtering of the annotations only if self.apply_filter=True
+            # NOTE drigoni: This function decides to apply the condition and to generate concepts.
+            # NOTE It apply the condition only if self.apply_condition=True
+            # NOTE It apply the filtering of the annotations only if self.apply_filter=True and self.apply_condition=True
+            # NOTE It can condition from files if self.apply_condition_from_file=True
             if self.apply_condition:
-                if self.apply_filter:
-                    # here we select the unique list of categories in the filtered annotations
-                    unique_cat = list(set({metaMapping[ann['category_id']] for ann in annos}))
-                    # sample some concepts and clean annotations
-                    random_int = random.randint(0, len(unique_cat))
-                    if random_int > 0:
-                        selected_cat = random.sample(unique_cat, random_int)  # at least one element
-                        annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
-                    else:
-                        empty = True  # meaning no synsets
-                        # we keep all the annotations
-                        annos_filtered = annos
-                else:
-                    # we use all the annotations concepts because the validation set is already cleaned.
-                    # see make_concept_dataset.py
-                    annos_filtered = annos
-
-                if empty:
-                    concepts = ['entity.n.01']
-                else:
-                    concepts = []
-                    for annotation in annos_filtered:
-                        cat_idx = metaMapping[annotation['category_id']]
-                        descendants = self.coco2synset[cat_idx]['descendants']
-                        if len(descendants) > 0:
-                            concept = random.choice(descendants)
+                # use concepts
+                if not self.apply_condition_from_file:
+                    # generate concepts from training file
+                    if self.apply_filter:
+                        # here we select the unique list of categories in the filtered annotations
+                        unique_cat = list(set({metaMapping[ann['category_id']] for ann in annos}))
+                        # sample some concepts and clean annotations
+                        random_int = random.randint(0, len(unique_cat))
+                        if random_int > 0:
+                            selected_cat = random.sample(unique_cat, random_int)  # at least one element
+                            annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
                         else:
-                            concept = self.coco2synset[cat_idx]['synset']
-                        concepts.append(concept)
+                            empty = True  # meaning no synsets
+                            # we keep all the annotations
+                            annos_filtered = annos
+                    else:
+                        # we use all the annotations concepts because the validation set is already cleaned.
+                        # see make_concept_dataset.py
+                        annos_filtered = annos
+
+                    if empty:
+                        concepts = ['entity.n.01']
+                    else:
+                        concepts = []
+                        for annotation in annos_filtered:
+                            cat_idx = metaMapping[annotation['category_id']]
+                            descendants = self.coco2synset[cat_idx]['descendants']
+                            if len(descendants) > 0:
+                                concept = random.choice(descendants)
+                            else:
+                                concept = self.coco2synset[cat_idx]['synset']
+                            concepts.append(concept)
+                else:
+                    # get input concepts from external file and keep original annotations
+                    image_path = dataset_dict["file_name"]
+                    image_name = image_path.split('/')[-1][:-4]
+                    concepts_path = "{}{}.json".format(self.external_concepts_folder, image_name)
+                    concepts_uncleaned, sentences = extract_COCO_concepts(concepts_path)
+                    # # NOTE: filtering concepts
+                    # concepts = []
+                    # for conc in concepts_uncleaned:
+                    #     if conc in self.all_accepted_concepts:
+                    #         concepts.append(conc)
+                    # NOTE: remove synonyms and filtering concepts
+                    concepts = []
+                    concepts_to_avoid = ['traffic_signal.n.01']
+                    for conc in concepts_uncleaned:
+                        for cat_label in self.coco2synset.keys():
+                            cls_descendants = self.coco2synset[cat_label]['descendants']
+                            cls_synset = self.coco2synset[cat_label]['synset']
+                            # note that traffic_signal.n.01 is not in the vocabulary, so for now we remove it.
+                            if conc in cls_descendants and conc not in concepts_to_avoid:
+                                if cls_synset not in concepts_to_avoid:
+                                    concepts.append(cls_synset)
+                                else:
+                                    concepts.append(conc)
+                    concepts = list(set(concepts))
+                    if len(concepts) == 0:
+                        concepts = ['entity.n.01']
+                    annos_filtered = annos
             else:
                 annos_filtered = annos
                 concepts = ['entity.n.01']
 
             annos = annos_filtered
             dataset_dict["concepts"] = concepts
-        elif self.meta_architecture == "ATSS":
-            # the standard object detector is used
-            pass
-        elif self.meta_architecture == "GeneralizedRCNN":
+        elif self.meta_architecture in ["ATSS", "GeneralizedRCNN", "drigoniGeneralizedRCNN"]:
             # the standard object detector is used
             pass
         else:

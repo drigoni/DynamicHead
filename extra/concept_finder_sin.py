@@ -27,6 +27,12 @@ class ConceptFinder:
             self.tmp_coco2synset[category]['category'] = category
             ids = self.tmp_coco2synset[category]['coco_cat_id']
             self.coco2synset[ids] = self.tmp_coco2synset[category]
+        for coco_cat_id in self.coco2synset.keys():
+            category = self.coco2synset[coco_cat_id]['category']
+            self.coco2synset[coco_cat_id]['synset'] = [self.coco2synset[coco_cat_id]['synset']]
+            self.coco2synset[coco_cat_id]['synset'] += [s.name() for s in wn.synsets(category)]
+
+
 
     @staticmethod
     def find_descendants(entity, jump, depth=2):
@@ -45,18 +51,20 @@ class ConceptFinder:
             return []
 
     def extend_descendants(self, depth=2, unique=True, only_name=True):
-        # coco2synset = copy.deepcopy(self.coco2synset)
         coco2synset = self.coco2synset
         for ids, category in coco2synset.items():
-            # find descendant
-            tmp_descendants = ConceptFinder.find_descendants(entity=wn.synset(category['synset']), jump=0, depth=depth)
-            tmp_descendants = [(synset.name(), jump) for synset, jump in tmp_descendants]
+            tmp_all_descendants = []
+            for synset_name in category['synset']:
+                synset = wn.synset(synset_name)
+                # find descendant
+                tmp = ConceptFinder.find_descendants(entity=synset, jump=0, depth=depth)
+                tmp_all_descendants.extend([(synset.name(), jump) for synset, jump in tmp])
             # if we need an unique set as synsets.
             # NOTE: if synsets are the same but has different levels, we keep the one with lower level
             if unique:
                 tmp_unique_name = []
                 tmp_unique_jump = []
-                for synset, jump in tmp_descendants:
+                for synset, jump in tmp_all_descendants:
                     if synset not in tmp_unique_name:
                         tmp_unique_name.append(synset)
                         tmp_unique_jump.append(jump)
@@ -66,11 +74,12 @@ class ConceptFinder:
                             tmp_unique_jump[synset_idx] = jump
                 category['descendants'] = list(zip(tmp_unique_name, tmp_unique_jump))
             else:
-                category['descendants'] = tmp_descendants
+                category['descendants'] = tmp_all_descendants
             # print(category['name'], category['synset'], category['descendants'])
             if only_name:
                 category['descendants'] = [i[0] for i in category['descendants']]
         return coco2synset
+
 
     @staticmethod
     def find_ancestors(entity, jump, depth=2):
@@ -88,15 +97,18 @@ class ConceptFinder:
     def extend_ancestors(self, depth=2, unique=True, only_name=True):
         coco2synset = self.coco2synset
         for ids, category in coco2synset.items():
-            # find descendant
-            tmp_ancestors = ConceptFinder.find_ancestors(entity=wn.synset(category['synset']), jump=0, depth=depth)
-            tmp_ancestors = [(synset.name(), jump) for synset, jump in tmp_ancestors]
+            tmp_all_ancestors = []
+            for synset_name in category['synset']:
+                synset = wn.synset(synset_name)
+                # find descendant
+                tmp = ConceptFinder.find_ancestors(entity=synset, jump=0, depth=depth)
+                tmp_all_ancestors.extend([(synset.name(), jump) for synset, jump in tmp])
             # if we need an unique set as synsets.
             # NOTE: if synsets are the same but has different levels, we keep the one with lower level
             if unique:
                 tmp_unique_name = []
                 tmp_unique_jump = []
-                for synset, jump in tmp_ancestors:
+                for synset, jump in tmp_all_ancestors:
                     if synset not in tmp_unique_name:
                         tmp_unique_name.append(synset)
                         tmp_unique_jump.append(jump)
@@ -106,8 +118,9 @@ class ConceptFinder:
                             tmp_unique_jump[synset_idx] = jump
                 category['ancestors'] = list(zip(tmp_unique_name, tmp_unique_jump))
             else:
-                category['ancestors'] = tmp_ancestors
+                category['ancestors'] = tmp_all_ancestors
             # print(category['name'], category['synset'], category['ancestors'])
             if only_name:
                 category['ancestors'] = [i[0] for i in category['ancestors']]
         return coco2synset
+
