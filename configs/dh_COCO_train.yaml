@@ -1,11 +1,7 @@
 _BASE_: "dh_COCO_base.yaml"
 MODEL:
-  META_ARCHITECTURE: "ATSS"
-  WEIGHTS: "./pretrained/dyhead_swint_atss_fpn_2x_ms.pth"
   BACKBONE:
     NAME: "build_retinanet_swint_fpn_dyhead_backbone"
   ATSS:
     NUM_CONVS: 0
-DATALOADER:
-  NUM_WORKERS: 32
 OUTPUT_DIR: "./results/COCO/dh/"

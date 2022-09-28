@@ -36,4 +36,5 @@ INPUT:
   MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)
 SEED: 2022
 VERSION: 2
+OUTPUT_DIR: "./results/COCO/results/"
 

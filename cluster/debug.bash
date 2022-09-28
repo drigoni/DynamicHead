@@ -10,9 +10,9 @@ OUTPUT_DIR="./results/debug/"
 
 python train_net.py --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \
-                    # MODEL.WEIGHTS ${MODEL_WEIGHTS}  \
+                    MODEL.WEIGHTS ${MODEL_WEIGHTS}  \
                     DEEPSETS.EMB ${DEEPSETS_EMB} \
                     CONCEPT.APPLY_CONDITION ${CONCEPT_APPLY_CONDITION} \
                     CONCEPT.APPLY_FILTER ${CONCEPT_APPLY_FILTER} \
                     OUTPUT_DIR ${OUTPUT_DIR} \
-                    SOLVER.IMS_PER_BATCH 1
+                    SOLVER.IMS_PER_BATCH 16

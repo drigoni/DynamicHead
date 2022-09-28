@@ -24,8 +24,17 @@ DATASETS:
 DATALOADER:
   NUM_WORKERS: 32
 CONCEPT:
+  CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
   APPLY_CONDITION: TRUE
   APPLY_FILTER: TRUE
+  DEPTH: "3"
+  UNIQUE: TRUE
+DEEPSETS:
+  EMB: 'wordnet'   # 'random' # 'wordnet'
+  EMB_DIM: 150
+  FREEZE: TRUE
+  AGGREGATE: 'sum'
+  OUTPUT_DIM: 256
 SOLVER:
   IMS_PER_BATCH: 40
   BASE_LR: 0.0001
@@ -37,6 +46,7 @@ SOLVER:
 INPUT:
   FORMAT: "RGB"
   MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)
+OUTPUT_DIR: "./results/COCO/results/"
 SEED: 2022
 VERSION: 2
 

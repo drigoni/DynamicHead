@@ -8,11 +8,12 @@
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
 #SBATCH --time=2-00:00:00                           # total run time limit (DD-HH:MM:SS)
-#SBATCH --nodes=2                                   # node count
+#SBATCH --nodes=1                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
 #SBATCH --cpus-per-task=64		                    # cpu-cores per task (>1 if multi-threaded tasks)
-#SBATCH --gpus-per-node=4                           # number of gpus per node
+#SBATCH --gpus-per-node=1                           # number of gpus per node
 #SBATCH --exclusive                                 # for exclusive access
+#SBATCH --exclude=gn[41]
 #---- MORE COMMANDS
 #----#SBATCH --mail-type=begin                           # send email when job begins
 #--- #SBATCH --mail-type=end                             # send email when job ends
@@ -35,8 +36,8 @@ export SLURM_MASTER_ADDR=$SLURM_MASTER_ADDR
 # model variables
 NUM_GPUS=${SLURM_GPUS_PER_NODE}
 NUM_MACHINES=${SLURM_NNODES}
-BATCH_SIZE=$(expr 5 \* $(echo -n ${SLURM_JOB_NUM_NODES}) \* $(echo -n ${SLURM_GPUS_PER_NODE})) # max 5 per A100
-MAX_ITER=$(expr 32 \* 90000 \/ $(echo -n ${BATCH_SIZE}))
+BATCH_SIZE=$(expr 16 \* $(echo -n ${SLURM_JOB_NUM_NODES}) \* $(echo -n ${SLURM_GPUS_PER_NODE})) 
+MAX_ITER=$(expr 16 \* 90000 \/ $(echo -n ${BATCH_SIZE}))
 
 ### ============ SOME PRINT COMMANDS
 echo ''
@@ -95,19 +96,3 @@ echo 'Date: ' $(date)
 #                     SOLVER.IMS_PER_BATCH ${BATCH_SIZE} \
 #                     SOLVER.MAX_ITER ${MAX_ITER} \
 #                     OUTPUT_DIR ${OUTPUT_DIR} 
-
-
-# TIME NEEDED TO COMPLETE JOBS IN VEGA
-# complete
-# 240000*8 examples in 5-13:00:00 with 2 V100  specificando dist_url?
-# 120000*16 examples in 6-8:00:00 with 4 A100   specificando dist_url?
-# 240000*8 examples in 10-21:00:00 with 2 A100  specificando dist_url?
-# testati da soli 
-# 240000*8 examples in 2-17:00:00 with 2 A100  senza dist_url
-# 120000*16 examples in 1-13:00:00 with 4 A100  senza dist_url
-# 288000*10 examples in 4-3:00:00 with 2 A100   senza dist_url
-# 288000*10 examples in 4-3:00:00 with 2 A100   specificando dist_url
-# 144000*20 examples in 2-6:00:00 with 4 A100   senza dist_url
-# 144000*20 examples in 2-6:00:00 with 4 A100   specificando dist_url
-# 72000*40 examples in 1-5:00:00 with 8 A100
-# 36000*80 examples in 0-14:00:00 with 16 A100
