@@ -7,16 +7,15 @@ from torch import nn
 
 from detectron2.config import configurable
 from detectron2.data.detection_utils import convert_image_to_rgb
-from detectron2.layers import move_device_like
 from detectron2.structures import ImageList, Instances
 from detectron2.utils.events import get_event_storage
 from detectron2.utils.logger import log_first_n
 
-from ..backbone import Backbone, build_backbone
-from ..postprocessing import detector_postprocess
-from ..proposal_generator import build_proposal_generator
-from ..roi_heads import build_roi_heads
-from .build import META_ARCH_REGISTRY
+from detectron2.modeling.backbone import Backbone, build_backbone
+from detectron2.modeling.postprocessing import detector_postprocess
+from detectron2.modeling.proposal_generator import build_proposal_generator
+from detectron2.modeling.roi_heads import build_roi_heads
+from detectron2.modeling.meta_arch.build import META_ARCH_REGISTRY
 
 __all__ = ["ConceptGeneralizedRCNN", "ConceptProposalNetwork"]
 
@@ -84,9 +83,6 @@ class ConceptGeneralizedRCNN(nn.Module):
     @property
     def device(self):
         return self.pixel_mean.device
-
-    def _move_to_current_device(self, x):
-        return move_device_like(x, self.pixel_mean)
 
     def visualize_training(self, batched_inputs, proposals):
         """
@@ -224,7 +220,7 @@ class ConceptGeneralizedRCNN(nn.Module):
         """
         Normalize, pad and batch the input images.
         """
-        images = [self._move_to_current_device(x["image"]) for x in batched_inputs]
+        images = [x["image"].to(self.device) for x in batched_inputs]
         images = [(x - self.pixel_mean) / self.pixel_std for x in images]
         images = ImageList.from_tensors(
             images,
@@ -292,9 +288,6 @@ class ConceptProposalNetwork(nn.Module):
     def device(self):
         return self.pixel_mean.device
 
-    def _move_to_current_device(self, x):
-        return move_device_like(x, self.pixel_mean)
-
     def forward(self, batched_inputs):
         """
         Args:
@@ -306,7 +299,7 @@ class ConceptProposalNetwork(nn.Module):
                 The dict contains one key "proposals" whose value is a
                 :class:`Instances` with keys "proposal_boxes" and "objectness_logits".
         """
-        images = [self._move_to_current_device(x["image"]) for x in batched_inputs]
+        images = [x["image"].to(self.device) for x in batched_inputs]
         images = [(x - self.pixel_mean) / self.pixel_std for x in images]
         images = ImageList.from_tensors(
             images,

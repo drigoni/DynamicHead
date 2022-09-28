@@ -1,10 +1,18 @@
+# configs
 from .config import add_extra_config
-from .swint import build_swint_fpn_dyhead_backbone, build_retinanet_swint_fpn_dyhead_backbone
+from .concept_config import add_concept_config
+# meta archs
 from .atss import ATSS
+from .concept_atss import CATSS
+# from .rcnn import GeneralizedRCNN, ProposalNetwork    # already registered
+from .concept_rcnn import ConceptGeneralizedRCNN, ConceptProposalNetwork
+# backbones
+from .swint import build_swint_fpn_backbone, build_swint_fpn_dyhead_backbone, build_retinanet_swint_fpn_backbone, build_retinanet_swint_fpn_dyhead_backbone
+# from .resnet import build_resnet_fpn_backbone, build_retinanet_resnet_fpn_backbone  # already registeres
 from .resnet import build_resnet_fpn_dyhead_backbone, build_retinanet_resnet_fpn_dyhead_backbone
+# utils concepts
 from .concept_mapper import ConceptMapper
 from .concept_finder import ConceptFinder
-from .concept_atss import CATSS
 from .concept_net import ConceptNet
-from .concept_config import add_concept_config
+# utils
 from .utils import *
