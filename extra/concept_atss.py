@@ -96,7 +96,7 @@ class CATSS(ATSS):
         backbone = build_backbone(cfg)
         backbone_shape = backbone.output_shape()
         feature_shapes = [backbone_shape[f] for f in cfg.MODEL.ATSS.IN_FEATURES]
-        # TODO drigoni: this code is needed for using more than one convolutional (currently 0) network in the head.
+        # NOTE drigoni: this code is needed for using more than one convolutional (currently 0) network in the head.
         deepsets_dim = cfg.DEEPSETS.OUTPUT_DIM
         concept_fusion = cfg.CONCEPT.CONCEPT_FUSION
         if concept_fusion == "cat":

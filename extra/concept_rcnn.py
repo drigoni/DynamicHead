@@ -10,21 +10,22 @@ from detectron2.data.detection_utils import convert_image_to_rgb
 from detectron2.structures import ImageList, Instances
 from detectron2.utils.events import get_event_storage
 from detectron2.utils.logger import log_first_n
-
+from detectron2.layers import ShapeSpec
 from detectron2.modeling.backbone import Backbone, build_backbone
 from detectron2.modeling.postprocessing import detector_postprocess
 from detectron2.modeling.proposal_generator import build_proposal_generator
 from detectron2.modeling.roi_heads import build_roi_heads
 from detectron2.modeling.meta_arch.build import META_ARCH_REGISTRY
-from detectron2.modeling.meta_arch.rcnn import GeneralizedRCNN, ProposalNetwork
+# from detectron2.modeling.meta_arch.rcnn import GeneralizedRCNN
+from .rcnn import drigoniGeneralizedRCNN
 
 from .concept_net import ConceptNet
 
-__all__ = ["ConceptGeneralizedRCNN", "ConceptProposalNetwork"]
+__all__ = ["ConceptGeneralizedRCNN"]
 
 
 @META_ARCH_REGISTRY.register()
-class ConceptGeneralizedRCNN(GeneralizedRCNN):
+class ConceptGeneralizedRCNN(drigoniGeneralizedRCNN):
     """
     Generalized R-CNN. Any models that contains the following three components:
     1. Per-image feature extraction (aka backbone)
@@ -72,10 +73,30 @@ class ConceptGeneralizedRCNN(GeneralizedRCNN):
     @classmethod
     def from_config(cls, cfg):
         backbone = build_backbone(cfg)
+        # NOTE drigoni: this code is needed for using more than one convolutional (currently 0) network in the head.
+        feature_shapes = backbone.output_shape() # {'p2': ShapeSpec(channels=256, height=None, width=None, stride=4), 'p3': ShapeSpec(channels=256, height=None, width=None, stride=8), 'p4': ShapeSpec(channels=256, height=None, width=None, stride=16), 'p5': ShapeSpec(channels=256, height=None, width=None, stride=32), 'p6': ShapeSpec(channels=256, height=None, width=None, stride=64)}
+        deepsets_dim = cfg.DEEPSETS.OUTPUT_DIM
+        concept_fusion = cfg.CONCEPT.CONCEPT_FUSION
+        if concept_fusion == "cat":
+            feature_shapes = {k: ShapeSpec(channels=f.channels + deepsets_dim, height=f.height, width=f.width, stride=f.stride)
+                          for k, f in feature_shapes.items()}
+        elif concept_fusion == "mul":
+            feature_shapes = [ShapeSpec(channels=f.channels, height=f.height, width=f.width, stride=f.stride)
+                          for f in feature_shapes]
+        elif concept_fusion == "add":
+            feature_shapes = [ShapeSpec(channels=f.channels, height=f.height, width=f.width, stride=f.stride)
+                          for f in feature_shapes]
+        elif concept_fusion == "zeros":
+            feature_shapes = [ShapeSpec(channels=f.channels + deepsets_dim, height=f.height, width=f.width, stride=f.stride)
+                          for f in feature_shapes]
+        else:
+            logger.error("Error. CONCEPT.FUSION={} not valid. ".format(concept_fusion))
+            exit(1)
+        concept_net = ConceptNet(cfg)
         return {
             "backbone": backbone,
-            "proposal_generator": build_proposal_generator(cfg, backbone.output_shape()),
-            "roi_heads": build_roi_heads(cfg, backbone.output_shape()),
+            "proposal_generator": build_proposal_generator(cfg, feature_shapes),
+            "roi_heads": build_roi_heads(cfg, feature_shapes),
             "input_format": cfg.INPUT.FORMAT,
             "vis_period": cfg.VIS_PERIOD,
             "pixel_mean": cfg.MODEL.PIXEL_MEAN,
@@ -117,6 +138,33 @@ class ConceptGeneralizedRCNN(GeneralizedRCNN):
             gt_instances = None
 
         features = self.backbone(images.tensor)
+        # print("Features.shape for f:", {k: f.shape for k, f in features.items()})
+        # Features.shape for f: {'p2': torch.Size([5, 256, 200, 320]), 'p3': torch.Size([5, 256, 100, 160]), 'p4': torch.Size([5, 256, 50, 80]), 'p5': torch.Size([5, 256, 25, 40]), 'p6': torch.Size([5, 256, 13, 20])}
+
+        # concepts batching and tokenization
+        concepts, concepts_mask = self.concept_net.preprocess_concepts(batched_inputs)
+        concepts = concepts.to(self.device)
+        concepts_mask = concepts_mask.to(self.device)
+        # conceptnet execution
+        concepts_features = self.concept_net(concepts, concepts_mask)  # [b, 150]
+        concepts_features = concepts_features.unsqueeze(-1).unsqueeze(-1)       # [b, 150, 1, 1]
+        # features concatenation
+        if self.concept_fusion == "cat":
+            features = {k: torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
+                        for k, f in features.items()}
+        elif self.concept_fusion == "mul":
+            features = {k: torch.mul(f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3]))
+                        for k, f in features.items()}
+        elif self.concept_fusion == "add":
+            features = {k: torch.add(f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3]))
+                        for k, f in features.items()}
+        elif self.concept_fusion == "zeros":
+            concepts_features = torch.zeros_like(concepts_features, requires_grad=False)
+            features = {k: torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
+                        for k, f in features.items()}
+        else:
+            logger.error("Error. CONCEPT.FUSION={} not valid. ".format(self.concept_fusion))
+            exit(1)
 
         if self.proposal_generator is not None:
             proposals, proposal_losses = self.proposal_generator(images, features, gt_instances)
@@ -163,6 +211,33 @@ class ConceptGeneralizedRCNN(GeneralizedRCNN):
 
         images = self.preprocess_image(batched_inputs)
         features = self.backbone(images.tensor)
+        # print("Features.shape for f:", {k: f.shape for k, f in features.items()})
+        # Features.shape for f: {'p2': torch.Size([5, 256, 200, 320]), 'p3': torch.Size([5, 256, 100, 160]), 'p4': torch.Size([5, 256, 50, 80]), 'p5': torch.Size([5, 256, 25, 40]), 'p6': torch.Size([5, 256, 13, 20])}
+
+        # concepts batching and tokenization
+        concepts, concepts_mask = self.concept_net.preprocess_concepts(batched_inputs)
+        concepts = concepts.to(self.device)
+        concepts_mask = concepts_mask.to(self.device)
+        # conceptnet execution
+        concepts_features = self.concept_net(concepts, concepts_mask)  # [b, 150]
+        concepts_features = concepts_features.unsqueeze(-1).unsqueeze(-1)       # [b, 150, 1, 1]
+        # features concatenation
+        if self.concept_fusion == "cat":
+            features = {k: torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
+                        for k, f in features.items()}
+        elif self.concept_fusion == "mul":
+            features = {k: torch.mul(f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3]))
+                        for k, f in features.items()}
+        elif self.concept_fusion == "add":
+            features = {k: torch.add(f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3]))
+                        for k, f in features.items()}
+        elif self.concept_fusion == "zeros":
+            concepts_features = torch.zeros_like(concepts_features, requires_grad=False)
+            features = {k: torch.cat([f, concepts_features.repeat(1, 1, f.shape[2], f.shape[3])], dim=1)
+                        for k, f in features.items()}
+        else:
+            logger.error("Error. CONCEPT.FUSION={} not valid. ".format(self.concept_fusion))
+            exit(1)
 
         if detected_instances is None:
             if self.proposal_generator is not None:
@@ -186,101 +261,5 @@ class ConceptGeneralizedRCNN(GeneralizedRCNN):
         """
         Rescale the output instances to the target size.
         """
-        # note: private function; subject to changes
-        processed_results = []
-        for results_per_image, input_per_image, image_size in zip(
-            instances, batched_inputs, image_sizes
-        ):
-            height = input_per_image.get("height", image_size[0])
-            width = input_per_image.get("width", image_size[1])
-            r = detector_postprocess(results_per_image, height, width)
-            processed_results.append({"instances": r})
-        return processed_results
-
-
-@META_ARCH_REGISTRY.register()
-class ConceptProposalNetwork(nn.Module):
-    """
-    A meta architecture that only predicts object proposals.
-    """
-
-    @configurable
-    def __init__(
-        self,
-        *,
-        backbone: Backbone,
-        proposal_generator: nn.Module,
-        pixel_mean: Tuple[float],
-        pixel_std: Tuple[float],
-    ):
-        """
-        Args:
-            backbone: a backbone module, must follow detectron2's backbone interface
-            proposal_generator: a module that generates proposals using backbone features
-            pixel_mean, pixel_std: list or tuple with #channels element, representing
-                the per-channel mean and std to be used to normalize the input image
-        """
-        super().__init__()
-        self.backbone = backbone
-        self.proposal_generator = proposal_generator
-        self.register_buffer("pixel_mean", torch.tensor(pixel_mean).view(-1, 1, 1), False)
-        self.register_buffer("pixel_std", torch.tensor(pixel_std).view(-1, 1, 1), False)
-
-    @classmethod
-    def from_config(cls, cfg):
-        backbone = build_backbone(cfg)
-        return {
-            "backbone": backbone,
-            "proposal_generator": build_proposal_generator(cfg, backbone.output_shape()),
-            "pixel_mean": cfg.MODEL.PIXEL_MEAN,
-            "pixel_std": cfg.MODEL.PIXEL_STD,
-        }
-
-    @property
-    def device(self):
-        return self.pixel_mean.device
-
-    def forward(self, batched_inputs):
-        """
-        Args:
-            Same as in :class:`GeneralizedRCNN.forward`
-
-        Returns:
-            list[dict]:
-                Each dict is the output for one input image.
-                The dict contains one key "proposals" whose value is a
-                :class:`Instances` with keys "proposal_boxes" and "objectness_logits".
-        """
-        images = [x["image"].to(self.device) for x in batched_inputs]
-        images = [(x - self.pixel_mean) / self.pixel_std for x in images]
-        images = ImageList.from_tensors(
-            images,
-            self.backbone.size_divisibility,
-            padding_constraints=self.backbone.padding_constraints,
-        )
-        features = self.backbone(images.tensor)
-
-        if "instances" in batched_inputs[0]:
-            gt_instances = [x["instances"].to(self.device) for x in batched_inputs]
-        elif "targets" in batched_inputs[0]:
-            log_first_n(
-                logging.WARN, "'targets' in the model inputs is now renamed to 'instances'!", n=10
-            )
-            gt_instances = [x["targets"].to(self.device) for x in batched_inputs]
-        else:
-            gt_instances = None
-        proposals, proposal_losses = self.proposal_generator(images, features, gt_instances)
-        # In training, the proposals are not useful at all but we generate them anyway.
-        # This makes RPN-only models about 5% slower.
-        if self.training:
-            return proposal_losses
-
-        processed_results = []
-        for results_per_image, input_per_image, image_size in zip(
-            proposals, batched_inputs, images.image_sizes
-        ):
-            height = input_per_image.get("height", image_size[0])
-            width = input_per_image.get("width", image_size[1])
-            r = detector_postprocess(results_per_image, height, width)
-            processed_results.append({"proposals": r})
+        processed_results = drigoniGeneralizedRCNN._postprocess(instances, batched_inputs, image_size)
         return processed_results

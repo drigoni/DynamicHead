@@ -4,8 +4,8 @@ from .concept_config import add_concept_config
 # meta archs
 from .atss import ATSS
 from .concept_atss import CATSS
-from .rcnn import drigoniGeneralizedRCNN, drigoniProposalNetwork    # similar to the original GeneralizedRCNN
-from .concept_rcnn import ConceptGeneralizedRCNN, ConceptProposalNetwork
+from .rcnn import drigoniGeneralizedRCNN
+from .concept_rcnn import ConceptGeneralizedRCNN
 # backbones
 from .swint import build_swint_fpn_backbone, build_swint_fpn_dyhead_backbone, build_retinanet_swint_fpn_backbone, build_retinanet_swint_fpn_dyhead_backbone
 # from .resnet import build_resnet_fpn_backbone, build_retinanet_resnet_fpn_backbone  # already registeres

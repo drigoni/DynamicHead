@@ -173,7 +173,7 @@ class ConceptMapper:
             if obj.get("iscrowd", 0) == 0
         ]
 
-        if self.meta_architecture == "CATSS":
+        if self.meta_architecture in ["CATSS", "ConceptGeneralizedRCNN"]:
             # NOTE drigoni: here we should make the new input for the concept branch
             # print("Annotations : ", annos)
             # [ ... {'iscrowd': 0, 'bbox': array([512.43009375, 478.76096875, 578.3961875 , 508.25215625]), 'category_id': 2, 'bbox_mode': <BoxMode.XYXY_ABS: 0>}]

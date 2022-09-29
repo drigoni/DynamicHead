@@ -1,0 +1,12 @@
+_BASE_: "frcnn_COCO_concepts_base.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+CONCEPT:
+  CONCEPT_FUSION: "mul" # ["cat", "mul", "add", "zeros"]
+OUTPUT_DIR: "./results/COCO/frcnn_concepts_mul/"
+SOLVER:
+  BASE_LR: 0.0025       # one 1 GPU
+  IMS_PER_BATCH: 16     # one 1 GPU
