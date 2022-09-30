@@ -2,9 +2,9 @@
 ### Owner: Davide Rigoni
 
 ### ============ SLURM COMMANDS
-#SBATCH --job-name='dh_train_debug'     # create a short name for your job
+#SBATCH --job-name='retinanet_COCO_concepts_train_zeros'     # create a short name for your job
 #SBATCH --mail-user=davide.rigoni.2@phd.unipd.it
-#SBATCH --output=cluster/out/dh_train_debug.out
+#SBATCH --output=cluster/out/retinanet_COCO_concepts_train_zeros.out
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
 #SBATCH --time=2-00:00:00                           # total run time limit (DD-HH:MM:SS)
@@ -13,10 +13,11 @@
 #SBATCH --cpus-per-task=64		                    # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --gpus-per-node=1                           # number of gpus per node
 #SBATCH --exclusive                                 # for exclusive access
+#SBATCH --exclude=gn[41]
 #---- MORE COMMANDS
 #----#SBATCH --mail-type=begin                           # send email when job begins
 #--- #SBATCH --mail-type=end                             # send email when job ends
-#--- #SBATCH --error=cluster/err/dynamicHead_train_scalable.err
+#--- #SBATCH --error=cluster/err/dh_train.err
 #--- #SBATCH --ntasks=2
 #--- #SBATCH --gpus-per-task=4
 #--- #SBATCH --constraint=A5000
@@ -35,8 +36,8 @@ export SLURM_MASTER_ADDR=$SLURM_MASTER_ADDR
 # model variables
 NUM_GPUS=${SLURM_GPUS_PER_NODE}
 NUM_MACHINES=${SLURM_NNODES}
-BATCH_SIZE=1
-MAX_ITER=$(expr 32 \* 90000 \/ $(echo -n ${BATCH_SIZE}))
+BATCH_SIZE=$(expr 16 \* $(echo -n ${SLURM_JOB_NUM_NODES}) \* $(echo -n ${SLURM_GPUS_PER_NODE})) 
+MAX_ITER=$(expr 16 \* 90000 \/ $(echo -n ${BATCH_SIZE}))
 
 ### ============ SOME PRINT COMMANDS
 echo ''
@@ -61,10 +62,37 @@ echo "MODEL_MAX_ITER: " ${MAX_ITER}
 echo "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX "
 echo ''
 
-srun bash debug.bash
+
+# model config
+CONFIG_FILE=./configs/retinanet_COCO_concepts_train_zeros.yaml
+srun python train_net.py \
+                    --config  ${CONFIG_FILE} \
+                    --num-gpus ${NUM_GPUS} \
+                    --num-machines ${NUM_MACHINES} \
+                    --dist-url ${SLURM_MASTER_URL} \
+                    SOLVER.IMS_PER_BATCH ${BATCH_SIZE} \
+                    SOLVER.MAX_ITER ${MAX_ITER} \
+
+
 
 # last default print
 echo ''
 echo ''
 echo 'Job done.'
 echo 'Date: ' $(date)
+
+
+
+# more commands
+# srun python train_net.py \
+#                     --config  ${CONFIG_FILE} \
+#                     --num-gpus ${NUM_GPUS} \
+#                     --num-machines ${NUM_MACHINES} \
+#                     --dist-url ${SLURM_MASTER_URL} \
+#                     MODEL.WEIGHTS ${MODEL_WEIGHTS}  \
+#                     DEEPSETS.EMB ${DEEPSETS_EMB} \
+#                     CONCEPT.APPLY_CONDITION ${CONCEPT_APPLY_CONDITION} \
+#                     CONCEPT.APPLY_FILTER ${CONCEPT_APPLY_FILTER} \
+#                     SOLVER.IMS_PER_BATCH ${BATCH_SIZE} \
+#                     SOLVER.MAX_ITER ${MAX_ITER} \
+#                     OUTPUT_DIR ${OUTPUT_DIR} 

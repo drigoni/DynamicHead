@@ -81,14 +81,14 @@ class ConceptGeneralizedRCNN(drigoniGeneralizedRCNN):
             feature_shapes = {k: ShapeSpec(channels=f.channels + deepsets_dim, height=f.height, width=f.width, stride=f.stride)
                           for k, f in feature_shapes.items()}
         elif concept_fusion == "mul":
-            feature_shapes = [ShapeSpec(channels=f.channels, height=f.height, width=f.width, stride=f.stride)
-                          for f in feature_shapes]
+            feature_shapes = {k: ShapeSpec(channels=f.channels, height=f.height, width=f.width, stride=f.stride)
+                          for k, f in feature_shapes.items()}
         elif concept_fusion == "add":
-            feature_shapes = [ShapeSpec(channels=f.channels, height=f.height, width=f.width, stride=f.stride)
-                          for f in feature_shapes]
+            feature_shapes = {k: ShapeSpec(channels=f.channels, height=f.height, width=f.width, stride=f.stride)
+                          for k, f in feature_shapes.items()}
         elif concept_fusion == "zeros":
-            feature_shapes = [ShapeSpec(channels=f.channels + deepsets_dim, height=f.height, width=f.width, stride=f.stride)
-                          for f in feature_shapes]
+            feature_shapes = {k: ShapeSpec(channels=f.channels + deepsets_dim, height=f.height, width=f.width, stride=f.stride)
+                          for k, f in feature_shapes.items()}
         else:
             logger.error("Error. CONCEPT.FUSION={} not valid. ".format(concept_fusion))
             exit(1)

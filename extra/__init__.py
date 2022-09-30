@@ -6,6 +6,9 @@ from .atss import ATSS
 from .concept_atss import CATSS
 from .rcnn import drigoniGeneralizedRCNN
 from .concept_rcnn import ConceptGeneralizedRCNN
+from .retinanet import drigoniRetinaNet
+from .concept_retinanet import ConceptRetinaNet
+
 # backbones
 from .swint import build_swint_fpn_backbone, build_swint_fpn_dyhead_backbone, build_retinanet_swint_fpn_backbone, build_retinanet_swint_fpn_dyhead_backbone
 # from .resnet import build_resnet_fpn_backbone, build_retinanet_resnet_fpn_backbone  # already registeres
