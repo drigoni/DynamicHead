@@ -2,9 +2,9 @@
 ### Owner: Davide Rigoni
 
 ### ============ SLURM COMMANDS
-#SBATCH --job-name='retinanet_COCO_concepts_train_mul'     # create a short name for your job
+#SBATCH --job-name='retinanet_r50_fpn_COCO_concepts_train_add'     # create a short name for your job
 #SBATCH --mail-user=davide.rigoni.2@phd.unipd.it
-#SBATCH --output=cluster/out/retinanet_COCO_concepts_train_mul.out
+#SBATCH --output=cluster/out/retinanet_r50_fpn_COCO_concepts_train_add.out
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
 #SBATCH --time=2-00:00:00                           # total run time limit (DD-HH:MM:SS)
@@ -64,7 +64,7 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/retinanet_COCO_concepts_train_mul.yaml
+CONFIG_FILE=./configs/COCO/retinanet/retinanet_r50_fpn_COCO_concepts_train_add.yaml
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \
