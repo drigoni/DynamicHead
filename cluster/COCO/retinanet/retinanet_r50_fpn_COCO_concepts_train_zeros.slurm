@@ -64,7 +64,7 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/COCO/retinanet/retinanet_r50_fpn_COCO_concepts_train_add.yaml
+CONFIG_FILE=./configs/COCO/retinanet/retinanet_r50_fpn_COCO_concepts_train_zeros.yaml
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \

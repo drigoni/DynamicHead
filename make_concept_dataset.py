@@ -23,9 +23,11 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # NOTE: this class is not anymore used. It add a new key in the dataset dictionary.
 class MakeConceptDataset:
-    def __init__(self, args):
+    def __init__(self, args, dataset_name="concept_coco"):
         # download package
         nltk.download('wordnet')
+        self.dataset_name = dataset_name
+
         # params
         self.coco_dataset = args.coco_dataset
         self.level = args.level
@@ -36,20 +38,26 @@ class MakeConceptDataset:
         concept_finder = ConceptFinder(args.coco2concepts)
         self.concepts = concept_finder.extend_descendants(args.level, args.unique)
 
-    def save_dataset(annotations_file, annotations):
+    def generate_output_file_name():
+        prefix = self.coco_dataset.split('/')[-1].split(".")[0]
+        suffix = "subset" if self.subset else "powerset"
+        output_file = "./datasets/{}/annotations/{}_{}.json".format(self.dataset_name, prefix, suffix)
+
+    @staticmethod
+    def save_dataset(output_file, annotations):
         # save concept_coco annotation file
-        output_file_name = annotations_file.split('/')[-1]
-        output_file = "datasets/concept_coco/annotations/concept_{}".format(output_file_name)
         with open(output_file, 'w') as file:
             json.dump(annotations, file)
         print("Dataset saved in {} .".format(output_file))
 
+    @staticmethod
     def load_dataset(annotations_file):
         print("Loading coco annotations in {} .".format(annotations_file))
         with open(annotations_file, 'r') as file:
             annotations = json.load(file)
         return annotations
 
+    @staticmethod
     def update_dataset_info(annotations, level, unique):
         annotations['info']['description'] = "COCO 2017 Dataset augmented with concepts."
         annotations['info']['concept_max_level'] = level
@@ -57,6 +65,7 @@ class MakeConceptDataset:
         annotations['info']['contributor'] = "Davide Rigoni"
         annotations['info']['date_created'] = "2021/12/15"
 
+    @staticmethod
     def update_category_concepts(annotations, concepts):
         # associate the right concept to each category
         # NOTE: here we can add a new class if it is needed
@@ -79,18 +88,13 @@ class MakeConceptDataset:
             category['descendants'] = descendant
             # print(category['descendants'])
 
-    def powerset(iterable):
+    @staticmethod
+    def powerset( iterable):
         "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
         s = list(iterable)
         return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
 
-    def _search_image_by_id(images, image_id):
-        result = [i for i in images if i['id'] == image_id]
-        assert len(result) == 1
-        return result[0]
-
-
-    def generate_examples(annotations, concepts, subset):
+    def generate_examples(self, annotations, concepts):
         image_to_annotations = defaultdict(list)
         for i, ann in enumerate(annotations['annotations']):
             image_id = ann['image_id']
@@ -105,7 +109,7 @@ class MakeConceptDataset:
             if len(curr_annotations_indexes) > 0:
                 curr_annotations = [annotations['annotations'][idx] for idx in curr_annotations_indexes]    # annotations
                 list_unique_cat = list(set({ann['category_id'] for ann in curr_annotations}))   # unique list of categories
-                if subset:
+                if self.subset:
                     # samples a set of categories. At least one. This or powerset
                     selected_cat = random.sample(list_unique_cat, random.randint(1, len(list_unique_cat)))
                     # filter out the annotations not aligned with the sampled categories
@@ -114,11 +118,11 @@ class MakeConceptDataset:
                     gen_concepts = []
                     for ann in annos_filtered:
                         cat_idx = ann['category_id']
-                        descendants = concepts[cat_idx]['descendants']
+                        descendants = self.concepts[cat_idx]['descendants']
                         if len(descendants) > 0:
                             tmp_concept = random.choice(descendants)
                         else:
-                            tmp_concept = concepts[cat_idx]['synset']
+                            tmp_concept = self.concepts[cat_idx]['synset']
                         gen_concepts.append(tmp_concept)
                     tmp_dict = {
                         'image_id': image_id,
@@ -128,7 +132,7 @@ class MakeConceptDataset:
                     new_examples.append(tmp_dict)
                 else:
                     # execute powerset
-                    all_combinations = list(powerset(list_unique_cat))[1:]  # no the empty one
+                    all_combinations = list(MakeConceptDataset.powerset(list_unique_cat))[1:]  # no the empty one
                     for ps in all_combinations:
                         # filter out the annotations not aligned with the sampled categories
                         annos_filtered = [ann for ann in curr_annotations if ann['category_id'] in ps]
@@ -136,11 +140,11 @@ class MakeConceptDataset:
                         gen_concepts = []
                         for ann in annos_filtered:
                             cat_idx = ann['category_id']
-                            descendants = concepts[cat_idx]['descendants']
+                            descendants = self.concepts[cat_idx]['descendants']
                             if len(descendants) > 0:
                                 tmp_concept = random.choice(descendants)
                             else:
-                                tmp_concept = concepts[cat_idx]['synset']
+                                tmp_concept = self.concepts[cat_idx]['synset']
                             gen_concepts.append(tmp_concept)
                         tmp_dict = {
                             'image_id': image_id,
@@ -150,9 +154,9 @@ class MakeConceptDataset:
                         new_examples.append(tmp_dict)
         annotations['concept_data'] = new_examples
 
-    def create_concept_dataset(annotations_file, concepts, level, unique, subset):
+    def create_concept_dataset(self):
         # read coco annotation file
-        annotations = load_dataset(annotations_file)
+        annotations = MakeConceptDataset.load_dataset(self.coco_dataset)
 
         # dictionary
         # "info": {...},
@@ -165,11 +169,11 @@ class MakeConceptDataset:
         # write new dataset information
         print("Processing. ")
         # update information about the dataset
-        update_dataset_info(annotations, level, unique)
+        MakeConceptDataset.update_dataset_info(annotations, self.level, self.unique)
         # update concepts related to each category
-        update_category_concepts(annotations, concepts)
+        MakeConceptDataset.update_category_concepts(annotations, self.concepts)
         # generate syntetic examples
-        generate_examples(annotations, concepts, subset)
+        generate_examples(annotations)
 
         # generate external file
         results = {}
@@ -179,16 +183,23 @@ class MakeConceptDataset:
         results['concept_data'] = annotations['concept_data']
 
         # save new dataset
-        save_dataset(annotations_file, results)
-        print("Dataset {} processed. ".format(annotations_file))
+        output_file = generate_output_file_name()
+        MakeConceptDataset.save_dataset(output_file, results)
+        print("Dataset {} processed. ".format(self.coco_dataset))
     
 
 # NOTE: this class is the one used in the end. It filter the dataset according to the concepts it generates. It does not add any keys to the dataset dictionary.
 class MakeConceptDatasetFilter(MakeConceptDataset):
-    def __init__(self, args):
-        super().__init__(args)
+    def __init__(self,args, dataset_name="concept_coco"):
+        super().__init__(args=args, dataset_name=dataset_name)
+    
+    @staticmethod
+    def search_image_by_id(images, image_id):
+        result = [i for i in images if i['id'] == image_id]
+        assert len(result) == 1
+        return result[0]
 
-    def generate_examples(annotations, concepts, subset):
+    def generate_examples(self, annotations):
         image_to_annotations = defaultdict(list)
         for i, ann in enumerate(annotations['annotations']):
             image_id = ann['image_id']
@@ -207,7 +218,7 @@ class MakeConceptDatasetFilter(MakeConceptDataset):
             if len(curr_annotations_indexes) > 0:
                 curr_annotations = [annotations['annotations'][idx] for idx in curr_annotations_indexes]    # annotations
                 list_unique_cat = list(set({ann['category_id'] for ann in curr_annotations}))   # unique list of categories
-                if subset:
+                if self.subset:
                     # samples a set of categories. At least one. This or powerset
                     selected_cat = random.sample(list_unique_cat, random.randint(1, len(list_unique_cat)))
                     # filter out the annotations not aligned with the sampled categories
@@ -215,8 +226,8 @@ class MakeConceptDatasetFilter(MakeConceptDataset):
                     new_annotations.extend(annos_filtered)
                 else:
                     # execute powerset
-                    current_image = _search_image_by_id(annotations['images'], image_id)
-                    all_combinations = list(powerset(list_unique_cat))[1:]  # no the empty one
+                    current_image = MakeConceptDatasetFilter.search_image_by_id(annotations['images'], image_id)
+                    all_combinations = list(super().powerset(list_unique_cat))[1:]  # no the empty one
                     for ps in all_combinations:
                         # new image
                         current_tmp_image = copy.deepcopy(current_image)
@@ -235,12 +246,12 @@ class MakeConceptDatasetFilter(MakeConceptDataset):
 
         annotations['annotations'] = new_annotations
         # only if we are doing powerset we need to update the images_list
-        if not subset:
+        if not self.subset:
             annotations['images'] = new_images
     
-    def create_concept_dataset(annotations_file, concepts, level, unique, subset):
+    def create_concept_dataset(self):
         # read coco annotation file
-        annotations = load_dataset(annotations_file)
+        annotations = super().load_dataset(self.coco_dataset)
 
         # dictionary
         # "info": {...},
@@ -253,15 +264,16 @@ class MakeConceptDatasetFilter(MakeConceptDataset):
         # write new dataset information
         print("Processing. ")
         # update information about the dataset
-        update_dataset_info(annotations, level, unique)
+        super().update_dataset_info(annotations, self.level, self.unique)
         # update concepts related to each category
-        update_category_concepts(annotations, concepts)
+        super().update_category_concepts(annotations, self.concepts)
         # generate syntetic examples
-        generate_examples(annotations, concepts, subset)
+        generate_examples(annotations)
 
         # save new dataset
-        save_dataset(annotations_file, annotations)
-        print("Dataset {} processed. ".format(annotations_file))
+        output_file = generate_output_file_name()
+        super().save_dataset(output_file, annotations)
+        print("Dataset {} processed. ".format(self.coco_dataset))
 
 
 def parse_args():
