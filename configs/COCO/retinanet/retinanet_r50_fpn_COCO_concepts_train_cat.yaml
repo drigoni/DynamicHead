@@ -6,4 +6,4 @@ MODEL:
     DEPTH: 50
 CONCEPT:
   CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
-OUTPUT_DIR: "./results/COCO/retinanet_concepts_cat/"
+OUTPUT_DIR: "./results_new/COCO/retinanet/retinanet_r50_fpn_COCO_concepts_train_cat/"

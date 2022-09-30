@@ -5,4 +5,4 @@ MODEL:
   MASK_ON: False
   RESNETS:
     DEPTH: 50
-OUTPUT_DIR: "./results/COCO/frcnn_drigoni/"
+OUTPUT_DIR: "./results_new/COCO/frcnn/frcnn_drigoni_r50_fpn_COCO_train/"
