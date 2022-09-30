@@ -4,7 +4,7 @@
 ### ============ SLURM COMMANDS
 #SBATCH --job-name='retinanet_r50_fpn_COCO_test'     # create a short name for your job
 #SBATCH --mail-user=davide.rigoni.2@phd.unipd.it
-#SBATCH --output=cluster/out/retinanet_r50_fpn_COCO_test.out
+#SBATCH --output=cluster/out/retinanet/retinanet_r50_fpn_COCO_test_dataset-%a.out
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
 #SBATCH --time=2-00:00:00                           # total run time limit (DD-HH:MM:SS)

@@ -4,7 +4,7 @@
 ### ============ SLURM COMMANDS
 #SBATCH --job-name='frcnn_r50_fpn_COCO_concepts_test_add'     # create a short name for your job
 #SBATCH --mail-user=davide.rigoni.2@phd.unipd.it
-#SBATCH --output=cluster/out/frcnn_r50_fpn_COCO_concepts_test_add.out
+#SBATCH --output=cluster/out/frcnn/frcnn_r50_fpn_COCO_concepts_test_add_dataset-%a.out
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
 #SBATCH --time=2-00:00:00                           # total run time limit (DD-HH:MM:SS)
