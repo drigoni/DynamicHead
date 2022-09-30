@@ -1,4 +1,4 @@
-_BASE_: "dh_COCO_base.yaml"
+_BASE_: "base_dh_COCO.yaml"
 MODEL:
   BACKBONE:
     NAME: "build_retinanet_swint_fpn_dyhead_backbone"

@@ -1,4 +1,4 @@
-_BASE_: "retinanet_COCO_concepts_base.yaml"
+_BASE_: "base_retinanet_COCO_concepts.yaml"
 MODEL:
   WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
   MASK_ON: False

@@ -1,4 +1,4 @@
-_BASE_: "dh_COCO_concepts_base.yaml"
+_BASE_: "base_dh_COCO_concepts.yaml"
 MODEL:
   ATSS:
     NUM_CONVS: 2
