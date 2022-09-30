@@ -11,7 +11,7 @@ import os
 import argparse
 import numpy as np
 import json
-# from extra.concept_finder_sin import ConceptFinder
+# from extra.concept_finder import ConceptFinderSynonym as ConceptFinder
 from extra.concept_finder import ConceptFinder
 import nltk
 from collections import Counter

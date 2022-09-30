@@ -15,7 +15,7 @@ from .swint import build_swint_fpn_backbone, build_swint_fpn_dyhead_backbone, bu
 from .resnet import build_resnet_fpn_dyhead_backbone, build_retinanet_resnet_fpn_dyhead_backbone
 # utils concepts
 from .concept_mapper import ConceptMapper
-from .concept_finder import ConceptFinder
+from .concept_finder import ConceptFinder, ConceptFinderSynonym
 from .concept_net import ConceptNet
 from .parser_EWISER import extract_COCO_concepts
 # utils
