@@ -442,19 +442,11 @@ class ATSS(nn.Module):
             results.append(result)
         return results
 
-    def inference_single_feature_map(self, anchors, box_cls, box_delta, centerness, attributes, features, image_sizes):
+    def inference_single_feature_map(self, anchors, box_cls, box_delta, centerness, features, image_sizes):
             N, _, H, W = box_cls.shape
             A = box_delta.size(1) // 4
             C = box_cls.size(1) // A
             F = features.size(1)
-            ATT = attributes.size(1)
-
-            # print("features.shape: ", features.shape)       # features.shape: [1, 406, 14, 20]
-            # print("box_cls.shape: ", box_cls.shape)     # box_cls.shape: [1, 80, 14, 20]
-            # print("box_delta.shape: ", box_delta.shape)     # box_delta.shape: [1, 4, 14, 20]
-            # print("centerness.shape: ", centerness.shape)     # centerness.shape: [1, 1, 14, 20]
-            # print("A: ", A)     # A: 1
-            # print("C: ", C)     # C: 80
 
             # put in the same format as anchors
             box_cls = permute_and_flatten(box_cls, N, A, C, H, W)               # [N, H*W, C]
@@ -462,9 +454,6 @@ class ATSS(nn.Module):
 
             box_features = permute_and_flatten(features, N, A, F, H, W)         # [N, H*W, F]
             box_features = box_features.reshape(N, -1, F)                       # [N, H*W, F]
-
-            box_att = permute_and_flatten(attributes, N, A, ATT, H, W)          # [N, H*W, ATT]
-            box_att = box_att.sigmoid()                                         # [N, H*W, ATT]
 
             box_regression = permute_and_flatten(box_delta, N, A, 4, H, W)      # [N, H*W, 4]
             box_regression = box_regression.reshape(N, -1, 4)                       # [N, H*W, 4]
@@ -481,9 +470,9 @@ class ATSS(nn.Module):
             box_probs = box_cls
             box_cls = box_cls * centerness[:, :, None]                          # [N, H*W, C]
 
-            boxes, probs, scores, labels, feats, atts = [], [], [], [], [], []
-            for per_box_cls, per_box_regression, per_box_features, per_box_att, per_pre_nms_top_n, per_candidate_inds, per_box_probs, per_imsize \
-                    in zip(box_cls, box_regression, box_features, box_att, pre_nms_top_n, candidate_inds, box_probs, image_sizes):
+            boxes, probs, scores, labels, feats = [], [], [], [], []
+            for per_box_cls, per_box_regression, per_box_features, per_pre_nms_top_n, per_candidate_inds, per_box_probs, per_imsize \
+                    in zip(box_cls, box_regression, box_features, pre_nms_top_n, candidate_inds, box_probs, image_sizes):
 
                 per_box_cls_list = per_box_cls[per_candidate_inds]               # list of scores bigger than treshold
                 per_box_cls_list, top_k_indices = per_box_cls_list.topk(per_pre_nms_top_n, sorted=False)
@@ -500,24 +489,22 @@ class ATSS(nn.Module):
                 # print(per_box_loc.cpu().numpy())
 
                 per_feat = per_box_features[per_box_loc, :]
-                attributes_probs = per_box_att[per_box_loc, :]
                 probabilities = per_box_probs[per_box_loc, :]
 
                 boxes.append(detections)
                 scores.append(per_box_cls_list)
                 labels.append(per_class)
                 feats.append(per_feat)
-                atts.append(attributes_probs)
                 probs.append(probabilities)
 
-            return boxes, scores, labels, feats, atts, probs
+            return boxes, scores, labels, feats, probs
 
-    def inference_single_feature_map_argmax(self, anchors, box_cls, box_delta, centerness, attributes, features, image_sizes):
+
+    def inference_single_feature_map_argmax(self, anchors, box_cls, box_delta, centerness, features, image_sizes):
         N, _, H, W = box_cls.shape
         A = box_delta.size(1) // 4
         C = box_cls.size(1) // A
         F = features.size(1)
-        ATT = attributes.size(1)
 
         # put in the same format as anchors
         box_cls = permute_and_flatten(box_cls, N, A, C, H, W)               # [N, H*W, C]
@@ -525,9 +512,6 @@ class ATSS(nn.Module):
 
         box_features = permute_and_flatten(features, N, A, F, H, W)         # [N, H*W, F]
         box_features = box_features.reshape(N, -1, F)                       # [N, H*W, F]
-
-        box_att = permute_and_flatten(attributes, N, A, ATT, H, W)          # [N, H*W, ATT]
-        box_att = box_att.sigmoid()                                         # [N, H*W, ATT]
 
         box_regression = permute_and_flatten(box_delta, N, A, 4, H, W)      # [N, H*W, 4]
         box_regression = box_regression.reshape(N, -1, 4)                       # [N, H*W, 4]
@@ -546,9 +530,9 @@ class ATSS(nn.Module):
         # box_probs = torch.nn.functional.softmax(box_cls, dim=-1)
         box_cls = box_cls * centerness[:, :, None]                          # [N, H*W, C]
 
-        boxes, probs, scores, labels, feats, atts = [], [], [], [], [], []
-        for per_box_cls, per_box_regression, per_box_features, per_box_att, per_pre_nms_top_n, per_candidate_inds, per_imsize \
-                in zip(box_cls, box_regression, box_features, box_att, pre_nms_top_n, candidate_inds, image_sizes):
+        boxes, probs, scores, labels, feats = [], [], [], [], []
+        for per_box_cls, per_box_regression, per_box_features, per_pre_nms_top_n, per_candidate_inds, per_imsize \
+                in zip(box_cls, box_regression, box_features, pre_nms_top_n, candidate_inds, image_sizes):
 
             per_box_cls_list = per_box_cls[per_candidate_inds]               # list of scores bigger than treshold
             per_box_cls_list, top_k_indices = per_box_cls_list.topk(per_pre_nms_top_n, sorted=False)
@@ -565,17 +549,152 @@ class ATSS(nn.Module):
             # print(per_box_loc.cpu().numpy())
 
             per_feat = per_box_features[per_box_loc, :]
-            attributes_probs = per_box_att[per_box_loc, :]
             probabilities = torch.nn.functional.softmax(per_box_cls[per_box_loc, :], dim=-1)
 
             boxes.append(detections)
             scores.append(per_box_cls_list)
             labels.append(per_class)
             feats.append(per_feat)
-            atts.append(attributes_probs)
             probs.append(probabilities)
 
-        return boxes, scores, labels, feats, atts, probs
+        return boxes, scores, labels, feats, probs
+
+# version with attributes for vgg
+#    def inference_single_feature_map(self, anchors, box_cls, box_delta, centerness, attributes, features, image_sizes):
+#            N, _, H, W = box_cls.shape
+#            A = box_delta.size(1) // 4
+#            C = box_cls.size(1) // A
+#            F = features.size(1)
+#            ATT = attributes.size(1)
+#
+#            # print("features.shape: ", features.shape)       # features.shape: [1, 406, 14, 20]
+#            # print("box_cls.shape: ", box_cls.shape)     # box_cls.shape: [1, 80, 14, 20]
+#            # print("box_delta.shape: ", box_delta.shape)     # box_delta.shape: [1, 4, 14, 20]
+#            # print("centerness.shape: ", centerness.shape)     # centerness.shape: [1, 1, 14, 20]
+#            # print("A: ", A)     # A: 1
+#            # print("C: ", C)     # C: 80
+#
+#            # put in the same format as anchors
+#            box_cls = permute_and_flatten(box_cls, N, A, C, H, W)               # [N, H*W, C]
+#            box_cls = box_cls.sigmoid()                                         # [N, H*W, C]
+#
+#            box_features = permute_and_flatten(features, N, A, F, H, W)         # [N, H*W, F]
+#            box_features = box_features.reshape(N, -1, F)                       # [N, H*W, F]
+#
+#            box_att = permute_and_flatten(attributes, N, A, ATT, H, W)          # [N, H*W, ATT]
+#            box_att = box_att.sigmoid()                                         # [N, H*W, ATT]
+#
+#            box_regression = permute_and_flatten(box_delta, N, A, 4, H, W)      # [N, H*W, 4]
+#            box_regression = box_regression.reshape(N, -1, 4)                       # [N, H*W, 4]
+#
+#            centerness = permute_and_flatten(centerness, N, A, 1, H, W)         # [N, A*H*W, 1]
+#            centerness = centerness.reshape(N, -1).sigmoid()                    # [N, A*H*W]
+#
+#            candidate_inds = box_cls > self.pre_nms_thresh                      # [N, H*W, C]
+#            pre_nms_top_n = candidate_inds.reshape(N, -1).sum(1)                # [N]
+#            pre_nms_top_n = pre_nms_top_n.clamp(max=self.pre_nms_top_n)         # [N]
+#
+#            # multiply the classification scores with centerness scores
+#            # box_probs = torch.nn.functional.softmax(box_cls, dim=-1)
+#            box_probs = box_cls
+#            box_cls = box_cls * centerness[:, :, None]                          # [N, H*W, C]
+#
+#            boxes, probs, scores, labels, feats, atts = [], [], [], [], [], []
+#            for per_box_cls, per_box_regression, per_box_features, per_box_att, per_pre_nms_top_n, per_candidate_inds, per_box_probs, per_imsize \
+#                    in zip(box_cls, box_regression, box_features, box_att, pre_nms_top_n, candidate_inds, box_probs, image_sizes):
+#
+#                per_box_cls_list = per_box_cls[per_candidate_inds]               # list of scores bigger than treshold
+#                per_box_cls_list, top_k_indices = per_box_cls_list.topk(per_pre_nms_top_n, sorted=False)
+#                # per_candidate_inds.nonzero() -> matrix to list containing only the positives values coordinates
+#                per_candidate_nonzeros = per_candidate_inds.nonzero()[top_k_indices, :]
+#
+#                per_box_loc = per_candidate_nonzeros[:, 0]
+#                per_class = per_candidate_nonzeros[:, 1]
+#
+#                detections = self.box_coder.apply_deltas(
+#                    per_box_regression[per_box_loc, :].view(-1, 4),
+#                    anchors.tensor[per_box_loc, :].view(-1, 4)
+#                )
+#                # print(per_box_loc.cpu().numpy())
+#
+#                per_feat = per_box_features[per_box_loc, :]
+#                attributes_probs = per_box_att[per_box_loc, :]
+#                probabilities = per_box_probs[per_box_loc, :]
+#
+#                boxes.append(detections)
+#                scores.append(per_box_cls_list)
+#                labels.append(per_class)
+#                feats.append(per_feat)
+#                atts.append(attributes_probs)
+#                probs.append(probabilities)
+#
+#            return boxes, scores, labels, feats, atts, probs
+#
+#
+#    def inference_single_feature_map_argmax(self, anchors, box_cls, box_delta, centerness, attributes, features, image_sizes):
+#        N, _, H, W = box_cls.shape
+#        A = box_delta.size(1) // 4
+#        C = box_cls.size(1) // A
+#        F = features.size(1)
+#        ATT = attributes.size(1)
+#
+#        # put in the same format as anchors
+#        box_cls = permute_and_flatten(box_cls, N, A, C, H, W)               # [N, H*W, C]
+#        box_cls = box_cls.sigmoid()                                         # [N, H*W, C]
+#
+#        box_features = permute_and_flatten(features, N, A, F, H, W)         # [N, H*W, F]
+#        box_features = box_features.reshape(N, -1, F)                       # [N, H*W, F]
+#
+#        box_att = permute_and_flatten(attributes, N, A, ATT, H, W)          # [N, H*W, ATT]
+#        box_att = box_att.sigmoid()                                         # [N, H*W, ATT]
+#
+#        box_regression = permute_and_flatten(box_delta, N, A, 4, H, W)      # [N, H*W, 4]
+#        box_regression = box_regression.reshape(N, -1, 4)                       # [N, H*W, 4]
+#
+#        centerness = permute_and_flatten(centerness, N, A, 1, H, W)         # [N, A*H*W, 1]
+#        centerness = centerness.reshape(N, -1).sigmoid()                    # [N, A*H*W]
+#
+#        # perform argmax
+#        candidate_inds = box_cls > self.pre_nms_thresh                      # [N, H*W, C]
+#        per_box_max_idx = torch.argmax(box_cls, dim=-1)                     # [N, H*W]
+#        candidate_inds = torch.logical_and(torch.nn.functional.one_hot(per_box_max_idx, C), candidate_inds)   # [N, H*W, C]
+#        pre_nms_top_n = candidate_inds.reshape(N, -1).sum(1)                # [N]
+#        pre_nms_top_n = pre_nms_top_n.clamp(max=self.pre_nms_top_n)         # [N]
+#
+#        # multiply the classification scores with centerness scores
+#        # box_probs = torch.nn.functional.softmax(box_cls, dim=-1)
+#        box_cls = box_cls * centerness[:, :, None]                          # [N, H*W, C]
+#
+#        boxes, probs, scores, labels, feats, atts = [], [], [], [], [], []
+#        for per_box_cls, per_box_regression, per_box_features, per_box_att, per_pre_nms_top_n, per_candidate_inds, per_imsize \
+#                in zip(box_cls, box_regression, box_features, box_att, pre_nms_top_n, candidate_inds, image_sizes):
+#
+#            per_box_cls_list = per_box_cls[per_candidate_inds]               # list of scores bigger than treshold
+#            per_box_cls_list, top_k_indices = per_box_cls_list.topk(per_pre_nms_top_n, sorted=False)
+#            # per_candidate_inds.nonzero() -> matrix to list containing only the positives values coordinates
+#            per_candidate_nonzeros = per_candidate_inds.nonzero()[top_k_indices, :]
+#
+#            per_box_loc = per_candidate_nonzeros[:, 0]
+#            per_class = per_candidate_nonzeros[:, 1]
+#
+#            detections = self.box_coder.apply_deltas(
+#                per_box_regression[per_box_loc, :].view(-1, 4),
+#                anchors.tensor[per_box_loc, :].view(-1, 4)
+#            )
+#            # print(per_box_loc.cpu().numpy())
+#
+#            per_feat = per_box_features[per_box_loc, :]
+#            attributes_probs = per_box_att[per_box_loc, :]
+#            probabilities = torch.nn.functional.softmax(per_box_cls[per_box_loc, :], dim=-1)
+#
+#            boxes.append(detections)
+#            scores.append(per_box_cls_list)
+#            labels.append(per_class)
+#            feats.append(per_feat)
+#            atts.append(attributes_probs)
+#            probs.append(probabilities)
+#
+#        return boxes, scores, labels, feats, atts, probs
 
     def preprocess_image(self, batched_inputs: List[Dict[str, Tensor]]):
         """

@@ -1,0 +1,11 @@
+_BASE_: "base_retinanet_COCO.yaml"
+MODEL:
+  WEIGHTS: "./results_new/COCO/retinanet/retinanet_drigoni_r50_fpn_COCO/model_final.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val_subset",)
+  # TEST: ("coco_2017_val_powerset",)
+OUTPUT_DIR: "./results_new/COCO/retinanet/retinanet_drigoni_r50_fpn_COCO/"

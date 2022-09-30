@@ -116,7 +116,7 @@ class ConceptFinder:
 class ConceptFinderSynonym(ConceptFinder):
 
     def __init__(self, coco2synset_file='./concept/coco_to_synset.json'):
-        super()__init__(
+        super().__init__(
             coco2synset_file=coco2synset_file
         )
         for coco_cat_id in self.coco2synset.keys():

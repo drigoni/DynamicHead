@@ -5,4 +5,4 @@ MODEL:
   MASK_ON: False
   RESNETS:
     DEPTH: 50
-OUTPUT_DIR: "./results_new/COCO/retinanet/retinanet_drigoni_r50_fpn_COCO_train/"
+OUTPUT_DIR: "./results_new/COCO/retinanet/retinanet_drigoni_r50_fpn_COCO/"

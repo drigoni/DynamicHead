@@ -297,7 +297,7 @@ def main(args):
     cfg = setup(args)
 
     # wandb init only in rank0 and on device 0
-    if args.machine_rank == 0 and torch.cuda.current_device() == 0:
+    if not args.eval_only and args.machine_rank == 0 and torch.cuda.current_device() == 0:
         raw_cfg = yaml.safe_load(cfg.dump())
         # make flat the nested dictionary from yaml
         flatten_json(raw_cfg)

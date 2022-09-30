@@ -1,0 +1,17 @@
+_BASE_: "base_dh_COCO_concepts.yaml"
+MODEL:
+  WEIGHTS: "./results_new/COCO/dh/dh_swint_fpn_COCO_concepts_cat/model_final.pth"
+  ATSS:
+    NUM_CONVS: 0
+CONCEPT:
+  CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
+  APPLY_CONDITION: TRUE
+  APPLY_CONDITION_FROM_FILE: FALSE
+  APPLY_FILTER: FALSE
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val_subset",)
+  # TEST: ("coco_2017_val_powerset",)
+DEEPSETS:
+  EMB: "random"
+OUTPUT_DIR: "./results_new/COCO/dh/dh_swint_fpn_COCO_concepts_cat/"

@@ -253,7 +253,7 @@ class ConceptGeneralizedRCNN(drigoniGeneralizedRCNN):
 
         if do_postprocess:
             assert not torch.jit.is_scripting(), "Scripting is not supported for postprocess."
-            return GeneralizedRCNN._postprocess(results, batched_inputs, images.image_sizes)
+            return ConceptGeneralizedRCNN._postprocess(results, batched_inputs, images.image_sizes)
         return results
 
     @staticmethod
@@ -261,5 +261,5 @@ class ConceptGeneralizedRCNN(drigoniGeneralizedRCNN):
         """
         Rescale the output instances to the target size.
         """
-        processed_results = drigoniGeneralizedRCNN._postprocess(instances, batched_inputs, image_size)
+        processed_results = drigoniGeneralizedRCNN._postprocess(instances, batched_inputs, image_sizes)
         return processed_results
