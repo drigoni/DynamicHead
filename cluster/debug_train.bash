@@ -2,7 +2,7 @@
 
 CONFIG_FILE=./configs/COCO/dh/dh_swint_fpn_COCO_concepts_train_add.yaml
 MODEL_WEIGHTS="detectron2://ImageNetPretrained/MSRA/R-50.pkl"
-OUTPUT_DIR="./results/debug/"
+OUTPUT_DIR="./results_new/debug/"
 
 python train_net.py --config  ${CONFIG_FILE} \
                     --num-gpus 1 \
