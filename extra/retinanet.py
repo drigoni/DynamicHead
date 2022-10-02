@@ -18,6 +18,7 @@ from detectron2.modeling.box_regression import Box2BoxTransform, _dense_box_regr
 from detectron2.modeling.matcher import Matcher
 from detectron2.modeling.meta_arch.build import META_ARCH_REGISTRY
 from detectron2.modeling.meta_arch.dense_detector import DenseDetector, permute_to_N_HWA_K  # noqa
+from detectron2.modeling.postprocessing import detector_postprocess
 
 __all__ = ["drigoniRetinaNet"]
 

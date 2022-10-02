@@ -65,7 +65,7 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/COCO/rcnn/frcnn_r50_fpn_COCO_concepts_test_add.yaml
+CONFIG_FILE=./configs/COCO/frcnn/frcnn_r50_fpn_COCO_concepts_test_add.yaml
 DATSETS=('("coco_2017_val",)' '("coco_2017_val_subset",)' '("coco_2017_val_powerset",)')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
