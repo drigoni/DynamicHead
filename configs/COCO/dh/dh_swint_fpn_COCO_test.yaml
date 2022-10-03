@@ -1,10 +1,10 @@
 _BASE_: "base_dh_COCO.yaml"
 MODEL:
-  WEIGHTS: "./results_new/COCO/dh/dh_swint_fpn_COCO/model_final.pth"
+  WEIGHTS: "./results/COCO/dh/dh_swint_fpn_COCO/model_final.pth"
   ATSS:
     NUM_CONVS: 0
 DATASETS:
   TRAIN: ("coco_2017_train",)
   TEST: ("coco_2017_val_subset",)
   # TEST: ("coco_2017_val_powerset",)
-OUTPUT_DIR: "./results_new/COCO/dh/dh_swint_fpn_COCO/"
+OUTPUT_DIR: "./results/COCO/dh/dh_swint_fpn_COCO/"

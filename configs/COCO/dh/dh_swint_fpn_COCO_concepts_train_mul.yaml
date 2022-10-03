@@ -4,4 +4,4 @@ MODEL:
     NUM_CONVS: 0
 CONCEPT:
   CONCEPT_FUSION: "mul" # ["cat", "mul", "add", "zeros"]
-OUTPUT_DIR: "./results_new/COCO/dh/dh_swint_fpn_COCO_concepts_mul/"
+OUTPUT_DIR: "./results/COCO/dh/dh_swint_fpn_COCO_concepts_mul/"
