@@ -8,7 +8,7 @@ python train_net.py --config  ${CONFIG_FILE} \
                     --eval-only \
                     OUTPUT_DIR ${OUTPUT_DIR} \
                     SOLVER.IMS_PER_BATCH 16 \
-                    EVALUATOR_TYPE 'GTFilter' # ['default', 'GTFilter']
+                    # EVALUATOR_TYPE 'GTFilter' # ['default', 'GTFilter']
 
 
 
