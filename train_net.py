@@ -122,7 +122,7 @@ class Trainer(DefaultTrainer):
             logger.error("Error. CONCEPT.FUSION={} not valid. ".format(concept_fusion))
             exit(1)
 
-        return evaluator(dataset_name, cfg, True, output_folder)
+        return evaluator(dataset_name, cfg, True, output_folder, use_fast_impl=False)
 
     @classmethod
     def build_train_loader(cls, cfg, coco2synset):
