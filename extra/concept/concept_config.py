@@ -25,3 +25,6 @@ def add_concept_config(cfg):
     cfg.DEEPSETS.MLP2_LAYERS = 1    # 2
     cfg.DEEPSETS.AGGREGATE = 'sum'  # 'mean'
     cfg.DEEPSETS.OUTPUT_DIM = 256   # 156 with groupnorm 29     # 256 with groupnorm 32
+
+    # add parameter for new evaluation for the new datasets
+    cfg.EVALUATOR_TYPE = 'default' # ['default', GTFilter']

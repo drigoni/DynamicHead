@@ -17,7 +17,7 @@ from detectron2.modeling.proposal_generator import build_proposal_generator
 from detectron2.modeling.roi_heads import build_roi_heads
 from detectron2.modeling.meta_arch.build import META_ARCH_REGISTRY
 # from detectron2.modeling.meta_arch.rcnn import GeneralizedRCNN
-from .rcnn import drigoniGeneralizedRCNN
+from ..rcnn import drigoniGeneralizedRCNN
 
 from .concept_net import ConceptNet
 

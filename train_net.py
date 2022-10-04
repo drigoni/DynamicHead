@@ -25,7 +25,8 @@ from detectron2.data import build_detection_train_loader, build_detection_test_l
 from detectron2.data.samplers import TrainingSampler
 from detectron2.data.build import get_detection_dataset_dicts
 from detectron2.engine import SimpleTrainer, DefaultTrainer, default_argument_parser, default_setup, launch
-from detectron2.evaluation import COCOEvaluator, verify_results
+from detectron2.evaluation import COCOEvaluator
+from extra import COCOEvaluator as COCOEvaluator_GTFilter
 from detectron2.solver.build import maybe_add_gradient_clipping
 from detectron2.utils.logger import setup_logger
 from detectron2.data import MetadataCatalog
@@ -72,7 +73,7 @@ class Trainer(DefaultTrainer):
             setup_logger()
         cfg = DefaultTrainer.auto_scale_workers(cfg, comm.get_world_size())
 
-        # TODO: drigoni: add concepts to classes
+        # NOTE: drigoni: add concepts to classes
         concept_finder = ConceptFinder(cfg.CONCEPT.FILE)
         self.coco2synset = concept_finder.extend_descendants(depth=cfg.CONCEPT.DEPTH,
                                                              unique=cfg.CONCEPT.UNIQUE,
@@ -112,7 +113,16 @@ class Trainer(DefaultTrainer):
         """
         if output_folder is None:
             output_folder = os.path.join(cfg.OUTPUT_DIR, "inference")
-        return COCOEvaluator(dataset_name, cfg, True, output_folder)
+        
+        if cfg.EVALUATOR_TYPE == 'default':
+            evaluator = COCOEvaluator
+        elif cfg.EVALUATOR_TYPE == 'GTFilter':
+            evaluator = COCOEvaluator_GTFilter
+        else:
+            logger.error("Error. CONCEPT.FUSION={} not valid. ".format(concept_fusion))
+            exit(1)
+
+        return evaluator(dataset_name, cfg, True, output_folder)
 
     @classmethod
     def build_train_loader(cls, cfg, coco2synset):
@@ -125,7 +135,7 @@ class Trainer(DefaultTrainer):
             proposal_files=cfg.DATASETS.PROPOSAL_FILES_TRAIN if cfg.MODEL.LOAD_PROPOSALS else None,
         )
 
-        # TODO drigoni: introduces a new mapper
+        # NOTE drigoni: introduces a new mapper
         mapper = ConceptMapper(cfg, True, coco2synset=coco2synset)
 
         if cfg.SEED!=-1:
@@ -141,7 +151,7 @@ class Trainer(DefaultTrainer):
 
         dataset = get_detection_dataset_dicts(
             dataset_name,
-            filter_empty=True,  # TODO drigoni: True instead of False. We need at least one annotation.
+            filter_empty=True,  # NOTE drigoni: True instead of False. We need at least one annotation.
             proposal_files=[
                 cfg.DATASETS.PROPOSAL_FILES_TEST[list(cfg.DATASETS.TEST).index(x)] for x in dataset_name
             ]

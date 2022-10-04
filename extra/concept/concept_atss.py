@@ -24,9 +24,9 @@ from detectron2.modeling.box_regression import Box2BoxTransform
 from detectron2.modeling.postprocessing import detector_postprocess
 from detectron2.modeling.meta_arch.build import META_ARCH_REGISTRY
 
-from .sigmoid_focal_loss import SigmoidFocalLoss
+from ..sigmoid_focal_loss import SigmoidFocalLoss
 from .concept_net import ConceptNet
-from .atss import ATSS, reduce_sum, concat_box_prediction_layers, permute_and_flatten, Scale
+from ..atss import ATSS, reduce_sum, concat_box_prediction_layers, permute_and_flatten, Scale
 
 __all__ = ["CATSS"]
 

@@ -6,6 +6,7 @@ MODEL:
     DEPTH: 50
 DATASETS:
   TRAIN: ("coco_2017_train",)
-  TEST: ("coco_2017_val_subset",)
+  TEST: ("coco_2017_val",)
+  # TEST: ("coco_2017_val_subset",)
   # TEST: ("coco_2017_val_powerset",)
 OUTPUT_DIR: "./results/COCO/frcnn/frcnn_drigoni_r50_fpn_COCO/"
