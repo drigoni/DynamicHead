@@ -1,0 +1,8 @@
+_BASE_: "../base_retinanet_COCO.yaml"
+MODEL:
+  META_ARCHITECTURE: "drigoniRetinaNet"
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 101
+OUTPUT_DIR: "./results/COCO/retinanet/retinanet_drigoni_r101_fpn_COCO/"
