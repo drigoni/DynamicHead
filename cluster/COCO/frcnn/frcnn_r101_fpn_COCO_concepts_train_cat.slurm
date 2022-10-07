@@ -11,7 +11,7 @@
 #SBATCH --nodes=1                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
 #SBATCH --cpus-per-task=64		                    # cpu-cores per task (>1 if multi-threaded tasks)
-#SBATCH --gpus-per-node=4                           # number of gpus per node
+#SBATCH --gpus-per-node=2                           # number of gpus per node
 ### SBATCH --exclusive                                 # for exclusive access
 #SBATCH --exclude=gn[41]
 #---- MORE COMMANDS
@@ -29,14 +29,14 @@ SLURM_MASTER_PORT=$(expr 10000 + $(echo -n ${SLURM_JOBID} | tail -c 4))
 SLURM_MASTER_NODE="$(scontrol show hostnames ${SLURM_JOB_NODELIST} | head -n 1)" # such as gn11
 SLURM_MASTER_ADDR="${SLURM_MASTER_NODE}"
 SLURM_MASTER_URL="tcp://${SLURM_MASTER_ADDR}:${SLURM_MASTER_PORT}"
-export SLURM_MASTER_PORT=SLURM_MASTER_PORT
+export SLURM_MASTER_PORT=$SLURM_MASTER_PORT
 export SLURM_MASTER_NODE=$SLURM_MASTER_NODE
 export SLURM_MASTER_ADDR=$SLURM_MASTER_ADDR
 
 # model variables
 NUM_GPUS=${SLURM_GPUS_PER_NODE}
 NUM_MACHINES=${SLURM_NNODES}
-BATCH_SIZE=$(expr 16 \* $(echo -n ${SLURM_JOB_NUM_NODES}) \* $(echo -n ${SLURM_GPUS_PER_NODE})) 
+BATCH_SIZE=$(expr 8 \* $(echo -n ${SLURM_JOB_NUM_NODES}) \* $(echo -n ${SLURM_GPUS_PER_NODE})) 
 MAX_ITER=$(expr 16 \* 90000 \/ $(echo -n ${BATCH_SIZE}))
 
 ### ============ SOME PRINT COMMANDS
@@ -64,7 +64,7 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/COCO/frcnn/frcnn_r101_fpn_COCO_concepts_train_cat.yaml
+CONFIG_FILE=./configs/COCO/frcnn/r101/frcnn_r101_fpn_COCO_concepts_train_cat.yaml
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \

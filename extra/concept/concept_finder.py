@@ -31,6 +31,8 @@ class ConceptFinder:
     def find_descendants(entity, jump, depth=2):
         if jump == 0:
             descendants = [(entity, 0)]
+            if depth == -1:
+                return descendants
         else:
             descendants = []
         childrens = entity.hyponyms()  # hypernyms for fathers

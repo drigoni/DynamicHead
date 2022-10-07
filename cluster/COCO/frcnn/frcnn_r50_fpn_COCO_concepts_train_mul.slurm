@@ -29,7 +29,7 @@ SLURM_MASTER_PORT=$(expr 10000 + $(echo -n ${SLURM_JOBID} | tail -c 4))
 SLURM_MASTER_NODE="$(scontrol show hostnames ${SLURM_JOB_NODELIST} | head -n 1)" # such as gn11
 SLURM_MASTER_ADDR="${SLURM_MASTER_NODE}"
 SLURM_MASTER_URL="tcp://${SLURM_MASTER_ADDR}:${SLURM_MASTER_PORT}"
-export SLURM_MASTER_PORT=SLURM_MASTER_PORT
+export SLURM_MASTER_PORT=$SLURM_MASTER_PORT
 export SLURM_MASTER_NODE=$SLURM_MASTER_NODE
 export SLURM_MASTER_ADDR=$SLURM_MASTER_ADDR
 
@@ -64,7 +64,7 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/COCO/frcnn/frcnn_r50_fpn_COCO_concepts_train_mul.yaml
+CONFIG_FILE=./configs/COCO/frcnn/r50/frcnn_r50_fpn_COCO_concepts_train_mul.yaml
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \

@@ -1,8 +1,0 @@
-_BASE_: "base_frcnn_COCO.yaml"
-MODEL:
-  META_ARCHITECTURE: "drigoniGeneralizedRCNN"
-  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
-  MASK_ON: False
-  RESNETS:
-    DEPTH: 50
-OUTPUT_DIR: "./results/COCO/frcnn/frcnn_drigoni_r50_fpn_COCO/"
