@@ -6,7 +6,7 @@ Dockerfile
 cluster/out/*
 wandb/*
 results/*
-results_new/*
+results_*/*
 datasets/*
 output*/*
 demo/*
