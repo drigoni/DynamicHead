@@ -7,7 +7,7 @@ python train_net.py --config  ${CONFIG_FILE} \
                     --num-gpus 1 \
                     --eval-only \
                     OUTPUT_DIR ${OUTPUT_DIR} \
-                    SOLVER.IMS_PER_BATCH 16 \
+                    SOLVER.IMS_PER_BATCH 16 
                     # EVALUATOR_TYPE 'GTFilter' # ['default', 'GTFilter']
 
 

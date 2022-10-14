@@ -12,10 +12,10 @@ _PREDEFINED_CONCEPTS_SPLITS_COCO = {
                             "concept_coco/annotations/instances_val2017_subset.json"),
     "coco_2017_val_powerset": ("coco/val2017",
                                 "concept_coco/annotations/instances_val2017_powerset.json"),
-    "coco_2017_test_subset": ("coco/test2017",
-                            "concept_coco/annotations/instances_test2017_subset.json"),
-    "coco_2017_test_powerset": ("coco/test2017",
-                                "concept_coco/annotations/instances_test2017_powerset.json"),
+    "coco_2017_tuning_train": ("coco/train2017",
+                                "tuning_coco/annotations/tuning_instances_train2017.json"),
+    "coco_2017_tuning_val": ("coco/train2017",
+                                "tuning_coco/annotations/tuning_instances_val2017.json"),
 }
 
 

@@ -11,7 +11,8 @@ python train_net.py --config  ${CONFIG_FILE} \
                     CONCEPT.APPLY_CONDITION False \
                     CONCEPT.APPLY_FILTER False \
                     OUTPUT_DIR ${OUTPUT_DIR} \
-                    SOLVER.IMS_PER_BATCH 16
+                    SOLVER.IMS_PER_BATCH 2 \
+                    # DATASETS.TRAIN '("coco_2017_tuning_val",)'
 
 
 
