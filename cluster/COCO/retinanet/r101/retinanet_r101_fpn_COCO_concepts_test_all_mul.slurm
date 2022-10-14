@@ -13,6 +13,7 @@
 #SBATCH --cpus-per-task=64		                    # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --gpus-per-node=1                           # number of gpus per node
 ### SBATCH --exclusive                                 # for exclusive access
+#SBATCH --dependency=afterany:47083454
 #SBATCH --exclude=gn[41]
 #SBATCH --array=0-2
 #---- MORE COMMANDS
