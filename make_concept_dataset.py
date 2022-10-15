@@ -38,10 +38,11 @@ class MakeConceptDataset:
         concept_finder = ConceptFinder(args.coco2concepts)
         self.concepts = concept_finder.extend_descendants(args.level, args.unique)
 
-    def generate_output_file_name():
+    def generate_output_file_name(self):
         prefix = self.coco_dataset.split('/')[-1].split(".")[0]
         suffix = "subset" if self.subset else "powerset"
         output_file = "./datasets/{}/annotations/{}_{}.json".format(self.dataset_name, prefix, suffix)
+        return output_file
 
     @staticmethod
     def save_dataset(output_file, annotations):
@@ -173,7 +174,7 @@ class MakeConceptDataset:
         # update concepts related to each category
         MakeConceptDataset.update_category_concepts(annotations, self.concepts)
         # generate syntetic examples
-        generate_examples(annotations)
+        self.generate_examples(annotations)
 
         # generate external file
         results = {}
@@ -183,7 +184,7 @@ class MakeConceptDataset:
         results['concept_data'] = annotations['concept_data']
 
         # save new dataset
-        output_file = generate_output_file_name()
+        output_file = self.generate_output_file_name()
         MakeConceptDataset.save_dataset(output_file, results)
         print("Dataset {} processed. ".format(self.coco_dataset))
     
@@ -268,10 +269,10 @@ class MakeConceptDatasetFilter(MakeConceptDataset):
         # update concepts related to each category
         super().update_category_concepts(annotations, self.concepts)
         # generate syntetic examples
-        generate_examples(annotations)
+        self.generate_examples(annotations)
 
         # save new dataset
-        output_file = generate_output_file_name()
+        output_file = self.generate_output_file_name()
         super().save_dataset(output_file, annotations)
         print("Dataset {} processed. ".format(self.coco_dataset))
 
@@ -293,8 +294,8 @@ def parse_args():
                         default="./datasets/coco/annotations/instances_val2017.json",
                         type=str)
     parser.add_argument('--level', dest='level',
-                        help='Levels to consider in the knowledge graph.',
-                        default=10,
+                        help='Levels to consider in the knowledge graph. If add_key=False, then args.level just put the list of descendants but do not affect the dataset.',
+                        default=3,
                         type=int)
     parser.add_argument('--coco2concepts', dest='coco2concepts',
                         help='File regarding the links from coco classes to concepts.',

@@ -30,3 +30,31 @@ elif [[ $MODE == "uninstall" ]]; then
 else
   echo "To be implemented."
 fi
+
+
+
+
+
+# convert OpenImagesDataset .csv files to COCO .json annotations: https://github.com/bethgelab/openimages2coco
+# conda create -n tmp python=2, numpy, cython
+# conda activate tmp
+# pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
+# git clone https://github.com/bethgelab/openimages2coco.git
+# cd openimages2coco
+# small bug to fix: substitute line 95 of convert_annotations.py with:
+#    if image_size_sourcefile is not None:
+#        original_image_sizes = utils.csvread(os.path.join('data/', image_size_sourcefile))
+#    else:
+#        original_image_sizes = None
+# python3 convert_annotations.py -p /ceph/hpc/home/eudavider/datasets/OID_dataset/ --task bbox --subsets train --version v4
+
+
+# make concept dataset
+# python make_concept_dataset.py  --coco_dataset ./datasets/OpenImagesDataset/annotations/openimages_v4_val_bbox.json \
+#                                 --level 3 --unique True --subset True \
+#                                 --coco2concepts ./concept/coco_to_synset.json
+# python make_concept_dataset.py  --coco_dataset ./datasets/coco/annotations/instances_val2017.json \
+#                                  --level 3 --unique True --subset True
+#
+#
+

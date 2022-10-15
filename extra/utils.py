@@ -16,6 +16,12 @@ _PREDEFINED_CONCEPTS_SPLITS_COCO = {
                                 "tuning_coco/annotations/tuning_instances_train2017.json"),
     "coco_2017_tuning_val": ("coco/train2017",
                                 "tuning_coco/annotations/tuning_instances_val2017.json"),
+    "oid_v4_train": ("OpenImagesDataset/train/",
+                    "OpenImagesDataset/annotations/openimages_v4_train_bbox.json"),
+    "oid_v4_val": ("OpenImagesDataset/val/",
+                    "OpenImagesDataset/annotations/openimages_v4_val_bbox.json"),
+    "oid_v4_test": ("OpenImagesDataset/test/",
+                    "OpenImagesDataset/annotations/openimages_v4_test_bbox.json"),
 }
 
 
