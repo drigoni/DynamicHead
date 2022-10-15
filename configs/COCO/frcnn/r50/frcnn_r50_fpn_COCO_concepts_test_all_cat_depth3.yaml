@@ -1,6 +1,6 @@
 _BASE_: "../base_frcnn_COCO_concepts.yaml"
 MODEL:
-  WEIGHTS: "./results/COCO/frcnn/frcnn_r50_fpn_COCO_concepts_cat_depth2/model_final.pth"
+  WEIGHTS: "./results/COCO/frcnn/frcnn_r50_fpn_COCO_concepts_cat_depth3/model_final.pth"
   MASK_ON: False
   RESNETS:
     DEPTH: 50
@@ -9,12 +9,12 @@ CONCEPT:
   APPLY_CONDITION: TRUE
   APPLY_CONDITION_FROM_FILE: FALSE
   APPLY_FILTER: FALSE
-  DEPTH: "2"
+  DEPTH: 3
 DATASETS:
-  TRAIN: ("coco_2017_train",)
-  TEST: ("coco_2017_val",)
+  TRAIN: ("coco_2017_tuning_train",)
+  TRAIN: ("coco_2017_tuning_val",)
   # TEST: ("coco_2017_val_subset",)
   # TEST: ("coco_2017_val_powerset",)
 DEEPSETS:
   EMB: "random"
-OUTPUT_DIR: "./results/COCO/frcnn/frcnn_r50_fpn_COCO_concepts_cat_depth2/"
+OUTPUT_DIR: "./results/COCO/frcnn/frcnn_r50_fpn_COCO_concepts_cat_depth3/"

@@ -9,10 +9,10 @@ CONCEPT:
   APPLY_CONDITION: TRUE
   APPLY_CONDITION_FROM_FILE: FALSE
   APPLY_FILTER: FALSE
-  DEPTH: "0"
+  DEPTH: 0
 DATASETS:
-  TRAIN: ("coco_2017_train",)
-  TEST: ("coco_2017_val",)
+  TRAIN: ("coco_2017_tuning_train",)
+  TRAIN: ("coco_2017_tuning_val",)
   # TEST: ("coco_2017_val_subset",)
   # TEST: ("coco_2017_val_powerset",)
 DEEPSETS:

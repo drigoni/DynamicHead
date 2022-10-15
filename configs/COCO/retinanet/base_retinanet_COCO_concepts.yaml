@@ -26,8 +26,8 @@ MODEL:
     NUM_CONV: 4
     POOLER_RESOLUTION: 14
 DATASETS:
-  TRAIN: ("coco_2017_train",)
-  TEST: ("coco_2017_val",)
+  TRAIN: ("coco_2017_tuning_train",)
+  TRAIN: ("coco_2017_tuning_val",)
 DATALOADER:
   NUM_WORKERS: 32
 SOLVER:
@@ -38,12 +38,13 @@ SOLVER:
   WEIGHT_DECAY: 0.0001
   WEIGHT_DECAY_BIAS: 0.0001
 CONCEPT:
+  FILE: './concept/coco_to_synset.json'
   CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
   APPLY_CONDITION: TRUE
   APPLY_CONDITION_FROM_FILE: FALSE
   EXTERNAL_CONCEPTS_FOLDER: './datasets/ewiser_concepts_COCO_valid/'
   APPLY_FILTER: TRUE
-  DEPTH: "3"
+  DEPTH: 2
   UNIQUE: TRUE
 DEEPSETS:
   EMB: 'wordnet'   # 'random' # 'wordnet'

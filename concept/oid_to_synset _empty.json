@@ -1,0 +1,3007 @@
+{
+  "/m/011k07": {
+    "id": 1,
+    "meaning": "Tortoise",
+    "synset": "tortoise.n.01"
+  },
+  "/m/011q46kg": {
+    "id": 2,
+    "meaning": "Container",
+    "synset": "container.n.01"
+  },
+  "/m/012074": {
+    "id": 3,
+    "meaning": "Magpie",
+    "synset": "magpie.n.01"
+  },
+  "/m/0120dh": {
+    "id": 4,
+    "meaning": "Sea turtle",
+    "synset": "sea_turtle.n.01"
+  },
+  "/m/01226z": {
+    "id": 5,
+    "meaning": "Football",
+    "synset": "football.n.01"
+  },
+  "/m/012n7d": {
+    "id": 6,
+    "meaning": "Ambulance",
+    "synset": "ambulance.n.01"
+  },
+  "/m/012w5l": {
+    "id": 7,
+    "meaning": "Ladder",
+    "synset": "ladder.n.01"
+  },
+  "/m/012xff": {
+    "id": 8,
+    "meaning": "Toothbrush",
+    "synset": "toothbrush.n.01"
+  },
+  "/m/012ysf": {
+    "id": 9,
+    "meaning": "Syringe",
+    "synset": "syringe.n.01"
+  },
+  "/m/0130jx": {
+    "id": 10,
+    "meaning": "Sink",
+    "synset": "sink.n.01"
+  },
+  "/m/0138tl": {
+    "id": 11,
+    "meaning": "Toy",
+    "synset": "plaything.n.01"
+  },
+  "/m/013y1f": {
+    "id": 12,
+    "meaning": "Organ",
+    "synset": "organ.n.01"
+  },
+  "/m/01432t": {
+    "id": 13,
+    "meaning": "Cassette deck",
+    "synset": "cassette_deck.n.01"
+  },
+  "/m/014j1m": {
+    "id": 14,
+    "meaning": "Apple",
+    "synset": "apple.n.01"
+  },
+  "/m/014sv8": {
+    "id": 15,
+    "meaning": "Human eye",
+    "synset": null
+  },
+  "/m/014trl": {
+    "id": 16,
+    "meaning": "Cosmetics",
+    "synset": "cosmetic.n.01"
+  },
+  "/m/014y4n": {
+    "id": 17,
+    "meaning": "Paddle",
+    "synset": "paddle.n.01"
+  },
+  "/m/0152hh": {
+    "id": 18,
+    "meaning": "Snowman",
+    "synset": "snowman.n.01"
+  },
+  "/m/01599": {
+    "id": 19,
+    "meaning": "Beer",
+    "synset": "beer.n.01"
+  },
+  "/m/01_5g": {
+    "id": 20,
+    "meaning": "Chopsticks",
+    "synset": "chopstick.n.01"
+  },
+  "/m/015h_t": {
+    "id": 21,
+    "meaning": "Human beard",
+    "synset": null
+  },
+  "/m/015p6": {
+    "id": 22,
+    "meaning": "Bird",
+    "synset": "bird.n.01"
+  },
+  "/m/015qbp": {
+    "id": 23,
+    "meaning": "Parking meter",
+    "synset": "parking_meter.n.01"
+  },
+  "/m/015qff": {
+    "id": 24,
+    "meaning": "Traffic light",
+    "synset": "traffic_light.n.01"
+  },
+  "/m/015wgc": {
+    "id": 25,
+    "meaning": "Croissant",
+    "synset": "crescent_roll.n.01"
+  },
+  "/m/015x4r": {
+    "id": 26,
+    "meaning": "Cucumber",
+    "synset": "cucumber.n.01"
+  },
+  "/m/015x5n": {
+    "id": 27,
+    "meaning": "Radish",
+    "synset": "radish.n.01"
+  },
+  "/m/0162_1": {
+    "id": 28,
+    "meaning": "Towel",
+    "synset": "towel.n.01"
+  },
+  "/m/0167gd": {
+    "id": 29,
+    "meaning": "Doll",
+    "synset": "doll.n.01"
+  },
+  "/m/016m2d": {
+    "id": 30,
+    "meaning": "Skull",
+    "synset": "skull.n.01"
+  },
+  "/m/0174k2": {
+    "id": 31,
+    "meaning": "Washing machine",
+    "synset": "washer.n.03"
+  },
+  "/m/0174n1": {
+    "id": 32,
+    "meaning": "Glove",
+    "synset": "baseball_glove.n.01"
+  },
+  "/m/0175cv": {
+    "id": 33,
+    "meaning": "Tick",
+    "synset": "tick.n.01"
+  },
+  "/m/0176mf": {
+    "id": 34,
+    "meaning": "Belt",
+    "synset": "belt.n.01"
+  },
+  "/m/017ftj": {
+    "id": 35,
+    "meaning": "Sunglasses",
+    "synset": "sunglasses.n.01"
+  },
+  "/m/018j2": {
+    "id": 36,
+    "meaning": "Banjo",
+    "synset": "banjo.n.01"
+  },
+  "/m/018p4k": {
+    "id": 37,
+    "meaning": "Cart",
+    "synset": "cart.n.01"
+  },
+  "/m/018xm": {
+    "id": 38,
+    "meaning": "Ball",
+    "synset": "ball.n.01"
+  },
+  "/m/01940j": {
+    "id": 39,
+    "meaning": "Backpack",
+    "synset": "backpack.n.01"
+  },
+  "/m/0199g": {
+    "id": 40,
+    "meaning": "Bicycle",
+    "synset": "bicycle.n.01"
+  },
+  "/m/019dx1": {
+    "id": 41,
+    "meaning": "Home appliance",
+    "synset": "home_appliance.n.01"
+  },
+  "/m/019h78": {
+    "id": 42,
+    "meaning": "Centipede",
+    "synset": "centipede.n.01"
+  },
+  "/m/019jd": {
+    "id": 43,
+    "meaning": "Boat",
+    "synset": "boat.n.01"
+  },
+  "/m/019w40": {
+    "id": 44,
+    "meaning": "Surfboard",
+    "synset": "surfboard.n.01"
+  },
+  "/m/01b638": {
+    "id": 45,
+    "meaning": "Boot",
+    "synset": "boot.n.01"
+  },
+  "/m/01b7fy": {
+    "id": 46,
+    "meaning": "Headphones",
+    "synset": "earphone.n.01"
+  },
+  "/m/01b9xk": {
+    "id": 47,
+    "meaning": "Hot dog",
+    "synset": "hotdog.n.01"
+  },
+  "/m/01bfm9": {
+    "id": 48,
+    "meaning": "Shorts",
+    "synset": "short_pants.n.01"
+  },
+  "/m/01_bhs": {
+    "id": 49,
+    "meaning": "Fast food",
+    "synset": "fast_food.n.01"
+  },
+  "/m/01bjv": {
+    "id": 50,
+    "meaning": "Bus",
+    "synset": "bus.n.01"
+  },
+  "/m/01bl7v": {
+    "id": 51,
+    "meaning": "Boy",
+    "synset": "male_child.n.01"
+  },
+  "/m/01bms0": {
+    "id": 52,
+    "meaning": "Screwdriver",
+    "synset": "screwdriver.n.01"
+  },
+  "/m/01bqk0": {
+    "id": 53,
+    "meaning": "Bicycle wheel",
+    "synset": "bicycle_wheel.n.01"
+  },
+  "/m/01btn": {
+    "id": 54,
+    "meaning": "Barge",
+    "synset": "barge.n.01"
+  },
+  "/m/01c648": {
+    "id": 55,
+    "meaning": "Laptop",
+    "synset": "laptop.n.01"
+  },
+  "/m/01cmb2": {
+    "id": 56,
+    "meaning": "Miniskirt",
+    "synset": "miniskirt.n.01"
+  },
+  "/m/01d380": {
+    "id": 57,
+    "meaning": "Drill",
+    "synset": "drill.n.01"
+  },
+  "/m/01d40f": {
+    "id": 58,
+    "meaning": "Dress",
+    "synset": "dress.n.01"
+  },
+  "/m/01dws": {
+    "id": 59,
+    "meaning": "Bear",
+    "synset": "bear.n.01"
+  },
+  "/m/01dwsz": {
+    "id": 60,
+    "meaning": "Waffle",
+    "synset": "waffle.n.01"
+  },
+  "/m/01dwwc": {
+    "id": 61,
+    "meaning": "Pancake",
+    "synset": "pancake.n.01"
+  },
+  "/m/01dxs": {
+    "id": 62,
+    "meaning": "Brown bear",
+    "synset": "brown_bear.n.01"
+  },
+  "/m/01dy8n": {
+    "id": 63,
+    "meaning": "Woodpecker",
+    "synset": "woodpecker.n.01"
+  },
+  "/m/01f8m5": {
+    "id": 64,
+    "meaning": "Blue jay",
+    "synset": "blue_jay.n.01"
+  },
+  "/m/01f91_": {
+    "id": 65,
+    "meaning": "Pretzel",
+    "synset": "pretzel.n.01"
+  },
+  "/m/01fb_0": {
+    "id": 66,
+    "meaning": "Bagel",
+    "synset": "bagel.n.01"
+  },
+  "/m/01fdzj": {
+    "id": 67,
+    "meaning": "Tower",
+    "synset": "tower.n.01"
+  },
+  "/m/01fh4r": {
+    "id": 68,
+    "meaning": "Teapot",
+    "synset": "teapot.n.01"
+  },
+  "/m/01g317": {
+    "id": 69,
+    "meaning": "Person",
+    "synset": "person.n.01"
+  },
+  "/m/01g3x7": {
+    "id": 70,
+    "meaning": "Bow and arrow",
+    "synset": "bow_and_arrow.n.01"
+  },
+  "/m/01gkx_": {
+    "id": 71,
+    "meaning": "Swimwear",
+    "synset": "swimsuit.n.01"
+  },
+  "/m/01gllr": {
+    "id": 72,
+    "meaning": "Beehive",
+    "synset": "beehive.n.01"
+  },
+  "/m/01gmv2": {
+    "id": 73,
+    "meaning": "Brassiere",
+    "synset": "brassiere.n.01"
+  },
+  "/m/01h3n": {
+    "id": 74,
+    "meaning": "Bee",
+    "synset": "bee.n.01"
+  },
+  "/m/01h44": {
+    "id": 75,
+    "meaning": "Bat",
+    "synset": "bat.n.01"
+  },
+  "/m/01h8tj": {
+    "id": 76,
+    "meaning": "Starfish",
+    "synset": "starfish.n.01"
+  },
+  "/m/01hrv5": {
+    "id": 77,
+    "meaning": "Popcorn",
+    "synset": "popcorn.n.01"
+  },
+  "/m/01j3zr": {
+    "id": 78,
+    "meaning": "Burrito",
+    "synset": "burrito.n.01"
+  },
+  "/m/01j4z9": {
+    "id": 79,
+    "meaning": "Chainsaw",
+    "synset": "chain_saw.n.01"
+  },
+  "/m/01j51": {
+    "id": 80,
+    "meaning": "Balloon",
+    "synset": "balloon.n.01"
+  },
+  "/m/01j5ks": {
+    "id": 81,
+    "meaning": "Wrench",
+    "synset": "wrench.n.01"
+  },
+  "/m/01j61q": {
+    "id": 82,
+    "meaning": "Tent",
+    "synset": "tent.n.01"
+  },
+  "/m/01jfm_": {
+    "id": 83,
+    "meaning": "Vehicle registration plate",
+    "synset": null
+  },
+  "/m/01jfsr": {
+    "id": 84,
+    "meaning": "Lantern",
+    "synset": "lantern.n.01"
+  },
+  "/m/01k6s3": {
+    "id": 85,
+    "meaning": "Toaster",
+    "synset": "toaster.n.01"
+  },
+  "/m/01kb5b": {
+    "id": 86,
+    "meaning": "Flashlight",
+    "synset": "flashlight.n.01"
+  },
+  "/m/01knjb": {
+    "id": 87,
+    "meaning": "Billboard",
+    "synset": "billboard.n.01"
+  },
+  "/m/01krhy": {
+    "id": 88,
+    "meaning": "Tiara",
+    "synset": "tiara.n.01"
+  },
+  "/m/01lcw4": {
+    "id": 89,
+    "meaning": "Limousine",
+    "synset": "limousine.n.01"
+  },
+  "/m/01llwg": {
+    "id": 90,
+    "meaning": "Necklace",
+    "synset": "necklace.n.01"
+  },
+  "/m/01lrl": {
+    "id": 91,
+    "meaning": "Carnivore",
+    "synset": "carnivore.n.01"
+  },
+  "/m/01lsmm": {
+    "id": 92,
+    "meaning": "Scissors",
+    "synset": "scissors.n.01"
+  },
+  "/m/01lynh": {
+    "id": 93,
+    "meaning": "Stairs",
+    "synset": "stairs.n.01"
+  },
+  "/m/01m2v": {
+    "id": 94,
+    "meaning": "Computer keyboard",
+    "synset": "computer_keyboard.n.01"
+  },
+  "/m/01m4t": {
+    "id": 95,
+    "meaning": "Printer",
+    "synset": "printer.n.01"
+  },
+  "/m/01mqdt": {
+    "id": 96,
+    "meaning": "Traffic sign",
+    "synset": null
+  },
+  "/m/01mzpv": {
+    "id": 97,
+    "meaning": "Chair",
+    "synset": "chair.n.01"
+  },
+  "/m/01n4qj": {
+    "id": 98,
+    "meaning": "Shirt",
+    "synset": "shirt.n.01"
+  },
+  "/m/01n5jq": {
+    "id": 99,
+    "meaning": "Poster",
+    "synset": "poster.n.01"
+  },
+  "/m/01nkt": {
+    "id": 100,
+    "meaning": "Cheese",
+    "synset": "cheese.n.01"
+  },
+  "/m/01nq26": {
+    "id": 101,
+    "meaning": "Sock",
+    "synset": "sock.n.01"
+  },
+  "/m/01pns0": {
+    "id": 102,
+    "meaning": "Fire hydrant",
+    "synset": "fireplug.n.01"
+  },
+  "/m/01prls": {
+    "id": 103,
+    "meaning": "Land vehicle",
+    "synset": null
+  },
+  "/m/01r546": {
+    "id": 104,
+    "meaning": "Earrings",
+    "synset": "earring.n.01"
+  },
+  "/m/01rkbr": {
+    "id": 105,
+    "meaning": "Tie",
+    "synset": "necktie.n.01"
+  },
+  "/m/01rzcn": {
+    "id": 106,
+    "meaning": "Watercraft",
+    "synset": "watercraft.n.01"
+  },
+  "/m/01s105": {
+    "id": 107,
+    "meaning": "Cabinetry",
+    "synset": "cabinetwork.n.02"
+  },
+  "/m/01s55n": {
+    "id": 108,
+    "meaning": "Suitcase",
+    "synset": "bag.n.06"
+  },
+  "/m/01tcjp": {
+    "id": 109,
+    "meaning": "Muffin",
+    "synset": "muffin.n.01"
+  },
+  "/m/01vbnl": {
+    "id": 110,
+    "meaning": "Bidet",
+    "synset": "bidet.n.01"
+  },
+  "/m/01ww8y": {
+    "id": 111,
+    "meaning": "Snack",
+    "synset": "bite.n.04"
+  },
+  "/m/01x3jk": {
+    "id": 112,
+    "meaning": "Snowmobile",
+    "synset": "snowmobile.n.01"
+  },
+  "/m/01x3z": {
+    "id": 113,
+    "meaning": "Clock",
+    "synset": "clock.n.01"
+  },
+  "/m/01xgg_": {
+    "id": 114,
+    "meaning": "Medical equipment",
+    "synset": null
+  },
+  "/m/01xq0k1": {
+    "id": 115,
+    "meaning": "Cattle",
+    "synset": "cattle.n.01"
+  },
+  "/m/01xqw": {
+    "id": 116,
+    "meaning": "Cello",
+    "synset": "cello.n.01"
+  },
+  "/m/01xs3r": {
+    "id": 117,
+    "meaning": "Jet ski",
+    "synset": null
+  },
+  "/m/01x_v": {
+    "id": 118,
+    "meaning": "Camel",
+    "synset": "camel.n.01"
+  },
+  "/m/01xygc": {
+    "id": 119,
+    "meaning": "Coat",
+    "synset": "coat.n.01"
+  },
+  "/m/01xyhv": {
+    "id": 120,
+    "meaning": "Suit",
+    "synset": "suit.n.01"
+  },
+  "/m/01y9k5": {
+    "id": 121,
+    "meaning": "Desk",
+    "synset": "desk.n.01"
+  },
+  "/m/01yrx": {
+    "id": 122,
+    "meaning": "Cat",
+    "synset": "cat.n.01"
+  },
+  "/m/01yx86": {
+    "id": 123,
+    "meaning": "Bronze sculpture",
+    "synset": null
+  },
+  "/m/01z1kdw": {
+    "id": 124,
+    "meaning": "Juice",
+    "synset": "juice.n.01"
+  },
+  "/m/02068x": {
+    "id": 125,
+    "meaning": "Gondola",
+    "synset": "gondola_car.n.01"
+  },
+  "/m/020jm": {
+    "id": 126,
+    "meaning": "Beetle",
+    "synset": "beetle.n.01"
+  },
+  "/m/020kz": {
+    "id": 127,
+    "meaning": "Cannon",
+    "synset": "cannon.n.01"
+  },
+  "/m/020lf": {
+    "id": 128,
+    "meaning": "Computer mouse",
+    "synset": "mouse.n.04"
+  },
+  "/m/021mn": {
+    "id": 129,
+    "meaning": "Cookie",
+    "synset": "cookie.n.01"
+  },
+  "/m/021sj1": {
+    "id": 130,
+    "meaning": "Office building",
+    "synset": "office_building.n.01"
+  },
+  "/m/0220r2": {
+    "id": 131,
+    "meaning": "Fountain",
+    "synset": "fountain.n.01"
+  },
+  "/m/0242l": {
+    "id": 132,
+    "meaning": "Coin",
+    "synset": "coin.n.01"
+  },
+  "/m/024d2": {
+    "id": 133,
+    "meaning": "Calculator",
+    "synset": "calculator.n.01"
+  },
+  "/m/024g6": {
+    "id": 134,
+    "meaning": "Cocktail",
+    "synset": "cocktail.n.01"
+  },
+  "/m/02522": {
+    "id": 135,
+    "meaning": "Computer monitor",
+    "synset": "computer_monitor.n.01"
+  },
+  "/m/025dyy": {
+    "id": 136,
+    "meaning": "Box",
+    "synset": "box.n.01"
+  },
+  "/m/025fsf": {
+    "id": 137,
+    "meaning": "Stapler",
+    "synset": "stapler.n.01"
+  },
+  "/m/025nd": {
+    "id": 138,
+    "meaning": "Christmas tree",
+    "synset": "christmas_bush.n.01"
+  },
+  "/m/025rp__": {
+    "id": 139,
+    "meaning": "Cowboy hat",
+    "synset": "cowboy_hat.n.01"
+  },
+  "/m/0268lbt": {
+    "id": 140,
+    "meaning": "Hiking equipment",
+    "synset": null
+  },
+  "/m/026qbn5": {
+    "id": 141,
+    "meaning": "Studio couch",
+    "synset": "studio_couch.n.01"
+  },
+  "/m/026t6": {
+    "id": 142,
+    "meaning": "Drum",
+    "synset": "drum.n.01"
+  },
+  "/m/0270h": {
+    "id": 143,
+    "meaning": "Dessert",
+    "synset": "dessert.n.01"
+  },
+  "/m/0271qf7": {
+    "id": 144,
+    "meaning": "Wine rack",
+    "synset": null
+  },
+  "/m/0271t": {
+    "id": 145,
+    "meaning": "Drink",
+    "synset": "drink.n.01"
+  },
+  "/m/027pcv": {
+    "id": 146,
+    "meaning": "Zucchini",
+    "synset": "zucchini.n.01"
+  },
+  "/m/027rl48": {
+    "id": 147,
+    "meaning": "Ladle",
+    "synset": "ladle.n.01"
+  },
+  "/m/0283dt1": {
+    "id": 148,
+    "meaning": "Human mouth",
+    "synset": null
+  },
+  "/m/0284d": {
+    "id": 149,
+    "meaning": "Dairy",
+    "synset": "dairy.n.01"
+  },
+  "/m/029b3": {
+    "id": 150,
+    "meaning": "Dice",
+    "synset": "die.n.01"
+  },
+  "/m/029bxz": {
+    "id": 151,
+    "meaning": "Oven",
+    "synset": "oven.n.01"
+  },
+  "/m/029tx": {
+    "id": 152,
+    "meaning": "Dinosaur",
+    "synset": "dinosaur.n.01"
+  },
+  "/m/02bm9n": {
+    "id": 153,
+    "meaning": "Ratchet",
+    "synset": "ratchet.n.01"
+  },
+  "/m/02crq1": {
+    "id": 154,
+    "meaning": "Couch",
+    "synset": "sofa.n.01"
+  },
+  "/m/02ctlc": {
+    "id": 155,
+    "meaning": "Cricket ball",
+    "synset": "cricket_ball.n.01"
+  },
+  "/m/02cvgx": {
+    "id": 156,
+    "meaning": "Winter melon",
+    "synset": "winter_melon.n.01"
+  },
+  "/m/02d1br": {
+    "id": 157,
+    "meaning": "Spatula",
+    "synset": "spatula.n.01"
+  },
+  "/m/02d9qx": {
+    "id": 158,
+    "meaning": "Whiteboard",
+    "synset": null
+  },
+  "/m/02ddwp": {
+    "id": 159,
+    "meaning": "Pencil sharpener",
+    "synset": "pencil_sharpener.n.01"
+  },
+  "/m/02dgv": {
+    "id": 160,
+    "meaning": "Door",
+    "synset": "door.n.01"
+  },
+  "/m/02dl1y": {
+    "id": 161,
+    "meaning": "Hat",
+    "synset": "hat.n.01"
+  },
+  "/m/02f9f_": {
+    "id": 162,
+    "meaning": "Shower",
+    "synset": "shower.n.01"
+  },
+  "/m/02fh7f": {
+    "id": 163,
+    "meaning": "Eraser",
+    "synset": "eraser.n.01"
+  },
+  "/m/02fq_6": {
+    "id": 164,
+    "meaning": "Fedora",
+    "synset": "fedora.n.01"
+  },
+  "/m/02g30s": {
+    "id": 165,
+    "meaning": "Guacamole",
+    "synset": "guacamole.n.01"
+  },
+  "/m/02gzp": {
+    "id": 166,
+    "meaning": "Dagger",
+    "synset": "dagger.n.01"
+  },
+  "/m/02h19r": {
+    "id": 167,
+    "meaning": "Scarf",
+    "synset": "scarf.n.01"
+  },
+  "/m/02hj4": {
+    "id": 168,
+    "meaning": "Dolphin",
+    "synset": "dolphinfish.n.02"
+  },
+  "/m/02jfl0": {
+    "id": 169,
+    "meaning": "Sombrero",
+    "synset": "sombrero.n.01"
+  },
+  "/m/02jnhm": {
+    "id": 170,
+    "meaning": "Tin can",
+    "synset": "tin_can.n.01"
+  },
+  "/m/02jvh9": {
+    "id": 171,
+    "meaning": "Mug",
+    "synset": "mug.n.01"
+  },
+  "/m/02jz0l": {
+    "id": 172,
+    "meaning": "Tap",
+    "synset": "pat.n.01"
+  },
+  "/m/02l8p9": {
+    "id": 173,
+    "meaning": "Harbor seal",
+    "synset": "harbor_seal.n.01"
+  },
+  "/m/02lbcq": {
+    "id": 174,
+    "meaning": "Stretcher",
+    "synset": "stretcher.n.01"
+  },
+  "/m/02mqfb": {
+    "id": 175,
+    "meaning": "Can opener",
+    "synset": "can_opener.n.01"
+  },
+  "/m/02_n6y": {
+    "id": 176,
+    "meaning": "Goggles",
+    "synset": "goggles.n.01"
+  },
+  "/m/02p0tk3": {
+    "id": 177,
+    "meaning": "Human body",
+    "synset": "human_body.n.01"
+  },
+  "/m/02p3w7d": {
+    "id": 178,
+    "meaning": "Roller skates",
+    "synset": "roller_skate.n.01"
+  },
+  "/m/02p5f1q": {
+    "id": 179,
+    "meaning": "Coffee cup",
+    "synset": "coffee_cup.n.01"
+  },
+  "/m/02pdsw": {
+    "id": 180,
+    "meaning": "Cutting board",
+    "synset": "chopping_board.n.01"
+  },
+  "/m/02pjr4": {
+    "id": 181,
+    "meaning": "Blender",
+    "synset": "blender.n.01"
+  },
+  "/m/02pkr5": {
+    "id": 182,
+    "meaning": "Plumbing fixture",
+    "synset": "plumbing_fixture.n.01"
+  },
+  "/m/02pv19": {
+    "id": 183,
+    "meaning": "Stop sign",
+    "synset": null
+  },
+  "/m/02rdsp": {
+    "id": 184,
+    "meaning": "Office supplies",
+    "synset": null
+  },
+  "/m/02rgn06": {
+    "id": 185,
+    "meaning": "Volleyball",
+    "synset": "volleyball.n.01"
+  },
+  "/m/02s195": {
+    "id": 186,
+    "meaning": "Vase",
+    "synset": "vase.n.01"
+  },
+  "/m/02tsc9": {
+    "id": 187,
+    "meaning": "Slow cooker",
+    "synset": null
+  },
+  "/m/02vkqh8": {
+    "id": 188,
+    "meaning": "Wardrobe",
+    "synset": "wardrobe.n.01"
+  },
+  "/m/02vqfm": {
+    "id": 189,
+    "meaning": "Coffee",
+    "synset": "coffee.n.01"
+  },
+  "/m/02vwcm": {
+    "id": 190,
+    "meaning": "Whisk",
+    "synset": "whisk.n.01"
+  },
+  "/m/02w3r3": {
+    "id": 191,
+    "meaning": "Paper towel",
+    "synset": "paper_towel.n.01"
+  },
+  "/m/02w3_ws": {
+    "id": 192,
+    "meaning": "Personal care",
+    "synset": "personal_care.n.01"
+  },
+  "/m/02wbm": {
+    "id": 193,
+    "meaning": "Food",
+    "synset": "food.n.01"
+  },
+  "/m/02wbtzl": {
+    "id": 194,
+    "meaning": "Sun hat",
+    "synset": "sunhat.n.01"
+  },
+  "/m/02wg_p": {
+    "id": 195,
+    "meaning": "Tree house",
+    "synset": "tree_house.n.01"
+  },
+  "/m/02wmf": {
+    "id": 196,
+    "meaning": "Flying disc",
+    "synset": null
+  },
+  "/m/02wv6h6": {
+    "id": 197,
+    "meaning": "Skirt",
+    "synset": "skirt.n.01"
+  },
+  "/m/02wv84t": {
+    "id": 198,
+    "meaning": "Gas stove",
+    "synset": "gas_range.n.01"
+  },
+  "/m/02x8cch": {
+    "id": 199,
+    "meaning": "Salt and pepper shakers",
+    "synset": null
+  },
+  "/m/02x984l": {
+    "id": 200,
+    "meaning": "Mechanical fan",
+    "synset": null
+  },
+  "/m/02xb7qb": {
+    "id": 201,
+    "meaning": "Face powder",
+    "synset": "face_powder.n.01"
+  },
+  "/m/02xqq": {
+    "id": 202,
+    "meaning": "Fax",
+    "synset": "facsimile.n.02"
+  },
+  "/m/02xwb": {
+    "id": 203,
+    "meaning": "Fruit",
+    "synset": "fruit.n.01"
+  },
+  "/m/02y6n": {
+    "id": 204,
+    "meaning": "French fries",
+    "synset": "french_fries.n.01"
+  },
+  "/m/02z51p": {
+    "id": 205,
+    "meaning": "Nightstand",
+    "synset": null
+  },
+  "/m/02zn6n": {
+    "id": 206,
+    "meaning": "Barrel",
+    "synset": "barrel.n.01"
+  },
+  "/m/02zt3": {
+    "id": 207,
+    "meaning": "Kite",
+    "synset": "kite.n.01"
+  },
+  "/m/02zvsm": {
+    "id": 208,
+    "meaning": "Tart",
+    "synset": "prostitute.n.01"
+  },
+  "/m/030610": {
+    "id": 209,
+    "meaning": "Treadmill",
+    "synset": "treadmill.n.01"
+  },
+  "/m/0306r": {
+    "id": 210,
+    "meaning": "Fox",
+    "synset": "fox.n.01"
+  },
+  "/m/03120": {
+    "id": 211,
+    "meaning": "Flag",
+    "synset": "flag.n.01"
+  },
+  "/m/0319l": {
+    "id": 212,
+    "meaning": "Horn",
+    "synset": "horn.n.01"
+  },
+  "/m/031b6r": {
+    "id": 213,
+    "meaning": "Window blind",
+    "synset": "window_blind.n.01"
+  },
+  "/m/031n1": {
+    "id": 214,
+    "meaning": "Human foot",
+    "synset": "foot.n.01"
+  },
+  "/m/0323sq": {
+    "id": 215,
+    "meaning": "Golf cart",
+    "synset": "golfcart.n.01"
+  },
+  "/m/032b3c": {
+    "id": 216,
+    "meaning": "Jacket",
+    "synset": "jacket.n.01"
+  },
+  "/m/033cnk": {
+    "id": 217,
+    "meaning": "Egg",
+    "synset": "egg.n.01"
+  },
+  "/m/033rq4": {
+    "id": 218,
+    "meaning": "Street light",
+    "synset": null
+  },
+  "/m/0342h": {
+    "id": 219,
+    "meaning": "Guitar",
+    "synset": "guitar.n.01"
+  },
+  "/m/034c16": {
+    "id": 220,
+    "meaning": "Pillow",
+    "synset": "pillow.n.01"
+  },
+  "/m/035r7c": {
+    "id": 221,
+    "meaning": "Human leg",
+    "synset": null
+  },
+  "/m/035vxb": {
+    "id": 222,
+    "meaning": "Isopod",
+    "synset": "isopod.n.01"
+  },
+  "/m/0388q": {
+    "id": 223,
+    "meaning": "Grape",
+    "synset": "grape.n.01"
+  },
+  "/m/039xj_": {
+    "id": 224,
+    "meaning": "Human ear",
+    "synset": null
+  },
+  "/m/03bbps": {
+    "id": 225,
+    "meaning": "Power plugs and sockets",
+    "synset": null
+  },
+  "/m/03bj1": {
+    "id": 226,
+    "meaning": "Panda",
+    "synset": "giant_panda.n.01"
+  },
+  "/m/03bk1": {
+    "id": 227,
+    "meaning": "Giraffe",
+    "synset": "giraffe.n.01"
+  },
+  "/m/03bt1vf": {
+    "id": 228,
+    "meaning": "Woman",
+    "synset": "woman.n.01"
+  },
+  "/m/03c7gz": {
+    "id": 229,
+    "meaning": "Door handle",
+    "synset": null
+  },
+  "/m/03d443": {
+    "id": 230,
+    "meaning": "Rhinoceros",
+    "synset": "rhinoceros.n.01"
+  },
+  "/m/03dnzn": {
+    "id": 231,
+    "meaning": "Bathtub",
+    "synset": "bathtub.n.01"
+  },
+  "/m/03fj2": {
+    "id": 232,
+    "meaning": "Goldfish",
+    "synset": "goldfish.n.01"
+  },
+  "/m/03fp41": {
+    "id": 233,
+    "meaning": "Houseplant",
+    "synset": "houseplant.n.01"
+  },
+  "/m/03fwl": {
+    "id": 234,
+    "meaning": "Goat",
+    "synset": "goat.n.01"
+  },
+  "/m/03g8mr": {
+    "id": 235,
+    "meaning": "Baseball bat",
+    "synset": "baseball_bat.n.01"
+  },
+  "/m/03grzl": {
+    "id": 236,
+    "meaning": "Baseball glove",
+    "synset": "baseball_glove.n.01"
+  },
+  "/m/03hj559": {
+    "id": 237,
+    "meaning": "Mixing bowl",
+    "synset": "mixing_bowl.n.01"
+  },
+  "/m/03hl4l9": {
+    "id": 238,
+    "meaning": "Marine invertebrates",
+    "synset": null
+  },
+  "/m/03hlz0c": {
+    "id": 239,
+    "meaning": "Kitchen utensil",
+    "synset": "kitchen_utensil.n.01"
+  },
+  "/m/03jbxj": {
+    "id": 240,
+    "meaning": "Light switch",
+    "synset": null
+  },
+  "/m/03jm5": {
+    "id": 241,
+    "meaning": "House",
+    "synset": "house.n.01"
+  },
+  "/m/03k3r": {
+    "id": 242,
+    "meaning": "Horse",
+    "synset": "horse.n.01"
+  },
+  "/m/03kt2w": {
+    "id": 243,
+    "meaning": "Stationary bicycle",
+    "synset": null
+  },
+  "/m/03l9g": {
+    "id": 244,
+    "meaning": "Hammer",
+    "synset": "hammer.n.01"
+  },
+  "/m/03ldnb": {
+    "id": 245,
+    "meaning": "Ceiling fan",
+    "synset": null
+  },
+  "/m/03m3pdh": {
+    "id": 246,
+    "meaning": "Sofa bed",
+    "synset": "convertible.n.03"
+  },
+  "/m/03m3vtv": {
+    "id": 247,
+    "meaning": "Adhesive tape",
+    "synset": "adhesive_tape.n.01"
+  },
+  "/m/03m5k": {
+    "id": 248,
+    "meaning": "Harp",
+    "synset": "harp.n.01"
+  },
+  "/m/03nfch": {
+    "id": 249,
+    "meaning": "Sandal",
+    "synset": "sandal.n.01"
+  },
+  "/m/03p3bw": {
+    "id": 250,
+    "meaning": "Bicycle helmet",
+    "synset": null
+  },
+  "/m/03q5c7": {
+    "id": 251,
+    "meaning": "Saucer",
+    "synset": "disk.n.01"
+  },
+  "/m/03q5t": {
+    "id": 252,
+    "meaning": "Harpsichord",
+    "synset": "harpsichord.n.01"
+  },
+  "/m/03q69": {
+    "id": 253,
+    "meaning": "Human hair",
+    "synset": null
+  },
+  "/m/03qhv5": {
+    "id": 254,
+    "meaning": "Heater",
+    "synset": "heater.n.01"
+  },
+  "/m/03qjg": {
+    "id": 255,
+    "meaning": "Harmonica",
+    "synset": "harmonica.n.01"
+  },
+  "/m/03qrc": {
+    "id": 256,
+    "meaning": "Hamster",
+    "synset": "hamster.n.01"
+  },
+  "/m/03rszm": {
+    "id": 257,
+    "meaning": "Curtain",
+    "synset": "curtain.n.01"
+  },
+  "/m/03ssj5": {
+    "id": 258,
+    "meaning": "Bed",
+    "synset": "bed.n.01"
+  },
+  "/m/03s_tn": {
+    "id": 259,
+    "meaning": "Kettle",
+    "synset": "kettle.n.01"
+  },
+  "/m/03tw93": {
+    "id": 260,
+    "meaning": "Fireplace",
+    "synset": "fireplace.n.01"
+  },
+  "/m/03txqz": {
+    "id": 261,
+    "meaning": "Scale",
+    "synset": "scale.n.01"
+  },
+  "/m/03v5tg": {
+    "id": 262,
+    "meaning": "Drinking straw",
+    "synset": "straw.n.04"
+  },
+  "/m/03vt0": {
+    "id": 263,
+    "meaning": "Insect",
+    "synset": "insect.n.01"
+  },
+  "/m/03wvsk": {
+    "id": 264,
+    "meaning": "Hair dryer",
+    "synset": "hand_blower.n.01"
+  },
+  "/m/03_wxk": {
+    "id": 265,
+    "meaning": "Kitchenware",
+    "synset": "kitchenware.n.01"
+  },
+  "/m/03wym": {
+    "id": 266,
+    "meaning": "Indoor rower",
+    "synset": null
+  },
+  "/m/03xxp": {
+    "id": 267,
+    "meaning": "Invertebrate",
+    "synset": "invertebrate.n.01"
+  },
+  "/m/03y6mg": {
+    "id": 268,
+    "meaning": "Food processor",
+    "synset": "food_processor.n.01"
+  },
+  "/m/03__z0": {
+    "id": 269,
+    "meaning": "Bookcase",
+    "synset": "bookcase.n.01"
+  },
+  "/m/040b_t": {
+    "id": 270,
+    "meaning": "Refrigerator",
+    "synset": "refrigerator.n.01"
+  },
+  "/m/04169hn": {
+    "id": 271,
+    "meaning": "Wood-burning stove",
+    "synset": null
+  },
+  "/m/0420v5": {
+    "id": 272,
+    "meaning": "Punching bag",
+    "synset": "punching_bag.n.01"
+  },
+  "/m/043nyj": {
+    "id": 273,
+    "meaning": "Common fig",
+    "synset": "fig.n.02"
+  },
+  "/m/0440zs": {
+    "id": 274,
+    "meaning": "Cocktail shaker",
+    "synset": "cocktail_shaker.n.01"
+  },
+  "/m/0449p": {
+    "id": 275,
+    "meaning": "Jaguar",
+    "synset": "jaguar.n.01"
+  },
+  "/m/044r5d": {
+    "id": 276,
+    "meaning": "Golf ball",
+    "synset": "golf_ball.n.01"
+  },
+  "/m/0463sg": {
+    "id": 277,
+    "meaning": "Fashion accessory",
+    "synset": null
+  },
+  "/m/046dlr": {
+    "id": 278,
+    "meaning": "Alarm clock",
+    "synset": "alarm_clock.n.01"
+  },
+  "/m/047j0r": {
+    "id": 279,
+    "meaning": "Filing cabinet",
+    "synset": "file.n.03"
+  },
+  "/m/047v4b": {
+    "id": 280,
+    "meaning": "Artichoke",
+    "synset": "artichoke.n.01"
+  },
+  "/m/04bcr3": {
+    "id": 281,
+    "meaning": "Table",
+    "synset": "table.n.01"
+  },
+  "/m/04brg2": {
+    "id": 282,
+    "meaning": "Tableware",
+    "synset": "tableware.n.01"
+  },
+  "/m/04c0y": {
+    "id": 283,
+    "meaning": "Kangaroo",
+    "synset": "kangaroo.n.01"
+  },
+  "/m/04cp_": {
+    "id": 284,
+    "meaning": "Koala",
+    "synset": "koala.n.01"
+  },
+  "/m/04ctx": {
+    "id": 285,
+    "meaning": "Knife",
+    "synset": "knife.n.01"
+  },
+  "/m/04dr76w": {
+    "id": 286,
+    "meaning": "Bottle",
+    "synset": "bottle.n.01"
+  },
+  "/m/04f5ws": {
+    "id": 287,
+    "meaning": "Bottle opener",
+    "synset": "bottle_opener.n.01"
+  },
+  "/m/04g2r": {
+    "id": 288,
+    "meaning": "Lynx",
+    "synset": "lynx.n.01"
+  },
+  "/m/04gth": {
+    "id": 289,
+    "meaning": "Lavender",
+    "synset": "lavender.n.01"
+  },
+  "/m/04h7h": {
+    "id": 290,
+    "meaning": "Lighthouse",
+    "synset": "beacon.n.03"
+  },
+  "/m/04h8sr": {
+    "id": 291,
+    "meaning": "Dumbbell",
+    "synset": "dumbbell.n.01"
+  },
+  "/m/04hgtk": {
+    "id": 292,
+    "meaning": "Human head",
+    "synset": "human_head.n.01"
+  },
+  "/m/04kkgm": {
+    "id": 293,
+    "meaning": "Bowl",
+    "synset": "bowl.n.01"
+  },
+  "/m/04lvq_": {
+    "id": 294,
+    "meaning": "Humidifier",
+    "synset": null
+  },
+  "/m/04m6gz": {
+    "id": 295,
+    "meaning": "Porch",
+    "synset": "porch.n.01"
+  },
+  "/m/04m9y": {
+    "id": 296,
+    "meaning": "Lizard",
+    "synset": "lizard.n.01"
+  },
+  "/m/04p0qw": {
+    "id": 297,
+    "meaning": "Billiard table",
+    "synset": "pool_table.n.01"
+  },
+  "/m/04rky": {
+    "id": 298,
+    "meaning": "Mammal",
+    "synset": "mammal.n.01"
+  },
+  "/m/04rmv": {
+    "id": 299,
+    "meaning": "Mouse",
+    "synset": "mouse.n.01"
+  },
+  "/m/04_sv": {
+    "id": 300,
+    "meaning": "Motorcycle",
+    "synset": "motorcycle.n.01"
+  },
+  "/m/04szw": {
+    "id": 301,
+    "meaning": "Musical instrument",
+    "synset": "musical_instrument.n.01"
+  },
+  "/m/04tn4x": {
+    "id": 302,
+    "meaning": "Swim cap",
+    "synset": null
+  },
+  "/m/04v6l4": {
+    "id": 303,
+    "meaning": "Frying pan",
+    "synset": "frying_pan.n.01"
+  },
+  "/m/04vv5k": {
+    "id": 304,
+    "meaning": "Snowplow",
+    "synset": "snowplow.n.01"
+  },
+  "/m/04y4h8h": {
+    "id": 305,
+    "meaning": "Bathroom cabinet",
+    "synset": null
+  },
+  "/m/04ylt": {
+    "id": 306,
+    "meaning": "Missile",
+    "synset": "missile.n.01"
+  },
+  "/m/04yqq2": {
+    "id": 307,
+    "meaning": "Bust",
+    "synset": "flop.n.03"
+  },
+  "/m/04yx4": {
+    "id": 308,
+    "meaning": "Man",
+    "synset": "man.n.01"
+  },
+  "/m/04z4wx": {
+    "id": 309,
+    "meaning": "Waffle iron",
+    "synset": "waffle_iron.n.01"
+  },
+  "/m/04zpv": {
+    "id": 310,
+    "meaning": "Milk",
+    "synset": "milk.n.01"
+  },
+  "/m/04zwwv": {
+    "id": 311,
+    "meaning": "Ring binder",
+    "synset": null
+  },
+  "/m/050gv4": {
+    "id": 312,
+    "meaning": "Plate",
+    "synset": "home_plate.n.01"
+  },
+  "/m/050k8": {
+    "id": 313,
+    "meaning": "Mobile phone",
+    "synset": "cellular_telephone.n.01"
+  },
+  "/m/052lwg6": {
+    "id": 314,
+    "meaning": "Baked goods",
+    "synset": "baked_goods.n.01"
+  },
+  "/m/052sf": {
+    "id": 315,
+    "meaning": "Mushroom",
+    "synset": "mushroom.n.01"
+  },
+  "/m/05441v": {
+    "id": 316,
+    "meaning": "Crutch",
+    "synset": "crutch.n.01"
+  },
+  "/m/054fyh": {
+    "id": 317,
+    "meaning": "Pitcher",
+    "synset": "pitcher.n.01"
+  },
+  "/m/054_l": {
+    "id": 318,
+    "meaning": "Mirror",
+    "synset": "mirror.n.01"
+  },
+  "/m/054xkw": {
+    "id": 319,
+    "meaning": "Lifejacket",
+    "synset": null
+  },
+  "/m/05_5p_0": {
+    "id": 320,
+    "meaning": "Table tennis racket",
+    "synset": null
+  },
+  "/m/05676x": {
+    "id": 321,
+    "meaning": "Pencil case",
+    "synset": "pencil_box.n.01"
+  },
+  "/m/057cc": {
+    "id": 322,
+    "meaning": "Musical keyboard",
+    "synset": null
+  },
+  "/m/057p5t": {
+    "id": 323,
+    "meaning": "Scoreboard",
+    "synset": "scoreboard.n.01"
+  },
+  "/m/0584n8": {
+    "id": 324,
+    "meaning": "Briefcase",
+    "synset": "briefcase.n.01"
+  },
+  "/m/058qzx": {
+    "id": 325,
+    "meaning": "Kitchen knife",
+    "synset": null
+  },
+  "/m/05bm6": {
+    "id": 326,
+    "meaning": "Nail",
+    "synset": "nail.n.01"
+  },
+  "/m/05ctyq": {
+    "id": 327,
+    "meaning": "Tennis ball",
+    "synset": "tennis_ball.n.01"
+  },
+  "/m/05gqfk": {
+    "id": 328,
+    "meaning": "Plastic bag",
+    "synset": "plastic_bag.n.01"
+  },
+  "/m/05kms": {
+    "id": 329,
+    "meaning": "Oboe",
+    "synset": "oboe.n.01"
+  },
+  "/m/05kyg_": {
+    "id": 330,
+    "meaning": "Chest of drawers",
+    "synset": "chest_of_drawers.n.01"
+  },
+  "/m/05n4y": {
+    "id": 331,
+    "meaning": "Ostrich",
+    "synset": "ostrich.n.01"
+  },
+  "/m/05r5c": {
+    "id": 332,
+    "meaning": "Piano",
+    "synset": "piano.n.01"
+  },
+  "/m/05r655": {
+    "id": 333,
+    "meaning": "Girl",
+    "synset": "girl.n.01"
+  },
+  "/m/05s2s": {
+    "id": 334,
+    "meaning": "Plant",
+    "synset": "plant.n.01"
+  },
+  "/m/05vtc": {
+    "id": 335,
+    "meaning": "Potato",
+    "synset": "potato.n.01"
+  },
+  "/m/05w9t9": {
+    "id": 336,
+    "meaning": "Hair spray",
+    "synset": "hair_spray.n.01"
+  },
+  "/m/05y5lj": {
+    "id": 337,
+    "meaning": "Sports equipment",
+    "synset": "sports_equipment.n.01"
+  },
+  "/m/05z55": {
+    "id": 338,
+    "meaning": "Pasta",
+    "synset": "pasta.n.01"
+  },
+  "/m/05z6w": {
+    "id": 339,
+    "meaning": "Penguin",
+    "synset": "penguin.n.01"
+  },
+  "/m/05zsy": {
+    "id": 340,
+    "meaning": "Pumpkin",
+    "synset": "pumpkin.n.01"
+  },
+  "/m/061_f": {
+    "id": 341,
+    "meaning": "Pear",
+    "synset": "pear.n.01"
+  },
+  "/m/061hd_": {
+    "id": 342,
+    "meaning": "Infant bed",
+    "synset": null
+  },
+  "/m/0633h": {
+    "id": 343,
+    "meaning": "Polar bear",
+    "synset": "ice_bear.n.01"
+  },
+  "/m/063rgb": {
+    "id": 344,
+    "meaning": "Mixer",
+    "synset": "sociable.n.01"
+  },
+  "/m/0642b4": {
+    "id": 345,
+    "meaning": "Cupboard",
+    "synset": "cupboard.n.01"
+  },
+  "/m/065h6l": {
+    "id": 346,
+    "meaning": "Jacuzzi",
+    "synset": null
+  },
+  "/m/0663v": {
+    "id": 347,
+    "meaning": "Pizza",
+    "synset": "pizza.n.01"
+  },
+  "/m/06_72j": {
+    "id": 348,
+    "meaning": "Digital clock",
+    "synset": "digital_clock.n.01"
+  },
+  "/m/068zj": {
+    "id": 349,
+    "meaning": "Pig",
+    "synset": "hog.n.03"
+  },
+  "/m/06bt6": {
+    "id": 350,
+    "meaning": "Reptile",
+    "synset": "reptile.n.01"
+  },
+  "/m/06c54": {
+    "id": 351,
+    "meaning": "Rifle",
+    "synset": "rifle.n.01"
+  },
+  "/m/06c7f7": {
+    "id": 352,
+    "meaning": "Lipstick",
+    "synset": "lipstick.n.01"
+  },
+  "/m/06_fw": {
+    "id": 353,
+    "meaning": "Skateboard",
+    "synset": "skateboard.n.01"
+  },
+  "/m/06j2d": {
+    "id": 354,
+    "meaning": "Raven",
+    "synset": "raven.n.01"
+  },
+  "/m/06k2mb": {
+    "id": 355,
+    "meaning": "High heels",
+    "synset": null
+  },
+  "/m/06l9r": {
+    "id": 356,
+    "meaning": "Red panda",
+    "synset": "lesser_panda.n.01"
+  },
+  "/m/06m11": {
+    "id": 357,
+    "meaning": "Rose",
+    "synset": "rose.n.01"
+  },
+  "/m/06mf6": {
+    "id": 358,
+    "meaning": "Rabbit",
+    "synset": "rabbit.n.01"
+  },
+  "/m/06msq": {
+    "id": 359,
+    "meaning": "Sculpture",
+    "synset": "sculpture.n.01"
+  },
+  "/m/06ncr": {
+    "id": 360,
+    "meaning": "Saxophone",
+    "synset": "sax.n.02"
+  },
+  "/m/06nrc": {
+    "id": 361,
+    "meaning": "Shotgun",
+    "synset": "shotgun.n.01"
+  },
+  "/m/06nwz": {
+    "id": 362,
+    "meaning": "Seafood",
+    "synset": "seafood.n.01"
+  },
+  "/m/06pcq": {
+    "id": 363,
+    "meaning": "Submarine sandwich",
+    "synset": "bomber.n.03"
+  },
+  "/m/06__v": {
+    "id": 364,
+    "meaning": "Snowboard",
+    "synset": "snowboard.n.01"
+  },
+  "/m/06y5r": {
+    "id": 365,
+    "meaning": "Sword",
+    "synset": "sword.n.01"
+  },
+  "/m/06z37_": {
+    "id": 366,
+    "meaning": "Picture frame",
+    "synset": "picture_frame.n.01"
+  },
+  "/m/07030": {
+    "id": 367,
+    "meaning": "Sushi",
+    "synset": "sushi.n.01"
+  },
+  "/m/0703r8": {
+    "id": 368,
+    "meaning": "Loveseat",
+    "synset": "love_seat.n.01"
+  },
+  "/m/071p9": {
+    "id": 369,
+    "meaning": "Ski",
+    "synset": "ski.n.01"
+  },
+  "/m/071qp": {
+    "id": 370,
+    "meaning": "Squirrel",
+    "synset": "squirrel.n.01"
+  },
+  "/m/073bxn": {
+    "id": 371,
+    "meaning": "Tripod",
+    "synset": "tripod.n.01"
+  },
+  "/m/073g6": {
+    "id": 372,
+    "meaning": "Stethoscope",
+    "synset": "stethoscope.n.01"
+  },
+  "/m/074d1": {
+    "id": 373,
+    "meaning": "Submarine",
+    "synset": "submarine.n.01"
+  },
+  "/m/0755b": {
+    "id": 374,
+    "meaning": "Scorpion",
+    "synset": "scorpio.n.01"
+  },
+  "/m/076bq": {
+    "id": 375,
+    "meaning": "Segway",
+    "synset": "segway.n.01"
+  },
+  "/m/076lb9": {
+    "id": 376,
+    "meaning": "Training bench",
+    "synset": null
+  },
+  "/m/078jl": {
+    "id": 377,
+    "meaning": "Snake",
+    "synset": "snake.n.01"
+  },
+  "/m/078n6m": {
+    "id": 378,
+    "meaning": "Coffee table",
+    "synset": "coffee_table.n.01"
+  },
+  "/m/079cl": {
+    "id": 379,
+    "meaning": "Skyscraper",
+    "synset": "skyscraper.n.01"
+  },
+  "/m/07bgp": {
+    "id": 380,
+    "meaning": "Sheep",
+    "synset": "sheep.n.01"
+  },
+  "/m/07c52": {
+    "id": 381,
+    "meaning": "Television",
+    "synset": "television.n.01"
+  },
+  "/m/07c6l": {
+    "id": 382,
+    "meaning": "Trombone",
+    "synset": "trombone.n.01"
+  },
+  "/m/07clx": {
+    "id": 383,
+    "meaning": "Tea",
+    "synset": "tea.n.01"
+  },
+  "/m/07cmd": {
+    "id": 384,
+    "meaning": "Tank",
+    "synset": "tank.n.01"
+  },
+  "/m/07crc": {
+    "id": 385,
+    "meaning": "Taco",
+    "synset": "greaser.n.01"
+  },
+  "/m/07cx4": {
+    "id": 386,
+    "meaning": "Telephone",
+    "synset": "telephone.n.01"
+  },
+  "/m/07dd4": {
+    "id": 387,
+    "meaning": "Torch",
+    "synset": "torch.n.01"
+  },
+  "/m/07dm6": {
+    "id": 388,
+    "meaning": "Tiger",
+    "synset": "tiger.n.01"
+  },
+  "/m/07fbm7": {
+    "id": 389,
+    "meaning": "Strawberry",
+    "synset": "strawberry.n.01"
+  },
+  "/m/07gql": {
+    "id": 390,
+    "meaning": "Trumpet",
+    "synset": "cornet.n.01"
+  },
+  "/m/07j7r": {
+    "id": 391,
+    "meaning": "Tree",
+    "synset": "tree.n.01"
+  },
+  "/m/07j87": {
+    "id": 392,
+    "meaning": "Tomato",
+    "synset": "tomato.n.01"
+  },
+  "/m/07jdr": {
+    "id": 393,
+    "meaning": "Train",
+    "synset": "train.n.01"
+  },
+  "/m/07k1x": {
+    "id": 394,
+    "meaning": "Tool",
+    "synset": "tool.n.01"
+  },
+  "/m/07kng9": {
+    "id": 395,
+    "meaning": "Picnic basket",
+    "synset": null
+  },
+  "/m/07mcwg": {
+    "id": 396,
+    "meaning": "Cooking spray",
+    "synset": null
+  },
+  "/m/07mhn": {
+    "id": 397,
+    "meaning": "Trousers",
+    "synset": "trouser.n.01"
+  },
+  "/m/07pj7bq": {
+    "id": 398,
+    "meaning": "Bowling equipment",
+    "synset": "bowling_equipment.n.01"
+  },
+  "/m/07qxg_": {
+    "id": 399,
+    "meaning": "Football helmet",
+    "synset": "football_helmet.n.01"
+  },
+  "/m/07r04": {
+    "id": 400,
+    "meaning": "Truck",
+    "synset": "truck.n.01"
+  },
+  "/m/07v9_z": {
+    "id": 401,
+    "meaning": "Measuring cup",
+    "synset": "measuring_cup.n.01"
+  },
+  "/m/07xyvk": {
+    "id": 402,
+    "meaning": "Coffeemaker",
+    "synset": null
+  },
+  "/m/07y_7": {
+    "id": 403,
+    "meaning": "Violin",
+    "synset": "violin.n.01"
+  },
+  "/m/07yv9": {
+    "id": 404,
+    "meaning": "Vehicle",
+    "synset": "vehicle.n.01"
+  },
+  "/m/080hkjn": {
+    "id": 405,
+    "meaning": "Handbag",
+    "synset": "bag.n.04"
+  },
+  "/m/080n7g": {
+    "id": 406,
+    "meaning": "Paper cutter",
+    "synset": "paper_cutter.n.01"
+  },
+  "/m/081qc": {
+    "id": 407,
+    "meaning": "Wine",
+    "synset": "wine.n.01"
+  },
+  "/m/083kb": {
+    "id": 408,
+    "meaning": "Weapon",
+    "synset": "weapon.n.01"
+  },
+  "/m/083wq": {
+    "id": 409,
+    "meaning": "Wheel",
+    "synset": "wheel.n.01"
+  },
+  "/m/084hf": {
+    "id": 410,
+    "meaning": "Worm",
+    "synset": "worm.n.01"
+  },
+  "/m/084rd": {
+    "id": 411,
+    "meaning": "Wok",
+    "synset": "wok.n.01"
+  },
+  "/m/084zz": {
+    "id": 412,
+    "meaning": "Whale",
+    "synset": "giant.n.04"
+  },
+  "/m/0898b": {
+    "id": 413,
+    "meaning": "Zebra",
+    "synset": "zebra.n.01"
+  },
+  "/m/08dz3q": {
+    "id": 414,
+    "meaning": "Auto part",
+    "synset": "auto_part.n.01"
+  },
+  "/m/08hvt4": {
+    "id": 415,
+    "meaning": "Jug",
+    "synset": "jug.n.01"
+  },
+  "/m/08ks85": {
+    "id": 416,
+    "meaning": "Pizza cutter",
+    "synset": null
+  },
+  "/m/08p92x": {
+    "id": 417,
+    "meaning": "Cream",
+    "synset": "cream.n.01"
+  },
+  "/m/08pbxl": {
+    "id": 418,
+    "meaning": "Monkey",
+    "synset": "monkey.n.01"
+  },
+  "/m/096mb": {
+    "id": 419,
+    "meaning": "Lion",
+    "synset": "lion.n.01"
+  },
+  "/m/09728": {
+    "id": 420,
+    "meaning": "Bread",
+    "synset": "bread.n.01"
+  },
+  "/m/099ssp": {
+    "id": 421,
+    "meaning": "Platter",
+    "synset": "platter.n.01"
+  },
+  "/m/09b5t": {
+    "id": 422,
+    "meaning": "Chicken",
+    "synset": "chicken.n.01"
+  },
+  "/m/09csl": {
+    "id": 423,
+    "meaning": "Eagle",
+    "synset": "eagle.n.01"
+  },
+  "/m/09ct_": {
+    "id": 424,
+    "meaning": "Helicopter",
+    "synset": "helicopter.n.01"
+  },
+  "/m/09d5_": {
+    "id": 425,
+    "meaning": "Owl",
+    "synset": "owl.n.01"
+  },
+  "/m/09ddx": {
+    "id": 426,
+    "meaning": "Duck",
+    "synset": "duck.n.01"
+  },
+  "/m/09dzg": {
+    "id": 427,
+    "meaning": "Turtle",
+    "synset": "turtleneck.n.01"
+  },
+  "/m/09f20": {
+    "id": 428,
+    "meaning": "Hippopotamus",
+    "synset": "hippopotamus.n.01"
+  },
+  "/m/09f_2": {
+    "id": 429,
+    "meaning": "Crocodile",
+    "synset": "crocodile.n.01"
+  },
+  "/m/09g1w": {
+    "id": 430,
+    "meaning": "Toilet",
+    "synset": "toilet.n.01"
+  },
+  "/m/09gtd": {
+    "id": 431,
+    "meaning": "Toilet paper",
+    "synset": "toilet_tissue.n.01"
+  },
+  "/m/09gys": {
+    "id": 432,
+    "meaning": "Squid",
+    "synset": "squid.n.01"
+  },
+  "/m/09j2d": {
+    "id": 433,
+    "meaning": "Clothing",
+    "synset": "clothing.n.01"
+  },
+  "/m/09j5n": {
+    "id": 434,
+    "meaning": "Footwear",
+    "synset": "footwear.n.01"
+  },
+  "/m/09k_b": {
+    "id": 435,
+    "meaning": "Lemon",
+    "synset": "lemon.n.01"
+  },
+  "/m/09kmb": {
+    "id": 436,
+    "meaning": "Spider",
+    "synset": "spider.n.01"
+  },
+  "/m/09kx5": {
+    "id": 437,
+    "meaning": "Deer",
+    "synset": "deer.n.01"
+  },
+  "/m/09ld4": {
+    "id": 438,
+    "meaning": "Frog",
+    "synset": "frog.n.01"
+  },
+  "/m/09qck": {
+    "id": 439,
+    "meaning": "Banana",
+    "synset": "banana.n.01"
+  },
+  "/m/09rvcxw": {
+    "id": 440,
+    "meaning": "Rocket",
+    "synset": "rocket.n.01"
+  },
+  "/m/09tvcd": {
+    "id": 441,
+    "meaning": "Wine glass",
+    "synset": null
+  },
+  "/m/0b3fp9": {
+    "id": 442,
+    "meaning": "Countertop",
+    "synset": "countertop.n.01"
+  },
+  "/m/0bh9flk": {
+    "id": 443,
+    "meaning": "Tablet computer",
+    "synset": null
+  },
+  "/m/0bjyj5": {
+    "id": 444,
+    "meaning": "Waste container",
+    "synset": null
+  },
+  "/m/0b_rs": {
+    "id": 445,
+    "meaning": "Swimming pool",
+    "synset": "swimming_pool.n.01"
+  },
+  "/m/0bt9lr": {
+    "id": 446,
+    "meaning": "Dog",
+    "synset": "dog.n.01"
+  },
+  "/m/0bt_c3": {
+    "id": 447,
+    "meaning": "Book",
+    "synset": "book.n.01"
+  },
+  "/m/0bwd_0j": {
+    "id": 448,
+    "meaning": "Elephant",
+    "synset": "elephant.n.01"
+  },
+  "/m/0by6g": {
+    "id": 449,
+    "meaning": "Shark",
+    "synset": "shark.n.01"
+  },
+  "/m/0c06p": {
+    "id": 450,
+    "meaning": "Candle",
+    "synset": "candle.n.01"
+  },
+  "/m/0c29q": {
+    "id": 451,
+    "meaning": "Leopard",
+    "synset": "leopard.n.01"
+  },
+  "/m/0c2jj": {
+    "id": 452,
+    "meaning": "Axe",
+    "synset": "ax.n.01"
+  },
+  "/m/0c3m8g": {
+    "id": 453,
+    "meaning": "Hand dryer",
+    "synset": null
+  },
+  "/m/0c3mkw": {
+    "id": 454,
+    "meaning": "Soap dispenser",
+    "synset": "soap_dispenser.n.01"
+  },
+  "/m/0c568": {
+    "id": 455,
+    "meaning": "Porcupine",
+    "synset": "porcupine.n.01"
+  },
+  "/m/0c9ph5": {
+    "id": 456,
+    "meaning": "Flower",
+    "synset": "flower.n.01"
+  },
+  "/m/0ccs93": {
+    "id": 457,
+    "meaning": "Canary",
+    "synset": "fink.n.01"
+  },
+  "/m/0cd4d": {
+    "id": 458,
+    "meaning": "Cheetah",
+    "synset": "cheetah.n.01"
+  },
+  "/m/0cdl1": {
+    "id": 459,
+    "meaning": "Palm tree",
+    "synset": "palm.n.03"
+  },
+  "/m/0cdn1": {
+    "id": 460,
+    "meaning": "Hamburger",
+    "synset": "hamburger.n.01"
+  },
+  "/m/0cffdh": {
+    "id": 461,
+    "meaning": "Maple",
+    "synset": "maple.n.01"
+  },
+  "/m/0cgh4": {
+    "id": 462,
+    "meaning": "Building",
+    "synset": "building.n.01"
+  },
+  "/m/0ch_cf": {
+    "id": 463,
+    "meaning": "Fish",
+    "synset": "fish.n.01"
+  },
+  "/m/0cjq5": {
+    "id": 464,
+    "meaning": "Lobster",
+    "synset": "lobster.n.01"
+  },
+  "/m/0cjs7": {
+    "id": 465,
+    "meaning": "Asparagus",
+    "synset": "asparagus.n.01"
+  },
+  "/m/0c_jw": {
+    "id": 466,
+    "meaning": "Furniture",
+    "synset": "furniture.n.01"
+  },
+  "/m/0cl4p": {
+    "id": 467,
+    "meaning": "Hedgehog",
+    "synset": "porcupine.n.01"
+  },
+  "/m/0cmf2": {
+    "id": 468,
+    "meaning": "Airplane",
+    "synset": "airplane.n.01"
+  },
+  "/m/0cmx8": {
+    "id": 469,
+    "meaning": "Spoon",
+    "synset": "spoon.n.01"
+  },
+  "/m/0cn6p": {
+    "id": 470,
+    "meaning": "Otter",
+    "synset": "otter.n.01"
+  },
+  "/m/0cnyhnx": {
+    "id": 471,
+    "meaning": "Bull",
+    "synset": "bull.n.01"
+  },
+  "/m/0_cp5": {
+    "id": 472,
+    "meaning": "Oyster",
+    "synset": "oyster.n.01"
+  },
+  "/m/0cqn2": {
+    "id": 473,
+    "meaning": "Horizontal bar",
+    "synset": "horizontal_bar.n.01"
+  },
+  "/m/0crjs": {
+    "id": 474,
+    "meaning": "Convenience store",
+    "synset": "convenience_store.n.01"
+  },
+  "/m/0ct4f": {
+    "id": 475,
+    "meaning": "Bomb",
+    "synset": "bomb.n.01"
+  },
+  "/m/0cvnqh": {
+    "id": 476,
+    "meaning": "Bench",
+    "synset": "bench.n.01"
+  },
+  "/m/0cxn2": {
+    "id": 477,
+    "meaning": "Ice cream",
+    "synset": "ice_cream.n.01"
+  },
+  "/m/0cydv": {
+    "id": 478,
+    "meaning": "Caterpillar",
+    "synset": "caterpillar.n.01"
+  },
+  "/m/0cyf8": {
+    "id": 479,
+    "meaning": "Butterfly",
+    "synset": "butterfly.n.01"
+  },
+  "/m/0cyfs": {
+    "id": 480,
+    "meaning": "Parachute",
+    "synset": "parachute.n.01"
+  },
+  "/m/0cyhj_": {
+    "id": 481,
+    "meaning": "Orange",
+    "synset": "orange.n.01"
+  },
+  "/m/0czz2": {
+    "id": 482,
+    "meaning": "Antelope",
+    "synset": "antelope.n.01"
+  },
+  "/m/0d20w4": {
+    "id": 483,
+    "meaning": "Beaker",
+    "synset": "beaker.n.01"
+  },
+  "/m/0d_2m": {
+    "id": 484,
+    "meaning": "Moths and butterflies",
+    "synset": null
+  },
+  "/m/0d4v4": {
+    "id": 485,
+    "meaning": "Window",
+    "synset": "window.n.01"
+  },
+  "/m/0d4w1": {
+    "id": 486,
+    "meaning": "Closet",
+    "synset": "cupboard.n.01"
+  },
+  "/m/0d5gx": {
+    "id": 487,
+    "meaning": "Castle",
+    "synset": "palace.n.01"
+  },
+  "/m/0d8zb": {
+    "id": 488,
+    "meaning": "Jellyfish",
+    "synset": "portuguese_man-of-war.n.01"
+  },
+  "/m/0dbvp": {
+    "id": 489,
+    "meaning": "Goose",
+    "synset": "goose.n.01"
+  },
+  "/m/0dbzx": {
+    "id": 490,
+    "meaning": "Mule",
+    "synset": "mule.n.01"
+  },
+  "/m/0dftk": {
+    "id": 491,
+    "meaning": "Swan",
+    "synset": "swan.n.01"
+  },
+  "/m/0dj6p": {
+    "id": 492,
+    "meaning": "Peach",
+    "synset": "peach.n.01"
+  },
+  "/m/0djtd": {
+    "id": 493,
+    "meaning": "Coconut",
+    "synset": "coconut.n.01"
+  },
+  "/m/0dkzw": {
+    "id": 494,
+    "meaning": "Seat belt",
+    "synset": "seat_belt.n.01"
+  },
+  "/m/0dq75": {
+    "id": 495,
+    "meaning": "Raccoon",
+    "synset": "raccoon.n.01"
+  },
+  "/m/0_dqb": {
+    "id": 496,
+    "meaning": "Chisel",
+    "synset": "chisel.n.01"
+  },
+  "/m/0dt3t": {
+    "id": 497,
+    "meaning": "Fork",
+    "synset": "fork.n.01"
+  },
+  "/m/0dtln": {
+    "id": 498,
+    "meaning": "Lamp",
+    "synset": "lamp.n.01"
+  },
+  "/m/0dv5r": {
+    "id": 499,
+    "meaning": "Camera",
+    "synset": "camera.n.01"
+  },
+  "/m/0dv77": {
+    "id": 500,
+    "meaning": "Squash",
+    "synset": "squash.n.01"
+  },
+  "/m/0dv9c": {
+    "id": 501,
+    "meaning": "Racket",
+    "synset": "racket.n.01"
+  },
+  "/m/0dzct": {
+    "id": 502,
+    "meaning": "Human face",
+    "synset": "face.n.01"
+  },
+  "/m/0dzf4": {
+    "id": 503,
+    "meaning": "Human arm",
+    "synset": null
+  },
+  "/m/0f4s2w": {
+    "id": 504,
+    "meaning": "Vegetable",
+    "synset": "vegetable.n.01"
+  },
+  "/m/0f571": {
+    "id": 505,
+    "meaning": "Diaper",
+    "synset": "diaper.n.01"
+  },
+  "/m/0f6nr": {
+    "id": 506,
+    "meaning": "Unicycle",
+    "synset": "unicycle.n.01"
+  },
+  "/m/0f6wt": {
+    "id": 507,
+    "meaning": "Falcon",
+    "synset": "falcon.n.01"
+  },
+  "/m/0f8s22": {
+    "id": 508,
+    "meaning": "Chime",
+    "synset": "chime.n.01"
+  },
+  "/m/0f9_l": {
+    "id": 509,
+    "meaning": "Snail",
+    "synset": "snail.n.01"
+  },
+  "/m/0fbdv": {
+    "id": 510,
+    "meaning": "Shellfish",
+    "synset": "shellfish.n.01"
+  },
+  "/m/0fbw6": {
+    "id": 511,
+    "meaning": "Cabbage",
+    "synset": "cabbage.n.01"
+  },
+  "/m/0fj52s": {
+    "id": 512,
+    "meaning": "Carrot",
+    "synset": "carrot.n.01"
+  },
+  "/m/0fldg": {
+    "id": 513,
+    "meaning": "Mango",
+    "synset": "mango.n.01"
+  },
+  "/m/0fly7": {
+    "id": 514,
+    "meaning": "Jeans",
+    "synset": "jean.n.01"
+  },
+  "/m/0fm3zh": {
+    "id": 515,
+    "meaning": "Flowerpot",
+    "synset": "pot.n.04"
+  },
+  "/m/0fp6w": {
+    "id": 516,
+    "meaning": "Pineapple",
+    "synset": "pineapple.n.01"
+  },
+  "/m/0fqfqc": {
+    "id": 517,
+    "meaning": "Drawer",
+    "synset": "drawer.n.01"
+  },
+  "/m/0fqt361": {
+    "id": 518,
+    "meaning": "Stool",
+    "synset": "stool.n.01"
+  },
+  "/m/0frqm": {
+    "id": 519,
+    "meaning": "Envelope",
+    "synset": "envelope.n.01"
+  },
+  "/m/0fszt": {
+    "id": 520,
+    "meaning": "Cake",
+    "synset": "cake.n.01"
+  },
+  "/m/0ft9s": {
+    "id": 521,
+    "meaning": "Dragonfly",
+    "synset": "dragonfly.n.01"
+  },
+  "/m/0ftb8": {
+    "id": 522,
+    "meaning": "Sunflower",
+    "synset": "sunflower.n.01"
+  },
+  "/m/0fx9l": {
+    "id": 523,
+    "meaning": "Microwave oven",
+    "synset": "microwave.n.02"
+  },
+  "/m/0fz0h": {
+    "id": 524,
+    "meaning": "Honeycomb",
+    "synset": "honeycomb.n.01"
+  },
+  "/m/0gd2v": {
+    "id": 525,
+    "meaning": "Marine mammal",
+    "synset": null
+  },
+  "/m/0gd36": {
+    "id": 526,
+    "meaning": "Sea lion",
+    "synset": "sea_lion.n.01"
+  },
+  "/m/0gj37": {
+    "id": 527,
+    "meaning": "Ladybug",
+    "synset": "ladybug.n.01"
+  },
+  "/m/0gjbg72": {
+    "id": 528,
+    "meaning": "Shelf",
+    "synset": "shelf.n.01"
+  },
+  "/m/0gjkl": {
+    "id": 529,
+    "meaning": "Watch",
+    "synset": "watch.n.01"
+  },
+  "/m/0gm28": {
+    "id": 530,
+    "meaning": "Candy",
+    "synset": "candy.n.01"
+  },
+  "/m/0grw1": {
+    "id": 531,
+    "meaning": "Salad",
+    "synset": "salad.n.01"
+  },
+  "/m/0gv1x": {
+    "id": 532,
+    "meaning": "Parrot",
+    "synset": "parrot.n.01"
+  },
+  "/m/0gxl3": {
+    "id": 533,
+    "meaning": "Handgun",
+    "synset": "pistol.n.01"
+  },
+  "/m/0h23m": {
+    "id": 534,
+    "meaning": "Sparrow",
+    "synset": "sparrow.n.01"
+  },
+  "/m/0h2r6": {
+    "id": 535,
+    "meaning": "Van",
+    "synset": "avant-garde.n.01"
+  },
+  "/m/0h8jyh6": {
+    "id": 536,
+    "meaning": "Grinder",
+    "synset": "bomber.n.03"
+  },
+  "/m/0h8kx63": {
+    "id": 537,
+    "meaning": "Spice rack",
+    "synset": "spice_rack.n.01"
+  },
+  "/m/0h8l4fh": {
+    "id": 538,
+    "meaning": "Light bulb",
+    "synset": "light_bulb.n.01"
+  },
+  "/m/0h8lkj8": {
+    "id": 539,
+    "meaning": "Corded phone",
+    "synset": null
+  },
+  "/m/0h8mhzd": {
+    "id": 540,
+    "meaning": "Sports uniform",
+    "synset": null
+  },
+  "/m/0h8my_4": {
+    "id": 541,
+    "meaning": "Tennis racket",
+    "synset": "tennis_racket.n.01"
+  },
+  "/m/0h8mzrc": {
+    "id": 542,
+    "meaning": "Wall clock",
+    "synset": "wall_clock.n.01"
+  },
+  "/m/0h8n27j": {
+    "id": 543,
+    "meaning": "Serving tray",
+    "synset": null
+  },
+  "/m/0h8n5zk": {
+    "id": 544,
+    "meaning": "Kitchen & dining room table",
+    "synset": null
+  },
+  "/m/0h8n6f9": {
+    "id": 545,
+    "meaning": "Dog bed",
+    "synset": null
+  },
+  "/m/0h8n6ft": {
+    "id": 546,
+    "meaning": "Cake stand",
+    "synset": null
+  },
+  "/m/0h8nm9j": {
+    "id": 547,
+    "meaning": "Cat furniture",
+    "synset": null
+  },
+  "/m/0h8nr_l": {
+    "id": 548,
+    "meaning": "Bathroom accessory",
+    "synset": null
+  },
+  "/m/0h8nsvg": {
+    "id": 549,
+    "meaning": "Facial tissue holder",
+    "synset": null
+  },
+  "/m/0h8ntjv": {
+    "id": 550,
+    "meaning": "Pressure cooker",
+    "synset": "pressure_cooker.n.01"
+  },
+  "/m/0h99cwc": {
+    "id": 551,
+    "meaning": "Kitchen appliance",
+    "synset": "kitchen_appliance.n.01"
+  },
+  "/m/0h9mv": {
+    "id": 552,
+    "meaning": "Tire",
+    "synset": "tire.n.01"
+  },
+  "/m/0hdln": {
+    "id": 553,
+    "meaning": "Ruler",
+    "synset": "ruler.n.01"
+  },
+  "/m/0hf58v5": {
+    "id": 554,
+    "meaning": "Luggage and bags",
+    "synset": null
+  },
+  "/m/0hg7b": {
+    "id": 555,
+    "meaning": "Microphone",
+    "synset": "microphone.n.01"
+  },
+  "/m/0hkxq": {
+    "id": 556,
+    "meaning": "Broccoli",
+    "synset": "broccoli.n.01"
+  },
+  "/m/0hnnb": {
+    "id": 557,
+    "meaning": "Umbrella",
+    "synset": "umbrella.n.01"
+  },
+  "/m/0hnyx": {
+    "id": 558,
+    "meaning": "Pastry",
+    "synset": "pastry.n.01"
+  },
+  "/m/0hqkz": {
+    "id": 559,
+    "meaning": "Grapefruit",
+    "synset": "grapefruit.n.01"
+  },
+  "/m/0j496": {
+    "id": 560,
+    "meaning": "Band-aid",
+    "synset": null
+  },
+  "/m/0jbk": {
+    "id": 561,
+    "meaning": "Animal",
+    "synset": "animal.n.01"
+  },
+  "/m/0jg57": {
+    "id": 562,
+    "meaning": "Bell pepper",
+    "synset": "sweet_pepper.n.01"
+  },
+  "/m/0jly1": {
+    "id": 563,
+    "meaning": "Turkey",
+    "synset": "turkey.n.01"
+  },
+  "/m/0jqgx": {
+    "id": 564,
+    "meaning": "Lily",
+    "synset": "lily.n.01"
+  },
+  "/m/0jwn_": {
+    "id": 565,
+    "meaning": "Pomegranate",
+    "synset": "pomegranate.n.01"
+  },
+  "/m/0jy4k": {
+    "id": 566,
+    "meaning": "Doughnut",
+    "synset": "ring.n.02"
+  },
+  "/m/0jyfg": {
+    "id": 567,
+    "meaning": "Glasses",
+    "synset": "spectacles.n.01"
+  },
+  "/m/0k0pj": {
+    "id": 568,
+    "meaning": "Human nose",
+    "synset": null
+  },
+  "/m/0k1tl": {
+    "id": 569,
+    "meaning": "Pen",
+    "synset": "pen.n.01"
+  },
+  "/m/0_k2": {
+    "id": 570,
+    "meaning": "Ant",
+    "synset": "ant.n.01"
+  },
+  "/m/0k4j": {
+    "id": 571,
+    "meaning": "Car",
+    "synset": "car.n.01"
+  },
+  "/m/0k5j": {
+    "id": 572,
+    "meaning": "Aircraft",
+    "synset": "aircraft.n.01"
+  },
+  "/m/0k65p": {
+    "id": 573,
+    "meaning": "Human hand",
+    "synset": null
+  },
+  "/m/0km7z": {
+    "id": 574,
+    "meaning": "Skunk",
+    "synset": "rotter.n.01"
+  },
+  "/m/0kmg4": {
+    "id": 575,
+    "meaning": "Teddy bear",
+    "synset": "teddy.n.01"
+  },
+  "/m/0kpqd": {
+    "id": 576,
+    "meaning": "Watermelon",
+    "synset": "watermelon.n.01"
+  },
+  "/m/0kpt_": {
+    "id": 577,
+    "meaning": "Cantaloupe",
+    "synset": "cantaloupe.n.01"
+  },
+  "/m/0ky7b": {
+    "id": 578,
+    "meaning": "Dishwasher",
+    "synset": "dishwasher.n.01"
+  },
+  "/m/0l14j_": {
+    "id": 579,
+    "meaning": "Flute",
+    "synset": "flute.n.01"
+  },
+  "/m/0l3ms": {
+    "id": 580,
+    "meaning": "Balance beam",
+    "synset": "balance_beam.n.01"
+  },
+  "/m/0l515": {
+    "id": 581,
+    "meaning": "Sandwich",
+    "synset": "sandwich.n.01"
+  },
+  "/m/0ll1f78": {
+    "id": 582,
+    "meaning": "Shrimp",
+    "synset": "runt.n.01"
+  },
+  "/m/0llzx": {
+    "id": 583,
+    "meaning": "Sewing machine",
+    "synset": "sewing_machine.n.01"
+  },
+  "/m/0lt4_": {
+    "id": 584,
+    "meaning": "Binoculars",
+    "synset": "binoculars.n.01"
+  },
+  "/m/0m53l": {
+    "id": 585,
+    "meaning": "Rays and skates",
+    "synset": null
+  },
+  "/m/0mcx2": {
+    "id": 586,
+    "meaning": "Ipod",
+    "synset": "ipod.n.01"
+  },
+  "/m/0mkg": {
+    "id": 587,
+    "meaning": "Accordion",
+    "synset": "accordion.n.01"
+  },
+  "/m/0mw_6": {
+    "id": 588,
+    "meaning": "Willow",
+    "synset": "willow.n.01"
+  },
+  "/m/0n28_": {
+    "id": 589,
+    "meaning": "Crab",
+    "synset": "crab.n.01"
+  },
+  "/m/0nl46": {
+    "id": 590,
+    "meaning": "Crown",
+    "synset": "crown.n.01"
+  },
+  "/m/0nybt": {
+    "id": 591,
+    "meaning": "Seahorse",
+    "synset": "walrus.n.01"
+  },
+  "/m/0p833": {
+    "id": 592,
+    "meaning": "Perfume",
+    "synset": "aroma.n.02"
+  },
+  "/m/0pcr": {
+    "id": 593,
+    "meaning": "Alpaca",
+    "synset": "alpaca.n.01"
+  },
+  "/m/0pg52": {
+    "id": 594,
+    "meaning": "Taxi",
+    "synset": "cab.n.03"
+  },
+  "/m/0ph39": {
+    "id": 595,
+    "meaning": "Canoe",
+    "synset": "canoe.n.01"
+  },
+  "/m/0qjjc": {
+    "id": 596,
+    "meaning": "Remote control",
+    "synset": "remote_control.n.01"
+  },
+  "/m/0qmmr": {
+    "id": 597,
+    "meaning": "Wheelchair",
+    "synset": "wheelchair.n.01"
+  },
+  "/m/0wdt60w": {
+    "id": 598,
+    "meaning": "Rugby ball",
+    "synset": "rugby_ball.n.01"
+  },
+  "/m/0xfy": {
+    "id": 599,
+    "meaning": "Armadillo",
+    "synset": "armadillo.n.01"
+  },
+  "/m/0xzly": {
+    "id": 600,
+    "meaning": "Maracas",
+    "synset": "maraca.n.01"
+  },
+  "/m/0zvk5": {
+    "id": 601,
+    "meaning": "Helmet",
+    "synset": "helmet.n.01"
+  }
+}

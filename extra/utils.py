@@ -22,6 +22,10 @@ _PREDEFINED_CONCEPTS_SPLITS_COCO = {
                     "OpenImagesDataset/annotations/openimages_v4_val_bbox.json"),
     "oid_v4_test": ("OpenImagesDataset/test/",
                     "OpenImagesDataset/annotations/openimages_v4_test_bbox.json"),
+    "oid_v4_val_subset": ("OpenImagesDataset/val/",
+                            "concept_OpenImagesDataset/annotations/concept_openimages_v4_val_bbox.json"),
+    "oid_v4_tes_subsett": ("OpenImagesDataset/test/",
+                            "concept_OpenImagesDataset/annotations/concept_openimages_v4_test_bbox.json"),
 }
 
 

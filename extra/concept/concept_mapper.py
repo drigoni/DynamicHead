@@ -178,13 +178,6 @@ class ConceptMapper:
             # print("Annotations : ", annos)
             # [ ... {'iscrowd': 0, 'bbox': array([512.43009375, 478.76096875, 578.3961875 , 508.25215625]), 'category_id': 2, 'bbox_mode': <BoxMode.XYXY_ABS: 0>}]
             # make concepts
-            # NOTE: the categories ids in the annotations is not the same of the COCO datasets.
-            # In COCO datasets there are 90 idx but only 80 are used. These ids are not contiguous, so the model
-            # defines 80 contiguous indexes.
-            # metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
-            metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
-            metaMapping = {val: key for key, val in metaMapping.items()}
-            empty = False
             # NOTE drigoni: This function decides to apply the condition and to generate concepts.
             # NOTE It apply the condition only if self.apply_condition=True
             # NOTE It apply the filtering of the annotations only if self.apply_filter=True and self.apply_condition=True
@@ -193,26 +186,54 @@ class ConceptMapper:
                 # use concepts
                 if not self.apply_condition_from_file:
                     # generate concepts from training file
+                    # NOTE: the categories ids in the annotations is not the same of the COCO datasets.
+                    # In COCO datasets there are 90 idx but only 80 are used. These ids are not contiguous, so the model
+                    # defines 80 contiguous indexes.
+                    # metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
+                    metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
+                    metaMapping = {val: key for key, val in metaMapping.items()}
+                    empty = False # from default, we find concepts for each class. Only in the case of standard object detector, we use empty emtity
                     if self.apply_filter:
                         # here we select the unique list of categories in the filtered annotations
                         unique_cat = list(set({metaMapping[ann['category_id']] for ann in annos}))
                         # sample some concepts and clean annotations
                         random_int = random.randint(0, len(unique_cat))
-                        if random_int > 0:
+                        if random_int > 0: # this means that we select some of the annotations
                             selected_cat = random.sample(unique_cat, random_int)  # at least one element
-                            annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
+                            tmp_annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
+                            # TODO: build concepts with backtrack
+                            # find all concepts associated with the all the annotations
+                            concepts = []
+                            for annotation in tmp_annos_filtered:
+                                cat_idx = metaMapping[annotation['category_id']]
+                                descendants = self.coco2synset[cat_idx]['descendants']
+                                if len(descendants) > 0:
+                                    concept = random.choice(descendants)
+                                else:
+                                    concept = self.coco2synset[cat_idx]['synset']
+                                concepts.append(concept)
+                            annos_filtered = tmp_annos_filtered
+                            # NOTE: now we need to include also the annotations whose classes are father of the selected concepts.
+                            # Example: we select the "animal" class and not "cat", then we select che concept descendent cat.n.01. Then we need to include also "cat" annotations. 
+                            # annos_filtered = []
+                            # for annotation in annos:
+                            #     cat_idx = metaMapping[annotation['category_id']]
+                            #     descendants = self.coco2synset[cat_idx]['descendants']
+                            #     boolean_values = [True if i in concepts else False for i in descendants] 
+                            #     if any(boolean_values):
+                            #         annos_filtered.append(annotation)
+                            # if len(annos_filtered) != len(tmp_annos_filtered):
+                            #     print("len)annos)", len(annos), "len(tmp_annos_filtered)", len(tmp_annos_filtered), "len(annos_filtered)", len(annos_filtered), "concepts", concepts )
+                            #     exit(1)
                         else:
-                            empty = True  # meaning no synsets
-                            # we keep all the annotations
+                            # we keep all the annotations and we use the standard object detector behaviour
+                            empty = True 
                             annos_filtered = annos
+                            concepts = ['entity.n.01']
                     else:
-                        # we use all the annotations concepts because the validation set is already cleaned.
-                        # see make_concept_dataset.py
+                        # we use all the annotations concepts because the validation set is already cleaned. See make_concept_dataset.py
                         annos_filtered = annos
-
-                    if empty:
-                        concepts = ['entity.n.01']
-                    else:
+                        # find all concepts associated with the all the annotations
                         concepts = []
                         for annotation in annos_filtered:
                             cat_idx = metaMapping[annotation['category_id']]
@@ -236,6 +257,8 @@ class ConceptMapper:
                     # NOTE: remove synonyms and filtering concepts
                     concepts = []
                     concepts_to_avoid = ['traffic_signal.n.01']
+                    # this loop search for each external concept the closest synset in the classes vocabolary.
+                    # It does not uses directly the external concept.
                     for conc in concepts_uncleaned:
                         for cat_label in self.coco2synset.keys():
                             cls_descendants = self.coco2synset[cat_label]['descendants']

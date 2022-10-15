@@ -49,8 +49,6 @@ class ConceptFinder:
             # find descendant
             tmp_descendants = ConceptFinder.find_descendants(entity=wn.synset(category['synset']), jump=0, depth=depth)
             tmp_descendants = [(synset.name(), jump) for synset, jump in tmp_descendants]
-            print("Category: {}, descendants: {}".format(category, tmp_descendants))
-            exit(1)
             # if we need an unique set as synsets.
             # NOTE: if synsets are the same but has different levels, we keep the one with lower level
             if unique:

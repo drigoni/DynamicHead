@@ -6,5 +6,5 @@ MODEL:
     DEPTH: 50
 CONCEPT:
   CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
-  DEPTH: "0"
+  DEPTH: 0
 OUTPUT_DIR: "./results/COCO/frcnn/frcnn_r50_fpn_COCO_concepts_cat_depth0/"
