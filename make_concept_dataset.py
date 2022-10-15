@@ -108,6 +108,8 @@ class MakeConceptDataset:
             curr_annotations_indexes = image_to_annotations[image_id]   # annotations indexes
             # check that at least one bounding box exists
             if len(curr_annotations_indexes) > 0:
+                # TODO: Update logic, this is obsolete.
+                exit(1)
                 curr_annotations = [annotations['annotations'][idx] for idx in curr_annotations_indexes]    # annotations
                 list_unique_cat = list(set({ann['category_id'] for ann in curr_annotations}))   # unique list of categories
                 if self.subset:

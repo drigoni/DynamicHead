@@ -29,29 +29,28 @@ class ConceptFinder:
 
     @staticmethod
     def find_descendants(entity, jump, depth=2):
-        if jump == 0:
-            descendants = [(entity, 0)]
-            if depth == -1:
-                return descendants
-        else:
-            descendants = []
-        childrens = entity.hyponyms()  # hypernyms for fathers
-        descendants = descendants + [(i, jump + 1) for i in childrens]
-        if len(childrens) > 0 and jump <= depth:
-            for child in childrens:
-                new_descendants = ConceptFinder.find_descendants(child, jump=jump + 1, depth=depth)
-                descendants = descendants + new_descendants
+        descendants = [(entity, jump)]
+        if jump == depth:
             return descendants
         else:
-            return []
+            childrens = entity.hyponyms()  # hypernyms for fathers
+            if len(childrens) > 0:
+                # descendants = descendants + [(i, jump) for i in childrens]
+                for child in childrens:
+                    new_descendants = ConceptFinder.find_descendants(child, jump=jump + 1, depth=depth)
+                    descendants = descendants + new_descendants # updated with children if jump+1<=depth 
+            return descendants
 
     def extend_descendants(self, depth=2, unique=True, only_name=True):
+        assert depth >= 0, "Error. Concept depth should be a positive number."
         # coco2synset = copy.deepcopy(self.coco2synset)
         coco2synset = self.coco2synset
         for ids, category in coco2synset.items():
             # find descendant
             tmp_descendants = ConceptFinder.find_descendants(entity=wn.synset(category['synset']), jump=0, depth=depth)
             tmp_descendants = [(synset.name(), jump) for synset, jump in tmp_descendants]
+            print("Category: {}, descendants: {}".format(category, tmp_descendants))
+            exit(1)
             # if we need an unique set as synsets.
             # NOTE: if synsets are the same but has different levels, we keep the one with lower level
             if unique:
@@ -75,16 +74,16 @@ class ConceptFinder:
 
     @staticmethod
     def find_ancestors(entity, jump, depth=2):
-        ancestors = []
-        parents = entity.hypernyms()
-        ancestors = ancestors + [(i, jump + 1) for i in parents]
-        if len(parents) > 0 and jump <= depth:
-            for parent in parents:
-                new_ancestors = ConceptFinder.find_ancestors(parent, jump=jump + 1, depth=depth)
-                ancestors = ancestors + new_ancestors
+        ancestors = [(entity, jump)]
+        if jump == depth:
             return ancestors
         else:
-            return []
+            parents = entity.hypernyms()
+            if len(parents) > 0:
+                for child in parents:
+                    new_ancestors = ConceptFinder.find_ancestors(child, jump=jump + 1, depth=depth)
+                    ancestors = ancestors + new_ancestors # updated with ancestor if jump+1<=depth 
+            return ancestors
 
     def extend_ancestors(self, depth=2, unique=True, only_name=True):
         coco2synset = self.coco2synset
