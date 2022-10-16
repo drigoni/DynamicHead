@@ -250,7 +250,7 @@ class ConceptNet(torch.nn.Module):
             return nn.Embedding(vocab_size + 1, emb_size)
         else:
             embedding_matrix_values = torch.zeros((vocab_size + 1, emb_size),
-                                                  requires_grad=(not freeze))  # special char
+                                                  requires_grad=False)  # special char
             pretrained_embeddings = ConceptNet.get_word_embedding(embedding_type, emb_size)
             pretrained_words = pretrained_embeddings.stoi.keys()
             for word_idx in range(vocab_size):
@@ -264,8 +264,7 @@ class ConceptNet(torch.nn.Module):
                     out_of_vocabulary += 1
                     nn.init.normal_(embedding_matrix_values[word_idx, :])
             embedding_matrix = nn.Embedding(vocab_size, emb_size)
-            embedding_matrix.weight = torch.nn.Parameter(embedding_matrix_values)
-            embedding_matrix.weight.requires_grad = not freeze
+            embedding_matrix.weight = torch.nn.Parameter(embedding_matrix_values, requires_grad=(not freeze))
             print('Vocab initialization with {}/{} elements not found. '.format(out_of_vocabulary, vocab_size))
             return embedding_matrix
 
