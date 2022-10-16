@@ -50,9 +50,9 @@ fi
 
 
 # make concept dataset
-# python make_concept_dataset.py  --coco_dataset ./datasets/OpenImagesDataset/annotations/openimages_v4_val_bbox.json \
-#                                 --level 3 --unique True --subset True \
-#                                 --coco2concepts ./concept/coco_to_synset.json
+# python make_concept_dataset.py  --coco_dataset ./datasets/OpenImagesDataset/annotations/openimages_v4_val_bbox.json 
+#                                 --level 2 --unique True --subset True --dataset_name concept_OpenImagesDataset
+#                                 --coco2concepts ./concept/oid_to_synset.json 
 # python make_concept_dataset.py  --coco_dataset ./datasets/coco/annotations/instances_val2017.json \
 #                                  --level 3 --unique True --subset True
 #

@@ -16,6 +16,7 @@ from collections import defaultdict
 from itertools import chain, combinations
 import distutils
 from nltk.corpus import wordnet as wn
+import copy
 from extra import ConceptFinder
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -23,10 +24,10 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # NOTE: this class is not anymore used. It add a new key in the dataset dictionary.
 class MakeConceptDataset:
-    def __init__(self, args, dataset_name="concept_coco"):
+    def __init__(self, args):
         # download package
         nltk.download('wordnet')
-        self.dataset_name = dataset_name
+        self.dataset_name = args.dataset_name
 
         # params
         self.coco_dataset = args.coco_dataset
@@ -194,7 +195,7 @@ class MakeConceptDataset:
 # NOTE: this class is the one used in the end. It filter the dataset according to the concepts it generates. It does not add any keys to the dataset dictionary.
 class MakeConceptDatasetFilter(MakeConceptDataset):
     def __init__(self,args, dataset_name="concept_coco"):
-        super().__init__(args=args, dataset_name=dataset_name)
+        super().__init__(args=args)
     
     @staticmethod
     def search_image_by_id(images, image_id):
@@ -294,6 +295,10 @@ def parse_args():
     parser.add_argument('--coco_dataset', dest='coco_dataset',
                         help='COCO dataset file.',
                         default="./datasets/coco/annotations/instances_val2017.json",
+                        type=str)
+    parser.add_argument('--dataset_name', dest='dataset_name',
+                        help='Name of the new dataset',
+                        default="concept_coco",
                         type=str)
     parser.add_argument('--level', dest='level',
                         help='Levels to consider in the knowledge graph. If add_key=False, then args.level just put the list of descendants but do not affect the dataset.',

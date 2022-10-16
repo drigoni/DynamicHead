@@ -43,7 +43,7 @@ def make_classes2concepts(class_list):
         label = text.split(',')[1]
         synset = get_synset(label)
         tmp_dict = {
-            "id": label_id + 1, # start from 1 and not 0
+            "coco_cat_id": label_id + 1, # start from 1 and not 0
             "meaning": label,
             "synset": synset
         }
