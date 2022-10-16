@@ -50,8 +50,11 @@ DEEPSETS:
   EMB: 'wordnet'   # 'random' # 'wordnet'
   EMB_DIM: 150
   FREEZE: TRUE
-  AGGREGATE: 'sum'
+  MLP1_LAYERS: [150, 150]
+  MLP1_OUTPUT_DIM: 150 
+  MLP2_LAYERS: [150]
   OUTPUT_DIM: 256
+  AGGREGATE: 'sum'
 EVALUATOR_TYPE: 'default'
 VERSION: 2
 SEED: 2022

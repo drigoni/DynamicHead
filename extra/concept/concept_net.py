@@ -51,23 +51,57 @@ class MLP(nn.Module):
 
 
 class _DeepSets(torch.nn.Module):
-    def __init__(self, input_size: int, output_size: int):
+    def __init__(self, input_size: int, aggregate: str,
+                 mlp1_output_size: int, mlp1_layers: [],
+                 mlp2_output_size: int, mlp2_layers: []):
         super(_DeepSets, self).__init__()
         self.input_size = input_size
-        self.output_size = output_size
-
-        # building the network
-        self.mlp1 = MLP(input_size, input_size, [input_size, input_size])
-        self.mlp2 = MLP(input_size, output_size, [input_size])
+        self.aggregate = aggregate
+        self.mlp1_output_size = mlp1_output_size
+        self.mlp1_layers = mlp1_layers
+        self.mlp2_output_size = mlp2_output_size
+        self.mlp2_layers = mlp2_layers
+        
+        self.mlp1 = MLP(input_size, mlp1_output_size, mlp1_layers)
+        self.mlp2 = MLP(mlp1_output_size, mlp2_output_size, mlp2_layers)
 
     def forward(self, x, x_mask):
         # x input as [batch, n_concepts, input_size]
         # x_mask input as [batch, n_concepts] with ones where it is not padding.
         x = self.mlp1(x)                    # [batch, n_concepts, input_size]
         x = x * x_mask.unsqueeze(-1)        # [batch, n_concepts, input_size]
-        x = torch.sum(x, dim=1)             # [batch, input_size]
+        if self.aggregate == 'sum':
+            x = torch.sum(x, dim=1)         # [batch, input_size]
+        elif self.aggregate == 'mean':
+            x = torch.mean(x, dim=1)         # [batch, input_size]
+            x = x / torch.sum(x_mask, dim=-1, keepdim=True)
+        else:
+            print("Error concept_net.by. Aggregate function not recognized.")
+            exit(1)
         x = self.mlp2(x)                    # [batch, output_size]
         return x
+
+
+# old version
+# class _DeepSets(torch.nn.Module):
+#     def __init__(self, input_size: int, mlp1_output_size: int,  mlp2_output_size: int, aggregate="sum"):
+#         super(_DeepSets, self).__init__()
+#         self.input_size = input_size
+#         self.mlp2_output_size = mlp2_output_size
+# 
+#         # building the network
+#         self.mlp1 = MLP(input_size, mlp1_output_size, [input_size, input_size])
+#         self.mlp2 = MLP(mlp1_output_size, mlp2_output_size, [input_size])
+# 
+#     def forward(self, x, x_mask):
+#         # x input as [batch, n_concepts, input_size]
+#         # x_mask input as [batch, n_concepts] with ones where it is not padding.
+#         x = self.mlp1(x)                    # [batch, n_concepts, input_size]
+#         x = x * x_mask.unsqueeze(-1)        # [batch, n_concepts, input_size]
+#         x = torch.sum(x, dim=1)             # [batch, input_size]
+#         x = self.mlp2(x)                    # [batch, mlp2_output_size]
+#         return x
+
 
 
 class Word2Vec(Vectors):
@@ -139,7 +173,11 @@ class ConceptNet(torch.nn.Module):
         super(ConceptNet, self).__init__()
         self.emb_type = cfg.DEEPSETS.EMB
         self.emb_dim = cfg.DEEPSETS.EMB_DIM
-        self.output_dim = cfg.DEEPSETS.OUTPUT_DIM
+        self.mlp1_layers = cfg.DEEPSETS.MLP1_LAYERS
+        self.mlp1_output_dim = cfg.DEEPSETS.MLP1_OUTPUT_DIM
+        self.mlp2_layers = cfg.DEEPSETS.MLP2_LAYERS
+        self.mlp2_output_dim = cfg.DEEPSETS.OUTPUT_DIM
+        self.aggregate = cfg.DEEPSETS.AGGREGATE
         self.emb_freeze = cfg.DEEPSETS.FREEZE
         self.path_vocab = cfg.CONCEPT.VOCAB
         with open(self.path_vocab, "r") as file:
@@ -148,7 +186,9 @@ class ConceptNet(torch.nn.Module):
         self.concept_vocab = vocab(counter) #, specials=['<pad>'], specials_first=True)
         self.concept_emb = ConceptNet.create_embeddings_network(self.emb_type, self.concept_vocab,
                                                                 self.emb_dim, self.emb_freeze)
-        self.deepset = _DeepSets(self.emb_dim, self.output_dim)
+        self.deepset = _DeepSets(self.emb_dim, self.aggregate,
+                                self.mlp1_output_dim, self.mlp1_layers, 
+                                self.mlp2_output_dim, self.mlp2_layers)
 
     def forward(self, x, x_mask):
         x = self.concept_emb(x)

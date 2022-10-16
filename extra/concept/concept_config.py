@@ -21,10 +21,11 @@ def add_concept_config(cfg):
     cfg.DEEPSETS.FILE = './concept/wn30_holE_500_150_0.1_0.2_embeddings.pickle'
     cfg.DEEPSETS.EMB_DIM = 150
     cfg.DEEPSETS.FREEZE = True
-    cfg.DEEPSETS.MLP1_LAYERS = 2    # 3
-    cfg.DEEPSETS.MLP2_LAYERS = 1    # 2
+    cfg.DEEPSETS.MLP1_LAYERS = [150, 150]
+    cfg.DEEPSETS.MLP1_OUTPUT_DIM = 150 
+    cfg.DEEPSETS.MLP2_LAYERS = [150]
+    cfg.DEEPSETS.OUTPUT_DIM = 256     # 156 with groupnorm 29     # 256 with groupnorm 32
     cfg.DEEPSETS.AGGREGATE = 'sum'  # 'mean'
-    cfg.DEEPSETS.OUTPUT_DIM = 256   # 156 with groupnorm 29     # 256 with groupnorm 32
 
     # add parameter for new evaluation for the new datasets
     cfg.EVALUATOR_TYPE = 'default' # ['default', GTFilter']
