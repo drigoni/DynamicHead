@@ -1,0 +1,9 @@
+_BASE_: "../base_retinanet_COCO_concepts.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+CONCEPT:
+  CONCEPT_FUSION: "add" # ["cat", "mul", "add", "zeros"]
+OUTPUT_DIR: "./results/COCO/retinanet/retinanet_r50_fpn_COCO_concepts_add/"

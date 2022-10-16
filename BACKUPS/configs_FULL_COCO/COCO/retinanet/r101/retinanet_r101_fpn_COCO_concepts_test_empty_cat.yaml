@@ -1,0 +1,19 @@
+_BASE_: "../base_retinanet_COCO_concepts.yaml"
+MODEL:
+  WEIGHTS: "./results/COCO/retinanet/retinanet_r101_fpn_COCO_concepts_cat/model_final.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 101
+CONCEPT:
+  CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
+  APPLY_CONDITION: FALSE
+  APPLY_CONDITION_FROM_FILE: FALSE
+  APPLY_FILTER: FALSE
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)
+  # TEST: ("coco_2017_val_subset",)
+  # TEST: ("coco_2017_val_powerset",)
+DEEPSETS:
+  EMB: "random"
+OUTPUT_DIR: "./results/COCO/retinanet/retinanet_r101_fpn_COCO_concepts_cat/"
