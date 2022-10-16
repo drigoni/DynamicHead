@@ -9,7 +9,7 @@ MODEL:
     NUM_FC: 6 # standard=2
 DATASETS:
   TRAIN: ("coco_2017_tuning_train",)
-  TRAIN: ("coco_2017_tuning_val",)
+  TEST: ("coco_2017_tuning_val",)
   # TEST: ("coco_2017_val_subset",)
   # TEST: ("coco_2017_val_powerset",)
 OUTPUT_DIR: "./results/COCO/frcnn/frcnn_r50_fpn_COCO_numfc6/"

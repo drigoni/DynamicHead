@@ -20,7 +20,7 @@ MODEL:
     NUM_CONVS: 0
 DATASETS:
   TRAIN: ("coco_2017_tuning_train",)
-  TRAIN: ("coco_2017_tuning_val",)
+  TEST: ("coco_2017_tuning_val",)
 DATALOADER:
   NUM_WORKERS: 32
 SOLVER:

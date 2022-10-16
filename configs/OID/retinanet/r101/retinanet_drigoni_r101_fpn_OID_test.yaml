@@ -1,0 +1,10 @@
+_BASE_: "../base_retinanet_OID.yaml"
+MODEL:
+  WEIGHTS: "./results/OID/retinanet/retinanet_drigoni_r101_fpn_OID/model_final.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 101
+DATASETS:
+  TRAIN: ("OID_v4_train",)
+  TEST: ("OID_v4_val",)
+OUTPUT_DIR: "./results/OID/retinanet/retinanet_drigoni_r101_fpn_OID/"

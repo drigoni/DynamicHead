@@ -6,7 +6,7 @@ MODEL:
     DEPTH: 101
 DATASETS:
   TRAIN: ("coco_2017_tuning_train",)
-  TRAIN: ("coco_2017_tuning_val",)
+  TEST: ("coco_2017_tuning_val",)
   # TEST: ("coco_2017_val_subset",)
   # TEST: ("coco_2017_val_powerset",)
 OUTPUT_DIR: "./results/COCO/frcnn/frcnn_r101_fpn_COCO/"

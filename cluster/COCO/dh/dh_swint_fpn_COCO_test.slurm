@@ -66,7 +66,7 @@ echo ''
 
 # model config
 CONFIG_FILE=./configs/COCO/dh/dh_swint_fpn_COCO_test.yaml
-DATSETS=('("coco_2017_val",)' '("coco_2017_val_subset",)' '("coco_2017_val_powerset",)')
+DATSETS=('("coco_2017_tuning_val",)' '("coco_2017_tuning_val_subset",)' '("coco_2017_tuning_val_powerset",)')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \
