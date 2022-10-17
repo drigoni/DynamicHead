@@ -1,0 +1,18 @@
+_BASE_: "../base_retinanet_COCO_concepts.yaml"
+MODEL:
+  WEIGHTS: "./results/COCO/retinanet/retinanet_r50_fpn_COCO_concepts_cat_unfreezed/model_final.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+CONCEPT:
+  CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
+  APPLY_CONDITION: TRUE
+  APPLY_CONDITION_FROM_FILE: FALSE
+  APPLY_FILTER: FALSE
+DATASETS:
+  TRAIN: ("coco_2017_tuning_train",)
+  TEST: ("coco_2017_tuning_val",)
+DEEPSETS:
+  EMB: "random"
+  FREEZE: False
+OUTPUT_DIR: "./results/COCO/retinanet/retinanet_r50_fpn_COCO_concepts_cat_unfreezed/"
