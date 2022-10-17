@@ -158,7 +158,7 @@ class Trainer(DefaultTrainer):
             if cfg.MODEL.LOAD_PROPOSALS
             else None,
         )
-        # TODO drigoni: introduces a new mapper for the test and remove images with 0 annotations.
+        # NOTE drigoni: introduces a new mapper for the test
         mapper = ConceptMapper(cfg, False, coco2synset=coco2synset)
         return build_detection_test_loader(dataset=dataset, mapper=mapper,
                                            num_workers=cfg.DATALOADER.NUM_WORKERS,

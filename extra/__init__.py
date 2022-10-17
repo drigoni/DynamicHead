@@ -20,8 +20,8 @@ from .concept.concept_retinanet import ConceptRetinaNet
 from .swint import build_swint_fpn_backbone, build_swint_fpn_dyhead_backbone, build_retinanet_swint_fpn_backbone, build_retinanet_swint_fpn_dyhead_backbone
 # from .resnet import build_resnet_fpn_backbone, build_retinanet_resnet_fpn_backbone  # already registeres
 from .resnet import build_resnet_fpn_dyhead_backbone, build_retinanet_resnet_fpn_dyhead_backbone
-# utils
-from .utils import *
+# datasets
+from .datasets import *
 
 
 # evaluator

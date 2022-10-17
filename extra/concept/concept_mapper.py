@@ -71,6 +71,7 @@ class ConceptMapper:
             keypoint_hflip_indices: Optional[np.ndarray] = None,
             precomputed_proposal_topk: Optional[int] = None,
             recompute_boxes: bool = False,
+            dataset_name:list,
             coco2synset: dict = None,
             apply_condition: bool = True,
             apply_condition_from_file: bool = False,
@@ -107,6 +108,7 @@ class ConceptMapper:
         self.keypoint_hflip_indices = keypoint_hflip_indices
         self.proposal_topk = precomputed_proposal_topk
         self.recompute_boxes = recompute_boxes
+        self.dataset_name = dataset_name
         self.coco2synset = coco2synset
         self.apply_condition = apply_condition
         self.apply_condition_from_file = apply_condition_from_file
@@ -130,6 +132,12 @@ class ConceptMapper:
         else:
             recompute_boxes = False
 
+        # select current dataset
+        if is_train:
+            dataset_name = cfg.DATASETS.TRAIN,  # like (('coco_2017_tuning_train',),)
+        else:
+            dataset_name = cfg.DATASETS.TEST,   # like (('coco_2017_tuning_train',),)
+
         ret = {
             "is_train": is_train,
             "augmentations": augs,
@@ -138,6 +146,7 @@ class ConceptMapper:
             "instance_mask_format": cfg.INPUT.MASK_FORMAT,
             "use_keypoint": cfg.MODEL.KEYPOINT_ON,
             "recompute_boxes": recompute_boxes,
+            "dataset_name": dataset_name,
             "apply_condition": cfg.CONCEPT.APPLY_CONDITION,
             "apply_condition_from_file": cfg.CONCEPT.APPLY_CONDITION_FROM_FILE,
             "external_concepts_folder": cfg.CONCEPT.EXTERNAL_CONCEPTS_FOLDER,
@@ -189,8 +198,9 @@ class ConceptMapper:
                     # NOTE: the categories ids in the annotations is not the same of the COCO datasets.
                     # In COCO datasets there are 90 idx but only 80 are used. These ids are not contiguous, so the model
                     # defines 80 contiguous indexes.
-                    # metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
-                    metaMapping = MetadataCatalog.get('coco_2017_train').thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
+                    # print("self.dataset", self.dataset_name) # self.dataset (('coco_2017_tuning_train',),)
+                    metaMapping = MetadataCatalog.get(self.dataset_name[0][0]).thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
+                    # metaMapping = MetadataCatalog.get("coco_2017_train").thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
                     metaMapping = {val: key for key, val in metaMapping.items()}
                     empty = False # from default, we find concepts for each class. Only in the case of standard object detector, we use empty emtity
                     if self.apply_filter:
@@ -201,7 +211,6 @@ class ConceptMapper:
                         if random_int > 0: # this means that we select some of the annotations
                             selected_cat = random.sample(unique_cat, random_int)  # at least one element
                             tmp_annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
-                            # TODO: build concepts with backtrack
                             # find all concepts associated with the all the annotations
                             concepts = []
                             for annotation in tmp_annos_filtered:
@@ -213,6 +222,7 @@ class ConceptMapper:
                                     concept = self.coco2synset[cat_idx]['synset']
                                 concepts.append(concept)
                             annos_filtered = tmp_annos_filtered
+                            # TODO: build concepts with backtrack
                             # NOTE: now we need to include also the annotations whose classes are father of the selected concepts.
                             # Example: we select the "animal" class and not "cat", then we select che concept descendent cat.n.01. Then we need to include also "cat" annotations. 
                             # annos_filtered = []
