@@ -2,18 +2,19 @@
 ### Owner: Davide Rigoni
 
 ### ============ SLURM COMMANDS
-#SBATCH --job-name='retinanet_r50_fpn_OID_concepts_train_cat'     # create a short name for your job
+#SBATCH --job-name='retinanet_drigoni_r50_fpn_VG_test'     # create a short name for your job
 #SBATCH --mail-user=davide.rigoni.2@phd.unipd.it
-#SBATCH --output=cluster/out/retinanet/r50/retinanet_r50_fpn_OID_concepts_train_cat.out
+#SBATCH --output=cluster/out/retinanet/r50/retinanet_drigoni_r50_fpn_VG_test_dataset-%a.out
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
-#SBATCH --time=2-00:00:00                           # total run time limit (DD-HH:MM:SS)
+#SBATCH --time=0-12:00:00                           # total run time limit (DD-HH:MM:SS)
 #SBATCH --nodes=1                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
 #SBATCH --cpus-per-task=64		                    # cpu-cores per task (>1 if multi-threaded tasks)
-#SBATCH --gpus-per-node=4                           # number of gpus per node
+#SBATCH --gpus-per-node=1                           # number of gpus per node
 ### SBATCH --exclusive                                 # for exclusive access
 
+#SBATCH --array=0-2
 #---- MORE COMMANDS
 #----#SBATCH --mail-type=begin                           # send email when job begins
 #--- #SBATCH --mail-type=end                             # send email when job ends
@@ -36,8 +37,8 @@ export SLURM_MASTER_ADDR=$SLURM_MASTER_ADDR
 # model variables
 NUM_GPUS=${SLURM_GPUS_PER_NODE}
 NUM_MACHINES=${SLURM_NNODES}
-BATCH_SIZE=$(expr 4 \* $(echo -n ${SLURM_JOB_NUM_NODES}) \* $(echo -n ${SLURM_GPUS_PER_NODE})) 
-MAX_ITER=$(expr 16 \* 90000 \/ $(echo -n ${BATCH_SIZE}))
+BATCH_SIZE=$(expr 5 \* $(echo -n ${SLURM_JOB_NUM_NODES}) \* $(echo -n ${SLURM_GPUS_PER_NODE})) # max 5 per A100
+MAX_ITER=$(expr 32 \* 90000 \/ $(echo -n ${BATCH_SIZE}))
 
 ### ============ SOME PRINT COMMANDS
 echo ''
@@ -64,14 +65,17 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/OID/retinanet/r50/retinanet_r50_fpn_OID_concepts_train_cat.yaml
+CONFIG_FILE=./configs/VG/retinanet/r50/retinanet_drigoni_r50_fpn_VG_test.yaml
+DATSETS=('("vg_Val",)' '("vg_val_subset",)' '("vg_val_powerset",)')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \
                     --num-machines ${NUM_MACHINES} \
                     --dist-url ${SLURM_MASTER_URL} \
+                    --eval-only \
                     SOLVER.IMS_PER_BATCH ${BATCH_SIZE} \
                     SOLVER.MAX_ITER ${MAX_ITER} \
+                    DATASETS.TEST ${DATSETS[$SLURM_ARRAY_TASK_ID]}
 
 
 
@@ -80,19 +84,3 @@ echo ''
 echo ''
 echo 'Job done.'
 echo 'Date: ' $(date)
-
-
-
-# more commands
-# srun python train_net.py \
-#                     --config  ${CONFIG_FILE} \
-#                     --num-gpus ${NUM_GPUS} \
-#                     --num-machines ${NUM_MACHINES} \
-#                     --dist-url ${SLURM_MASTER_URL} \
-#                     MODEL.WEIGHTS ${MODEL_WEIGHTS}  \
-#                     DEEPSETS.EMB ${DEEPSETS_EMB} \
-#                     CONCEPT.APPLY_CONDITION ${CONCEPT_APPLY_CONDITION} \
-#                     CONCEPT.APPLY_FILTER ${CONCEPT_APPLY_FILTER} \
-#                     SOLVER.IMS_PER_BATCH ${BATCH_SIZE} \
-#                     SOLVER.MAX_ITER ${MAX_ITER} \
-#                     OUTPUT_DIR ${OUTPUT_DIR} 

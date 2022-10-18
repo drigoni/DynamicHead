@@ -14,11 +14,9 @@ MODEL:
     IOU_THRESHOLDS: [0.4, 0.5]
     IOU_LABELS: [0, -1, 1]
     SMOOTH_L1_LOSS_BETA: 0.0
-    NUM_CLASSES: 601
   ROI_HEADS:
     NAME: "StandardROIHeads"
     IN_FEATURES: ["p2", "p3", "p4", "p5"]
-    NUM_CLASSES: 601
   ROI_BOX_HEAD:
     NAME: "FastRCNNConvFCHead"
     NUM_FC: 2
@@ -28,8 +26,8 @@ MODEL:
     NUM_CONV: 4
     POOLER_RESOLUTION: 14
 DATASETS:
-  TRAIN: ("oid_v4_train",)
-  TEST: ("oid_v4_val",)
+  TRAIN: ("coco_2017_tuning_train",)
+  TEST: ("coco_2017_tuning_val",)
 DATALOADER:
   NUM_WORKERS: 32
 SOLVER:
@@ -40,21 +38,21 @@ SOLVER:
   WEIGHT_DECAY: 0.0001
   WEIGHT_DECAY_BIAS: 0.0001
 CONCEPT:
-  FILE: './concept/oid_to_synset.json'
+  FILE: './concept/coco_to_synset.json'
   CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
   APPLY_CONDITION: TRUE
   APPLY_CONDITION_FROM_FILE: FALSE
-  EXTERNAL_CONCEPTS_FOLDER: './datasets/ewiser_concepts_oid_valid/'
+  EXTERNAL_CONCEPTS_FOLDER: './datasets/ewiser_concepts_COCO_valid/'
   APPLY_FILTER: TRUE
   DEPTH: 2
   UNIQUE: TRUE
 DEEPSETS:
   EMB: 'wordnet'   # 'random' # 'wordnet'
   EMB_DIM: 150
-  FREEZE: FALSE
-  MLP1_LAYERS: [150, 256]
-  MLP1_OUTPUT_DIM: 256 
-  MLP2_LAYERS: [256, 256]
+  FREEZE: TRUE
+  MLP1_LAYERS: [150, 150]
+  MLP1_OUTPUT_DIM: 150 
+  MLP2_LAYERS: [150]
   OUTPUT_DIM: 256
   AGGREGATE: 'sum'
 EVALUATOR_TYPE: 'default'

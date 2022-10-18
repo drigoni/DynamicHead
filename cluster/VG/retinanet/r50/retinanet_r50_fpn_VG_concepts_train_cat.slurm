@@ -2,13 +2,13 @@
 ### Owner: Davide Rigoni
 
 ### ============ SLURM COMMANDS
-#SBATCH --job-name='retinanet_r50_fpn_OID_concepts_train_cat'     # create a short name for your job
+#SBATCH --job-name='retinanet_r50_fpn_VG_concepts_train_cat'     # create a short name for your job
 #SBATCH --mail-user=davide.rigoni.2@phd.unipd.it
-#SBATCH --output=cluster/out/retinanet/r50/retinanet_r50_fpn_OID_concepts_train_cat.out
+#SBATCH --output=cluster/out/retinanet/r50/retinanet_r50_fpn_VG_concepts_train_cat.out
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
 #SBATCH --time=2-00:00:00                           # total run time limit (DD-HH:MM:SS)
-#SBATCH --nodes=1                                   # node count
+#SBATCH --nodes=2                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
 #SBATCH --cpus-per-task=64		                    # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --gpus-per-node=4                           # number of gpus per node
@@ -36,7 +36,7 @@ export SLURM_MASTER_ADDR=$SLURM_MASTER_ADDR
 # model variables
 NUM_GPUS=${SLURM_GPUS_PER_NODE}
 NUM_MACHINES=${SLURM_NNODES}
-BATCH_SIZE=$(expr 4 \* $(echo -n ${SLURM_JOB_NUM_NODES}) \* $(echo -n ${SLURM_GPUS_PER_NODE})) 
+BATCH_SIZE=$(expr 2 \* $(echo -n ${SLURM_JOB_NUM_NODES}) \* $(echo -n ${SLURM_GPUS_PER_NODE})) 
 MAX_ITER=$(expr 16 \* 90000 \/ $(echo -n ${BATCH_SIZE}))
 
 ### ============ SOME PRINT COMMANDS
@@ -64,7 +64,7 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/OID/retinanet/r50/retinanet_r50_fpn_OID_concepts_train_cat.yaml
+CONFIG_FILE=./configs/VG/retinanet/r50/retinanet_r50_fpn_VG_concepts_train_cat.yaml
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \
