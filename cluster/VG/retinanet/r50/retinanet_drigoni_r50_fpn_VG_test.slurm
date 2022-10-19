@@ -6,7 +6,7 @@
 #SBATCH --mail-user=davide.rigoni.2@phd.unipd.it
 #SBATCH --output=cluster/out/retinanet/r50/retinanet_drigoni_r50_fpn_VG_test_dataset-%a.out
 #SBATCH --partition=gpu
-#SBATCH --mem=150G				                    # total memory per node
+#SBATCH --mem=300G				                    # total memory per node
 #SBATCH --time=0-12:00:00                           # total run time limit (DD-HH:MM:SS)
 #SBATCH --nodes=1                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node

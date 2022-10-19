@@ -18,12 +18,12 @@ MODEL:
     OFFSET: 0.5
   ATSS:
     NUM_CONVS: 0
-    NUM_CLASSES: 1600
+    NUM_CLASSES: 601
   ROI_HEADS:
-    NUM_CLASSES: 1600
+    NUM_CLASSES: 601
 DATASETS:
-  TRAIN: ("visual_genome_train",)
-  TEST: ("visual_genome_val",)
+  TRAIN: ("oid_v4_train",)
+  TEST: ("oid_v4_val",)
 DATALOADER:
   NUM_WORKERS: 32
 SOLVER:
@@ -40,3 +40,4 @@ INPUT:
 EVALUATOR_TYPE: 'default'
 SEED: 2022
 VERSION: 2
+

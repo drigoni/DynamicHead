@@ -1,7 +1,7 @@
-_BASE_: "base_dh_VG.yaml"
+_BASE_: "base_dh_OID.yaml"
 MODEL:
   BACKBONE:
     NAME: "build_retinanet_swint_fpn_dyhead_backbone"
   ATSS:
     NUM_CONVS: 2
-OUTPUT_DIR: "./results/VG/dh/dh_swint_fpn_VG/"
+OUTPUT_DIR: "./results/OID/dh/dh_swint_fpn_OID/"

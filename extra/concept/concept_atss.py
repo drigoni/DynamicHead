@@ -170,7 +170,6 @@ class CATSS(ATSS):
         # images.tensor -> [b, rgb, w, h]
         features = self.backbone(images.tensor)
         features = [features[f] for f in self.head_in_features]  # List[Tensors] five element with shape [b, 256, w, h]
-        anchors = self.anchor_generator(features)
 
         # concepts batching and tokenization
         concepts, concepts_mask = self.concept_net.preprocess_concepts(batched_inputs)
@@ -197,6 +196,7 @@ class CATSS(ATSS):
             logger.error("Error. CONCEPT.FUSION={} not valid. ".format(self.concept_fusion))
             exit(1)
 
+        anchors = self.anchor_generator(features)
         pred_logits, pred_anchor_deltas, pred_centers, pred_features = self.head(features)
 
         if self.training:

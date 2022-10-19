@@ -18,6 +18,9 @@ MODEL:
     OFFSET: 0.5
   ATSS:
     NUM_CONVS: 0
+    NUM_CLASSES: 1600
+  ROI_HEADS:
+    NUM_CLASSES: 1600
 DATASETS:
   TRAIN: ("visual_genome_train",)
   TEST: ("visual_genome_val",)

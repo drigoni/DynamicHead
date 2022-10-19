@@ -2,9 +2,9 @@
 ### Owner: Davide Rigoni
 
 ### ============ SLURM COMMANDS
-#SBATCH --job-name='dh_swint_fpn_COCO_concepts_train_zeros'     # create a short name for your job
+#SBATCH --job-name='dh_swint_fpn_OID_train'     # create a short name for your job
 #SBATCH --mail-user=davide.rigoni.2@phd.unipd.it
-#SBATCH --output=cluster/out/dh/dh_swint_fpn_COCO_concepts_train_zeros.out
+#SBATCH --output=cluster/out/dh/dh_swint_fpn_OID_train.out
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
 #SBATCH --time=2-00:00:00                           # total run time limit (DD-HH:MM:SS)
@@ -64,7 +64,7 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/COCO/dh/dh_swint_fpn_COCO_concepts_train_zeros.yaml
+CONFIG_FILE=./configs/OID/dh/dh_swint_fpn_OID_train.yaml
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \

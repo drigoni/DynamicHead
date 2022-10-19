@@ -2,7 +2,7 @@ _BASE_: "base_dh_VG.yaml"
 MODEL:
   WEIGHTS: "./results/VG/dh/dh_swint_fpn_VG/model_final.pth"
   ATSS:
-    NUM_CONVS: 0
+    NUM_CONVS: 2
 DATASETS:
   TRAIN: ("visual_genome_train",)
   TEST: ("visual_genome_val",)

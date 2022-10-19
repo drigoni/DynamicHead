@@ -2,9 +2,9 @@
 ### Owner: Davide Rigoni
 
 ### ============ SLURM COMMANDS
-#SBATCH --job-name='dh_swint_fpn_COCO_concepts_test_empty_mul'     # create a short name for your job
+#SBATCH --job-name='dh_swint_fpn_VG_concepts_test_empty_cat'     # create a short name for your job
 #SBATCH --mail-user=davide.rigoni.2@phd.unipd.it
-#SBATCH --output=cluster/out/dh/dh_swint_fpn_COCO_concepts_test_empty_mul_dataset-%a.out
+#SBATCH --output=cluster/out/dh/dh_swint_fpn_VG_concepts_test_empty_cat_dataset-%a.out
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
 #SBATCH --time=0-12:00:00                           # total run time limit (DD-HH:MM:SS)
@@ -65,8 +65,8 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/COCO/dh/dh_swint_fpn_COCO_concepts_test_empty_mul.yaml
-DATSETS=('("coco_2017_tuning_val",)' '("coco_2017_tuning_val_subset",)' '("coco_2017_tuning_val_powerset",)')
+CONFIG_FILE=./configs/VG/dh/dh_swint_fpn_VG_concepts_test_empty_cat.yaml
+DATSETS=('("vg_val",)' '("vg_val_subset",)' '("vg_val_powerset",)')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \
@@ -76,8 +76,6 @@ srun python train_net.py \
                     SOLVER.IMS_PER_BATCH ${BATCH_SIZE} \
                     SOLVER.MAX_ITER ${MAX_ITER} \
                     DATASETS.TEST ${DATSETS[$SLURM_ARRAY_TASK_ID]}
-
-
 
 # last default print
 echo ''
