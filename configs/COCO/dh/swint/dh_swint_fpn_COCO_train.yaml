@@ -1,0 +1,5 @@
+_BASE_: "../base_dh_COCO.yaml"
+MODEL:
+  ATSS:
+    NUM_CONVS: 2
+OUTPUT_DIR: "./results/COCO/dh/dh_swint_fpn_COCO/"

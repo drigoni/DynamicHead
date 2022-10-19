@@ -1,4 +1,4 @@
-_BASE_: "base_dh_VG.yaml"
+_BASE_: "../base_dh_VG.yaml"
 MODEL:
   WEIGHTS: "./results/VG/dh/dh_swint_fpn_VG/model_final.pth"
   ATSS:

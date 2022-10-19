@@ -1,4 +1,4 @@
-_BASE_: "base_dh_COCO.yaml"
+_BASE_: "../base_dh_COCO.yaml"
 MODEL:
   WEIGHTS: "./results/COCO/dh/dh_swint_fpn_COCO/model_final.pth"
   ATSS:
@@ -6,6 +6,4 @@ MODEL:
 DATASETS:
   TRAIN: ("coco_2017_tuning_train",)
   TEST: ("coco_2017_tuning_val",)
-  # TEST: ("coco_2017_val_subset",)
-  # TEST: ("coco_2017_val_powerset",)
 OUTPUT_DIR: "./results/COCO/dh/dh_swint_fpn_COCO/"

@@ -1,0 +1,14 @@
+_BASE_: "../base_dh_VG.yaml"
+MODEL:
+  WEIGHTS: "./results/VG/dh/dh_r50_fpn_VG/model_final.pth"
+  BACKBONE:
+    NAME: "build_resnet_fpn_dyhead_backbone"
+  RESNETS:
+    DEPTH: 50
+    OUT_FEATURES: ["res3", "res4", "res5"]
+  ATSS:
+    NUM_CONVS: 2
+DATASETS:
+  TRAIN: ("visual_genome_train",)
+  TEST: ("visual_genome_val",)
+OUTPUT_DIR: "./results/VG/dh/dh_r50_fpn_VG/"

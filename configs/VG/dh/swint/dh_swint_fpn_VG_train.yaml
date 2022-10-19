@@ -1,4 +1,4 @@
-_BASE_: "base_dh_VG.yaml"
+_BASE_: "../base_dh_VG.yaml"
 MODEL:
   BACKBONE:
     NAME: "build_retinanet_swint_fpn_dyhead_backbone"
