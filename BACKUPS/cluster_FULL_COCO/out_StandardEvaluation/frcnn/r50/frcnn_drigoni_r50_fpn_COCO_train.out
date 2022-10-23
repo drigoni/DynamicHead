@@ -82,7 +82,7 @@ SOLVER:
 CONCEPT:
   APPLY_CONDITION: true
   APPLY_CONDITION_FROM_FILE: false
-  APPLY_FILTER: true
+  ACTIVATE_CONCEPT_GENERATOR: true
   CONCEPT_FUSION: cat
   DEPTH: 3
   EXTERNAL_CONCEPTS_FOLDER: ./datasets/ewiser_concepts_COCO_valid/
@@ -5501,7 +5501,27 @@ Traceback (most recent call last):
     return GeneralizedRCNN._postprocess(results, batched_inputs, images.image_sizes)
 NameError: name 'GeneralizedRCNN' is not defined
 wandb: Waiting for W&B process to finish... (failed 1). Press Control-C to abort syncing.
-wandb: - 3.466 MB of 3.466 MB uploaded (0.000 MB deduped)wandb: \ 3.466 MB of 3.466 MB uploaded (0.000 MB deduped)wandb: | 3.466 MB of 3.466 MB uploaded (0.000 MB deduped)wandb: / 3.466 MB of 4.529 MB uploaded (0.000 MB deduped)wandb: - 3.466 MB of 4.542 MB uploaded (0.000 MB deduped)wandb: \ 0.001 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: | 0.015 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: / 0.598 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: - 2.554 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: \ 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: | 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: / 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: - 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: \ 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: | 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: / 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: - 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: \ 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: | 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)wandb: / 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)wandb:                                                                                
+wandb: - 3.466 MB of 3.466 MB uploaded (0.000 MB deduped)
+wandb: \ 3.466 MB of 3.466 MB uploaded (0.000 MB deduped)
+wandb: | 3.466 MB of 3.466 MB uploaded (0.000 MB deduped)
+wandb: / 3.466 MB of 4.529 MB uploaded (0.000 MB deduped)
+wandb: - 3.466 MB of 4.542 MB uploaded (0.000 MB deduped)
+wandb: \ 0.001 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: | 0.015 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: / 0.598 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: - 2.554 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: \ 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: | 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: / 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: - 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: \ 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: | 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: / 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: - 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: \ 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: | 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb: / 4.820 MB of 4.820 MB uploaded (0.000 MB deduped)
+wandb:                                                                                
 wandb: 
 wandb: Run history:
 wandb:                 data_time ▅█▃▃▇▁▂▂▁▃▂▂▄▃▂▃▁▃▃▂▃▃▃▂▂▁▃▃▄▃▃▃▂▄▂▃▃▆▇▂

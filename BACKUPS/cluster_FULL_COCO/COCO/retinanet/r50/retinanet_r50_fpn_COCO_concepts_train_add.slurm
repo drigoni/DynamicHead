@@ -92,7 +92,7 @@ echo 'Date: ' $(date)
 #                     MODEL.WEIGHTS ${MODEL_WEIGHTS}  \
 #                     DEEPSETS.EMB ${DEEPSETS_EMB} \
 #                     CONCEPT.APPLY_CONDITION ${CONCEPT_APPLY_CONDITION} \
-#                     CONCEPT.APPLY_FILTER ${CONCEPT_APPLY_FILTER} \
+#                     CONCEPT.ACTIVATE_CONCEPT_GENERATOR ${CONCEPT_ACTIVATE_CONCEPT_GENERATOR} \
 #                     SOLVER.IMS_PER_BATCH ${BATCH_SIZE} \
 #                     SOLVER.MAX_ITER ${MAX_ITER} \
 #                     OUTPUT_DIR ${OUTPUT_DIR} 

@@ -19,4 +19,4 @@ corpora/*
 .idea/*
 *.zip
 
-BACKUPS/
+BACKUPS/*

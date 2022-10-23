@@ -93,7 +93,7 @@ OUTPUT_DIR: "./results/COCO/dh_concepts_add/"
 [32m[09/28 21:19:42 detectron2]: [0mRunning with full config:
 CONCEPT:
   APPLY_CONDITION: true
-  APPLY_FILTER: true
+  ACTIVATE_CONCEPT_GENERATOR: true
   CONCEPT_FUSION: add
   DEPTH: 3
   FILE: ./concept/coco_to_synset.json
@@ -4799,7 +4799,9 @@ Load concept for each category.
 [5m[31mWARNING[0m [32m[09/29 21:13:27 d2.evaluation.coco_evaluation]: [0mCOCO Evaluator instantiated using config, this is deprecated behavior. Please pass in explicit arguments instead.
 [32m[09/29 21:13:28 d2.evaluation.evaluator]: [0mStart inference on 619 batches
 wandb: Waiting for W&B process to finish... (failed 1). Press Control-C to abort syncing.
-wandb: - 1.266 MB of 1.266 MB uploaded (0.000 MB deduped)wandb: \ 1.266 MB of 1.266 MB uploaded (0.000 MB deduped)Traceback (most recent call last):
+wandb: - 1.266 MB of 1.266 MB uploaded (0.000 MB deduped)
+wandb: \ 1.266 MB of 1.266 MB uploaded (0.000 MB deduped)
+Traceback (most recent call last):
   File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/train_net.py", line 334, in <module>
     launch(
   File "/ceph/hpc/home/eudavider/.local/lib/python3.9/site-packages/detectron2/engine/launch.py", line 67, in launch

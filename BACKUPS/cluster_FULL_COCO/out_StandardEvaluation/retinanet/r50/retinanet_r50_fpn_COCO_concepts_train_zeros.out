@@ -82,7 +82,7 @@ OUTPUT_DIR: "./results_new/COCO/retinanet/retinanet_r50_fpn_COCO_concepts_zeros/
 CONCEPT:
   APPLY_CONDITION: true
   APPLY_CONDITION_FROM_FILE: false
-  APPLY_FILTER: true
+  ACTIVATE_CONCEPT_GENERATOR: true
   CONCEPT_FUSION: zeros
   DEPTH: 3
   EXTERNAL_CONCEPTS_FOLDER: ./datasets/ewiser_concepts_COCO_valid/
@@ -5521,7 +5521,26 @@ Traceback (most recent call last):
     width = input_per_image.get("width", image_size[1])
 NameError: name 'detector_postprocess' is not defined
 wandb: Waiting for W&B process to finish... (failed 1). Press Control-C to abort syncing.
-wandb: - 1.849 MB of 1.849 MB uploaded (0.000 MB deduped)wandb: \ 1.849 MB of 1.849 MB uploaded (0.000 MB deduped)wandb: | 1.849 MB of 1.849 MB uploaded (0.000 MB deduped)wandb: / 1.849 MB of 1.849 MB uploaded (0.000 MB deduped)wandb: - 1.849 MB of 2.714 MB uploaded (0.000 MB deduped)wandb: \ 0.398 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: | 0.398 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: / 0.398 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: - 0.807 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: \ 2.815 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: | 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: / 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: - 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: \ 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: | 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: / 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: - 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: \ 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)wandb: | 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)wandb:                                                                                
+wandb: - 1.849 MB of 1.849 MB uploaded (0.000 MB deduped)
+wandb: \ 1.849 MB of 1.849 MB uploaded (0.000 MB deduped)
+wandb: | 1.849 MB of 1.849 MB uploaded (0.000 MB deduped)
+wandb: / 1.849 MB of 1.849 MB uploaded (0.000 MB deduped)
+wandb: - 1.849 MB of 2.714 MB uploaded (0.000 MB deduped)
+wandb: \ 0.398 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: | 0.398 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: / 0.398 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: - 0.807 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: \ 2.815 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: | 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: / 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: - 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: \ 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: | 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: / 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: - 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: \ 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb: | 2.948 MB of 2.948 MB uploaded (0.000 MB deduped)
+wandb:                                                                                
 wandb: 
 wandb: Run history:
 wandb:       data_time ▅▇▅▃▅▆▅▆▅▇▅▁▇▇▄▆▄▆█▇▇▆▅▂▇▆▄▅▁▆▇▃▄▅▁▄▂▅▆▆

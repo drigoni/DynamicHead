@@ -81,7 +81,7 @@ OUTPUT_DIR: "./results/COCO/frcnn/frcnn_r101_fpn_COCO_concepts_mul/"
 CONCEPT:
   APPLY_CONDITION: true
   APPLY_CONDITION_FROM_FILE: false
-  APPLY_FILTER: true
+  ACTIVATE_CONCEPT_GENERATOR: true
   CONCEPT_FUSION: mul
   DEPTH: 3
   EXTERNAL_CONCEPTS_FOLDER: ./datasets/ewiser_concepts_COCO_valid/
@@ -5887,7 +5887,27 @@ DONE (t=3.50s).
 [32m[10/06 10:12:38 d2.evaluation.testing]: [0mcopypaste: AP,AP50,AP75,APs,APm,APl
 [32m[10/06 10:12:38 d2.evaluation.testing]: [0mcopypaste: 30.6466,50.1819,32.2265,18.0391,33.5206,40.2909
 wandb: Waiting for W&B process to finish... (success).
-wandb: - 46.643 MB of 46.643 MB uploaded (0.000 MB deduped)wandb: \ 46.643 MB of 46.643 MB uploaded (0.000 MB deduped)wandb: | 46.643 MB of 46.643 MB uploaded (0.000 MB deduped)wandb: / 46.643 MB of 46.643 MB uploaded (0.000 MB deduped)wandb: - 46.643 MB of 46.644 MB uploaded (0.000 MB deduped)wandb: \ 43.178 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: | 43.178 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: / 43.178 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: - 43.653 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: \ 47.775 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: | 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: / 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: - 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: \ 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: | 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: / 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: - 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: \ 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: | 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)wandb: / 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)wandb:                                                                                
+wandb: - 46.643 MB of 46.643 MB uploaded (0.000 MB deduped)
+wandb: \ 46.643 MB of 46.643 MB uploaded (0.000 MB deduped)
+wandb: | 46.643 MB of 46.643 MB uploaded (0.000 MB deduped)
+wandb: / 46.643 MB of 46.643 MB uploaded (0.000 MB deduped)
+wandb: - 46.643 MB of 46.644 MB uploaded (0.000 MB deduped)
+wandb: \ 43.178 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: | 43.178 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: / 43.178 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: - 43.653 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: \ 47.775 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: | 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: / 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: - 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: \ 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: | 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: / 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: - 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: \ 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: | 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb: / 48.030 MB of 48.030 MB uploaded (0.000 MB deduped)
+wandb:                                                                                
 wandb: 
 wandb: Run history:
 wandb:                   bbox/AP ▁

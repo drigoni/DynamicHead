@@ -96,7 +96,7 @@ DATALOADER:
 CONCEPT:
   CONCEPT_FUSION: "mul" # ["cat", "mul", "add", "zeros"]
   APPLY_CONDITION: TRUE
-  APPLY_FILTER: TRUE
+  ACTIVATE_CONCEPT_GENERATOR: TRUE
   DEPTH: "3"
   UNIQUE: TRUE
 DEEPSETS:
@@ -109,7 +109,7 @@ OUTPUT_DIR: "./results/COCO/dh_concepts_mul/"
 [32m[09/28 10:10:51 detectron2]: [0mRunning with full config:
 CONCEPT:
   APPLY_CONDITION: true
-  APPLY_FILTER: true
+  ACTIVATE_CONCEPT_GENERATOR: true
   CONCEPT_FUSION: mul
   DEPTH: 3
   FILE: ./concept/coco_to_synset.json
@@ -4869,7 +4869,9 @@ AttributeError: 'ConceptMapper' object has no attribute 'apply_condition_from_fi
 
 
 wandb: Waiting for W&B process to finish... (failed 1). Press Control-C to abort syncing.
-wandb: - 1.266 MB of 1.266 MB uploaded (0.000 MB deduped)wandb: \ 1.266 MB of 1.266 MB uploaded (0.000 MB deduped)Traceback (most recent call last):
+wandb: - 1.266 MB of 1.266 MB uploaded (0.000 MB deduped)
+wandb: \ 1.266 MB of 1.266 MB uploaded (0.000 MB deduped)
+Traceback (most recent call last):
   File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/train_net.py", line 334, in <module>
     launch(
   File "/ceph/hpc/home/eudavider/.local/lib/python3.9/site-packages/detectron2/engine/launch.py", line 67, in launch
@@ -4932,7 +4934,8 @@ AttributeError: 'ConceptMapper' object has no attribute 'apply_condition_from_fi
 
 
 srun: error: gn30: task 1: Exited with exit code 1
-wandb: | 1.266 MB of 1.266 MB uploaded (0.000 MB deduped)srun: error: gn22: task 0: Exited with exit code 1
+wandb: | 1.266 MB of 1.266 MB uploaded (0.000 MB deduped)
+srun: error: gn22: task 0: Exited with exit code 1
 
 
 Job done.
