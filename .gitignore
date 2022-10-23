@@ -18,3 +18,5 @@ corpora/*
 .vector_cache/*
 .idea/*
 *.zip
+
+BACKUPS/

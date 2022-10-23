@@ -9,7 +9,7 @@ def add_concept_config(cfg):
     cfg.CONCEPT.APPLY_CONDITION = True
     cfg.CONCEPT.APPLY_CONDITION_FROM_FILE = False
     cfg.CONCEPT.EXTERNAL_CONCEPTS_FOLDER = './datasets/ewiser_concepts_COCO_valid/'
-    cfg.CONCEPT.APPLY_FILTER = True
+    cfg.CONCEPT.ACTIVATE_CONCEPT_GENERATOR = True
     cfg.CONCEPT.FILE = './concept/coco_to_synset.json'
     cfg.CONCEPT.VOCAB = './concept/vocab.json'
     cfg.CONCEPT.DEPTH = 3

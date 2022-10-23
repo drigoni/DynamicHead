@@ -7,7 +7,7 @@ CONCEPT:
   CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
   APPLY_CONDITION: FALSE
   APPLY_CONDITION_FROM_FILE: FALSE
-  APPLY_FILTER: FALSE
+  ACTIVATE_CONCEPT_GENERATOR: FALSE
 DATASETS:
   TRAIN: ("oid_v4_train",)
   TEST: ("oid_v4_val",)

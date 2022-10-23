@@ -99,7 +99,7 @@ class ConceptFinder:
     def sample_categories_and_concepts(categories, coco2synset, type='subset'):
         """
         This function samples categories and concepts.
-        :param categories: the list of all the categories.
+        :param categories: the list of all the categories by ids.
         :param coco2synset: coco2synset mapping
         :param type: type of sampling.
         :return: a unique list of selected categories and a unique list of concepts
@@ -108,6 +108,8 @@ class ConceptFinder:
         selected_concepts = set()
         list_unique_cat = list(set(categories))   # unique list of categories
         if type=='subset':
+            # This function samples some unique categories, then sample a concept for each of them, and then select the categories related with the concepts sampled.
+            # ------ 
             # samples a set of categories. At least one.
             sampled_cat = random.sample(list_unique_cat, random.randint(1, len(list_unique_cat)))
             # select concepts according to sampled categories
@@ -119,15 +121,48 @@ class ConceptFinder:
                 selected_concepts.add(sampled_discendent_concept)
             # slect all categories, according to concepts
             for concept in selected_concepts:
-                for k, v in coco2synset.items():
-                    if concept in v['descendants'] + [v['synset']]:
+                for cat_idx in list_unique_cat:
+                    current_synset = coco2synset[cat_idx]['synset']
+                    descendants = coco2synset[cat_idx]['descendants']
+                    descendants_of_all = coco2synset[cat_idx]['descendant_of_all']
+                    if concept in descendants + [current_synset]:
                         selected_categories.add(k)
-                        # selected_categories.union(set(v['same_as'])) no need for it
-                        selected_categories.union(set(v['descendant_of_all'])) 
-
+                        selected_categories.union(set(descendants_of_all))
+                ## iterate among all the categories are not neccessary
+                # for k, v in coco2synset.items():
+                #     if concept in v['descendants'] + [v['synset']]:
+                #         selected_categories.add(k)
+                #         # selected_categories.union(set(v['same_as'])) no need for it
+                #         selected_categories.union(set(v['descendant_of_all'])) 
+            # filtering categories
+            selected_categories= selected_categories.intersection(set(list_unique_cat))
             return list(selected_categories), list(selected_concepts)
         elif type=='all':
+            # This function samples concepts for each unique category
+            # ------ 
             for cat_idx in list_unique_cat:
+                current_synset = coco2synset[cat_idx]['synset']
+                descendants = coco2synset[cat_idx]['descendants']
+                all_choices = descendants + [current_synset]
+                sampled_discendent_concept = random.choice(all_choices)
+                selected_concepts.add(sampled_discendent_concept)
+            return list_unique_cat, list(selected_concepts)
+        elif type=='subset_old':
+            # This function samples some unique categories, then sample a concept for each annotation belonging to the category sampled
+            # ------ 
+            sampled_cat = random.sample(list_unique_cat, random.randint(1, len(list_unique_cat)))
+            categories_for_annotations = [cat for cat in categories if cat in sampled_cat]
+            for cat_idx in categories_for_annotations:
+                current_synset = coco2synset[cat_idx]['synset']
+                descendants = coco2synset[cat_idx]['descendants']
+                all_choices = descendants + [current_synset]
+                sampled_discendent_concept = random.choice(all_choices)
+                selected_concepts.add(sampled_discendent_concept)
+            return sampled_cat, list(selected_concepts)
+        elif type=='all_old':
+            # This function samples for each annotation a concept.
+            # ------ 
+            for cat_idx in categories:
                 current_synset = coco2synset[cat_idx]['synset']
                 descendants = coco2synset[cat_idx]['descendants']
                 all_choices = descendants + [current_synset]

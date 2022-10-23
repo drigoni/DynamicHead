@@ -12,9 +12,10 @@ python train_net.py --config  ${CONFIG_FILE} \
                     MODEL.WEIGHTS ${MODEL_WEIGHTS}  \
                     DEEPSETS.EMB 'random' \
                     CONCEPT.APPLY_CONDITION True \
-                    CONCEPT.APPLY_FILTER True \
+                    CONCEPT.ACTIVATE_CONCEPT_GENERATOR True \
                     OUTPUT_DIR ${OUTPUT_DIR} \
                     SOLVER.IMS_PER_BATCH 1  \
+                    CONCEPT.DEPTH 2
 
 
 

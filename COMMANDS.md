@@ -32,7 +32,7 @@ srun python train_net.py \
 
 ## Testing
 ```
-python train_net.py --config configs/drigoni_dyhead_swint_catss_fpn_2x_ms_COCO_concepts.yaml --num-gpus 1 --eval-only  MODEL.WEIGHTS ./output_concepts_master_bighead/model_final.pth DEEPSETS.EMB 'random' CONCEPT.APPLY_CONDITION_FROM_FILE False CONCEPT.APPLY_CONDITION True CONCEPT.APPLY_FILTER False
+python train_net.py --config configs/drigoni_dyhead_swint_catss_fpn_2x_ms_COCO_concepts.yaml --num-gpus 1 --eval-only  MODEL.WEIGHTS ./output_concepts_master_bighead/model_final.pth DEEPSETS.EMB 'random' CONCEPT.APPLY_CONDITION_FROM_FILE False CONCEPT.APPLY_CONDITION True CONCEPT.ACTIVATE_CONCEPT_GENERATOR False
 ```
 
 

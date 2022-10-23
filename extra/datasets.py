@@ -68,6 +68,10 @@ _PREDEFINED_CONCEPTS_SPLITS['coco'] = {
                                     "concept_tuning_coco/annotations/tuning_instances_val2017_all.json"),
     "coco_2017_tuning_val_subset": ("coco/train2017",
                                     "concept_tuning_coco/annotations/tuning_instances_val2017_subset.json"),
+    "coco_2017_tuning_val_all_old": ("coco/train2017",
+                                    "concept_tuning_coco/annotations/tuning_instances_val2017_all_old.json"),
+    "coco_2017_tuning_val_subset_old": ("coco/train2017",
+                                    "concept_tuning_coco/annotations/tuning_instances_val2017_subset_old.json"),
 }
 
 

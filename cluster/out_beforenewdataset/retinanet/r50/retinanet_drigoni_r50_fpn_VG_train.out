@@ -1,0 +1,66 @@
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+Date:  sab 22 ott 2022, 02.26.44, CEST
+Directory:  /ceph/hpc/home/eudavider/repository/DynamicHead
+Nodelist:  gn[08,15-17]
+Number of nodes:  4
+Ntasks per node:  1
+NGPUs per node:  4
+CUDA_VISIBLE_DEVICES:  0,1,2,3
+TORCH_DEVICE_COUNT:  4
+SLURM_MASTER_PORT:  19261
+SLURM_MASTER_NODE:  gn08
+SLURM_MASTER_ADDR:  gn08
+SLURM_MASTER_URL:  tcp://gn08:19261
+--------------------------------------------- 
+MODEL_NUM_GPUS:  4
+MODEL_NUM_MACHINES:  4
+MODEL_BATCH_SIZE:  16
+MODEL_MAX_ITER:  90000
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+
+srun: error: WARNING: Multiple leaf switches contain nodes: gn[01-60]
+Traceback (most recent call last):
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/train_net.py", line 29, in <module>
+    from extra import COCOEvaluator as COCOEvaluator_GTFilter
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/extra/__init__.py", line 7, in <module>
+    from .concept.concept_finder import ConceptFinder
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/extra/concept/concept_finder.py", line 117
+    if concept in v['descendants']
+                                  ^
+SyntaxError: invalid syntax
+Traceback (most recent call last):
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/train_net.py", line 29, in <module>
+Traceback (most recent call last):
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/train_net.py", line 29, in <module>
+    from extra import COCOEvaluator as COCOEvaluator_GTFilter
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/extra/__init__.py", line 7, in <module>
+    from extra import COCOEvaluator as COCOEvaluator_GTFilter
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/extra/__init__.py", line 7, in <module>
+    from .concept.concept_finder import ConceptFinder
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/extra/concept/concept_finder.py", line 117
+    if concept in v['descendants']
+                                  ^
+    from .concept.concept_finder import ConceptFinder
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/extra/concept/concept_finder.py", line 117
+    if concept in v['descendants']
+                                  ^
+SyntaxError: invalid syntax
+SyntaxError: invalid syntax
+Traceback (most recent call last):
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/train_net.py", line 29, in <module>
+    from extra import COCOEvaluator as COCOEvaluator_GTFilter
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/extra/__init__.py", line 7, in <module>
+    from .concept.concept_finder import ConceptFinder
+  File "/ceph/hpc/scratch/user/eudavider/repository/DynamicHead/extra/concept/concept_finder.py", line 117
+    if concept in v['descendants']
+                                  ^
+SyntaxError: invalid syntax
+srun: error: gn08: task 0: Exited with exit code 1
+srun: error: gn16: task 2: Exited with exit code 1
+srun: error: gn15: task 1: Exited with exit code 1
+srun: error: gn17: task 3: Exited with exit code 1
+
+
+Job done.
+Date:  sab 22 ott 2022, 02.27.56, CEST

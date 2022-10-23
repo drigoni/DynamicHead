@@ -77,7 +77,7 @@ class ConceptMapper:
             apply_condition: bool = True,
             apply_condition_from_file: bool = False,
             external_concepts_folder: str = "./datasets/ewiser_concepts_COCO_valid/",
-            apply_filter: bool = True,
+            activate_concept_generator: bool = True,
             meta_architecture = "ATSS",
     ):
         """
@@ -114,7 +114,7 @@ class ConceptMapper:
         self.apply_condition = apply_condition
         self.apply_condition_from_file = apply_condition_from_file
         self.external_concepts_folder = external_concepts_folder
-        self.apply_filter = apply_filter
+        self.activate_concept_generator = activate_concept_generator
         self.meta_architecture = meta_architecture
         # List with all accepted concepts
         all_accepted_concepts = [val_dict['synset'] for k, val_dict in self.coco2synset.items()]
@@ -151,7 +151,7 @@ class ConceptMapper:
             "apply_condition": cfg.CONCEPT.APPLY_CONDITION,
             "apply_condition_from_file": cfg.CONCEPT.APPLY_CONDITION_FROM_FILE,
             "external_concepts_folder": cfg.CONCEPT.EXTERNAL_CONCEPTS_FOLDER,
-            "apply_filter": cfg.CONCEPT.APPLY_FILTER,
+            "activate_concept_generator": cfg.CONCEPT.ACTIVATE_CONCEPT_GENERATOR,
             "meta_architecture": cfg.MODEL.META_ARCHITECTURE,
         }
 
@@ -223,7 +223,7 @@ class ConceptMapper:
                     # print("self.dataset", self.dataset_name) -> self.dataset (('coco_2017_tuning_train',),)
                     metaMapping = MetadataCatalog.get(self.dataset_name[0][0]).thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
                     metaMapping_reverse = {val: key for key, val in metaMapping.items()}
-                    if self.apply_filter:
+                    if self.activate_concept_generator:
                         # NOTE: here we generate concepts and ground truths
                         # standard object detector behaviour or conditioned one
                         list_categories = [metaMapping_reverse[ann['category_id']] for ann in annos]
