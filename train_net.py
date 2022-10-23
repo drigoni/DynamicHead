@@ -74,14 +74,12 @@ class Trainer(DefaultTrainer):
         cfg = DefaultTrainer.auto_scale_workers(cfg, comm.get_world_size())
 
         # NOTE: drigoni: add concepts to classes
-        concept_finder = ConceptFinder(cfg.CONCEPT.FILE)
-        self.coco2synset = concept_finder.extend_descendants(depth=cfg.CONCEPT.DEPTH,
-                                                             unique=cfg.CONCEPT.UNIQUE,
-                                                             only_name=cfg.CONCEPT.ONLY_NAME)
+        concept_finder = ConceptFinder(cfg.CONCEPT.FILE, depth=cfg.CONCEPT.DEPTH, unique=cfg.CONCEPT.UNIQUE, only_name=cfg.CONCEPT.ONLY_NAME)
+        coco2synset = concept_finder.coco2synset
 
         model = self.build_model(cfg)
         optimizer = self.build_optimizer(cfg, model)
-        data_loader = self.build_train_loader(cfg, self.coco2synset)
+        data_loader = self.build_train_loader(cfg, coco2synset)
         # Build DDP Model with find_unused_parameters to add flexibility.
         if comm.get_world_size() > 1:
             model = DistributedDataParallel(
@@ -178,10 +176,8 @@ class Trainer(DefaultTrainer):
         Returns:
             dict: a dict of result metrics
         """
-        concept_finder = ConceptFinder(cfg.CONCEPT.FILE)
-        coco2synset = concept_finder.extend_descendants(depth=cfg.CONCEPT.DEPTH,
-                                                        unique=cfg.CONCEPT.UNIQUE,
-                                                        only_name=cfg.CONCEPT.ONLY_NAME)
+        concept_finder = ConceptFinder(cfg.CONCEPT.FILE, depth=cfg.CONCEPT.DEPTH, unique=cfg.CONCEPT.UNIQUE, only_name=cfg.CONCEPT.ONLY_NAME)
+        coco2synset = concept_finder.coco2synset
 
         logger = logging.getLogger(__name__)
         if isinstance(evaluators, DatasetEvaluator):

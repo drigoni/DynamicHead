@@ -1,0 +1,12 @@
+_BASE_: "../base_frcnn_COCO_concepts.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  ROI_BOX_HEAD:
+    FC_DIM: 2048 # standard=1024
+    NUM_FC: 4 # standard=2
+CONCEPT:
+  CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
+OUTPUT_DIR: "./results/COCO/frcnn/frcnn_r50_fpn_COCO_concepts_cat_numfc4/"

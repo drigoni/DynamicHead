@@ -14,7 +14,7 @@
 #SBATCH --gpus-per-node=1                           # number of gpus per node
 ### SBATCH --exclusive                                 # for exclusive access
 
-#SBATCH --array=0-2
+#SBATCH --array=0-1
 #---- MORE COMMANDS
 #----#SBATCH --mail-type=begin                           # send email when job begins
 #--- #SBATCH --mail-type=end                             # send email when job ends
@@ -66,7 +66,7 @@ echo ''
 
 # model config
 CONFIG_FILE=./configs/VG/retinanet/r50/retinanet_drigoni_r50_fpn_VG_test.yaml
-DATSETS=('("vg_Val",)' '("vg_val_subset",)' '("vg_val_powerset",)')
+DATSETS=('("vg_val",)' '("vg_val_subset",)')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \

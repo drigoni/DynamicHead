@@ -3,69 +3,179 @@ import contextlib
 import io
 import logging
 from detectron2.data import DatasetCatalog, MetadataCatalog
-from detectron2.data.datasets.coco import load_coco_json, register_coco_instances
+from detectron2.data.datasets.coco import load_coco_json
 from detectron2.data.datasets.builtin_meta import _get_coco_instances_meta
+from fvcore.common.timer import Timer
+from detectron2.structures import Boxes, BoxMode, PolygonMasks, RotatedBoxes
+from detectron2.utils.file_io import PathManager
+
+logger = logging.getLogger(__name__)
 
 # ==== Predefined splits for the new splits of data regarding concepts ===========
+# _PREDEFINED_CONCEPTS_SPLITS = {}
+# _PREDEFINED_CONCEPTS_SPLITS['coco'] = {
+#     "coco_2017_val_subset": ("coco/val2017",
+#                             "concept_coco/annotations/instances_val2017_subset.json"),
+#     "coco_2017_val_powerset": ("coco/val2017",
+#                                 "concept_coco/annotations/instances_val2017_powerset.json"),
+#     "coco_2017_tuning_train": ("coco/train2017",
+#                                 "tuning_coco/annotations/tuning_instances_train2017.json"),
+#     "coco_2017_tuning_val": ("coco/train2017",
+#                                 "tuning_coco/annotations/tuning_instances_val2017.json"),
+#     "coco_2017_tuning_val_subset": ("coco/train2017",
+#                                     "concept_coco/annotations/tuning_instances_val2017_subset.json"),
+#     "coco_2017_tuning_val_powerset": ("coco/train2017",
+#                                         "concept_coco/annotations/tuning_instances_val2017_powerset.json"),
+#     "coco_2017_tuning_val_subset_v2": ("coco/train2017",
+#                                     "concept_coco_new/annotations/tuning_instances_val2017_subset.json"),
+# }
+
+# _PREDEFINED_CONCEPTS_SPLITS['vg'] = {
+#     "vg_train": ("visual_genome/images",
+#                 "visual_genome/annotations/visual_genome_train.json"),
+#     "vg_val": ("visual_genome/images",
+#                 "visual_genome/annotations/visual_genome_val.json"),
+#     "vg_test": ("visual_genome/images",
+#                 "visual_genome/annotations/visual_genome_test.json"),
+#     "vg_val_subset": ("visual_genome/images",
+#                         "concept_visual_genome/annotations/visual_genome_val_subset.json"),
+#     "vg_test_subset": ("visual_genome/images",
+#                         "concept_visual_genome/annotations/visual_genome_test_subset.json"),
+# }
+
+# _PREDEFINED_CONCEPTS_SPLITS['oid'] = {
+#     "oid_v4_train": ("OpenImagesDataset/train/",
+#                     "OpenImagesDataset/annotations/openimages_v4_train_bbox.json"),
+#     "oid_v4_val": ("OpenImagesDataset/val/",
+#                     "OpenImagesDataset/annotations/openimages_v4_val_bbox.json"),
+#     "oid_v4_test": ("OpenImagesDataset/test/",
+#                     "OpenImagesDataset/annotations/openimages_v4_test_bbox.json"),
+#     "oid_v4_val_subset": ("OpenImagesDataset/val/",
+#                             "concept_OpenImagesDataset/annotations/openimages_v4_val_bbox_subset.json"),
+#     "oid_v4_val_powerset": ("OpenImagesDataset/val/",
+#                             "concept_OpenImagesDataset/annotations/openimages_v4_val_bbox_powerset.json"),
+#     "oid_v4_tes_subset": ("OpenImagesDataset/test/",
+#                             "concept_OpenImagesDataset/annotations/openimages_v4_test_bbox_subset.json"),
+# }
+
 _PREDEFINED_CONCEPTS_SPLITS = {}
 _PREDEFINED_CONCEPTS_SPLITS['coco'] = {
-    "coco_2017_val_subset": ("coco/val2017",
-                            "concept_coco/annotations/instances_val2017_subset.json"),
-    "coco_2017_val_powerset": ("coco/val2017",
-                                "concept_coco/annotations/instances_val2017_powerset.json"),
     "coco_2017_tuning_train": ("coco/train2017",
                                 "tuning_coco/annotations/tuning_instances_train2017.json"),
     "coco_2017_tuning_val": ("coco/train2017",
                                 "tuning_coco/annotations/tuning_instances_val2017.json"),
+    "coco_2017_tuning_val_all": ("coco/train2017",
+                                    "concept_tuning_coco/annotations/tuning_instances_val2017_all.json"),
     "coco_2017_tuning_val_subset": ("coco/train2017",
-                                    "concept_coco/annotations/tuning_instances_val2017_subset.json"),
-    "coco_2017_tuning_val_powerset": ("coco/train2017",
-                                        "concept_coco/annotations/tuning_instances_val2017_powerset.json"),
-}
-
-_PREDEFINED_CONCEPTS_SPLITS['vg'] = {
-    "vg_train": ("visual_genome/images",
-                "visual_genome/annotations/visual_genome_train.json"),
-    "vg_val": ("visual_genome/images",
-                "visual_genome/annotations/visual_genome_val.json"),
-    "vg_test": ("visual_genome/images",
-                "visual_genome/annotations/visual_genome_test.json"),
-    "vg_val_subset": ("visual_genome/images",
-                        "concept_visual_genome/annotations/visual_genome_val_subset.json"),
-    "vg_test_subset": ("visual_genome/images",
-                        "concept_visual_genome/annotations/visual_genome_test_subset.json"),
-}
-
-_PREDEFINED_CONCEPTS_SPLITS['oid'] = {
-    "oid_v4_train": ("OpenImagesDataset/train/",
-                    "OpenImagesDataset/annotations/openimages_v4_train_bbox.json"),
-    "oid_v4_val": ("OpenImagesDataset/val/",
-                    "OpenImagesDataset/annotations/openimages_v4_val_bbox.json"),
-    "oid_v4_test": ("OpenImagesDataset/test/",
-                    "OpenImagesDataset/annotations/openimages_v4_test_bbox.json"),
-    "oid_v4_val_subset": ("OpenImagesDataset/val/",
-                            "concept_OpenImagesDataset/annotations/openimages_v4_val_bbox_subset.json"),
-    "oid_v4_val_powerset": ("OpenImagesDataset/val/",
-                            "concept_OpenImagesDataset/annotations/openimages_v4_val_bbox_powerset.json"),
-    "oid_v4_tes_subset": ("OpenImagesDataset/test/",
-                            "concept_OpenImagesDataset/annotations/openimages_v4_test_bbox_subset.json"),
+                                    "concept_tuning_coco/annotations/tuning_instances_val2017_subset.json"),
 }
 
 
-# def _get_coco_instances_meta():
-#     thing_ids = [k["id"] for k in COCO_CATEGORIES if k["isthing"] == 1]
-#     thing_colors = [k["color"] for k in COCO_CATEGORIES if k["isthing"] == 1]
-#     assert len(thing_ids) == 80, len(thing_ids)
-#     # Mapping from the incontiguous COCO category id to an id in [0, 79]
-#     thing_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(thing_ids)}
-#     thing_classes = [k["name"] for k in COCO_CATEGORIES if k["isthing"] == 1]
-#     ret = {
-#         "thing_dataset_id_to_contiguous_id": thing_dataset_id_to_contiguous_id,
-#         "thing_classes": thing_classes,
-#         "thing_colors": thing_colors,
-#     }
-#     return ret
+def load_coco_with_concepts_json(json_file,
+                                   image_root,
+                                   dataset_name=None,
+                                   extra_annotation_keys=None):
+    """
+    Extend load_coco_json() with additional support for concepts
+    """
+    from pycocotools.coco import COCO
 
+    timer = Timer()
+    json_file = PathManager.get_local_path(json_file)
+    with contextlib.redirect_stdout(io.StringIO()):
+        coco_api = COCO(json_file)
+    if timer.seconds() > 1:
+        logger.info("Loading {} takes {:.2f} seconds.".format(json_file, timer.seconds()))
+
+    id_map = None
+    if dataset_name is not None:
+        meta = MetadataCatalog.get(dataset_name)
+        cat_ids = sorted(coco_api.getCatIds())
+        cats = coco_api.loadCats(cat_ids)
+        thing_classes = [c["name"] for c in sorted(cats, key=lambda x: x["id"])]
+        meta.thing_classes = thing_classes
+        if not (min(cat_ids) == 1 and max(cat_ids) == len(cat_ids)):
+            if "coco" not in dataset_name:
+                logger.warning(
+                    """
+                    Category ids in annotations are not in [1, #categories]! We'll apply a mapping for you.
+                    """
+                )
+        id_map = {v: i for i, v in enumerate(cat_ids)}
+        meta.thing_dataset_id_to_contiguous_id = id_map
+
+    img_ids = sorted(coco_api.imgs.keys())
+    imgs = coco_api.loadImgs(img_ids)
+    anns = [coco_api.imgToAnns[img_id] for img_id in img_ids]
+
+    if "minival" not in json_file:
+        ann_ids = [ann["id"] for anns_per_image in anns for ann in anns_per_image]
+        assert len(set(ann_ids)) == len(ann_ids), "Annotation ids in '{}' are not unique!".format(
+            json_file
+        )
+
+    imgs_anns = list(zip(imgs, anns))
+    logger.info("Loaded {} images in COCO format from {}".format(len(imgs_anns), json_file))
+    dataset_dicts = []
+    ann_keys = ["iscrowd", "bbox", "keypoints", "category_id"] + (extra_annotation_keys or [])
+    num_instances_without_valid_segmentation = 0
+
+    for (img_dict, anno_dict_list) in imgs_anns:
+        record = {}
+        record["file_name"] = os.path.join(image_root, img_dict["file_name"])
+        record["height"] = img_dict["height"]
+        record["width"] = img_dict["width"]
+        # get concepts
+        record["concepts"] = img_dict["concepts"]
+        # concepts = anno.get("concepts", None)
+        #     if concepts:  # list[int]
+        #         obj["concepts"] = concepts
+        image_id = record["image_id"] = img_dict["id"]
+
+        objs = []
+        for anno in anno_dict_list:
+            assert anno["image_id"] == image_id
+
+            assert anno.get("ignore", 0) == 0, '"ignore" in COCO json file is not supported.'
+
+            obj = {key: anno[key] for key in ann_keys if key in anno}
+
+            segm = anno.get("segmentation", None)
+            if segm:
+                if not isinstance(segm, dict):
+                    segm = [poly for poly in segm if len(poly) % 2 == 0 and len(poly) >= 6]
+                    if len(segm) == 0:
+                        num_instances_without_valid_segmentation += 1
+                        continue
+                obj["segmentation"] = segm
+
+            keypts = anno.get("keypoints", None)
+            if keypts:
+                for idx, v in enumerate(keypts):
+                    if idx % 3 != 2:
+                        keypts[idx] = v + 0.5
+                obj["keypoints"] = keypts
+
+            obj["bbox_mode"] = BoxMode.XYWH_ABS
+            if id_map:
+                obj["category_id"] = id_map[obj["category_id"]]
+            objs.append(obj)
+        record["annotations"] = objs
+        dataset_dicts.append(record)
+
+    if num_instances_without_valid_segmentation > 0:
+        logger.warning(
+            "Filtered out {} instances without valid segmentation. "
+            "There might be issues in your dataset generation process.".format(
+                num_instances_without_valid_segmentation
+            )
+        )
+    return dataset_dicts
+
+
+# ==========================================================
+# DATASET REGISTRATIONS
+# ==========================================================
 def _get_vg_instances_meta():
     # This is for compatibility with COCO
     thing_dataset_id_to_contiguous_id = {i: i for i in range(0, 1600)} # VG annotations start from 0, not 1 as in COCO, and are in [0, 1599]. Background class is not included
@@ -113,7 +223,11 @@ def register_coco_instances(name, metadata, json_file, image_root):
     assert isinstance(json_file, (str, os.PathLike)), json_file
     assert isinstance(image_root, (str, os.PathLike)), image_root
     # 1. register a function which returns dicts
-    DatasetCatalog.register(name, lambda: load_coco_json(json_file, image_root, name))
+    if 'subset' in name or 'all' in name:
+        loader_function = load_coco_with_concepts_json
+    else:
+        loader_function = load_coco_json
+    DatasetCatalog.register(name, lambda: loader_function(json_file, image_root, name))
 
     # 2. Optionally, add metadata about this dataset,
     # since they might be useful in evaluation, visualization or logging
@@ -138,6 +252,12 @@ _root = os.getenv("DETECTRON2_DATASETS", "datasets")
 register_all_datasets(_root)
 
 
+
+
+
+# ==========================================================
+# UTILITIES
+# ==========================================================
 def flatten_json(json):
     if type(json) == dict:
         for k, v in list(json.items()):

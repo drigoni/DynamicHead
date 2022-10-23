@@ -38,6 +38,7 @@ from detectron2.structures import (
     polygons_to_bitmask,
 )
 from .parser_EWISER import extract_COCO_concepts
+from .concept_finder import ConceptFinder
 
 logger = logging.getLogger(__name__)
 
@@ -183,77 +184,8 @@ class ConceptMapper:
         ]
 
         if self.meta_architecture in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]:
-            # NOTE drigoni: here we should make the new input for the concept branch
-            # print("Annotations : ", annos)
-            # [ ... {'iscrowd': 0, 'bbox': array([512.43009375, 478.76096875, 578.3961875 , 508.25215625]), 'category_id': 2, 'bbox_mode': <BoxMode.XYXY_ABS: 0>}]
-            # make concepts
-            # NOTE drigoni: This function decides to apply the condition and to generate concepts.
-            # NOTE It apply the condition only if self.apply_condition=True
-            # NOTE It apply the filtering of the annotations only if self.apply_filter=True and self.apply_condition=True
-            # NOTE It can condition from files if self.apply_condition_from_file=True
             if self.apply_condition:
-                # use concepts
-                if not self.apply_condition_from_file:
-                    # generate concepts from training file
-                    # NOTE: the categories ids in the annotations is not the same of the COCO datasets.
-                    # In COCO datasets there are 90 idx but only 80 are used. These ids are not contiguous, so the model
-                    # defines 80 contiguous indexes.
-                    # print("self.dataset", self.dataset_name) # self.dataset (('coco_2017_tuning_train',),)
-                    metaMapping = MetadataCatalog.get(self.dataset_name[0][0]).thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
-                    # metaMapping = MetadataCatalog.get("coco_2017_train").thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
-                    metaMapping = {val: key for key, val in metaMapping.items()}
-                    empty = False # from default, we find concepts for each class. Only in the case of standard object detector, we use empty emtity
-                    if self.apply_filter:
-                        # here we select the unique list of categories in the filtered annotations
-                        unique_cat = list(set({metaMapping[ann['category_id']] for ann in annos}))
-                        # sample some concepts and clean annotations
-                        random_int = random.randint(0, len(unique_cat))
-                        if random_int > 0: # this means that we select some of the annotations
-                            selected_cat = random.sample(unique_cat, random_int)  # at least one element
-                            tmp_annos_filtered = [ann for ann in annos if metaMapping[ann['category_id']] in selected_cat]
-                            # find all concepts associated with the all the annotations
-                            concepts = []
-                            for annotation in tmp_annos_filtered:
-                                cat_idx = metaMapping[annotation['category_id']]
-                                descendants = self.coco2synset[cat_idx]['descendants']
-                                if len(descendants) > 0:
-                                    concept = random.choice(descendants)
-                                else:
-                                    concept = self.coco2synset[cat_idx]['synset']
-                                concepts.append(concept)
-                            annos_filtered = tmp_annos_filtered
-                            # TODO: build concepts with backtrack
-                            # NOTE: now we need to include also the annotations whose classes are father of the selected concepts.
-                            # Example: we select the "animal" class and not "cat", then we select che concept descendent cat.n.01. Then we need to include also "cat" annotations. 
-                            # annos_filtered = []
-                            # for annotation in annos:
-                            #     cat_idx = metaMapping[annotation['category_id']]
-                            #     descendants = self.coco2synset[cat_idx]['descendants']
-                            #     boolean_values = [True if i in concepts else False for i in descendants] 
-                            #     if any(boolean_values):
-                            #         annos_filtered.append(annotation)
-                            # if len(annos_filtered) != len(tmp_annos_filtered):
-                            #     print("len)annos)", len(annos), "len(tmp_annos_filtered)", len(tmp_annos_filtered), "len(annos_filtered)", len(annos_filtered), "concepts", concepts )
-                            #     exit(1)
-                        else:
-                            # we keep all the annotations and we use the standard object detector behaviour
-                            empty = True 
-                            annos_filtered = annos
-                            concepts = ['entity.n.01']
-                    else:
-                        # we use all the annotations concepts because the validation set is already cleaned. See make_concept_dataset.py
-                        annos_filtered = annos
-                        # find all concepts associated with the all the annotations
-                        concepts = []
-                        for annotation in annos_filtered:
-                            cat_idx = metaMapping[annotation['category_id']]
-                            descendants = self.coco2synset[cat_idx]['descendants']
-                            if len(descendants) > 0:
-                                concept = random.choice(descendants)
-                            else:
-                                concept = self.coco2synset[cat_idx]['synset']
-                            concepts.append(concept)
-                else:
+                if self.apply_condition_from_file:
                     # get input concepts from external file and keep original annotations
                     image_path = dataset_dict["file_name"]
                     image_name = image_path.split('/')[-1][:-4]
@@ -282,15 +214,40 @@ class ConceptMapper:
                     concepts = list(set(concepts))
                     if len(concepts) == 0:
                         concepts = ['entity.n.01']
-                    annos_filtered = annos
+                    # do not change annotations
+                    # annos = annos
+                    dataset_dict["concepts"] = concepts
+                else:
+                    # NOTE: the categories ids in the annotations is not the same of the COCO datasets.
+                    # In COCO datasets there are 90 idx but only 80 are used. These ids are not contiguous, so the model defines 80 contiguous indexes.
+                    # print("self.dataset", self.dataset_name) -> self.dataset (('coco_2017_tuning_train',),)
+                    metaMapping = MetadataCatalog.get(self.dataset_name[0][0]).thing_dataset_id_to_contiguous_id  # from origin ids to contiguos one
+                    metaMapping_reverse = {val: key for key, val in metaMapping.items()}
+                    if self.apply_filter:
+                        # NOTE: here we generate concepts and ground truths
+                        # standard object detector behaviour or conditioned one
+                        list_categories = [metaMapping_reverse[ann['category_id']] for ann in annos]
+                        is_conditioned = random.randint(0, len(set(list_categories))) > 0     # proportional to number of concepts
+                        if is_conditioned: # this means that we select some of the annotations
+                            selected_categories, concepts = ConceptFinder.sample_categories_and_concepts(list_categories, self.coco2synset, type='subset')
+                            annos_filtered = [ann for ann in annos if metaMapping_reverse[ann['category_id']] in selected_categories]
+                        else:
+                            # we keep all the annotations and we use the standard object detector behaviour
+                            annos_filtered = annos 
+                            concepts = ['entity.n.01']
+                    else:
+                        # we use all the annotations concepts because the validation set is already cleaned. See make_concept_dataset.py
+                        assert 'concepts' in dataset_dict, "Wrong dataset, concept not incldued!"
+                        concepts = [c for c in dataset_dict.pop("concepts")]
+                        annos_filtered = annos
+                    annos = annos_filtered
+                    dataset_dict["concepts"] = concepts
             else:
-                annos_filtered = annos
-                concepts = ['entity.n.01']
-
-            annos = annos_filtered
-            dataset_dict["concepts"] = concepts
+                # do not change annotations
+                # annos = annos
+                dataset_dict["concepts"] = ['entity.n.01']
         elif self.meta_architecture in ["ATSS", "GeneralizedRCNN", "drigoniGeneralizedRCNN", "RetinaNet", "drigoniRetinaNet"]:
-            # the standard object detector is used
+            # standard object detector behaviour without concepts.
             pass
         else:
             logger.error("Error. MODEL.META_ARCHITECTURE={} not valid. ".format(self.meta_architecture))

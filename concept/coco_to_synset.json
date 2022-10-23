@@ -62,7 +62,7 @@
     "stop sign": {
         "coco_cat_id": 13,
         "meaning": "a visual signal to control the flow of traffic at intersections",
-        "synset": "traffic_signal.n.01"
+        "synset": "traffic_light.n.01"
     },
     "wine glass": {
         "coco_cat_id": 46,

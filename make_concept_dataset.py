@@ -36,8 +36,8 @@ class MakeConceptDataset:
         self.subset = args.subset
 
         # load concepts
-        concept_finder = ConceptFinder(args.coco2concepts)
-        self.concepts = concept_finder.extend_descendants(args.level, args.unique)
+        self.concept_finder = ConceptFinder(args.coco2concepts, args.level, args.unique)
+        self.concepts = self.concept_finder.coco2synset
 
     def generate_output_file_name(self):
         prefix = self.coco_dataset.split('/')[-1].split(".")[0]

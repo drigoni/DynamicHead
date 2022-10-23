@@ -54,7 +54,7 @@ fi
 #                                 --level 2 --unique True --subset True --dataset_name concept_OpenImagesDataset
 #                                 --coco2concepts ./concept/oid_to_synset.json 
 # python make_concept_dataset.py  --coco_dataset ./datasets/coco/annotations/instances_val2017.json \
-#                                  --level 3 --unique True --subset True
+#                                  --level 2 --unique True --subset True
 #
 #
 

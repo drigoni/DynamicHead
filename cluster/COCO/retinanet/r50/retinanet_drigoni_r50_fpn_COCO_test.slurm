@@ -7,14 +7,14 @@
 #SBATCH --output=cluster/out/retinanet/r50/retinanet_drigoni_r50_fpn_COCO_test_dataset-%a.out
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
-#SBATCH --time=0-12:00:00                           # total run time limit (DD-HH:MM:SS)
+#SBATCH --time=0-1:00:00                           # total run time limit (DD-HH:MM:SS)
 #SBATCH --nodes=1                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
 #SBATCH --cpus-per-task=64		                    # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --gpus-per-node=1                           # number of gpus per node
 ### SBATCH --exclusive                                 # for exclusive access
 
-#SBATCH --array=0-2
+#SBATCH --array=0-3
 #---- MORE COMMANDS
 #----#SBATCH --mail-type=begin                           # send email when job begins
 #--- #SBATCH --mail-type=end                             # send email when job ends
@@ -66,7 +66,10 @@ echo ''
 
 # model config
 CONFIG_FILE=./configs/COCO/retinanet/r50/retinanet_drigoni_r50_fpn_COCO_test.yaml
-DATSETS=('("coco_2017_tuning_val",)' '("coco_2017_tuning_val_subset",)' '("coco_2017_tuning_val_powerset",)')
+DATSETS=('("coco_2017_tuning_val",)' '("coco_2017_tuning_val",)'  \
+         '("coco_2017_tuning_val_subset",)' '("coco_2017_tuning_val_subset",)')
+EVALUATOR_TYPE=('default' 'GTFilter'\
+                'default' 'GTFilter')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \
@@ -75,7 +78,8 @@ srun python train_net.py \
                     --eval-only \
                     SOLVER.IMS_PER_BATCH ${BATCH_SIZE} \
                     SOLVER.MAX_ITER ${MAX_ITER} \
-                    DATASETS.TEST ${DATSETS[$SLURM_ARRAY_TASK_ID]}
+                    DATASETS.TEST ${DATSETS[$SLURM_ARRAY_TASK_ID]} \
+                    EVALUATOR_TYPE ${EVALUATOR_TYPE[$SLURM_ARRAY_TASK_ID]} \
 
 
 

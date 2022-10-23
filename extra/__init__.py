@@ -4,7 +4,7 @@ from .concept.concept_config import add_concept_config
 
 # utils concepts
 from .concept.concept_mapper import ConceptMapper
-from .concept.concept_finder import ConceptFinder, ConceptFinderSynonym
+from .concept.concept_finder import ConceptFinder
 from .concept.concept_net import ConceptNet
 from .concept.parser_EWISER import extract_COCO_concepts
 
