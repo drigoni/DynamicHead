@@ -74,6 +74,40 @@ _PREDEFINED_CONCEPTS_SPLITS['coco'] = {
                                     "concept_tuning_coco/annotations/tuning_instances_val2017_subset_old.json"),
 }
 
+_PREDEFINED_CONCEPTS_SPLITS['vg'] = {
+    "vg_train": ("visual_genome/images",
+                "visual_genome/annotations/visual_genome_train.json"),
+    "vg_val": ("visual_genome/images",
+                "visual_genome/annotations/visual_genome_val.json"),
+    "vg_test": ("visual_genome/images",
+                "visual_genome/annotations/visual_genome_test.json"),
+    "vg_val_subset": ("visual_genome/images",
+                        "concept_visual_genome/annotations/visual_genome_val_subset.json"),
+    "vg_val_all": ("visual_genome/images",
+                        "concept_visual_genome/annotations/visual_genome_val_all.json"),
+    "vg_test_subset": ("visual_genome/images",
+                        "concept_visual_genome/annotations/visual_genome_test_subset.json"),
+    "vg_test_all": ("visual_genome/images",
+                        "concept_visual_genome/annotations/visual_genome_test_all.json"),
+}
+
+_PREDEFINED_CONCEPTS_SPLITS['oid'] = {
+    "oid_v4_train": ("OpenImagesDataset/train/",
+                    "OpenImagesDataset/annotations/openimages_v4_train_bbox.json"),
+    "oid_v4_val": ("OpenImagesDataset/val/",
+                    "OpenImagesDataset/annotations/openimages_v4_val_bbox.json"),
+    "oid_v4_test": ("OpenImagesDataset/test/",
+                    "OpenImagesDataset/annotations/openimages_v4_test_bbox.json"),
+    "oid_v4_val_subset": ("OpenImagesDataset/val/",
+                            "concept_OpenImagesDataset/annotations/openimages_v4_val_bbox_subset.json"),
+    "oid_v4_val_all": ("OpenImagesDataset/val/",
+                            "concept_OpenImagesDataset/annotations/openimages_v4_val_bbox_all.json"),
+    "oid_v4_tes_subset": ("OpenImagesDataset/test/",
+                            "concept_OpenImagesDataset/annotations/openimages_v4_test_bbox_subset.json"),
+    "oid_v4_tes_all": ("OpenImagesDataset/test/",
+                            "concept_OpenImagesDataset/annotations/openimages_v4_test_bbox_all.json"),
+}
+
 
 def load_coco_with_concepts_json(json_file,
                                    image_root,

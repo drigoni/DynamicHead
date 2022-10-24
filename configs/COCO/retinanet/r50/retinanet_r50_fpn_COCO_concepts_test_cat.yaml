@@ -11,7 +11,7 @@ CONCEPT:
   ACTIVATE_CONCEPT_GENERATOR: FALSE
 DATASETS:
   TRAIN: ("coco_2017_tuning_train",)
-  TEST: ("coco_2017_tuning_val",)
+  TEST: ("coco_2017_tuning_val_all",)
 DEEPSETS:
   EMB: "random"
 OUTPUT_DIR: "./results/COCO/retinanet/retinanet_r50_fpn_COCO_concepts_cat/"

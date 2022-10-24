@@ -126,7 +126,7 @@ class ConceptFinder:
                     descendants = coco2synset[cat_idx]['descendants']
                     descendants_of_all = coco2synset[cat_idx]['descendant_of_all']
                     if concept in descendants + [current_synset]:
-                        selected_categories.add(k)
+                        selected_categories.add(cat_idx)
                         selected_categories.union(set(descendants_of_all))
                 ## iterate among all the categories are not neccessary
                 # for k, v in coco2synset.items():

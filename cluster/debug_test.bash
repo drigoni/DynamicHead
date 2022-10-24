@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG_FILE=./configs/COCO/retinanet/r50/retinanet_r50_fpn_COCO_concepts_test_all_cat.yaml
+CONFIG_FILE=./configs/COCO/retinanet/r50/retinanet_r50_fpn_COCO_concepts_test_cat.yaml
 OUTPUT_DIR="./results/debug/"
 
 python train_net.py --config  ${CONFIG_FILE} \

@@ -6,6 +6,8 @@ MODEL:
   RESNETS:
     DEPTH: 50
     OUT_FEATURES: ["res3", "res4", "res5"]
+  FPN:
+    IN_FEATURES: ["res3", "res4", "res5"]
   ATSS:
     NUM_CONVS: 2
 DATASETS:

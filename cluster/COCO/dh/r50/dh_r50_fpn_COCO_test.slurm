@@ -10,7 +10,7 @@
 #SBATCH --time=0-12:00:00                           # total run time limit (DD-HH:MM:SS)
 #SBATCH --nodes=1                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
-#SBATCH --cpus-per-task=64		                    # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --cpus-per-task=32		                    # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --gpus-per-node=1                           # number of gpus per node
 ### SBATCH --exclusive                                 # for exclusive access
 

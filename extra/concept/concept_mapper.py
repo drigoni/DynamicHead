@@ -191,15 +191,14 @@ class ConceptMapper:
                     image_name = image_path.split('/')[-1][:-4]
                     concepts_path = "{}{}.json".format(self.external_concepts_folder, image_name)
                     concepts_uncleaned, sentences = extract_COCO_concepts(concepts_path)
-                    # # NOTE: filtering concepts
+                    # # NOTE: filtering concepts to consider just those seen in training
                     # concepts = []
                     # for conc in concepts_uncleaned:
                     #     if conc in self.all_accepted_concepts:
                     #         concepts.append(conc)
-                    # NOTE: remove synonyms and filtering concepts
                     concepts = []
                     concepts_to_avoid = ['traffic_signal.n.01']
-                    # this loop search for each external concept the closest synset in the classes vocabolary.
+                    # this loop search for each external concept the closest synset to those of the categories.
                     # It does not uses directly the external concept.
                     for conc in concepts_uncleaned:
                         for cat_label in self.coco2synset.keys():
@@ -236,7 +235,7 @@ class ConceptMapper:
                             annos_filtered = annos 
                             concepts = ['entity.n.01']
                     else:
-                        # we use all the annotations concepts because the validation set is already cleaned. See make_concept_dataset.py
+                        # NOTE: the dataset need to include the 'concepts' keyword.
                         assert 'concepts' in dataset_dict, "Wrong dataset, concept not incldued!"
                         concepts = [c for c in dataset_dict.pop("concepts")]
                         annos_filtered = annos
