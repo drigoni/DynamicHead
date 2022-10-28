@@ -1,7 +1,0 @@
-_BASE_: "base_dh_COCO.yaml"
-MODEL:
-  BACKBONE:
-    NAME: "build_retinanet_swint_fpn_dyhead_backbone"
-  ATSS:
-    NUM_CONVS: 0
-OUTPUT_DIR: "./results/COCO/dh/dh_swint_fpn_COCO/"

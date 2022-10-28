@@ -218,7 +218,7 @@ def parse_args():
                         type=lambda x: True if x.lower() == 'true' else False)
     parser.add_argument('--type', dest='type',
                         help='Generating considering all or subsets',
-                        choices=['subset', 'all', 'powerset', 'subset_old', 'all_old'],
+                        choices=['subset', 'all', 'powerset', 'subset_old', 'subset_old_v2', 'all_old'],
                         default='subset')
     args = parser.parse_args()
     return args

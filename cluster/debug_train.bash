@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# CONFIG_FILE=./configs/prova.yaml
+# CONFIG_FILE=./configs/COCO/dh/r50/dh_r50_fpn_COCO_train.yaml
 CONFIG_FILE=./configs/COCO/retinanet/r50/retinanet_r50_fpn_COCO_concepts_train_cat.yaml
 # CONFIG_FILE=./configs/COCO/frcnn/r50/frcnn_r50_fpn_COCO_concepts_train_cat.yaml
 # CONFIG_FILE=./configs/OID/retinanet/r50/retinanet_r50_fpn_OID_concepts_train_cat.yaml
@@ -15,7 +17,7 @@ python train_net.py --config  ${CONFIG_FILE} \
                     CONCEPT.ACTIVATE_CONCEPT_GENERATOR True \
                     OUTPUT_DIR ${OUTPUT_DIR} \
                     SOLVER.IMS_PER_BATCH 1  \
-                    CONCEPT.DEPTH 2
+                    CONCEPT.DEPTH 1
 
 
 

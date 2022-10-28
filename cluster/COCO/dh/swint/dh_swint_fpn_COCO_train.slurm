@@ -10,7 +10,7 @@
 #SBATCH --time=2-00:00:00                           # total run time limit (DD-HH:MM:SS)
 #SBATCH --nodes=2                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
-#SBATCH --cpus-per-task=64		                    # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --cpus-per-task=32		                    # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --gpus-per-node=4                           # number of gpus per node
 #SBATCH --exclusive                                 # for exclusive access
 
@@ -64,7 +64,7 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/COCO/dh/dh_swint_fpn_COCO_train.yaml
+CONFIG_FILE=./configs/COCO/dh/swint/dh_swint_fpn_COCO_train.yaml
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \

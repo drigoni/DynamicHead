@@ -1,0 +1,17 @@
+_BASE_: "../base_retinanet_OID_concepts.yaml"
+MODEL:
+  WEIGHTS: "./results/OID/retinanet/retinanet_r101_fpn_OID_concepts_cat/model_final.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 101
+CONCEPT:
+  CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
+  APPLY_CONDITION: TRUE
+  APPLY_CONDITION_FROM_FILE: FALSE
+  ACTIVATE_CONCEPT_GENERATOR: FALSE
+DATASETS:
+  TRAIN: ("OID_v4_train",)
+  TEST: ("OID_v4_val_all",)
+DEEPSETS:
+  EMB: "random"
+OUTPUT_DIR: "./results/OID/retinanet/retinanet_r101_fpn_OID_concepts_cat/"

@@ -2,10 +2,17 @@ _BASE_: "../base_dh_VG.yaml"
 MODEL:
   WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
   BACKBONE:
-    NAME: "build_resnet_fpn_dyhead_backbone"
+    NAME: "build_retinanet_resnet_fpn_dyhead_backbone"
   RESNETS:
     DEPTH: 50
     OUT_FEATURES: ["res3", "res4", "res5"]
+  FPN:
+    IN_FEATURES: ["res3", "res4", "res5"]
   ATSS:
     NUM_CONVS: 2
+SOLVER:
+  IMS_PER_BATCH: 16
+  BASE_LR: 0.01
+  STEPS: (60000, 80000)
+  MAX_ITER: 90000
 OUTPUT_DIR: "./results/VG/dh/dh_r50_fpn_VG/"

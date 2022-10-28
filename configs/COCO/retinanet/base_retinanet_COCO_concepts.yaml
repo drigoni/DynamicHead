@@ -29,7 +29,7 @@ DATASETS:
   TRAIN: ("coco_2017_tuning_train",)
   TEST: ("coco_2017_tuning_val",)
 DATALOADER:
-  NUM_WORKERS: 15
+  NUM_WORKERS: 16
 SOLVER:
   IMS_PER_BATCH: 16
   BASE_LR: 0.01
@@ -44,7 +44,7 @@ CONCEPT:
   APPLY_CONDITION_FROM_FILE: FALSE
   EXTERNAL_CONCEPTS_FOLDER: './datasets/ewiser_concepts_COCO_valid/'
   ACTIVATE_CONCEPT_GENERATOR: TRUE
-  DEPTH: 2
+  DEPTH: 1
   UNIQUE: TRUE
 DEEPSETS:
   EMB: 'wordnet'   # 'random' # 'wordnet'

@@ -25,7 +25,7 @@ DATASETS:
   TRAIN: ("visual_genome_train",)
   TEST: ("visual_genome_val",)
 DATALOADER:
-  NUM_WORKERS: 32
+  NUM_WORKERS: 16
 SOLVER:
   IMS_PER_BATCH: 40
   BASE_LR: 0.0001
@@ -44,7 +44,7 @@ CONCEPT:
   APPLY_CONDITION_FROM_FILE: FALSE
   EXTERNAL_CONCEPTS_FOLDER: './datasets/ewiser_concepts_VG_valid/'
   ACTIVATE_CONCEPT_GENERATOR: TRUE
-  DEPTH: 2
+  DEPTH: 1
   UNIQUE: TRUE
 DEEPSETS:
   EMB: 'wordnet'   # 'random' # 'wordnet'

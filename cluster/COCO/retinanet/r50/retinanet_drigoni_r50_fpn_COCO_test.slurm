@@ -12,7 +12,7 @@
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
 #SBATCH --cpus-per-task=32		                    # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --gpus-per-node=1                           # number of gpus per node
-### SBATCH --exclusive                                 # for exclusive access
+#----#SBATCH --exclusive                                 # for exclusive access
 
 #SBATCH --array=0-3
 #---- MORE COMMANDS
@@ -67,7 +67,7 @@ echo ''
 # model config
 CONFIG_FILE=./configs/COCO/retinanet/r50/retinanet_drigoni_r50_fpn_COCO_test.yaml
 DATSETS=('("coco_2017_tuning_val",)' '("coco_2017_tuning_val",)'  \
-         '("coco_2017_tuning_val_subset",)' '("coco_2017_tuning_val_subset",)')
+         '("coco_2017_tuning_val_subset_old",)' '("coco_2017_tuning_val_subset_old",)')
 EVALUATOR_TYPE=('default' 'GTFilter'\
                 'default' 'GTFilter')
 srun python train_net.py \

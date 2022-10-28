@@ -25,7 +25,7 @@ DATASETS:
   TRAIN: ("oid_v4_train",)
   TEST: ("oid_v4_val",)
 DATALOADER:
-  NUM_WORKERS: 32
+  NUM_WORKERS: 16
 SOLVER:
   IMS_PER_BATCH: 40
   BASE_LR: 0.0001

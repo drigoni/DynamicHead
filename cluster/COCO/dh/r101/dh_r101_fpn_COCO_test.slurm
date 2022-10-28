@@ -10,9 +10,9 @@
 #SBATCH --time=0-12:00:00                           # total run time limit (DD-HH:MM:SS)
 #SBATCH --nodes=1                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
-#SBATCH --cpus-per-task=64		                    # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --cpus-per-task=32		                    # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --gpus-per-node=1                           # number of gpus per node
-### SBATCH --exclusive                                 # for exclusive access
+#----#SBATCH --exclusive                                 # for exclusive access
 
 #SBATCH --array=0-2
 #---- MORE COMMANDS
@@ -65,7 +65,7 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/COCO/dh/dh_r101_fpn_COCO_test.yaml
+CONFIG_FILE=./configs/COCO/dh/r101/dh_r101_fpn_COCO_test.yaml
 DATSETS=('("coco_2017_tuning_val",)' '("coco_2017_tuning_val_subset",)' '("coco_2017_tuning_val_powerset",)')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
