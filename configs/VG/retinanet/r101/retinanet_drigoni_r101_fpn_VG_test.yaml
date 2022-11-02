@@ -1,10 +1,10 @@
 _BASE_: "../base_retinanet_VG.yaml"
 MODEL:
-  WEIGHTS: "./results/OID/retinanet/retinanet_drigoni_r101_fpn_VG/model_final.pth"
+  WEIGHTS: "./results/VG/retinanet/retinanet_drigoni_r101_fpn_VG/model_final.pth"
   MASK_ON: False
   RESNETS:
     DEPTH: 101
 DATASETS:
   TRAIN: ("vg_train",)
   TEST: ("vg_val",)
-OUTPUT_DIR: "./results/OID/retinanet/retinanet_drigoni_r101_fpn_VG/"
+OUTPUT_DIR: "./results/VG/retinanet/retinanet_drigoni_r101_fpn_VG/"

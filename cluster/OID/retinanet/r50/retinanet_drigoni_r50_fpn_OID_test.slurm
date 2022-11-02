@@ -7,7 +7,7 @@
 #SBATCH --output=cluster/out/retinanet/r50/retinanet_drigoni_r50_fpn_OID_test_dataset-%a.out
 #SBATCH --partition=gpu
 #SBATCH --mem=300G				                    # total memory per node
-#SBATCH --time=0-01:00:00                           # total run time limit (DD-HH:MM:SS)
+#SBATCH --time=0-00:30:00                           # total run time limit (DD-HH:MM:SS)
 #SBATCH --nodes=1                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
 #SBATCH --cpus-per-task=32		                    # cpu-cores per task (>1 if multi-threaded tasks)
