@@ -1,4 +1,4 @@
-_BASE_: "base_dh_OID.yaml"
+_BASE_: "../base_dh_OID.yaml"
 MODEL:
   WEIGHTS: "./results/OID/dh/dh_swint_fpn_OID/model_final.pth"
   ATSS:

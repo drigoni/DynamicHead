@@ -7,15 +7,14 @@
 #SBATCH --output=cluster/out/dh/dh_r50_fpn_OID_concepts_test_cat_dataset-%a.out
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
-#SBATCH --time=0-12:00:00                           # total run time limit (DD-HH:MM:SS)
+#SBATCH --time=0-01:00:00                           # total run time limit (DD-HH:MM:SS)
 #SBATCH --nodes=1                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
 #SBATCH --cpus-per-task=32		                    # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --gpus-per-node=1                           # number of gpus per node
-#----#SBATCH --exclusive                                 # for exclusive access
-
-#SBATCH --array=0-2
+#SBATCH --array=0-7
 #---- MORE COMMANDS
+#----#SBATCH --exclusive                                 # for exclusive access
 #----#SBATCH --mail-type=begin                           # send email when job begins
 #--- #SBATCH --mail-type=end                             # send email when job ends
 #--- #SBATCH --error=cluster/err/dh_train.err
@@ -66,7 +65,12 @@ echo ''
 
 # model config
 CONFIG_FILE=./configs/OID/dh/r50/dh_r50_fpn_OID_concepts_test_cat.yaml
-DATSETS=('("oid_v4_val",)' '("oid_v4_val_subset",)' '("oid_v4_val_powerset",)')
+DATSETS=('("oid_v4_test_all",)' '("oid_v4_test_all",)' '("oid_v4_test_all",)' '("oid_v4_test_all",)' \
+        '("oid_v4_test_subset_old",)' '("oid_v4_test_subset_old",)' '("oid_v4_test_subset_old",)' '("oid_v4_test_subset_old",)' )
+APPLY_CONDITION=(True False True False \
+                True False True False)
+EVALUATOR_TYPE=('default' 'default' 'GTFilter' 'GTFilter' \
+                'default' 'default' 'GTFilter' 'GTFilter')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \
@@ -75,7 +79,9 @@ srun python train_net.py \
                     --eval-only \
                     SOLVER.IMS_PER_BATCH ${BATCH_SIZE} \
                     SOLVER.MAX_ITER ${MAX_ITER} \
-                    DATASETS.TEST ${DATSETS[$SLURM_ARRAY_TASK_ID]}
+                     DATASETS.TEST ${DATSETS[$SLURM_ARRAY_TASK_ID]} \
+                    CONCEPT.APPLY_CONDITION ${APPLY_CONDITION[$SLURM_ARRAY_TASK_ID]} \
+                    EVALUATOR_TYPE ${EVALUATOR_TYPE[$SLURM_ARRAY_TASK_ID]} \
 
 # last default print
 echo ''

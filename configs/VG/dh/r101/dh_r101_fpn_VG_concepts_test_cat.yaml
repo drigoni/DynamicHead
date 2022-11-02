@@ -4,7 +4,7 @@ MODEL:
   BACKBONE:
     NAME: "build_retinanet_resnet_fpn_dyhead_backbone"
   RESNETS:
-    DEPTH: 50
+    DEPTH: 101
     OUT_FEATURES: ["res3", "res4", "res5"]
   FPN:
     IN_FEATURES: ["res3", "res4", "res5"]
@@ -16,8 +16,8 @@ CONCEPT:
   APPLY_CONDITION_FROM_FILE: FALSE
   ACTIVATE_CONCEPT_GENERATOR: FALSE
 DATASETS:
-  TRAIN: ("visual_genome_train",)
-  TEST: ("visual_genome_val",)
+  TRAIN: ("vg_train",)
+  TEST: ("vg_val",)
 DEEPSETS:
   EMB: "random"
 OUTPUT_DIR: "./results/VG/dh/dh_r101_fpn_VG_concepts_cat/"

@@ -143,7 +143,7 @@ class ConceptFinder:
                 selected_concepts.add(sampled_discendent_concept)
             return list_unique_cat, list(selected_concepts)
         elif type=='subset_old':
-            #
+            # The one to use
             # ------ 
             selected_categories = set()
             selected_concepts = []

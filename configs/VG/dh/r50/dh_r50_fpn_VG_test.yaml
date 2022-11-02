@@ -11,6 +11,6 @@ MODEL:
   ATSS:
     NUM_CONVS: 2
 DATASETS:
-  TRAIN: ("visual_genome_train",)
-  TEST: ("visual_genome_val",)
+  TRAIN: ("vg_train",)
+  TEST: ("vg_val",)
 OUTPUT_DIR: "./results/VG/dh/dh_r50_fpn_VG/"

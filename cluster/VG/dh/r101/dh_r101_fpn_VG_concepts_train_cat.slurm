@@ -64,7 +64,7 @@ echo ''
 
 
 # model config
-CONFIG_FILE=./configs/VG/dh/dh_r101_fpn_VG_concepts_train_cat.yaml
+CONFIG_FILE=./configs/VG/dh/r101/dh_r101_fpn_VG_concepts_train_cat.yaml
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \

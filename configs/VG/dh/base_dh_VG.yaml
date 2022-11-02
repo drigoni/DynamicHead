@@ -22,8 +22,8 @@ MODEL:
   ROI_HEADS:
     NUM_CLASSES: 1600
 DATASETS:
-  TRAIN: ("visual_genome_train",)
-  TEST: ("visual_genome_val",)
+  TRAIN: ("vg_train",)
+  TEST: ("vg_val",)
 DATALOADER:
   NUM_WORKERS: 16
 SOLVER:

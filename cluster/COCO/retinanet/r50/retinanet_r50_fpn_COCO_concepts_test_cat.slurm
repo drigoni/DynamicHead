@@ -7,15 +7,14 @@
 #SBATCH --output=cluster/out/retinanet/r50/retinanet_r50_fpn_COCO_concepts_test_cat_dataset-%a.out
 #SBATCH --partition=gpu
 #SBATCH --mem=150G				                    # total memory per node
-#SBATCH --time=0-1:00:00                           # total run time limit (DD-HH:MM:SS)
+#SBATCH --time=0-01:00:00                           # total run time limit (DD-HH:MM:SS)
 #SBATCH --nodes=1                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
 #SBATCH --cpus-per-task=32		                    # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --gpus-per-node=1                           # number of gpus per node
-#----#SBATCH --exclusive                                 # for exclusive access
-
 #SBATCH --array=0-7
 #---- MORE COMMANDS
+#----#SBATCH --exclusive                                 # for exclusive access
 #----#SBATCH --mail-type=begin                           # send email when job begins
 #--- #SBATCH --mail-type=end                             # send email when job ends
 #--- #SBATCH --error=cluster/err/dh_train.err
@@ -66,8 +65,8 @@ echo ''
 
 # model config
 CONFIG_FILE=./configs/COCO/retinanet/r50/retinanet_r50_fpn_COCO_concepts_test_cat.yaml
-DATSETS=('("coco_2017_tuning_val_all_old",)' '("coco_2017_tuning_val_all_old",)' '("coco_2017_tuning_val_all_old",)' '("coco_2017_tuning_val_all_old",)' \
-        '("coco_2017_tuning_val_subset_old",)' '("coco_2017_tuning_val_subset_old",)' '("coco_2017_tuning_val_subset_old",)' '("coco_2017_tuning_val_subset_old",)' )
+DATSETS=('("coco_2017_val_all",)' '("coco_2017_val_all",)' '("coco_2017_val_all",)' '("coco_2017_val_all",)' \
+        '("coco_2017_val_subset_old",)' '("coco_2017_val_subset_old",)' '("coco_2017_val_subset_old",)' '("coco_2017_val_subset_old",)' )
 APPLY_CONDITION=(True False True False \
                 True False True False)
 EVALUATOR_TYPE=('default' 'default' 'GTFilter' 'GTFilter' \

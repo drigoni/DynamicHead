@@ -1,4 +1,4 @@
-_BASE_: "base_dh_OID_concepts.yaml"
+_BASE_: "../base_dh_OID_concepts.yaml"
 MODEL:
   ATSS:
     NUM_CONVS: 2

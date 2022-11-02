@@ -10,8 +10,8 @@ CONCEPT:
   APPLY_CONDITION_FROM_FILE: FALSE
   ACTIVATE_CONCEPT_GENERATOR: FALSE
 DATASETS:
-  TRAIN: ("VG_v4_train",)
-  TEST: ("VG_v4_val",)
+  TRAIN: ("vg_train",)
+  TEST: ("vg_val",)
 DEEPSETS:
   EMB: "random"
 OUTPUT_DIR: "./results/VG/retinanet/retinanet_r101_fpn_VG_concepts_cat/"

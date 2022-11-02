@@ -4,7 +4,7 @@ MODEL:
   BACKBONE:
     NAME: "build_retinanet_resnet_fpn_dyhead_backbone"
   RESNETS:
-    DEPTH: 50
+    DEPTH: 101
     OUT_FEATURES: ["res3", "res4", "res5"]
   FPN:
     IN_FEATURES: ["res3", "res4", "res5"]
