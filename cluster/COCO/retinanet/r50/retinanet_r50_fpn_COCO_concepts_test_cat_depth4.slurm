@@ -65,8 +65,8 @@ echo ''
 
 # model config
 CONFIG_FILE=./configs/COCO/retinanet/r50/retinanet_r50_fpn_COCO_concepts_test_cat_depth4.yaml
-DATSETS=('("coco_2017_val_all",)' '("coco_2017_val_all",)' '("coco_2017_val_all",)' '("coco_2017_val_all",)' \
-        '("coco_2017_val_subset_old",)' '("coco_2017_val_subset_old",)' '("coco_2017_val_subset_old",)' '("coco_2017_val_subset_old",)' )
+DATSETS=('("coco_2017_val_all_depth4",)' '("coco_2017_val_all_depth4",)' '("coco_2017_val_all_depth4",)' '("coco_2017_val_all_depth4",)' \
+        '("coco_2017_val_subset_old_depth4",)' '("coco_2017_val_subset_old_depth4",)' '("coco_2017_val_subset_old_depth4",)' '("coco_2017_val_subset_old_depth4",)' )
 APPLY_CONDITION=(True False True False \
                 True False True False)
 EVALUATOR_TYPE=('default' 'default' 'GTFilter' 'GTFilter' \

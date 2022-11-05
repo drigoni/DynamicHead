@@ -11,53 +11,6 @@ from detectron2.utils.file_io import PathManager
 
 logger = logging.getLogger(__name__)
 
-# ==== Predefined splits for the new splits of data regarding concepts ===========
-# _PREDEFINED_CONCEPTS_SPLITS = {}
-# _PREDEFINED_CONCEPTS_SPLITS['coco'] = {
-#     "coco_2017_val_subset": ("coco/val2017",
-#                             "concept_coco/annotations/instances_val2017_subset.json"),
-#     "coco_2017_val_powerset": ("coco/val2017",
-#                                 "concept_coco/annotations/instances_val2017_powerset.json"),
-#     "coco_2017_tuning_train": ("coco/train2017",
-#                                 "tuning_coco/annotations/tuning_instances_train2017.json"),
-#     "coco_2017_tuning_val": ("coco/train2017",
-#                                 "tuning_coco/annotations/tuning_instances_val2017.json"),
-#     "coco_2017_tuning_val_subset": ("coco/train2017",
-#                                     "concept_coco/annotations/tuning_instances_val2017_subset.json"),
-#     "coco_2017_tuning_val_powerset": ("coco/train2017",
-#                                         "concept_coco/annotations/tuning_instances_val2017_powerset.json"),
-#     "coco_2017_tuning_val_subset_v2": ("coco/train2017",
-#                                     "concept_coco_new/annotations/tuning_instances_val2017_subset.json"),
-# }
-
-# _PREDEFINED_CONCEPTS_SPLITS['vg'] = {
-#     "vg_train": ("visual_genome/images",
-#                 "visual_genome/annotations/visual_genome_train.json"),
-#     "vg_val": ("visual_genome/images",
-#                 "visual_genome/annotations/visual_genome_val.json"),
-#     "vg_test": ("visual_genome/images",
-#                 "visual_genome/annotations/visual_genome_test.json"),
-#     "vg_val_subset": ("visual_genome/images",
-#                         "concept_visual_genome/annotations/visual_genome_val_subset.json"),
-#     "vg_test_subset": ("visual_genome/images",
-#                         "concept_visual_genome/annotations/visual_genome_test_subset.json"),
-# }
-
-# _PREDEFINED_CONCEPTS_SPLITS['oid'] = {
-#     "oid_v4_train": ("OpenImagesDataset/train/",
-#                     "OpenImagesDataset/annotations/openimages_v4_train_bbox.json"),
-#     "oid_v4_val": ("OpenImagesDataset/val/",
-#                     "OpenImagesDataset/annotations/openimages_v4_val_bbox.json"),
-#     "oid_v4_test": ("OpenImagesDataset/test/",
-#                     "OpenImagesDataset/annotations/openimages_v4_test_bbox.json"),
-#     "oid_v4_val_subset": ("OpenImagesDataset/val/",
-#                             "concept_OpenImagesDataset/annotations/openimages_v4_val_bbox_subset.json"),
-#     "oid_v4_val_powerset": ("OpenImagesDataset/val/",
-#                             "concept_OpenImagesDataset/annotations/openimages_v4_val_bbox_powerset.json"),
-#     "oid_v4_tes_subset": ("OpenImagesDataset/test/",
-#                             "concept_OpenImagesDataset/annotations/openimages_v4_test_bbox_subset.json"),
-# }
-
 _PREDEFINED_CONCEPTS_SPLITS = {}
 _PREDEFINED_CONCEPTS_SPLITS['coco'] = {
     # already registered
@@ -72,6 +25,22 @@ _PREDEFINED_CONCEPTS_SPLITS['coco'] = {
                                     "concept_coco/annotations/instances_val2017_all.json"),
     "coco_2017_val_subset_old": ("coco/val2017",
                                     "concept_coco/annotations/instances_val2017_subset_old.json"),     
+    "coco_2017_val_all_depth0": ("coco/val2017",
+                                    "concept_coco/annotations/instances_val2017_all_depth0.json"),
+    "coco_2017_val_subset_old_depth0": ("coco/val2017",
+                                    "concept_coco/annotations/instances_val2017_subset_old_depth0.json"), 
+    "coco_2017_val_all_depth2": ("coco/val2017",
+                                    "concept_coco/annotations/instances_val2017_all_depth2.json"),
+    "coco_2017_val_subset_old_depth2": ("coco/val2017",
+                                    "concept_coco/annotations/instances_val2017_subset_old_depth2.json"),    
+    "coco_2017_val_all_depth3": ("coco/val2017",
+                                    "concept_coco/annotations/instances_val2017_all_depth3.json"),
+    "coco_2017_val_subset_old_depth3": ("coco/val2017",
+                                    "concept_coco/annotations/instances_val2017_subset_old_depth3.json"),    
+    "coco_2017_val_all_depth4": ("coco/val2017",
+                                    "concept_coco/annotations/instances_val2017_all_depth4.json"),
+    "coco_2017_val_subset_old_depth4": ("coco/val2017",
+                                    "concept_coco/annotations/instances_val2017_subset_old_depth4.json"),        
     # tuning version                  
     "coco_2017_tuning_train": ("coco/train2017",
                                 "tuning_coco/annotations/tuning_instances_train2017.json"),

@@ -1,0 +1,8 @@
+_BASE_: "../base_dh_COCO_concepts.yaml"
+MODEL:
+  ATSS:
+    NUM_CONVS: 2
+CONCEPT:
+  CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
+  DEPTH: 0
+OUTPUT_DIR: "./results/COCO/dh/dh_swint_fpn_COCO_concepts_cat_depth0/"

@@ -14,7 +14,7 @@ CONCEPT:
   CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
 SOLVER:
   IMS_PER_BATCH: 16
-  BASE_LR: 0.01
+  BASE_LR: 0.0001
   STEPS: (60000, 80000)
   MAX_ITER: 90000
 OUTPUT_DIR: "./results/OID/dh/dh_r50_fpn_OID_concepts_cat/"

@@ -5,7 +5,7 @@
 #SBATCH --job-name='dh_r101_fpn_COCO_concepts_test_cat'     # create a short name for your job
 #SBATCH --mail-user=davide.rigoni.2@phd.unipd.it
 #SBATCH --output=cluster/out/dh/dh_r101_fpn_COCO_concepts_test_cat_dataset-%a.out
-#SBATCH --partition=gpu
+#SBATCH --partition=dev
 #SBATCH --mem=150G				                    # total memory per node
 #SBATCH --time=0-00:30:00                           # total run time limit (DD-HH:MM:SS)
 #SBATCH --nodes=1                                   # node count

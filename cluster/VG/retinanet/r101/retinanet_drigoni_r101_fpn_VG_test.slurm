@@ -5,8 +5,8 @@
 #SBATCH --job-name='retinanet_drigoni_r101_fpn_VG_test'     # create a short name for your job
 #SBATCH --mail-user=davide.rigoni.2@phd.unipd.it
 #SBATCH --output=cluster/out/retinanet/r101/retinanet_drigoni_r101_fpn_VG_test_dataset-%a.out
-#SBATCH --partition=gpu
-#SBATCH --mem=300G				                    # total memory per node
+#SBATCH --partition=dev
+#SBATCH --mem=150G				                    # total memory per node
 #SBATCH --time=0-00:30:00                           # total run time limit (DD-HH:MM:SS)
 #SBATCH --nodes=1                                   # node count
 #SBATCH --ntasks-per-node=1                         # total number of tasks per node
