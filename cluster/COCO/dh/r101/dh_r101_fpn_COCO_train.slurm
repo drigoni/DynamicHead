@@ -13,6 +13,7 @@
 #SBATCH --cpus-per-task=32		                    # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --gpus-per-node=4                           # number of gpus per node
 #SBATCH --exclusive                                 # for exclusive access
+#SBATCH --exclude=gn15
 
 #---- MORE COMMANDS
 #----#SBATCH --mail-type=begin                           # send email when job begins

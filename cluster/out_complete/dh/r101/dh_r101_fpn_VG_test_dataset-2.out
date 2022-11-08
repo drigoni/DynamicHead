@@ -1,0 +1,2508 @@
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+Date:  lun 7 nov 2022, 10.25.04, CET
+Directory:  /ceph/hpc/home/eudavider/repository/DynamicHead
+Nodelist:  gn17
+Number of nodes:  1
+Ntasks per node:  1
+NGPUs per node:  1
+CUDA_VISIBLE_DEVICES:  0
+TORCH_DEVICE_COUNT:  1
+SLURM_MASTER_PORT:  13447
+SLURM_MASTER_NODE:  gn17
+SLURM_MASTER_ADDR:  gn17
+SLURM_MASTER_URL:  tcp://gn17:13447
+--------------------------------------------- 
+MODEL_NUM_GPUS:  1
+MODEL_NUM_MACHINES:  1
+MODEL_BATCH_SIZE:  5
+MODEL_MAX_ITER:  576000
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+
+srun: error: WARNING: Multiple leaf switches contain nodes: gn[01-60]
+[nltk_data] Downloading package omw-1.4 to
+[nltk_data]     /ceph/hpc/home/eudavider/nltk_data...
+[nltk_data]   Package omw-1.4 is already up-to-date!
+[nltk_data] Downloading package wordnet to
+[nltk_data]     /ceph/hpc/home/eudavider/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+Loading config ./configs/VG/dh/r101/../base_dh_VG.yaml with yaml.unsafe_load. Your machine may be at risk if the file contains malicious content.
+Command Line Args: Namespace(config_file='./configs/VG/dh/r101/dh_r101_fpn_VG_test.yaml', resume=False, eval_only=True, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://gn17:13447', opts=['SOLVER.IMS_PER_BATCH', '5', 'SOLVER.MAX_ITER', '576000', 'DATASETS.TEST', '("vg_test_subset_old",)', 'EVALUATOR_TYPE', 'default'])
+[32m[11/07 10:25:35 detectron2]: [0mRank of current process: 0. World size: 1
+[32m[11/07 10:25:37 detectron2]: [0mEnvironment info:
+----------------------  ------------------------------------------------------------------------------------------------
+sys.platform            linux
+Python                  3.9.13 | packaged by conda-forge | (main, May 27 2022, 16:56:21) [GCC 10.3.0]
+numpy                   1.23.1
+detectron2              0.6 @/ceph/hpc/home/eudavider/.local/lib/python3.9/site-packages/detectron2
+Compiler                GCC 7.3
+CUDA compiler           CUDA 11.3
+detectron2 arch flags   3.7, 5.0, 5.2, 6.0, 6.1, 7.0, 7.5, 8.0, 8.6
+DETECTRON2_ENV_MODULE   <not set>
+PyTorch                 1.10.0 @/ceph/hpc/home/eudavider/.conda/envs/dynamicHead/lib/python3.9/site-packages/torch
+PyTorch debug build     False
+GPU available           Yes
+GPU 0                   NVIDIA A100-SXM4-40GB (arch=8.0)
+Driver version          510.47.03
+CUDA_HOME               /usr/local/cuda
+Pillow                  9.2.0
+torchvision             0.11.0 @/ceph/hpc/home/eudavider/.conda/envs/dynamicHead/lib/python3.9/site-packages/torchvision
+torchvision arch flags  3.5, 5.0, 6.0, 7.0, 7.5, 8.0, 8.6
+fvcore                  0.1.5.post20220512
+iopath                  0.1.9
+cv2                     Not found
+----------------------  ------------------------------------------------------------------------------------------------
+PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) oneAPI Math Kernel Library Version 2021.4-Product Build 20210904 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.2.3 (Git Hash 7336ca9f055cf1bfa13efb658fe15dc9b41f0740)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.1
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=compute_37
+  - CuDNN 8.0.5
+  - Magma 2.5.2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.1, CUDNN_VERSION=8.0.5, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -DEDGE_PROFILER_USE_KINETO -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.10.0, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
+
+[32m[11/07 10:25:37 detectron2]: [0mCommand line arguments: Namespace(config_file='./configs/VG/dh/r101/dh_r101_fpn_VG_test.yaml', resume=False, eval_only=True, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://gn17:13447', opts=['SOLVER.IMS_PER_BATCH', '5', 'SOLVER.MAX_ITER', '576000', 'DATASETS.TEST', '("vg_test_subset_old",)', 'EVALUATOR_TYPE', 'default'])
+[32m[11/07 10:25:37 detectron2]: [0mContents of args.config_file=./configs/VG/dh/r101/dh_r101_fpn_VG_test.yaml:
+_BASE_: "../base_dh_VG.yaml"
+MODEL:
+  WEIGHTS: "./results/VG/dh/dh_r101_fpn_VG/model_final.pth"
+  BACKBONE:
+    NAME: "build_retinanet_resnet_fpn_dyhead_backbone"
+  RESNETS:
+    DEPTH: 101
+    OUT_FEATURES: ["res3", "res4", "res5"]
+  FPN:
+    IN_FEATURES: ["res3", "res4", "res5"]
+  ATSS:
+    NUM_CONVS: 2
+DATASETS:
+  TRAIN: ("vg_train",)
+  TEST: ("vg_val",)
+OUTPUT_DIR: "./results/VG/dh/dh_r101_fpn_VG/"
+[32m[11/07 10:25:37 detectron2]: [0mRunning with full config:
+CONCEPT:
+  ACTIVATE_CONCEPT_GENERATOR: true
+  APPLY_CONDITION: true
+  APPLY_CONDITION_FROM_FILE: false
+  CONCEPT_FUSION: cat
+  DEPTH: 3
+  EXTERNAL_CONCEPTS_FOLDER: ./datasets/ewiser_concepts_COCO_valid/
+  FILE: ./concept/coco_to_synset.json
+  ONLY_NAME: true
+  UNIQUE: true
+  VOCAB: ./concept/vocab.json
+CUDNN_BENCHMARK: false
+DATALOADER:
+  ASPECT_RATIO_GROUPING: true
+  FILTER_EMPTY_ANNOTATIONS: true
+  NUM_WORKERS: 16
+  REPEAT_THRESHOLD: 0.0
+  SAMPLER_TRAIN: TrainingSampler
+DATASETS:
+  PRECOMPUTED_PROPOSAL_TOPK_TEST: 1000
+  PRECOMPUTED_PROPOSAL_TOPK_TRAIN: 2000
+  PROPOSAL_FILES_TEST: []
+  PROPOSAL_FILES_TRAIN: []
+  TEST:
+  - vg_test_subset_old
+  TRAIN:
+  - vg_train
+DEEPSETS:
+  AGGREGATE: sum
+  EMB: wordnet
+  EMB_DIM: 150
+  FILE: ./concept/wn30_holE_500_150_0.1_0.2_embeddings.pickle
+  FREEZE: true
+  MLP1_LAYERS:
+  - 150
+  - 150
+  MLP1_OUTPUT_DIM: 150
+  MLP2_LAYERS:
+  - 150
+  OUTPUT_DIM: 256
+EVALUATOR_TYPE: default
+GLOBAL:
+  HACK: 1.0
+INPUT:
+  CROP:
+    ENABLED: false
+    SIZE:
+    - 0.9
+    - 0.9
+    TYPE: relative_range
+  FORMAT: RGB
+  MASK_FORMAT: polygon
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN:
+  - 640
+  - 672
+  - 704
+  - 736
+  - 768
+  - 800
+  MIN_SIZE_TRAIN_SAMPLING: choice
+  RANDOM_FLIP: horizontal
+MODEL:
+  ANCHOR_GENERATOR:
+    ANGLES:
+    - - -90
+      - 0
+      - 90
+    ASPECT_RATIOS:
+    - 1.0
+    NAME: DefaultAnchorGenerator
+    OFFSET: 0.5
+    SIZES:
+    - - 64
+    - - 128
+    - - 256
+    - - 512
+    - - 1024
+  ATSS:
+    BBOX_REG_WEIGHTS:
+    - 10.0
+    - 10.0
+    - 5.0
+    - 5.0
+    CHANNELS: 256
+    FOCAL_LOSS_ALPHA: 0.25
+    FOCAL_LOSS_GAMMA: 2.0
+    INFERENCE_TH: 0.05
+    IN_FEATURES:
+    - p3
+    - p4
+    - p5
+    - p6
+    - p7
+    IOU_LABELS:
+    - 0
+    - -1
+    - 1
+    IOU_THRESHOLDS:
+    - 0.4
+    - 0.5
+    NMS_TH: 0.6
+    NUM_CLASSES: 1600
+    NUM_CONVS: 2
+    PRE_NMS_TOP_N: 1000
+    PRIOR_PROB: 0.01
+    REG_LOSS_WEIGHT: 2.0
+    TOPK: 9
+    USE_GN: true
+  BACKBONE:
+    FREEZE_AT: -1
+    NAME: build_retinanet_resnet_fpn_dyhead_backbone
+  DEVICE: cuda
+  DYHEAD:
+    CHANNELS: 256
+    NUM_CONVS: 6
+  FPN:
+    FUSE_TYPE: sum
+    IN_FEATURES:
+    - res3
+    - res4
+    - res5
+    NORM: ''
+    OUT_CHANNELS: 256
+  KEYPOINT_ON: false
+  LOAD_PROPOSALS: false
+  MASK_ON: false
+  META_ARCHITECTURE: ATSS
+  PANOPTIC_FPN:
+    COMBINE:
+      ENABLED: true
+      INSTANCES_CONFIDENCE_THRESH: 0.5
+      OVERLAP_THRESH: 0.5
+      STUFF_AREA_LIMIT: 4096
+    INSTANCE_LOSS_WEIGHT: 1.0
+  PIXEL_MEAN:
+  - 123.675
+  - 116.28
+  - 103.53
+  PIXEL_STD:
+  - 58.395
+  - 57.12
+  - 57.375
+  PROPOSAL_GENERATOR:
+    MIN_SIZE: 0
+    NAME: RPN
+  RESNETS:
+    DEFORM_MODULATED: false
+    DEFORM_NUM_GROUPS: 1
+    DEFORM_ON_PER_STAGE:
+    - false
+    - false
+    - false
+    - false
+    DEPTH: 101
+    NORM: FrozenBN
+    NUM_GROUPS: 1
+    OUT_FEATURES:
+    - res3
+    - res4
+    - res5
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: true
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    BBOX_REG_LOSS_TYPE: smooth_l1
+    BBOX_REG_WEIGHTS: &id002
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+    FOCAL_LOSS_ALPHA: 0.25
+    FOCAL_LOSS_GAMMA: 2.0
+    IN_FEATURES:
+    - p3
+    - p4
+    - p5
+    - p6
+    - p7
+    IOU_LABELS:
+    - 0
+    - -1
+    - 1
+    IOU_THRESHOLDS:
+    - 0.4
+    - 0.5
+    NMS_THRESH_TEST: 0.5
+    NORM: ''
+    NUM_CLASSES: 80
+    NUM_CONVS: 4
+    PRIOR_PROB: 0.01
+    SCORE_THRESH_TEST: 0.05
+    SMOOTH_L1_LOSS_BETA: 0.1
+    TOPK_CANDIDATES_TEST: 1000
+  ROI_BOX_CASCADE_HEAD:
+    BBOX_REG_WEIGHTS:
+    - &id001
+      - 10.0
+      - 10.0
+      - 5.0
+      - 5.0
+    - - 20.0
+      - 20.0
+      - 10.0
+      - 10.0
+    - - 30.0
+      - 30.0
+      - 15.0
+      - 15.0
+    IOUS:
+    - 0.5
+    - 0.6
+    - 0.7
+  ROI_BOX_HEAD:
+    BBOX_REG_LOSS_TYPE: smooth_l1
+    BBOX_REG_LOSS_WEIGHT: 1.0
+    BBOX_REG_WEIGHTS: *id001
+    CLS_AGNOSTIC_BBOX_REG: false
+    CONV_DIM: 256
+    FC_DIM: 1024
+    NAME: ''
+    NORM: ''
+    NUM_CONV: 0
+    NUM_FC: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+    SMOOTH_L1_BETA: 0.0
+    TRAIN_ON_PRED_BOXES: false
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 512
+    IN_FEATURES:
+    - res4
+    IOU_LABELS:
+    - 0
+    - 1
+    IOU_THRESHOLDS:
+    - 0.5
+    NAME: Res5ROIHeads
+    NMS_THRESH_TEST: 0.5
+    NUM_CLASSES: 1600
+    POSITIVE_FRACTION: 0.25
+    PROPOSAL_APPEND_GT: true
+    SCORE_THRESH_TEST: 0.05
+  ROI_KEYPOINT_HEAD:
+    CONV_DIMS:
+    - 512
+    - 512
+    - 512
+    - 512
+    - 512
+    - 512
+    - 512
+    - 512
+    LOSS_WEIGHT: 1.0
+    MIN_KEYPOINTS_PER_IMAGE: 1
+    NAME: KRCNNConvDeconvUpsampleHead
+    NORMALIZE_LOSS_BY_VISIBLE_KEYPOINTS: true
+    NUM_KEYPOINTS: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: false
+    CONV_DIM: 256
+    NAME: MaskRCNNConvUpsampleHead
+    NORM: ''
+    NUM_CONV: 0
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: ROIAlignV2
+  RPN:
+    BATCH_SIZE_PER_IMAGE: 256
+    BBOX_REG_LOSS_TYPE: smooth_l1
+    BBOX_REG_LOSS_WEIGHT: 1.0
+    BBOX_REG_WEIGHTS: *id002
+    BOUNDARY_THRESH: -1
+    CONV_DIMS:
+    - -1
+    HEAD_NAME: StandardRPNHead
+    IN_FEATURES:
+    - res4
+    IOU_LABELS:
+    - 0
+    - -1
+    - 1
+    IOU_THRESHOLDS:
+    - 0.3
+    - 0.7
+    LOSS_WEIGHT: 1.0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOPK_TEST: 1000
+    POST_NMS_TOPK_TRAIN: 2000
+    PRE_NMS_TOPK_TEST: 6000
+    PRE_NMS_TOPK_TRAIN: 12000
+    SMOOTH_L1_BETA: 0.0
+  SEM_SEG_HEAD:
+    COMMON_STRIDE: 4
+    CONVS_DIM: 128
+    IGNORE_VALUE: 255
+    IN_FEATURES:
+    - p2
+    - p3
+    - p4
+    - p5
+    LOSS_WEIGHT: 1.0
+    NAME: SemSegFPNHead
+    NORM: GN
+    NUM_CLASSES: 54
+  SWINT:
+    APE: false
+    DEPTHS:
+    - 2
+    - 2
+    - 6
+    - 2
+    DROP_PATH_RATE: 0.2
+    EMBED_DIM: 96
+    MLP_RATIO: 4
+    NUM_HEADS:
+    - 3
+    - 6
+    - 12
+    - 24
+    OUT_FEATURES:
+    - stage3
+    - stage4
+    - stage5
+    OUT_NORM: true
+    VERSION: 1
+    WINDOW_SIZE: 7
+  WEIGHTS: ./results/VG/dh/dh_r101_fpn_VG/model_final.pth
+OUTPUT_DIR: ./results/VG/dh/dh_r101_fpn_VG/
+SEED: 2022
+SOLVER:
+  AMP:
+    ENABLED: false
+  BASE_LR: 0.0001
+  BIAS_LR_FACTOR: 1.0
+  CHECKPOINT_PERIOD: 5000
+  CLIP_GRADIENTS:
+    CLIP_TYPE: value
+    CLIP_VALUE: 1.0
+    ENABLED: false
+    NORM_TYPE: 2.0
+  GAMMA: 0.1
+  IMS_PER_BATCH: 5
+  LR_SCHEDULER_NAME: WarmupMultiStepLR
+  MAX_ITER: 576000
+  MOMENTUM: 0.9
+  NESTEROV: false
+  OPTIMIZER: ADAMW
+  REFERENCE_WORLD_SIZE: 0
+  STEPS:
+  - 60000
+  - 80000
+  WARMUP_FACTOR: 0.001
+  WARMUP_ITERS: 1000
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.05
+  WEIGHT_DECAY_BIAS: 0.05
+  WEIGHT_DECAY_NORM: 0.0
+TEST:
+  AUG:
+    ENABLED: false
+    FLIP: true
+    MAX_SIZE: 4000
+    MIN_SIZES:
+    - 400
+    - 500
+    - 600
+    - 700
+    - 800
+    - 900
+    - 1000
+    - 1100
+    - 1200
+  DETECTIONS_PER_IMAGE: 100
+  EVAL_PERIOD: 0
+  EXPECTED_RESULTS: []
+  KEYPOINT_OKS_SIGMAS: []
+  PRECISE_BN:
+    ENABLED: false
+    NUM_ITER: 200
+VERSION: 2
+VIS_PERIOD: 0
+
+[32m[11/07 10:25:37 detectron2]: [0mFull config saved to ./results/VG/dh/dh_r101_fpn_VG/config.yaml
+[32m[11/07 10:25:45 d2.engine.defaults]: [0mModel:
+ATSS(
+  (backbone): DyHead(
+    (backbone): FPN(
+      (fpn_lateral3): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+      (fpn_output3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (fpn_lateral4): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+      (fpn_output4): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (fpn_lateral5): Conv2d(2048, 256, kernel_size=(1, 1), stride=(1, 1))
+      (fpn_output5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (top_block): LastLevelP6P7(
+        (p6): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (p7): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+      )
+      (bottom_up): ResNet(
+        (stem): BasicStem(
+          (conv1): Conv2d(
+            3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False
+            (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+          )
+        )
+        (res2): Sequential(
+          (0): BottleneckBlock(
+            (shortcut): Conv2d(
+              64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv1): Conv2d(
+              64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+          )
+          (1): BottleneckBlock(
+            (conv1): Conv2d(
+              256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+          )
+          (2): BottleneckBlock(
+            (conv1): Conv2d(
+              256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=64, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+          )
+        )
+        (res3): Sequential(
+          (0): BottleneckBlock(
+            (shortcut): Conv2d(
+              256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False
+              (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+            )
+            (conv1): Conv2d(
+              256, 128, kernel_size=(1, 1), stride=(2, 2), bias=False
+              (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+            )
+          )
+          (1): BottleneckBlock(
+            (conv1): Conv2d(
+              512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+            )
+          )
+          (2): BottleneckBlock(
+            (conv1): Conv2d(
+              512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+            )
+          )
+          (3): BottleneckBlock(
+            (conv1): Conv2d(
+              512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=128, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+            )
+          )
+        )
+        (res4): Sequential(
+          (0): BottleneckBlock(
+            (shortcut): Conv2d(
+              512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+            (conv1): Conv2d(
+              512, 256, kernel_size=(1, 1), stride=(2, 2), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (1): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (2): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (3): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (4): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (5): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (6): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (7): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (8): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (9): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (10): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (11): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (12): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (13): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (14): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (15): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (16): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (17): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (18): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (19): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (20): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (21): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+          (22): BottleneckBlock(
+            (conv1): Conv2d(
+              1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=256, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=1024, eps=1e-05)
+            )
+          )
+        )
+        (res5): Sequential(
+          (0): BottleneckBlock(
+            (shortcut): Conv2d(
+              1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False
+              (norm): FrozenBatchNorm2d(num_features=2048, eps=1e-05)
+            )
+            (conv1): Conv2d(
+              1024, 512, kernel_size=(1, 1), stride=(2, 2), bias=False
+              (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=2048, eps=1e-05)
+            )
+          )
+          (1): BottleneckBlock(
+            (conv1): Conv2d(
+              2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=2048, eps=1e-05)
+            )
+          )
+          (2): BottleneckBlock(
+            (conv1): Conv2d(
+              2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+            )
+            (conv2): Conv2d(
+              512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=512, eps=1e-05)
+            )
+            (conv3): Conv2d(
+              512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False
+              (norm): FrozenBatchNorm2d(num_features=2048, eps=1e-05)
+            )
+          )
+        )
+      )
+    )
+    (dyhead_tower): Sequential(
+      (0): DyConv(
+        (DyConv): ModuleList(
+          (0): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (1): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (2): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=2, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+        )
+        (AttnConv): Sequential(
+          (0): AdaptiveAvgPool2d(output_size=1)
+          (1): Conv2d(256, 1, kernel_size=(1, 1), stride=(1, 1))
+          (2): ReLU(inplace=True)
+        )
+        (h_sigmoid): h_sigmoid(
+          (relu): ReLU6(inplace=True)
+        )
+        (relu): DYReLU(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (fc): Sequential(
+            (0): Linear(in_features=256, out_features=64, bias=True)
+            (1): ReLU(inplace=True)
+            (2): Linear(in_features=64, out_features=1024, bias=True)
+            (3): h_sigmoid(
+              (relu): ReLU6(inplace=True)
+            )
+          )
+        )
+        (offset): Conv2d(256, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (1): DyConv(
+        (DyConv): ModuleList(
+          (0): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (1): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (2): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=2, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+        )
+        (AttnConv): Sequential(
+          (0): AdaptiveAvgPool2d(output_size=1)
+          (1): Conv2d(256, 1, kernel_size=(1, 1), stride=(1, 1))
+          (2): ReLU(inplace=True)
+        )
+        (h_sigmoid): h_sigmoid(
+          (relu): ReLU6(inplace=True)
+        )
+        (relu): DYReLU(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (fc): Sequential(
+            (0): Linear(in_features=256, out_features=64, bias=True)
+            (1): ReLU(inplace=True)
+            (2): Linear(in_features=64, out_features=1024, bias=True)
+            (3): h_sigmoid(
+              (relu): ReLU6(inplace=True)
+            )
+          )
+        )
+        (offset): Conv2d(256, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (2): DyConv(
+        (DyConv): ModuleList(
+          (0): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (1): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (2): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=2, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+        )
+        (AttnConv): Sequential(
+          (0): AdaptiveAvgPool2d(output_size=1)
+          (1): Conv2d(256, 1, kernel_size=(1, 1), stride=(1, 1))
+          (2): ReLU(inplace=True)
+        )
+        (h_sigmoid): h_sigmoid(
+          (relu): ReLU6(inplace=True)
+        )
+        (relu): DYReLU(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (fc): Sequential(
+            (0): Linear(in_features=256, out_features=64, bias=True)
+            (1): ReLU(inplace=True)
+            (2): Linear(in_features=64, out_features=1024, bias=True)
+            (3): h_sigmoid(
+              (relu): ReLU6(inplace=True)
+            )
+          )
+        )
+        (offset): Conv2d(256, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (3): DyConv(
+        (DyConv): ModuleList(
+          (0): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (1): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (2): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=2, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+        )
+        (AttnConv): Sequential(
+          (0): AdaptiveAvgPool2d(output_size=1)
+          (1): Conv2d(256, 1, kernel_size=(1, 1), stride=(1, 1))
+          (2): ReLU(inplace=True)
+        )
+        (h_sigmoid): h_sigmoid(
+          (relu): ReLU6(inplace=True)
+        )
+        (relu): DYReLU(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (fc): Sequential(
+            (0): Linear(in_features=256, out_features=64, bias=True)
+            (1): ReLU(inplace=True)
+            (2): Linear(in_features=64, out_features=1024, bias=True)
+            (3): h_sigmoid(
+              (relu): ReLU6(inplace=True)
+            )
+          )
+        )
+        (offset): Conv2d(256, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (4): DyConv(
+        (DyConv): ModuleList(
+          (0): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (1): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (2): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=2, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+        )
+        (AttnConv): Sequential(
+          (0): AdaptiveAvgPool2d(output_size=1)
+          (1): Conv2d(256, 1, kernel_size=(1, 1), stride=(1, 1))
+          (2): ReLU(inplace=True)
+        )
+        (h_sigmoid): h_sigmoid(
+          (relu): ReLU6(inplace=True)
+        )
+        (relu): DYReLU(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (fc): Sequential(
+            (0): Linear(in_features=256, out_features=64, bias=True)
+            (1): ReLU(inplace=True)
+            (2): Linear(in_features=64, out_features=1024, bias=True)
+            (3): h_sigmoid(
+              (relu): ReLU6(inplace=True)
+            )
+          )
+        )
+        (offset): Conv2d(256, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (5): DyConv(
+        (DyConv): ModuleList(
+          (0): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (1): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=1, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+          (2): Conv3x3Norm(
+            (conv): ModulatedDeformConv(in_channels=256, out_channels=256, kernel_size=(3, 3), stride=2, dilation=1, padding=1, groups=1, deformable_groups=1, bias=True)
+            (bn): GroupNorm(16, 256, eps=1e-05, affine=True)
+          )
+        )
+        (AttnConv): Sequential(
+          (0): AdaptiveAvgPool2d(output_size=1)
+          (1): Conv2d(256, 1, kernel_size=(1, 1), stride=(1, 1))
+          (2): ReLU(inplace=True)
+        )
+        (h_sigmoid): h_sigmoid(
+          (relu): ReLU6(inplace=True)
+        )
+        (relu): DYReLU(
+          (avg_pool): AdaptiveAvgPool2d(output_size=1)
+          (fc): Sequential(
+            (0): Linear(in_features=256, out_features=64, bias=True)
+            (1): ReLU(inplace=True)
+            (2): Linear(in_features=64, out_features=1024, bias=True)
+            (3): h_sigmoid(
+              (relu): ReLU6(inplace=True)
+            )
+          )
+        )
+        (offset): Conv2d(256, 27, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+    )
+  )
+  (head): ATSSHead(
+    (cls_tower): Sequential(
+      (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (2): ReLU()
+      (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (4): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (5): ReLU()
+    )
+    (bbox_tower): Sequential(
+      (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (2): ReLU()
+      (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (4): GroupNorm(32, 256, eps=1e-05, affine=True)
+      (5): ReLU()
+    )
+    (cls_logits): Conv2d(256, 1600, kernel_size=(1, 1), stride=(1, 1))
+    (bbox_pred): Conv2d(256, 4, kernel_size=(1, 1), stride=(1, 1))
+    (centerness): Conv2d(256, 1, kernel_size=(1, 1), stride=(1, 1))
+    (scales): ModuleList(
+      (0): Scale()
+      (1): Scale()
+      (2): Scale()
+      (3): Scale()
+      (4): Scale()
+    )
+  )
+  (centerness_loss_func): BCEWithLogitsLoss()
+  (classification_loss_func): SigmoidFocalLoss(gamma=2.0, alpha=0.25)
+  (anchor_generator): DefaultAnchorGenerator(
+    (cell_anchors): BufferList()
+  )
+)
+[32m[11/07 10:25:45 fvcore.common.checkpoint]: [0m[Checkpointer] Loading from ./results/VG/dh/dh_r101_fpn_VG/model_final.pth ...
+
+                    Category ids in annotations are not in [1, #categories]! We'll apply a mapping for you.
+                    
+Load concept for each category. 
+[32m[11/07 10:25:50 d2.data.build]: [0mRemoved 43 images with no usable annotations. 4957 images left.
+[32m[11/07 10:25:50 d2.data.build]: [0mDistribution of instances among all 1600 categories:
+[36m|   category    | #instances   |   category    | #instances   |   category    | #instances   |
+|:-------------:|:-------------|:-------------:|:-------------|:-------------:|:-------------|
+|     yolk      | 2            |     goal      | 2            |   bathroom    | 45           |
+|   macaroni    | 0            |    umpire     | 62           |   toothpick   | 4            |
+|  alarm clock  | 2            |  ceiling fan  | 2            |    photos     | 1            |
+|    parrot     | 7            |   tail fin    | 3            | birthday cake | 5            |
+|  calculator   | 0            |    catcher    | 61           |    toilet     | 153          |
+|    batter     | 31           |   stop sign   | 39           |     cone      | 65           |
+|   microwave   | 31           | skateboard .. | 1            |      tea      | 2            |
+|    dugout     | 9            |   products    | 1            |    halter     | 2            |
+|    kettle     | 8            |    kitchen    | 35           | refrigerator  | 60           |
+|    ostrich    | 3            |    bathtub    | 26           |    blinds     | 35           |
+|     court     | 64           |    urinal     | 6            |   knee pads   | 11           |
+|      bed      | 170          |   flamingo    | 1            |    giraffe    | 366          |
+|    helmet     | 314          |   giraffes    | 58           | tennis court  | 46           |
+|  motorcycle   | 261          |    laptop     | 126          |    tea pot    | 1            |
+|     horse     | 362          |  television   | 74           |    shorts     | 267          |
+|    manhole    | 8            |  dishwasher   | 16           |     jeans     | 186          |
+|     sail      | 17           |    monitor    | 30           |      man      | 2363         |
+|     shirt     | 1180         |      car      | 734          |      cat      | 294          |
+|  garage door  | 3            |      bus      | 256          |   radiator    | 3            |
+|    tights     | 3            |   sailboat    | 23           |    racket     | 126          |
+|     plate     | 499          |   rock wall   | 3            |     beach     | 143          |
+|    trolley    | 1            |     ocean     | 76           |   headboard   | 23           |
+|  tea kettle   | 1            |    wetsuit    | 43           | tennis racket | 63           |
+|     sink      | 166          |     train     | 412          |   keyboard    | 109          |
+|      sky      | 962          |     match     | 5            | train station | 11           |
+|    stereo     | 1            |     bats      | 0            | tennis player | 50           |
+| toilet brush  | 5            |    lighter    | 12           | pepper shaker | 3            |
+|    gazebo     | 2            |  hair dryer   | 2            |   elephant    | 273          |
+|  toilet seat  | 18           |     zebra     | 286          |  skateboard   | 164          |
+|    zebras     | 46           |  floor lamp   | 1            | french fries  | 9            |
+|     woman     | 1079         |    player     | 218          |     tower     | 133          |
+|    bicycle    | 81           |   magazines   | 8            | christmas t.. | 12           |
+|   umbrella    | 362          |      cow      | 256          |     pants     | 390          |
+|     bike      | 206          |     field     | 256          |  living room  | 16           |
+|     latch     | 13           |    bedroom    | 13           |     grape     | 11           |
+|    castle     | 4            |     table     | 746          |     swan      | 3            |
+|    blender    | 12           |    orange     | 111          |  teddy bear   | 42           |
+|      net      | 32           |     meter     | 19           | baseball fi.. | 11           |
+|    runway     | 29           |    screen     | 76           |   ski boot    | 7            |
+|      dog      | 250          |     clock     | 368          |     hair      | 641          |
+|    avocado    | 4            |    highway    | 15           |     skirt     | 49           |
+|    frisbee    | 56           |   parasail    | 4            |     desk      | 116          |
+|     pizza     | 206          |     mouse     | 63           |     sign      | 1067         |
+| shower curt.. | 4            |  polar bear   | 4            |   airplane    | 137          |
+|    jersey     | 61           |    reigns     | 4            |    hot dog    | 68           |
+|   surfboard   | 193          |     couch     | 101          |     glass     | 300          |
+|   snowboard   | 56           |     girl      | 329          |     plane     | 268          |
+|   elephants   | 35           |     oven      | 38           |   dirt bike   | 0            |
+|   tail wing   | 3            |   area rug    | 2            |     bear      | 141          |
+|    washer     | 8            |     date      | 33           |    bow tie    | 5            |
+|     cows      | 50           | fire exting.. | 5            |    bamboo     | 4            |
+|    wallet     | 1            | tail feathers | 3            |     truck     | 218          |
+|  beach chair  | 7            |     boat      | 292          |    tablet     | 2            |
+|    ceiling    | 103          |  chandelier   | 16           |     sheep     | 302          |
+|    glasses    | 219          |      ram      | 18           |     kite      | 220          |
+|     salad     | 44           |    pillow     | 185          | fire hydrant  | 69           |
+|      mug      | 39           |    tarmac     | 20           |   computer    | 68           |
+|   swimsuit    | 4            |    tomato     | 101          |     tire      | 213          |
+|  cauliflower  | 5            |   fireplace   | 27           |     snow      | 328          |
+|   building    | 1304         |   sandwich    | 101          | weather vane  | 1            |
+|     bird      | 335          |    jacket     | 380          |     chair     | 410          |
+|     water     | 652          |     cats      | 19           |  soccer ball  | 12           |
+|    horses     | 50           |    drapes     | 10           |     barn      | 7            |
+|    engine     | 106          |     cake      | 158          |     head      | 674          |
+|   head band   | 7            |     skier     | 105          |     town      | 1            |
+|   bath tub    | 3            |     bowl      | 182          |     stove     | 53           |
+|    tongue     | 32           | coffee table  | 19           |     floor     | 418          |
+|    uniform    | 50           |    ottoman    | 14           |   broccoli    | 117          |
+|     olive     | 38           |     mound     | 16           |    pitcher    | 32           |
+|     food      | 205          |   paintings   | 0            | traffic light | 84           |
+| parking meter | 15           |    bananas    | 116          |   mountain    | 128          |
+|     cage      | 12           |     hedge     | 10           |  motorcycles  | 13           |
+|   wet suit    | 13           |    radish     | 1            |  teddy bears  | 4            |
+|   monitors    | 4            |   suitcase    | 104          |    drawers    | 11           |
+|     grass     | 782          |     apple     | 124          |     lamp      | 115          |
+|    goggles    | 42           |      boy      | 310          |   armchair    | 1            |
+|     ramp      | 21           |    burner     | 9            |     lamb      | 23           |
+|      cup      | 181          |   tank top    | 17           |     boats     | 38           |
+|      hat      | 361          |     soup      | 19           |     fence     | 462          |
+|   necklace    | 45           |     visor     | 19           |    coffee     | 20           |
+|    bottle     | 236          |     stool     | 23           |     shoe      | 317          |
+|    surfer     | 53           |     stop      | 14           |   backpack    | 88           |
+|  shin guard   | 3            |  wii remote   | 9            |     wall      | 1127         |
+|  pizza slice  | 9            |  home plate   | 26           |      van      | 79           |
+|    packet     | 0            |   earrings    | 8            |   wristband   | 36           |
+|    tracks     | 145          |     mitt      | 27           |     dome      | 8            |
+|  snowboarder  | 16           |    faucet     | 78           |  toiletries   | 2            |
+|   ski boots   | 2            |     room      | 70           |     fork      | 108          |
+|   snow suit   | 3            | banana slice  | 1            |     bench     | 257          |
+|      tie      | 104          |    burners    | 5            | stuffed ani.. | 1            |
+|      zoo      | 10           | train platf.. | 3            |    cupcake    | 4            |
+|    curtain    | 89           |      ear      | 476          |  tissue box   | 5            |
+|     bread     | 106          |   scissors    | 47           |     vase      | 151          |
+|     herd      | 9            |     smoke     | 18           |   skylight    | 10           |
+|      cub      | 4            |     tail      | 291          | cutting board | 20           |
+|     wave      | 174          |    hedges     | 4            |  windshield   | 104          |
+|    apples     | 46           |    mirror     | 202          | license plate | 70           |
+|     tree      | 1232         |     wheel     | 353          |   ski pole    | 46           |
+|  clock tower  | 14           |    freezer    | 7            |    luggage    | 55           |
+| skateboarder  | 33           |   mousepad    | 6            |     road      | 366          |
+|      bat      | 100          |  toilet tank  | 3            |    vanity     | 6            |
+|     neck      | 158          |     cliff     | 6            |      tub      | 25           |
+|   sprinkles   | 11           |    dresser    | 16           |    street     | 385          |
+|     wing      | 127          |     suit      | 57           |    veggie     | 2            |
+|  palm trees   | 3            |    urinals    | 2            |     door      | 418          |
+|   propeller   | 20           |     keys      | 12           |  skate park   | 8            |
+|   platform    | 64           |      pot      | 69           |     towel     | 120          |
+| computer mo.. | 8            |   flip flop   | 8            |     eggs      | 14           |
+|     shed      | 11           |     moped     | 5            |     sand      | 169          |
+|     face      | 292          |    scissor    | 3            |     carts     | 1            |
+|    squash     | 3            |    pillows    | 48           |    family     | 6            |
+|     glove     | 138          |      rug      | 61           |     watch     | 66           |
+|   grafitti    | 4            |     dogs      | 11           |  scoreboard   | 7            |
+|    basket     | 96           |    poster     | 33           |     duck      | 37           |
+|     horns     | 43           |     bears     | 11           |     jeep      | 6            |
+|   painting    | 27           |  lighthouse   | 9            | remote cont.. | 16           |
+|    toaster    | 17           |  vegetables   | 42           |  surfboards   | 8            |
+|     ducks     | 6            |     lane      | 1            |    carrots    | 28           |
+|    market     | 9            | paper towels  | 7            |    island     | 18           |
+|  blueberries  | 5            |     smile     | 17           |   balloons    | 4            |
+|   stroller    | 8            |    napkin     | 88           |    towels     | 29           |
+|    papers     | 17           |    person     | 1546         | train tracks  | 34           |
+|     child     | 168          |   headband    | 26           |     pool      | 11           |
+|     plant     | 155          |    harbor     | 5            |    counter    | 158          |
+|     hand      | 623          |     house     | 174          |     donut     | 111          |
+|     knot      | 9            | soccer player | 2            |    seagull    | 6            |
+|    bottles    | 40           |     buses     | 5            |     coat      | 110          |
+|     trees     | 587          |     geese     | 0            |      bun      | 37           |
+|  toilet bowl  | 16           |     trunk     | 177          |    station    | 24           |
+|    bikini     | 13           |    goatee     | 4            | lounge chair  | 1            |
+|   breakfast   | 2            |     nose      | 342          |     moon      | 4            |
+|     river     | 34           |     racer     | 0            |    picture    | 188          |
+|    shaker     | 10           |   sidewalk    | 303          |   shutters    | 14           |
+|   stove top   | 9            |    church     | 12           |   lampshade   | 11           |
+|      map      | 4            |     shop      | 5            |    platter    | 14           |
+|    airport    | 18           |    hoodie     | 23           |    oranges    | 26           |
+|     woods     | 29           |   enclosure   | 20           |   skatepark   | 6            |
+|     vases     | 19           |     city      | 19           |     park      | 33           |
+|    mailbox    | 6            |    balloon    | 27           |   billboard   | 10           |
+|    pasture    | 18           |   portrait    | 1            |   forehead    | 7            |
+|     ship      | 10           |    cookie     | 0            |    seaweed    | 4            |
+|     sofa      | 44           |     slats     | 9            | tomato slice  | 7            |
+|    tractor    | 8            |     bull      | 44           |   suitcases   | 7            |
+|   graffiti    | 61           |   policeman   | 20           |    remotes    | 6            |
+|     pens      | 5            |  window sill  | 6            |  suspenders   | 6            |
+|     easel     | 0            |     tray      | 68           |     straw     | 29           |
+|    collar     | 83           |    shower     | 9            |      bag      | 248          |
+|    scooter    | 37           |     tails     | 3            |  toilet lid   | 13           |
+|     panda     | 3            |   comforter   | 13           |    outlet     | 35           |
+|     stems     | 5            |    valley     | 5            |     flag      | 165          |
+|    jockey     | 5            |    gravel     | 39           |     mouth     | 184          |
+|    window     | 1857         |    bridge     | 53           |     corn      | 4            |
+|   mountains   | 75           |     beer      | 23           | pitcher's m.. | 1            |
+|   palm tree   | 24           |     crowd     | 22           |     skis      | 81           |
+|     phone     | 101          | banana bunch  | 0            |  tennis shoe  | 23           |
+|    ground     | 978          |    carpet     | 52           |      eye      | 400          |
+|      urn      | 0            |     beak      | 81           | giraffe head  | 5            |
+|    steeple    | 8            |   mattress    | 4            | baseball pl.. | 48           |
+|     wine      | 45           | water bottle  | 14           |    kitten     | 2            |
+|    archway    | 9            |    candle     | 142          |   croissant   | 0            |
+|  tennis ball  | 21           |     dress     | 80           |    column     | 33           |
+|   utensils    | 22           |  cell phone   | 45           | computer mo.. | 7            |
+|      cap      | 165          |     lawn      | 24           |   airplanes   | 5            |
+|   carriage    | 17           |     snout     | 10           |   cabinets    | 33           |
+|    lemons     | 5            |     grill     | 19           |   umbrellas   | 39           |
+|     meat      | 136          |     wagon     | 20           |     ipod      | 2            |
+|   bookshelf   | 19           |     cart      | 38           |     roof      | 192          |
+|      hay      | 28           |   ski pants   | 4            |     seat      | 116          |
+|     mane      | 58           |     bikes     | 9            |    drawer     | 66           |
+|     game      | 16           |  clock face   | 16           |     boys      | 14           |
+|     rider     | 27           |  fire escape  | 1            |     slope     | 32           |
+|    iphone     | 1            |    pumpkin    | 0            |      pan      | 36           |
+|  chopsticks   | 6            |     hill      | 121          |   uniforms    | 0            |
+|     cleat     | 3            |    costume    | 1            |     cabin     | 6            |
+| police offi.. | 15           |     ears      | 78           |      egg      | 33           |
+|   trash can   | 28           |     horn      | 66           |     arrow     | 92           |
+|  toothbrush   | 49           |    carrot     | 104          |    banana     | 118          |
+|    planes     | 11           |    garden     | 6            |    forest     | 42           |
+|   brocolli    | 8            |   aircraft    | 6            | front window  | 3            |
+|   dashboard   | 2            |    statue     | 58           |    saucer     | 10           |
+|    people     | 501          |  silverware   | 14           |     fruit     | 134          |
+|     drain     | 17           |      jet      | 25           |    speaker    | 38           |
+|     eyes      | 90           |    railway    | 5            |      lid      | 71           |
+|     soap      | 17           |     rocks     | 133          | office chair  | 6            |
+|   door knob   | 9            |  banana peel  | 2            | baseball game | 7            |
+|   asparagus   | 6            |     spoon     | 72           | cabinet door  | 8            |
+|   pineapple   | 4            | traffic cone  | 9            |  nightstand   | 18           |
+|    teapot     | 6            |     taxi      | 12           |    chimney    | 32           |
+|     lake      | 25           |  suit jacket  | 2            | train engine  | 8            |
+|     ball      | 157          |  wrist band   | 26           |    pickle     | 12           |
+|    fruits     | 18           |      pad      | 13           |   dispenser   | 28           |
+|    bridle     | 8            |    breast     | 5            |     cones     | 8            |
+|   headlight   | 144          |    necktie    | 6            |    skater     | 15           |
+| toilet paper  | 32           |  skyscraper   | 12           |   telephone   | 10           |
+|      ox       | 0            |    roadway    | 10           |     sock      | 97           |
+|    paddle     | 11           |    dishes     | 13           |     hills     | 22           |
+|  street sign  | 55           |  headlights   | 57           |    benches    | 21           |
+|   fuselage    | 1            |     card      | 7            |    napkins    | 10           |
+|     bush      | 175          |     rice      | 24           | computer sc.. | 7            |
+|    spokes     | 8            |    flowers    | 196          |    bucket     | 38           |
+|     rock      | 263          |     pole      | 607          |     pear      | 1            |
+|     sauce     | 73           |     store     | 26           |     juice     | 6            |
+|     knobs     | 20           |    mustard    | 13           |      ski      | 86           |
+|    stands     | 21           |    cabinet    | 110          |     dirt      | 162          |
+|     goats     | 1            |  wine glass   | 8            |  spectators   | 7            |
+|     crate     | 20           |   pancakes    | 4            |     kids      | 19           |
+|    engines    | 9            |     shade     | 46           |    feeder     | 13           |
+|   cellphone   | 30           |    pepper     | 112          |    blanket    | 81           |
+|  sunglasses   | 102          |   train car   | 49           |    magnet     | 7            |
+|    donuts     | 39           |    sweater    | 78           |    signal     | 21           |
+| advertisement | 21           |      log      | 35           |     vent      | 39           |
+|   whiskers    | 54           |     adult     | 10           |     arch      | 20           |
+|  locomotive   | 7            | tennis match  | 0            |     tent      | 44           |
+|   motorbike   | 30           |    magnets    | 3            |     night     | 1            |
+|    marina     | 3            |     wool      | 7            |     vest      | 85           |
+| railroad tr.. | 3            | stuffed bear  | 2            |   moustache   | 2            |
+|      bib      | 1            |     frame     | 112          |  snow pants   | 3            |
+|     tank      | 18           |  undershirt   | 5            |     icons     | 2            |
+|   neck tie    | 4            |     beams     | 2            | baseball bat  | 18           |
+|  safety cone  | 1            |  paper towel  | 5            |   bedspread   | 7            |
+|      can      | 51           |   container   | 114          |    flower     | 309          |
+|    vehicle    | 151          |   tomatoes    | 17           |  back wheel   | 7            |
+| soccer field  | 2            |    nostril    | 18           |      suv      | 22           |
+|   buildings   | 92           |    canopy     | 20           |     flame     | 3            |
+|      kid      | 79           |   baseball    | 63           | throw pillow  | 2            |
+|     belt      | 43           |    rainbow    | 3            |     lemon     | 35           |
+|   oven door   | 5            |      tag      | 64           |     books     | 52           |
+|   monument    | 5            |      men      | 60           |    shadow     | 354          |
+|   bicycles    | 6            |     cars      | 80           |  lamp shade   | 10           |
+|   pine tree   | 19           |    bouquet    | 5            |  toothpaste   | 3            |
+|    potato     | 6            |     sinks     | 0            |     hook      | 34           |
+|    switch     | 13           |   lamp post   | 28           |     lapel     | 2            |
+|    desert     | 3            |     knob      | 93           |    chairs     | 64           |
+|     pasta     | 15           |   feathers    | 32           |     hole      | 89           |
+|     meal      | 12           | station wagon | 2            |     kites     | 31           |
+|     boots     | 56           |     baby      | 52           |     biker     | 3            |
+|     gate      | 44           | signal light  | 2            |  headphones   | 8            |
+|     goat      | 27           |     waves     | 100          |    bumper     | 27           |
+|      bud      | 0            |     logo      | 191          |   curtains    | 46           |
+| american flag | 2            |     yacht     | 4            |      box      | 180          |
+| baseball cap  | 15           |     fries     | 5            |  controller   | 34           |
+|    awning     | 39           |     path      | 26           |  front legs   | 9            |
+|  life jacket  | 3            |     purse     | 50           |   outfield    | 5            |
+|    pigeon     | 4            |    toddler    | 11           |     beard     | 60           |
+|     thumb     | 25           |  water tank   | 3            |     board     | 162          |
+|    parade     | 3            |     robe      | 6            |   newspaper   | 11           |
+|     wires     | 68           |    camera     | 65           |   pastries    | 8            |
+|     deck      | 18           |  watermelon   | 6            |    clouds     | 614          |
+|     deer      | 3            | motorcyclist  | 11           |    kneepad    | 3            |
+|   sneakers    | 36           |     women     | 54           |    onions     | 36           |
+|    eyebrow    | 14           |  gas station  | 0            |     vane      | 2            |
+|     girls     | 16           |     trash     | 17           |   numerals    | 18           |
+|     knife     | 72           |     tags      | 7            |     light     | 761          |
+|     bunch     | 18           |    outfit     | 42           |     groom     | 0            |
+|    infield    | 1            |   frosting    | 29           |     forks     | 5            |
+| entertainme.. | 1            | stuffed ani.. | 13           |     yard      | 11           |
+|    numeral    | 34           |    ladder     | 27           |     shoes     | 133          |
+|   bracelet    | 30           |     teeth     | 27           |      guy      | 64           |
+| display case  | 3            |    cushion    | 32           |     post      | 209          |
+|    pathway    | 8            |  tablecloth   | 46           |    skiers     | 10           |
+|    trouser    | 10           |     cloud     | 279          |     hands     | 99           |
+|    produce    | 4            |     beam      | 17           |    ketchup    | 13           |
+|      paw      | 90           |     dish      | 54           |     raft      | 4            |
+|   crosswalk   | 21           |  front wheel  | 15           |     toast     | 13           |
+|    cattle     | 21           |    players    | 15           |     group     | 31           |
+|  coffee pot   | 4            |     track     | 79           |  cowboy hat   | 4            |
+|     petal     | 22           |  eyeglasses   | 30           |    handle     | 346          |
+|  table cloth  | 12           |     jets      | 4            |    shakers    | 2            |
+|    remote     | 67           |   snowsuit    | 3            |    bushes     | 103          |
+|    dessert    | 16           |      leg      | 532          |     eagle     | 2            |
+|  fire truck   | 12           | game contro.. | 6            |  smartphone   | 3            |
+|  backsplash   | 6            |    trains     | 25           |     shore     | 42           |
+|     signs     | 63           |     bell      | 12           |   cupboards   | 3            |
+|  sweat band   | 3            |     sack      | 1            |     ankle     | 1            |
+|   coin slot   | 0            |     bagel     | 1            |     masts     | 4            |
+|    police     | 6            |    drawing    | 8            |    biscuit    | 3            |
+|      toy      | 20           |     legs      | 154          |   pavement    | 67           |
+|    outside    | 13           |    wheels     | 107          |    driver     | 18           |
+|    numbers    | 46           |    blazer     | 2            |      pen      | 51           |
+|    cabbage    | 10           |    trucks     | 10           |      key      | 46           |
+|    saddle     | 16           |  pillow case  | 2            |     goose     | 0            |
+|     label     | 54           |    boulder    | 33           |    pajamas    | 3            |
+|     wrist     | 69           |     shelf     | 203          |     cross     | 26           |
+|  coffee cup   | 10           |    foliage    | 15           |      lot      | 9            |
+|      fry      | 6            |      air      | 63           |    officer    | 8            |
+|   pepperoni   | 11           |    cheese     | 98           |     lady      | 112          |
+|   kickstand   | 10           |  counter top  | 21           |    veggies    | 7            |
+| baseball un.. | 3            |  book shelf   | 2            |     bags      | 27           |
+|    pickles    | 5            |     stand     | 89           |    netting    | 8            |
+|    lettuce    | 44           |  facial hair  | 8            |     lime      | 2            |
+|    animals    | 69           |     drape     | 1            |     boot      | 64           |
+|    railing    | 105          |   end table   | 6            |  shin guards  | 2            |
+|     steps     | 38           |   trashcan    | 4            |     tusk      | 32           |
+|  head light   | 2            |    walkway    | 27           |    cockpit    | 33           |
+|  tennis net   | 4            |    animal     | 191          |   boardwalk   | 3            |
+|    keypad     | 4            |   bookcase    | 6            |   blueberry   | 14           |
+|   trash bag   | 4            |   ski poles   | 11           |  parking lot  | 23           |
+|   gas tank    | 4            |     beds      | 2            |      fan      | 25           |
+|     base      | 69           | soap dispen.. | 7            |    banner     | 44           |
+|   life vest   | 7            |  train front  | 1            |     word      | 60           |
+|      cab      | 13           |    liquid     | 24           | exhaust pipe  | 4            |
+|    sneaker    | 64           | light fixture | 11           |  power lines  | 15           |
+|     curb      | 47           |     scene     | 38           |    buttons    | 35           |
+| roman numer.. | 11           |    muzzle     | 6            |    sticker    | 69           |
+|     bacon     | 6            |    pizzas     | 10           |     paper     | 121          |
+|     feet      | 84           |    stairs     | 55           |   triangle    | 15           |
+|    plants     | 73           |     rope      | 52           |     beans     | 4            |
+|     brim      | 2            |   beverage    | 10           |    letters    | 129          |
+|     soda      | 7            |     menu      | 10           |    finger     | 96           |
+|     dvds      | 4            |    candles    | 28           | picnic table  | 3            |
+|  wine bottle  | 3            |    pencil     | 10           |  tree trunk   | 64           |
+|     nail      | 11           |    mantle     | 10           |  countertop   | 18           |
+|     view      | 15           |     line      | 412          |  motor bike   | 2            |
+|   audience    | 3            | traffic sign  | 15           |      arm      | 261          |
+|  pedestrian   | 6            |  stabilizer   | 4            |     dock      | 33           |
+|    doorway    | 38           |    bedding    | 4            |      end      | 11           |
+|    worker     | 8            |     canal     | 2            |     crane     | 27           |
+|     grate     | 9            |  little girl  | 11           |     rims      | 9            |
+| passenger car | 0            |    plates     | 30           |  background   | 175          |
+|     peel      | 4            |  brake light  | 7            | roman numeral | 42           |
+|    string     | 49           |     tines     | 1            |     turf      | 3            |
+|    armrest    | 7            |  shower head  | 3            |     leash     | 14           |
+|    stones     | 17           |   stoplight   | 0            |  handle bars  | 4            |
+|     front     | 59           |     scarf     | 66           |     band      | 31           |
+|     jean      | 1            |    tennis     | 15           |     pile      | 18           |
+|   doorknob    | 7            |     foot      | 198          |    houses     | 20           |
+|    windows    | 223          |  restaurant   | 15           |     booth     | 14           |
+| cardboard box | 9            |    fingers    | 32           | mountain ra.. | 0            |
+|   bleachers   | 8            |     rail      | 53           |    pastry     | 21           |
+|     canoe     | 8            |      sun      | 29           |  eye glasses  | 5            |
+|  salt shaker  | 5            |    number     | 194          |     fish      | 20           |
+|   knee pad    | 6            |      fur      | 66           |      she      | 3            |
+|  shower door  | 3            |      rod      | 21           |   branches    | 53           |
+|     birds     | 36           |    printer    | 4            |    sunset     | 5            |
+|    median     | 3            |    shutter    | 17           |     slice     | 22           |
+|    heater     | 4            |    prongs     | 3            | bathing suit  | 6            |
+|    skiier     | 4            |     rack      | 54           |     book      | 124          |
+|     blade     | 12           |   apartment   | 3            | manhole cover | 5            |
+|    stools     | 2            |   overhang    | 3            |  door handle  | 5            |
+|    couple     | 23           | picture frame | 5            |    chicken    | 46           |
+|    planter    | 12           |     seats     | 27           |   hour hand   | 9            |
+|  dvd player   | 3            |   ski slope   | 5            |  french fry   | 12           |
+|     bowls     | 14           |      top      | 150          | landing gear  | 5            |
+| coffee maker  | 4            |     melon     | 9            |   computers   | 8            |
+| light switch  | 6            |      jar      | 47           |   tv stand    | 2            |
+|   overalls    | 4            |    garage     | 3            |   tabletop    | 3            |
+|    writing    | 147          |     doors     | 46           |    stadium    | 11           |
+|   placemat    | 13           |   air vent    | 2            |     trick     | 4            |
+|     sled      | 0            |     mast      | 13           |     pond      | 49           |
+| steering wh.. | 3            | baseball gl.. | 7            |   watermark   | 7            |
+|      pie      | 4            |   sandwhich   | 9            |      cpu      | 0            |
+|   mushroom    | 22           |  power pole   | 2            |   dirt road   | 1            |
+|    handles    | 51           |   speakers    | 1            |    fender     | 8            |
+| telephone p.. | 7            |  strawberry   | 21           |     mask      | 16           |
+|   children    | 14           |     crust     | 53           |      art      | 11           |
+|      rim      | 37           |    branch     | 128          |    display    | 25           |
+|    grasses    | 7            |     photo     | 67           |    receipt    | 1            |
+| instructions  | 3            |     herbs     | 4            |     toys      | 13           |
+|  handlebars   | 9            |    trailer    | 14           |    sandal     | 31           |
+|     skull     | 5            |    hangar     | 2            |     pipe      | 70           |
+|    office     | 4            |     chest     | 33           |     lamps     | 7            |
+|    horizon    | 12           |   calendar    | 4            |     foam      | 20           |
+|     stone     | 69           |     bars      | 24           |    button     | 197          |
+|     poles     | 78           |     heart     | 17           |     hose      | 9            |
+|  jet engine   | 0            |   potatoes    | 1            |     rain      | 12           |
+|   magazine    | 6            |     chain     | 35           |   footboard   | 1            |
+|   tee shirt   | 8            |    design     | 98           |     walls     | 27           |
+|   copyright   | 3            |   pictures    | 30           |    pillar     | 45           |
+|     drink     | 28           |    barrier    | 14           |     boxes     | 21           |
+|   chocolate   | 8            |     chef      | 1            |     slot      | 4            |
+|  sweatpants   | 1            |   face mask   | 3            |     icing     | 18           |
+|    wipers     | 13           |    circle     | 49           |      bin      | 26           |
+|     kitty     | 6            |  electronics  | 10           |     wild      | 4            |
+|     tiles     | 57           |     steam     | 8            |   lettering   | 69           |
+| bathroom sink | 4            | laptop comp.. | 7            |    cherry     | 3            |
+|     spire     | 10           |   conductor   | 0            |     sheet     | 28           |
+|     slab      | 5            | windshield .. | 4            |  storefront   | 2            |
+|   hill side   | 3            |    spatula    | 12           |  tail light   | 37           |
+|     bean      | 4            |     wire      | 62           | intersection  | 12           |
+|     pier      | 12           |  snow board   | 2            |    trunks     | 15           |
+|    website    | 4            |     bolt      | 26           |     kayak     | 7            |
+|     nuts      | 3            |    holder     | 44           |    turbine    | 0            |
+|  stop light   | 16           |    olives     | 17           |   ball cap    | 2            |
+|    burger     | 6            |    barrel     | 33           |     fans      | 6            |
+|    beanie     | 3            |     stem      | 62           |     lines     | 170          |
+| traffic sig.. | 18           |  sweatshirt   | 12           |    handbag    | 9            |
+|     mulch     | 7            |     socks     | 50           |   landscape   | 4            |
+|   soda can    | 4            |    shelves    | 18           |   ski lift    | 11           |
+|     cord      | 49           |   vegetable   | 58           |     apron     | 12           |
+|     blind     | 14           |   bracelets   | 5            |   stickers    | 6            |
+|    traffic    | 20           |     strip     | 19           | tennis shoes  | 11           |
+|  swim trunks  | 5            |   hillside    | 17           |    sandals    | 17           |
+|   concrete    | 38           |     lips      | 15           | butter knife  | 2            |
+|     words     | 42           |    leaves     | 523          |  train cars   | 1            |
+|     spoke     | 30           |    cereal     | 7            |  pine trees   | 1            |
+|    cooler     | 10           |     bangs     | 7            |     half      | 10           |
+|    sheets     | 20           |   figurine    | 8            |  park bench   | 6            |
+|     stack     | 7            | second floor  | 2            |     motor     | 6            |
+|  hand towel   | 6            |  wristwatch   | 9            |   spectator   | 18           |
+|    tissues    | 3            |  flip flops   | 7            |     quilt     | 7            |
+|    floret     | 1            |     calf      | 4            |   back pack   | 2            |
+|    grapes     | 21           |  ski tracks   | 3            |     skin      | 17           |
+|      bow      | 15           |   controls    | 0            |    dinner     | 4            |
+| baseball pl.. | 2            |      ad       | 11           |    ribbon     | 37           |
+|     hotel     | 3            |      sea      | 20           |     cover     | 44           |
+|     tarp      | 19           |    weather    | 0            |   notebook    | 11           |
+|   mustache    | 13           |  stone wall   | 11           |    closet     | 1            |
+|    statues    | 14           |     bank      | 8            |  skateboards  | 2            |
+|    butter     | 15           |  dress shirt  | 2            |     knee      | 50           |
+|     wood      | 75           |    laptops    | 2            |     cuff      | 5            |
+|    hubcap     | 1            |     wings     | 20           |     range     | 11           |
+|   structure   | 41           |     balls     | 5            |    tunnel     | 4            |
+|     globe     | 9            |    utensil    | 30           |   dumpster    | 4            |
+|      cd       | 12           |    floors     | 4            |    wrapper    | 17           |
+|    folder     | 1            |    pocket     | 34           |    mother     | 7            |
+|  ski goggles  | 3            |     posts     | 13           |  power line   | 8            |
+|     wake      | 5            |     roses     | 8            |  train track  | 13           |
+|  reflection   | 116          | air conditi.. | 4            |    referee    | 2            |
+|   barricade   | 1            | baseball mitt | 2            |   mouse pad   | 10           |
+|  garbage can  | 15           |    buckle     | 6            |  footprints   | 12           |
+|    lights     | 220          |    muffin     | 32           |    bracket    | 5            |
+|     plug      | 7            |   taxi cab    | 4            |    drinks     | 6            |
+|    surfers    | 2            |    arrows     | 5            | control panel | 5            |
+|     ring      | 60           |     twigs     | 6            |     soil      | 8            |
+|     skies     | 20           |  clock hand   | 7            |    caboose    | 1            |
+|  playground   | 0            |     mango     | 1            |     stump     | 8            |
+|  brick wall   | 14           |     screw     | 13           |    minivan    | 3            |
+|     leaf      | 342          |    fencing    | 33           |     ledge     | 18           |
+|    clothes    | 37           |  grass field  | 8            |   plumbing    | 0            |
+|    blouse     | 4            |     patch     | 61           |  scaffolding  | 5            |
+|   hamburger   | 7            | utility pole  | 4            |     teddy     | 2            |
+|     rose      | 17           |    skillet    | 3            |     cycle     | 7            |
+|     cable     | 20           |    gloves     | 65           |     bark      | 16           |
+|  decoration   | 16           |    tables     | 5            |     palm      | 9            |
+|      wii      | 6            | mountain top  | 2            |     shrub     | 22           |
+|     hoof      | 57           |    celery     | 11           |     beads     | 2            |
+|    plaque     | 10           |   flooring    | 14           |     surf      | 4            |
+|     cloth     | 62           |   passenger   | 12           |     spot      | 260          |
+|    plastic    | 22           |    knives     | 10           |     case      | 21           |
+|   railroad    | 7            |     pony      | 5            |    muffler    | 3            |
+|   hot dogs    | 23           |    stripe     | 183          |     scale     | 6            |
+|     block     | 26           |   recliner    | 0            |     body      | 44           |
+|    shades     | 5            |      tap      | 9            |     tools     | 5            |
+|   cupboard    | 9            |   wallpaper   | 10           |   sculpture   | 16           |
+|    surface    | 55           |     sedan     | 11           |   distance    | 39           |
+|    shrubs     | 11           |     skiis     | 12           |     lift      | 2            |
+|    bottom     | 49           |    cleats     | 16           |     roll      | 7            |
+|   clothing    | 28           |   bed frame   | 1            |    slacks     | 1            |
+|  tail lights  | 3            |     doll      | 17           | traffic lig.. | 13           |
+|    symbol     | 27           |    strings    | 18           |   fixtures    | 6            |
+|     short     | 11           |     paint     | 54           | candle holder | 8            |
+|  guard rail   | 4            |    cyclist    | 4            | tree branches | 6            |
+|    ripples    | 51           |     gear      | 15           |     waist     | 3            |
+|   trash bin   | 5            |     onion     | 52           |     home      | 10           |
+|  side mirror  | 8            |     brush     | 23           |   sweatband   | 5            |
+|   handlebar   | 15           |  light pole   | 26           |  street lamp  | 7            |
+|     pads      | 1            |      ham      | 8            |    artwork    | 7            |
+|   reflector   | 9            |    figure     | 19           |     tile      | 300          |
+| mountainside  | 3            |     black     | 55           |    bricks     | 73           |
+|  paper plate  | 3            |     stick     | 37           |     beef      | 8            |
+|     patio     | 12           |     weeds     | 51           |     back      | 79           |
+|    sausage    | 15           |     paws      | 24           |     farm      | 7            |
+|     decal     | 10           |    harness    | 15           |    monkey     | 7            |
+|  fence post   | 1            |  door frame   | 9            |    stripes    | 92           |
+|    clocks     | 9            |   ponytail    | 13           |   toppings    | 9            |
+|     strap     | 78           |    carton     | 6            |    greens     | 9            |
+|     chin      | 18           |     lunch     | 5            |     name      | 37           |
+|    earring    | 27           |     area      | 46           |    tshirt     | 68           |
+|     cream     | 25           |     rails     | 12           |   cushions    | 4            |
+|    lanyard    | 16           |     brick     | 130          |    hallway    | 4            |
+|   cucumber    | 16           |  wire fence   | 2            |     fern      | 2            |
+|   tangerine   | 34           |  windowsill   | 6            |     pipes     | 19           |
+|    package    | 6            |  wheelchair   | 1            |     chips     | 11           |
+|   driveway    | 7            |    tattoo     | 13           |  side window  | 15           |
+|   stairway    | 16           |     basin     | 7            |    machine    | 11           |
+|  table lamp   | 0            |     radio     | 5            |   pony tail   | 9            |
+|  ocean water  | 4            |    inside     | 4            |     cargo     | 2            |
+|   overpass    | 5            |      mat      | 25           |    socket     | 10           |
+|  flower pot   | 3            |   tree line   | 4            |   sign post   | 11           |
+|     tube      | 6            |     dial      | 10           |    splash     | 13           |
+|     male      | 21           |    lantern    | 2            |   lipstick    | 3            |
+|      lip      | 7            |     tongs     | 8            |   ski suit    | 3            |
+|     trail     | 19           | passenger t.. | 4            |    bandana    | 6            |
+|   antelope    | 11           |    designs    | 7            |     tents     | 0            |
+|  photograph   | 7            | catcher's m.. | 2            | electrical .. | 2            |
+|     tires     | 24           |   boulders    | 7            |   mannequin   | 10           |
+|     plain     | 6            |     layer     | 4            |   mushrooms   | 8            |
+| strawberries  | 7            |     piece     | 40           |      oar      | 13           |
+|   bike rack   | 2            |    slices     | 6            |     arms      | 22           |
+|      fin      | 11           |    shadows    | 31           |     hood      | 33           |
+| windshield .. | 5            |    letter     | 297          |      dot      | 12           |
+|   bus stop    | 16           |   railings    | 8            |    pebbles    | 7            |
+|      mud      | 13           |     claws     | 16           |  police car   | 3            |
+|     crown     | 8            |    meters     | 2            |   name tag    | 2            |
+|   entrance    | 8            |   staircase   | 16           |    shrimp     | 6            |
+|    ladies     | 5            |     peak      | 4            |     vines     | 6            |
+| computer ke.. | 3            |  glass door   | 7            |     pears     | 0            |
+|     pant      | 11           | wine glasses  | 5            |     stall     | 2            |
+|    asphalt    | 6            |    columns    | 7            |    sleeve     | 54           |
+|     pack      | 5            |     cheek     | 7            |    baskets    | 3            |
+|     land      | 23           |      day      | 12           |    blocks     | 4            |
+|   courtyard   | 10           |     pedal     | 10           |     panel     | 22           |
+|     seeds     | 12           |    balcony    | 63           |    yellow     | 17           |
+|     disc      | 3            |   young man   | 3            |   eyebrows    | 5            |
+|    crumbs     | 9            |    spinach    | 15           |    emblem     | 11           |
+|    object     | 77           |      bar      | 47           |   cardboard   | 3            |
+|    tissue     | 10           |  light post   | 8            |  ski jacket   | 2            |
+|   seasoning   | 5            |    parasol    | 8            |   terminal    | 8            |
+|    surfing    | 3            |  streetlight  | 54           |     alley     | 2            |
+|     cords     | 16           |     image     | 22           |      jug      | 3            |
+|    antenna    | 10           |     puppy     | 12           |    berries    | 5            |
+|    diamond    | 3            |     pans      | 7            |   fountain    | 5            |
+|  foreground   | 9            |     syrup     | 6            |     bride     | 0            |
+|     spray     | 10           |    license    | 5            |    peppers    | 23           |
+|  passengers   | 6            |    cement     | 16           |     flags     | 25           |
+|     shack     | 1            |    trough     | 0            |    objects    | 10           |
+|    arches     | 7            |   streamer    | 2            |     pots      | 6            |
+|    border     | 14           |   baseboard   | 3            |  beer bottle  | 2            |
+|  wrist watch  | 4            |  tile floor   | 3            |     page      | 2            |
+|      pin      | 5            |     items     | 18           |   baseline    | 1            |
+|    hanger     | 9            |  tree branch  | 12           |     tusks     | 15           |
+|    donkey     | 8            |  containers   | 19           |  condiments   | 2            |
+|    device     | 20           |   envelope    | 2            |   parachute   | 9            |
+|     mesh      | 8            |      hut      | 1            |   butterfly   | 3            |
+|     salt      | 4            |   restroom    | 5            |     twig      | 9            |
+|     pilot     | 13           |      ivy      | 5            |   furniture   | 5            |
+|     clay      | 1            |     print     | 17           |  sandwiches   | 14           |
+|     lion      | 1            |   shingles    | 6            |    pillars    | 8            |
+|   vehicles    | 38           |     panes     | 11           |   shoreline   | 10           |
+|    stream     | 7            |    control    | 7            |     lock      | 12           |
+|  microphone   | 12           |    blades     | 6            |  towel rack   | 5            |
+|    coaster    | 5            |     star      | 17           |    petals     | 6            |
+|     text      | 52           |    feather    | 5            |     spots     | 57           |
+|     buoy      | 16           |               |              |               |              |
+|     total     | 84649        |               |              |               |              |[0m
+[32m[11/07 10:25:50 d2.data.common]: [0mSerializing 4957 elements to byte tensors and concatenating them all ...
+[32m[11/07 10:25:50 d2.data.common]: [0mSerialized dataset takes 7.18 MiB
+[5m[31mWARNING[0m [32m[11/07 10:25:50 d2.evaluation.coco_evaluation]: [0mCOCO Evaluator instantiated using config, this is deprecated behavior. Please pass in explicit arguments instead.
+[32m[11/07 10:25:51 d2.evaluation.evaluator]: [0mStart inference on 4957 batches
+/ceph/hpc/home/eudavider/.local/lib/python3.9/site-packages/detectron2/structures/image_list.py:88: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+  max_size = (max_size + (stride - 1)) // stride * stride
+/ceph/hpc/home/eudavider/.conda/envs/dynamicHead/lib/python3.9/site-packages/torch/nn/functional.py:3847: UserWarning: nn.functional.upsample_bilinear is deprecated. Use nn.functional.interpolate instead.
+  warnings.warn("nn.functional.upsample_bilinear is deprecated. Use nn.functional.interpolate instead.")
+/ceph/hpc/home/eudavider/.conda/envs/dynamicHead/lib/python3.9/site-packages/torch/functional.py:445: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  /opt/conda/conda-bld/pytorch_1634272164809/work/aten/src/ATen/native/TensorShape.cpp:2157.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+[32m[11/07 10:25:55 d2.evaluation.evaluator]: [0mInference done 11/4957. Dataloading: 0.0026 s/iter. Inference: 0.1776 s/iter. Eval: 0.0004 s/iter. Total: 0.1805 s/iter. ETA=0:14:52
+[32m[11/07 10:26:01 d2.evaluation.evaluator]: [0mInference done 50/4957. Dataloading: 0.0012 s/iter. Inference: 0.1343 s/iter. Eval: 0.0004 s/iter. Total: 0.1359 s/iter. ETA=0:11:06
+[32m[11/07 10:26:06 d2.evaluation.evaluator]: [0mInference done 88/4957. Dataloading: 0.0014 s/iter. Inference: 0.1330 s/iter. Eval: 0.0004 s/iter. Total: 0.1348 s/iter. ETA=0:10:56
+[32m[11/07 10:26:11 d2.evaluation.evaluator]: [0mInference done 128/4957. Dataloading: 0.0015 s/iter. Inference: 0.1306 s/iter. Eval: 0.0004 s/iter. Total: 0.1326 s/iter. ETA=0:10:40
+[32m[11/07 10:26:16 d2.evaluation.evaluator]: [0mInference done 164/4957. Dataloading: 0.0015 s/iter. Inference: 0.1321 s/iter. Eval: 0.0004 s/iter. Total: 0.1341 s/iter. ETA=0:10:42
+[32m[11/07 10:26:21 d2.evaluation.evaluator]: [0mInference done 202/4957. Dataloading: 0.0015 s/iter. Inference: 0.1318 s/iter. Eval: 0.0004 s/iter. Total: 0.1338 s/iter. ETA=0:10:36
+[32m[11/07 10:26:26 d2.evaluation.evaluator]: [0mInference done 239/4957. Dataloading: 0.0016 s/iter. Inference: 0.1321 s/iter. Eval: 0.0004 s/iter. Total: 0.1341 s/iter. ETA=0:10:32
+[32m[11/07 10:26:31 d2.evaluation.evaluator]: [0mInference done 276/4957. Dataloading: 0.0016 s/iter. Inference: 0.1325 s/iter. Eval: 0.0004 s/iter. Total: 0.1346 s/iter. ETA=0:10:29
+[32m[11/07 10:26:36 d2.evaluation.evaluator]: [0mInference done 312/4957. Dataloading: 0.0016 s/iter. Inference: 0.1331 s/iter. Eval: 0.0004 s/iter. Total: 0.1351 s/iter. ETA=0:10:27
+[32m[11/07 10:26:41 d2.evaluation.evaluator]: [0mInference done 348/4957. Dataloading: 0.0016 s/iter. Inference: 0.1336 s/iter. Eval: 0.0004 s/iter. Total: 0.1356 s/iter. ETA=0:10:24
+[32m[11/07 10:26:46 d2.evaluation.evaluator]: [0mInference done 384/4957. Dataloading: 0.0016 s/iter. Inference: 0.1341 s/iter. Eval: 0.0004 s/iter. Total: 0.1361 s/iter. ETA=0:10:22
+[32m[11/07 10:26:51 d2.evaluation.evaluator]: [0mInference done 418/4957. Dataloading: 0.0016 s/iter. Inference: 0.1346 s/iter. Eval: 0.0004 s/iter. Total: 0.1371 s/iter. ETA=0:10:22
+[32m[11/07 10:26:56 d2.evaluation.evaluator]: [0mInference done 454/4957. Dataloading: 0.0016 s/iter. Inference: 0.1349 s/iter. Eval: 0.0004 s/iter. Total: 0.1375 s/iter. ETA=0:10:19
+[32m[11/07 10:27:01 d2.evaluation.evaluator]: [0mInference done 490/4957. Dataloading: 0.0016 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1378 s/iter. ETA=0:10:15
+[32m[11/07 10:27:06 d2.evaluation.evaluator]: [0mInference done 527/4957. Dataloading: 0.0016 s/iter. Inference: 0.1350 s/iter. Eval: 0.0004 s/iter. Total: 0.1378 s/iter. ETA=0:10:10
+[32m[11/07 10:27:11 d2.evaluation.evaluator]: [0mInference done 564/4957. Dataloading: 0.0016 s/iter. Inference: 0.1349 s/iter. Eval: 0.0004 s/iter. Total: 0.1378 s/iter. ETA=0:10:05
+[32m[11/07 10:27:17 d2.evaluation.evaluator]: [0mInference done 601/4957. Dataloading: 0.0016 s/iter. Inference: 0.1348 s/iter. Eval: 0.0004 s/iter. Total: 0.1378 s/iter. ETA=0:10:00
+[32m[11/07 10:27:22 d2.evaluation.evaluator]: [0mInference done 639/4957. Dataloading: 0.0016 s/iter. Inference: 0.1347 s/iter. Eval: 0.0004 s/iter. Total: 0.1377 s/iter. ETA=0:09:54
+[32m[11/07 10:27:27 d2.evaluation.evaluator]: [0mInference done 675/4957. Dataloading: 0.0016 s/iter. Inference: 0.1348 s/iter. Eval: 0.0004 s/iter. Total: 0.1378 s/iter. ETA=0:09:49
+[32m[11/07 10:27:32 d2.evaluation.evaluator]: [0mInference done 711/4957. Dataloading: 0.0016 s/iter. Inference: 0.1348 s/iter. Eval: 0.0004 s/iter. Total: 0.1379 s/iter. ETA=0:09:45
+[32m[11/07 10:27:37 d2.evaluation.evaluator]: [0mInference done 747/4957. Dataloading: 0.0016 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1381 s/iter. ETA=0:09:41
+[32m[11/07 10:27:42 d2.evaluation.evaluator]: [0mInference done 783/4957. Dataloading: 0.0016 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1382 s/iter. ETA=0:09:36
+[32m[11/07 10:27:47 d2.evaluation.evaluator]: [0mInference done 819/4957. Dataloading: 0.0016 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1383 s/iter. ETA=0:09:32
+[32m[11/07 10:27:52 d2.evaluation.evaluator]: [0mInference done 856/4957. Dataloading: 0.0016 s/iter. Inference: 0.1349 s/iter. Eval: 0.0004 s/iter. Total: 0.1382 s/iter. ETA=0:09:26
+[32m[11/07 10:27:57 d2.evaluation.evaluator]: [0mInference done 892/4957. Dataloading: 0.0016 s/iter. Inference: 0.1350 s/iter. Eval: 0.0004 s/iter. Total: 0.1383 s/iter. ETA=0:09:22
+[32m[11/07 10:28:02 d2.evaluation.evaluator]: [0mInference done 929/4957. Dataloading: 0.0016 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1383 s/iter. ETA=0:09:17
+[32m[11/07 10:28:07 d2.evaluation.evaluator]: [0mInference done 966/4957. Dataloading: 0.0016 s/iter. Inference: 0.1350 s/iter. Eval: 0.0004 s/iter. Total: 0.1383 s/iter. ETA=0:09:11
+[32m[11/07 10:28:12 d2.evaluation.evaluator]: [0mInference done 1004/4957. Dataloading: 0.0016 s/iter. Inference: 0.1349 s/iter. Eval: 0.0004 s/iter. Total: 0.1382 s/iter. ETA=0:09:06
+[32m[11/07 10:28:17 d2.evaluation.evaluator]: [0mInference done 1041/4957. Dataloading: 0.0016 s/iter. Inference: 0.1348 s/iter. Eval: 0.0004 s/iter. Total: 0.1381 s/iter. ETA=0:09:00
+[32m[11/07 10:28:23 d2.evaluation.evaluator]: [0mInference done 1077/4957. Dataloading: 0.0016 s/iter. Inference: 0.1349 s/iter. Eval: 0.0004 s/iter. Total: 0.1382 s/iter. ETA=0:08:56
+[32m[11/07 10:28:28 d2.evaluation.evaluator]: [0mInference done 1113/4957. Dataloading: 0.0017 s/iter. Inference: 0.1350 s/iter. Eval: 0.0004 s/iter. Total: 0.1383 s/iter. ETA=0:08:51
+[32m[11/07 10:28:33 d2.evaluation.evaluator]: [0mInference done 1149/4957. Dataloading: 0.0017 s/iter. Inference: 0.1350 s/iter. Eval: 0.0004 s/iter. Total: 0.1383 s/iter. ETA=0:08:46
+[32m[11/07 10:28:38 d2.evaluation.evaluator]: [0mInference done 1186/4957. Dataloading: 0.0017 s/iter. Inference: 0.1350 s/iter. Eval: 0.0004 s/iter. Total: 0.1383 s/iter. ETA=0:08:41
+[32m[11/07 10:28:43 d2.evaluation.evaluator]: [0mInference done 1223/4957. Dataloading: 0.0017 s/iter. Inference: 0.1349 s/iter. Eval: 0.0004 s/iter. Total: 0.1382 s/iter. ETA=0:08:36
+[32m[11/07 10:28:48 d2.evaluation.evaluator]: [0mInference done 1260/4957. Dataloading: 0.0017 s/iter. Inference: 0.1349 s/iter. Eval: 0.0004 s/iter. Total: 0.1382 s/iter. ETA=0:08:30
+[32m[11/07 10:28:53 d2.evaluation.evaluator]: [0mInference done 1297/4957. Dataloading: 0.0017 s/iter. Inference: 0.1349 s/iter. Eval: 0.0004 s/iter. Total: 0.1382 s/iter. ETA=0:08:25
+[32m[11/07 10:28:58 d2.evaluation.evaluator]: [0mInference done 1333/4957. Dataloading: 0.0017 s/iter. Inference: 0.1350 s/iter. Eval: 0.0004 s/iter. Total: 0.1383 s/iter. ETA=0:08:21
+[32m[11/07 10:29:03 d2.evaluation.evaluator]: [0mInference done 1370/4957. Dataloading: 0.0017 s/iter. Inference: 0.1350 s/iter. Eval: 0.0004 s/iter. Total: 0.1383 s/iter. ETA=0:08:15
+[32m[11/07 10:29:08 d2.evaluation.evaluator]: [0mInference done 1407/4957. Dataloading: 0.0017 s/iter. Inference: 0.1349 s/iter. Eval: 0.0004 s/iter. Total: 0.1382 s/iter. ETA=0:08:10
+[32m[11/07 10:29:13 d2.evaluation.evaluator]: [0mInference done 1442/4957. Dataloading: 0.0017 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1385 s/iter. ETA=0:08:06
+[32m[11/07 10:29:18 d2.evaluation.evaluator]: [0mInference done 1478/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1386 s/iter. ETA=0:08:02
+[32m[11/07 10:29:24 d2.evaluation.evaluator]: [0mInference done 1515/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1385 s/iter. ETA=0:07:56
+[32m[11/07 10:29:29 d2.evaluation.evaluator]: [0mInference done 1551/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1386 s/iter. ETA=0:07:52
+[32m[11/07 10:29:34 d2.evaluation.evaluator]: [0mInference done 1589/4957. Dataloading: 0.0017 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1385 s/iter. ETA=0:07:46
+[32m[11/07 10:29:39 d2.evaluation.evaluator]: [0mInference done 1627/4957. Dataloading: 0.0017 s/iter. Inference: 0.1350 s/iter. Eval: 0.0004 s/iter. Total: 0.1384 s/iter. ETA=0:07:40
+[32m[11/07 10:29:44 d2.evaluation.evaluator]: [0mInference done 1662/4957. Dataloading: 0.0017 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1385 s/iter. ETA=0:07:36
+[32m[11/07 10:29:49 d2.evaluation.evaluator]: [0mInference done 1699/4957. Dataloading: 0.0017 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1385 s/iter. ETA=0:07:31
+[32m[11/07 10:29:54 d2.evaluation.evaluator]: [0mInference done 1735/4957. Dataloading: 0.0017 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1385 s/iter. ETA=0:07:26
+[32m[11/07 10:29:59 d2.evaluation.evaluator]: [0mInference done 1770/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1387 s/iter. ETA=0:07:21
+[32m[11/07 10:30:04 d2.evaluation.evaluator]: [0mInference done 1806/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1387 s/iter. ETA=0:07:17
+[32m[11/07 10:30:09 d2.evaluation.evaluator]: [0mInference done 1843/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1387 s/iter. ETA=0:07:11
+[32m[11/07 10:30:14 d2.evaluation.evaluator]: [0mInference done 1879/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1388 s/iter. ETA=0:07:07
+[32m[11/07 10:30:19 d2.evaluation.evaluator]: [0mInference done 1915/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1388 s/iter. ETA=0:07:02
+[32m[11/07 10:30:25 d2.evaluation.evaluator]: [0mInference done 1952/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1387 s/iter. ETA=0:06:56
+[32m[11/07 10:30:30 d2.evaluation.evaluator]: [0mInference done 1989/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1387 s/iter. ETA=0:06:51
+[32m[11/07 10:30:35 d2.evaluation.evaluator]: [0mInference done 2026/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1387 s/iter. ETA=0:06:46
+[32m[11/07 10:30:40 d2.evaluation.evaluator]: [0mInference done 2062/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1387 s/iter. ETA=0:06:41
+[32m[11/07 10:30:45 d2.evaluation.evaluator]: [0mInference done 2098/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1387 s/iter. ETA=0:06:36
+[32m[11/07 10:30:50 d2.evaluation.evaluator]: [0mInference done 2134/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1388 s/iter. ETA=0:06:31
+[32m[11/07 10:30:55 d2.evaluation.evaluator]: [0mInference done 2169/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:06:27
+[32m[11/07 10:31:00 d2.evaluation.evaluator]: [0mInference done 2206/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1388 s/iter. ETA=0:06:21
+[32m[11/07 10:31:05 d2.evaluation.evaluator]: [0mInference done 2242/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1388 s/iter. ETA=0:06:16
+[32m[11/07 10:31:10 d2.evaluation.evaluator]: [0mInference done 2278/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:06:12
+[32m[11/07 10:31:15 d2.evaluation.evaluator]: [0mInference done 2312/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1390 s/iter. ETA=0:06:07
+[32m[11/07 10:31:20 d2.evaluation.evaluator]: [0mInference done 2349/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1390 s/iter. ETA=0:06:02
+[32m[11/07 10:31:25 d2.evaluation.evaluator]: [0mInference done 2386/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:05:57
+[32m[11/07 10:31:30 d2.evaluation.evaluator]: [0mInference done 2423/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:05:51
+[32m[11/07 10:31:35 d2.evaluation.evaluator]: [0mInference done 2459/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:05:47
+[32m[11/07 10:31:40 d2.evaluation.evaluator]: [0mInference done 2495/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1390 s/iter. ETA=0:05:42
+[32m[11/07 10:31:45 d2.evaluation.evaluator]: [0mInference done 2532/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:05:36
+[32m[11/07 10:31:50 d2.evaluation.evaluator]: [0mInference done 2569/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:05:31
+[32m[11/07 10:31:56 d2.evaluation.evaluator]: [0mInference done 2606/4957. Dataloading: 0.0017 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:05:26
+[32m[11/07 10:32:01 d2.evaluation.evaluator]: [0mInference done 2642/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:05:21
+[32m[11/07 10:32:06 d2.evaluation.evaluator]: [0mInference done 2678/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:05:16
+[32m[11/07 10:32:11 d2.evaluation.evaluator]: [0mInference done 2714/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:05:11
+[32m[11/07 10:32:16 d2.evaluation.evaluator]: [0mInference done 2751/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:05:06
+[32m[11/07 10:32:21 d2.evaluation.evaluator]: [0mInference done 2789/4957. Dataloading: 0.0017 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1388 s/iter. ETA=0:05:00
+[32m[11/07 10:32:26 d2.evaluation.evaluator]: [0mInference done 2825/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1389 s/iter. ETA=0:04:56
+[32m[11/07 10:32:31 d2.evaluation.evaluator]: [0mInference done 2862/4957. Dataloading: 0.0017 s/iter. Inference: 0.1351 s/iter. Eval: 0.0004 s/iter. Total: 0.1388 s/iter. ETA=0:04:50
+[32m[11/07 10:32:36 d2.evaluation.evaluator]: [0mInference done 2898/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1388 s/iter. ETA=0:04:45
+[32m[11/07 10:32:41 d2.evaluation.evaluator]: [0mInference done 2932/4957. Dataloading: 0.0017 s/iter. Inference: 0.1352 s/iter. Eval: 0.0004 s/iter. Total: 0.1390 s/iter. ETA=0:04:41
+[32m[11/07 10:32:46 d2.evaluation.evaluator]: [0mInference done 2966/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1391 s/iter. ETA=0:04:36
+[32m[11/07 10:32:51 d2.evaluation.evaluator]: [0mInference done 3000/4957. Dataloading: 0.0017 s/iter. Inference: 0.1354 s/iter. Eval: 0.0004 s/iter. Total: 0.1392 s/iter. ETA=0:04:32
+[32m[11/07 10:32:56 d2.evaluation.evaluator]: [0mInference done 3036/4957. Dataloading: 0.0017 s/iter. Inference: 0.1353 s/iter. Eval: 0.0004 s/iter. Total: 0.1392 s/iter. ETA=0:04:27
+[32m[11/07 10:33:01 d2.evaluation.evaluator]: [0mInference done 3072/4957. Dataloading: 0.0017 s/iter. Inference: 0.1354 s/iter. Eval: 0.0004 s/iter. Total: 0.1393 s/iter. ETA=0:04:22
+[32m[11/07 10:33:07 d2.evaluation.evaluator]: [0mInference done 3107/4957. Dataloading: 0.0017 s/iter. Inference: 0.1354 s/iter. Eval: 0.0004 s/iter. Total: 0.1393 s/iter. ETA=0:04:17
+[32m[11/07 10:33:12 d2.evaluation.evaluator]: [0mInference done 3142/4957. Dataloading: 0.0017 s/iter. Inference: 0.1355 s/iter. Eval: 0.0004 s/iter. Total: 0.1394 s/iter. ETA=0:04:12
+[32m[11/07 10:33:17 d2.evaluation.evaluator]: [0mInference done 3177/4957. Dataloading: 0.0017 s/iter. Inference: 0.1355 s/iter. Eval: 0.0004 s/iter. Total: 0.1394 s/iter. ETA=0:04:08
+[32m[11/07 10:33:22 d2.evaluation.evaluator]: [0mInference done 3214/4957. Dataloading: 0.0017 s/iter. Inference: 0.1355 s/iter. Eval: 0.0004 s/iter. Total: 0.1394 s/iter. ETA=0:04:03
+[32m[11/07 10:33:27 d2.evaluation.evaluator]: [0mInference done 3249/4957. Dataloading: 0.0017 s/iter. Inference: 0.1356 s/iter. Eval: 0.0004 s/iter. Total: 0.1395 s/iter. ETA=0:03:58
+[32m[11/07 10:33:32 d2.evaluation.evaluator]: [0mInference done 3285/4957. Dataloading: 0.0017 s/iter. Inference: 0.1356 s/iter. Eval: 0.0004 s/iter. Total: 0.1395 s/iter. ETA=0:03:53
+[32m[11/07 10:33:37 d2.evaluation.evaluator]: [0mInference done 3322/4957. Dataloading: 0.0017 s/iter. Inference: 0.1355 s/iter. Eval: 0.0004 s/iter. Total: 0.1394 s/iter. ETA=0:03:47
+[32m[11/07 10:33:42 d2.evaluation.evaluator]: [0mInference done 3358/4957. Dataloading: 0.0017 s/iter. Inference: 0.1356 s/iter. Eval: 0.0004 s/iter. Total: 0.1394 s/iter. ETA=0:03:42
+[32m[11/07 10:33:47 d2.evaluation.evaluator]: [0mInference done 3393/4957. Dataloading: 0.0017 s/iter. Inference: 0.1356 s/iter. Eval: 0.0004 s/iter. Total: 0.1395 s/iter. ETA=0:03:38
+[32m[11/07 10:33:52 d2.evaluation.evaluator]: [0mInference done 3428/4957. Dataloading: 0.0017 s/iter. Inference: 0.1357 s/iter. Eval: 0.0004 s/iter. Total: 0.1395 s/iter. ETA=0:03:33
+[32m[11/07 10:33:57 d2.evaluation.evaluator]: [0mInference done 3463/4957. Dataloading: 0.0017 s/iter. Inference: 0.1357 s/iter. Eval: 0.0004 s/iter. Total: 0.1396 s/iter. ETA=0:03:28
+[32m[11/07 10:34:02 d2.evaluation.evaluator]: [0mInference done 3498/4957. Dataloading: 0.0017 s/iter. Inference: 0.1358 s/iter. Eval: 0.0004 s/iter. Total: 0.1396 s/iter. ETA=0:03:23
+[32m[11/07 10:34:07 d2.evaluation.evaluator]: [0mInference done 3533/4957. Dataloading: 0.0017 s/iter. Inference: 0.1358 s/iter. Eval: 0.0004 s/iter. Total: 0.1397 s/iter. ETA=0:03:18
+[32m[11/07 10:34:12 d2.evaluation.evaluator]: [0mInference done 3569/4957. Dataloading: 0.0017 s/iter. Inference: 0.1358 s/iter. Eval: 0.0004 s/iter. Total: 0.1397 s/iter. ETA=0:03:13
+[32m[11/07 10:34:17 d2.evaluation.evaluator]: [0mInference done 3606/4957. Dataloading: 0.0017 s/iter. Inference: 0.1357 s/iter. Eval: 0.0004 s/iter. Total: 0.1396 s/iter. ETA=0:03:08
+[32m[11/07 10:34:22 d2.evaluation.evaluator]: [0mInference done 3642/4957. Dataloading: 0.0017 s/iter. Inference: 0.1357 s/iter. Eval: 0.0004 s/iter. Total: 0.1396 s/iter. ETA=0:03:03
+[32m[11/07 10:34:27 d2.evaluation.evaluator]: [0mInference done 3679/4957. Dataloading: 0.0017 s/iter. Inference: 0.1357 s/iter. Eval: 0.0004 s/iter. Total: 0.1396 s/iter. ETA=0:02:58
+[32m[11/07 10:34:32 d2.evaluation.evaluator]: [0mInference done 3715/4957. Dataloading: 0.0017 s/iter. Inference: 0.1357 s/iter. Eval: 0.0004 s/iter. Total: 0.1396 s/iter. ETA=0:02:53
+[32m[11/07 10:34:38 d2.evaluation.evaluator]: [0mInference done 3751/4957. Dataloading: 0.0017 s/iter. Inference: 0.1358 s/iter. Eval: 0.0004 s/iter. Total: 0.1397 s/iter. ETA=0:02:48
+[32m[11/07 10:34:43 d2.evaluation.evaluator]: [0mInference done 3787/4957. Dataloading: 0.0017 s/iter. Inference: 0.1358 s/iter. Eval: 0.0004 s/iter. Total: 0.1397 s/iter. ETA=0:02:43
+[32m[11/07 10:34:48 d2.evaluation.evaluator]: [0mInference done 3824/4957. Dataloading: 0.0017 s/iter. Inference: 0.1357 s/iter. Eval: 0.0004 s/iter. Total: 0.1396 s/iter. ETA=0:02:38
+[32m[11/07 10:34:53 d2.evaluation.evaluator]: [0mInference done 3860/4957. Dataloading: 0.0017 s/iter. Inference: 0.1358 s/iter. Eval: 0.0004 s/iter. Total: 0.1397 s/iter. ETA=0:02:33
+[32m[11/07 10:34:58 d2.evaluation.evaluator]: [0mInference done 3896/4957. Dataloading: 0.0017 s/iter. Inference: 0.1358 s/iter. Eval: 0.0004 s/iter. Total: 0.1396 s/iter. ETA=0:02:28
+[32m[11/07 10:35:03 d2.evaluation.evaluator]: [0mInference done 3932/4957. Dataloading: 0.0017 s/iter. Inference: 0.1358 s/iter. Eval: 0.0004 s/iter. Total: 0.1397 s/iter. ETA=0:02:23
+[32m[11/07 10:35:08 d2.evaluation.evaluator]: [0mInference done 3968/4957. Dataloading: 0.0017 s/iter. Inference: 0.1358 s/iter. Eval: 0.0004 s/iter. Total: 0.1397 s/iter. ETA=0:02:18
+[32m[11/07 10:35:13 d2.evaluation.evaluator]: [0mInference done 4003/4957. Dataloading: 0.0017 s/iter. Inference: 0.1358 s/iter. Eval: 0.0004 s/iter. Total: 0.1397 s/iter. ETA=0:02:13
+[32m[11/07 10:35:18 d2.evaluation.evaluator]: [0mInference done 4039/4957. Dataloading: 0.0017 s/iter. Inference: 0.1358 s/iter. Eval: 0.0004 s/iter. Total: 0.1397 s/iter. ETA=0:02:08
+[32m[11/07 10:35:23 d2.evaluation.evaluator]: [0mInference done 4075/4957. Dataloading: 0.0017 s/iter. Inference: 0.1359 s/iter. Eval: 0.0004 s/iter. Total: 0.1397 s/iter. ETA=0:02:03
+[32m[11/07 10:35:28 d2.evaluation.evaluator]: [0mInference done 4111/4957. Dataloading: 0.0017 s/iter. Inference: 0.1359 s/iter. Eval: 0.0004 s/iter. Total: 0.1398 s/iter. ETA=0:01:58
+[32m[11/07 10:35:33 d2.evaluation.evaluator]: [0mInference done 4146/4957. Dataloading: 0.0017 s/iter. Inference: 0.1359 s/iter. Eval: 0.0004 s/iter. Total: 0.1398 s/iter. ETA=0:01:53
+[32m[11/07 10:35:39 d2.evaluation.evaluator]: [0mInference done 4182/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1398 s/iter. ETA=0:01:48
+[32m[11/07 10:35:44 d2.evaluation.evaluator]: [0mInference done 4218/4957. Dataloading: 0.0017 s/iter. Inference: 0.1359 s/iter. Eval: 0.0004 s/iter. Total: 0.1398 s/iter. ETA=0:01:43
+[32m[11/07 10:35:49 d2.evaluation.evaluator]: [0mInference done 4253/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:01:38
+[32m[11/07 10:35:54 d2.evaluation.evaluator]: [0mInference done 4289/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:01:33
+[32m[11/07 10:35:59 d2.evaluation.evaluator]: [0mInference done 4324/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:01:28
+[32m[11/07 10:36:04 d2.evaluation.evaluator]: [0mInference done 4360/4957. Dataloading: 0.0017 s/iter. Inference: 0.1361 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:01:23
+[32m[11/07 10:36:09 d2.evaluation.evaluator]: [0mInference done 4396/4957. Dataloading: 0.0017 s/iter. Inference: 0.1361 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:01:18
+[32m[11/07 10:36:14 d2.evaluation.evaluator]: [0mInference done 4434/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:01:13
+[32m[11/07 10:36:19 d2.evaluation.evaluator]: [0mInference done 4471/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:01:07
+[32m[11/07 10:36:24 d2.evaluation.evaluator]: [0mInference done 4506/4957. Dataloading: 0.0017 s/iter. Inference: 0.1361 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:01:03
+[32m[11/07 10:36:29 d2.evaluation.evaluator]: [0mInference done 4543/4957. Dataloading: 0.0017 s/iter. Inference: 0.1361 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:00:57
+[32m[11/07 10:36:34 d2.evaluation.evaluator]: [0mInference done 4580/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:00:52
+[32m[11/07 10:36:39 d2.evaluation.evaluator]: [0mInference done 4617/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:00:47
+[32m[11/07 10:36:44 d2.evaluation.evaluator]: [0mInference done 4653/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:00:42
+[32m[11/07 10:36:50 d2.evaluation.evaluator]: [0mInference done 4691/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1398 s/iter. ETA=0:00:37
+[32m[11/07 10:36:55 d2.evaluation.evaluator]: [0mInference done 4728/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1398 s/iter. ETA=0:00:32
+[32m[11/07 10:37:00 d2.evaluation.evaluator]: [0mInference done 4765/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1398 s/iter. ETA=0:00:26
+[32m[11/07 10:37:05 d2.evaluation.evaluator]: [0mInference done 4800/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1398 s/iter. ETA=0:00:21
+[32m[11/07 10:37:10 d2.evaluation.evaluator]: [0mInference done 4836/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1398 s/iter. ETA=0:00:16
+[32m[11/07 10:37:15 d2.evaluation.evaluator]: [0mInference done 4872/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1398 s/iter. ETA=0:00:11
+[32m[11/07 10:37:20 d2.evaluation.evaluator]: [0mInference done 4905/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:00:07
+[32m[11/07 10:37:25 d2.evaluation.evaluator]: [0mInference done 4942/4957. Dataloading: 0.0017 s/iter. Inference: 0.1360 s/iter. Eval: 0.0004 s/iter. Total: 0.1399 s/iter. ETA=0:00:02
+[32m[11/07 10:37:27 d2.evaluation.evaluator]: [0mTotal inference time: 0:11:32.861090 (0.139915 s / iter per device, on 1 devices)
+[32m[11/07 10:37:27 d2.evaluation.evaluator]: [0mTotal inference pure compute time: 0:11:13 (0.136009 s / iter per device, on 1 devices)
+[32m[11/07 10:37:29 d2.evaluation.coco_evaluation]: [0mPreparing results for COCO format ...
+[32m[11/07 10:37:29 d2.evaluation.coco_evaluation]: [0mSaving results to ./results/VG/dh/dh_r101_fpn_VG/inference/coco_instances_results.json
+[32m[11/07 10:37:31 d2.evaluation.coco_evaluation]: [0mEvaluating predictions with official COCO API...
+Loading and preparing results...
+DONE (t=0.97s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=106.38s).
+Accumulating evaluation results...
+DONE (t=26.08s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.044
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.076
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.044
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.025
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.052
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.065
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.125
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.166
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.167
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.074
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.159
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.199
+[32m[11/07 10:39:45 d2.evaluation.coco_evaluation]: [0mEvaluation results for bbox: 
+|  AP   |  AP50  |  AP75  |  APs  |  APm  |  APl  |
+|:-----:|:------:|:------:|:-----:|:-----:|:-----:|
+| 4.416 | 7.594  | 4.383  | 2.513 | 5.197 | 6.454 |
+[32m[11/07 10:39:45 d2.evaluation.coco_evaluation]: [0mPer-category bbox AP: 
+| category             | AP     | category          | AP     | category          | AP     |
+|:---------------------|:-------|:------------------|:-------|:------------------|:-------|
+| yolk                 | 0.000  | goal              | 11.361 | bathroom          | 25.229 |
+| macaroni             | nan    | umpire            | 21.251 | toothpick         | 3.262  |
+| alarm clock          | 0.000  | ceiling fan       | 1.443  | photos            | 0.000  |
+| parrot               | 0.424  | tail fin          | 0.000  | birthday cake     | 14.554 |
+| calculator           | nan    | catcher           | 12.167 | toilet            | 14.322 |
+| batter               | 5.503  | stop sign         | 9.143  | cone              | 9.884  |
+| microwave            | 14.435 | skateboard ramp   | 0.000  | tea               | 0.000  |
+| dugout               | 16.178 | products          | 0.000  | halter            | 0.000  |
+| kettle               | 6.839  | kitchen           | 10.987 | refrigerator      | 6.780  |
+| ostrich              | 43.366 | bathtub           | 9.860  | blinds            | 8.053  |
+| court                | 11.812 | urinal            | 0.000  | knee pads         | 4.997  |
+| bed                  | 12.412 | flamingo          | 0.000  | giraffe           | 16.534 |
+| helmet               | 11.483 | giraffes          | 11.280 | tennis court      | 13.668 |
+| motorcycle           | 15.213 | laptop            | 18.222 | tea pot           | 10.000 |
+| horse                | 15.126 | television        | 10.205 | shorts            | 14.934 |
+| manhole              | 2.250  | dishwasher        | 23.708 | jeans             | 15.001 |
+| sail                 | 6.728  | monitor           | 11.383 | man               | 12.314 |
+| shirt                | 10.946 | car               | 11.287 | cat               | 11.745 |
+| garage door          | 34.109 | bus               | 18.393 | radiator          | 0.000  |
+| tights               | 4.713  | sailboat          | 12.780 | racket            | 10.563 |
+| plate                | 10.492 | rock wall         | 0.000  | beach             | 8.825  |
+| trolley              | 0.000  | ocean             | 9.462  | headboard         | 12.842 |
+| tea kettle           | 0.000  | wetsuit           | 10.273 | tennis racket     | 7.321  |
+| sink                 | 9.919  | train             | 11.943 | keyboard          | 11.910 |
+| sky                  | 13.189 | match             | 2.079  | train station     | 6.904  |
+| stereo               | 0.000  | bats              | nan    | tennis player     | 14.501 |
+| toilet brush         | 1.570  | lighter           | 0.000  | pepper shaker     | 0.000  |
+| gazebo               | 0.000  | hair dryer        | 0.000  | elephant          | 14.824 |
+| toilet seat          | 5.433  | zebra             | 14.897 | skateboard        | 15.977 |
+| zebras               | 7.542  | floor lamp        | 2.727  | french fries      | 3.248  |
+| woman                | 10.641 | player            | 9.237  | tower             | 8.782  |
+| bicycle              | 13.631 | magazines         | 0.311  | christmas tree    | 23.905 |
+| umbrella             | 10.236 | cow               | 8.987  | pants             | 10.591 |
+| bike                 | 10.735 | field             | 9.701  | living room       | 21.136 |
+| latch                | 0.696  | bedroom           | 11.571 | grape             | 3.232  |
+| castle               | 6.436  | table             | 10.036 | swan              | 0.000  |
+| blender              | 9.470  | orange            | 10.452 | teddy bear        | 10.777 |
+| net                  | 3.555  | meter             | 7.943  | baseball field    | 13.315 |
+| runway               | 4.057  | screen            | 4.720  | ski boot          | 12.291 |
+| dog                  | 12.036 | clock             | 9.135  | hair              | 10.158 |
+| avocado              | 0.000  | highway           | 10.172 | skirt             | 9.334  |
+| frisbee              | 14.745 | parasail          | 24.347 | desk              | 10.019 |
+| pizza                | 11.897 | mouse             | 7.032  | sign              | 9.375  |
+| shower curtain       | 35.351 | polar bear        | 14.678 | airplane          | 10.236 |
+| jersey               | 8.116  | reigns            | 23.168 | hot dog           | 7.773  |
+| surfboard            | 11.843 | couch             | 12.334 | glass             | 9.628  |
+| snowboard            | 8.962  | girl              | 7.729  | plane             | 11.312 |
+| elephants            | 15.230 | oven              | 7.588  | dirt bike         | nan    |
+| tail wing            | 0.000  | area rug          | 0.000  | bear              | 11.018 |
+| washer               | 0.000  | date              | 3.459  | bow tie           | 11.198 |
+| cows                 | 6.058  | fire extinguisher | 0.000  | bamboo            | 0.000  |
+| wallet               | 80.000 | tail feathers     | 0.732  | truck             | 10.949 |
+| beach chair          | 10.792 | boat              | 9.095  | tablet            | 5.050  |
+| ceiling              | 4.963  | chandelier        | 9.588  | sheep             | 7.711  |
+| glasses              | 9.049  | ram               | 8.848  | kite              | 10.621 |
+| salad                | 5.219  | pillow            | 11.042 | fire hydrant      | 15.303 |
+| mug                  | 5.347  | tarmac            | 5.173  | computer          | 4.585  |
+| swimsuit             | 4.261  | tomato            | 8.163  | tire              | 7.564  |
+| cauliflower          | 3.479  | fireplace         | 7.992  | snow              | 7.714  |
+| building             | 9.489  | sandwich          | 14.667 | weather vane      | 0.000  |
+| bird                 | 9.274  | jacket            | 8.072  | chair             | 9.658  |
+| water                | 8.815  | cats              | 6.555  | soccer ball       | 5.639  |
+| horses               | 10.980 | drapes            | 0.729  | barn              | 1.297  |
+| engine               | 9.495  | cake              | 7.816  | head              | 5.512  |
+| head band            | 7.743  | skier             | 7.266  | town              | 0.000  |
+| bath tub             | 2.618  | bowl              | 9.109  | stove             | 10.483 |
+| tongue               | 2.747  | coffee table      | 14.044 | floor             | 6.416  |
+| uniform              | 1.939  | ottoman           | 11.519 | broccoli          | 6.961  |
+| olive                | 5.696  | mound             | 5.456  | pitcher           | 3.210  |
+| food                 | 5.829  | paintings         | nan    | traffic light     | 6.427  |
+| parking meter        | 14.063 | bananas           | 8.769  | mountain          | 6.309  |
+| cage                 | 1.304  | hedge             | 10.393 | motorcycles       | 2.285  |
+| wet suit             | 3.129  | radish            | 0.000  | teddy bears       | 2.896  |
+| monitors             | 12.987 | suitcase          | 8.268  | drawers           | 3.993  |
+| grass                | 6.156  | apple             | 14.354 | lamp              | 8.805  |
+| goggles              | 7.379  | boy               | 8.264  | armchair          | 0.000  |
+| ramp                 | 9.805  | burner            | 4.778  | lamb              | 13.261 |
+| cup                  | 5.389  | tank top          | 6.014  | boats             | 2.513  |
+| hat                  | 8.342  | soup              | 11.506 | fence             | 5.197  |
+| necklace             | 9.113  | visor             | 9.104  | coffee            | 15.544 |
+| bottle               | 7.508  | stool             | 0.892  | shoe              | 6.345  |
+| surfer               | 6.725  | stop              | 12.059 | backpack          | 6.714  |
+| shin guard           | 0.374  | wii remote        | 0.424  | wall              | 6.143  |
+| pizza slice          | 12.772 | home plate        | 9.787  | van               | 3.017  |
+| packet               | nan    | earrings          | 6.987  | wristband         | 8.683  |
+| tracks               | 5.750  | mitt              | 5.039  | dome              | 6.683  |
+| snowboarder          | 0.701  | faucet            | 9.853  | toiletries        | 22.861 |
+| ski boots            | 6.373  | room              | 5.199  | fork              | 9.292  |
+| snow suit            | 2.525  | banana slice      | 2.500  | bench             | 8.661  |
+| tie                  | 8.762  | burners           | 0.594  | stuffed animals   | 0.000  |
+| zoo                  | 9.281  | train platform    | 0.000  | cupcake           | 1.548  |
+| curtain              | 5.906  | ear               | 7.858  | tissue box        | 12.553 |
+| bread                | 4.299  | scissors          | 4.548  | vase              | 11.684 |
+| herd                 | 23.498 | smoke             | 3.256  | skylight          | 0.000  |
+| cub                  | 0.000  | tail              | 7.029  | cutting board     | 3.407  |
+| wave                 | 5.621  | hedges            | 0.000  | windshield        | 5.604  |
+| apples               | 9.663  | mirror            | 7.465  | license plate     | 10.182 |
+| tree                 | 5.885  | wheel             | 6.710  | ski pole          | 4.439  |
+| clock tower          | 3.219  | freezer           | 13.373 | luggage           | 7.308  |
+| skateboarder         | 6.673  | mousepad          | 7.110  | road              | 5.925  |
+| bat                  | 10.029 | toilet tank       | 9.135  | vanity            | 0.177  |
+| neck                 | 5.587  | cliff             | 15.149 | tub               | 17.649 |
+| sprinkles            | 3.970  | dresser           | 9.822  | street            | 7.205  |
+| wing                 | 6.356  | suit              | 11.957 | veggie            | 2.525  |
+| palm trees           | 0.561  | urinals           | 0.000  | door              | 5.533  |
+| propeller            | 4.931  | keys              | 0.892  | skate park        | 10.143 |
+| platform             | 3.531  | pot               | 3.274  | towel             | 6.100  |
+| computer monitor     | 2.548  | flip flop         | 0.000  | eggs              | 0.022  |
+| shed                 | 16.040 | moped             | 0.520  | sand              | 4.510  |
+| face                 | 3.566  | scissor           | 0.000  | carts             | 0.000  |
+| squash               | 1.171  | pillows           | 8.311  | family            | 0.000  |
+| glove                | 4.829  | rug               | 12.860 | watch             | 5.031  |
+| grafitti             | 0.000  | dogs              | 3.729  | scoreboard        | 2.276  |
+| basket               | 5.249  | poster            | 1.433  | duck              | 9.887  |
+| horns                | 6.480  | bears             | 12.625 | jeep              | 5.278  |
+| painting             | 3.557  | lighthouse        | 30.860 | remote control    | 16.268 |
+| toaster              | 13.055 | vegetables        | 2.073  | surfboards        | 1.287  |
+| ducks                | 2.244  | lane              | 0.000  | carrots           | 2.996  |
+| market               | 6.126  | paper towels      | 3.069  | island            | 0.031  |
+| blueberries          | 21.436 | smile             | 2.579  | balloons          | 22.931 |
+| stroller             | 13.029 | napkin            | 6.609  | towels            | 10.902 |
+| papers               | 2.039  | person            | 4.533  | train tracks      | 4.212  |
+| child                | 7.565  | headband          | 3.452  | pool              | 15.003 |
+| plant                | 1.590  | harbor            | 3.433  | counter           | 5.166  |
+| hand                 | 4.983  | house             | 5.427  | donut             | 11.031 |
+| knot                 | 0.438  | soccer player     | 0.000  | seagull           | 0.000  |
+| bottles              | 3.070  | buses             | 7.366  | coat              | 5.167  |
+| trees                | 6.328  | geese             | nan    | bun               | 8.470  |
+| toilet bowl          | 8.787  | trunk             | 5.592  | station           | 5.251  |
+| bikini               | 3.182  | goatee            | 0.000  | lounge chair      | 80.000 |
+| breakfast            | 5.050  | nose              | 5.474  | moon              | 0.000  |
+| river                | 4.273  | racer             | nan    | picture           | 3.656  |
+| shaker               | 13.741 | sidewalk          | 4.984  | shutters          | 0.550  |
+| stove top            | 5.022  | church            | 2.616  | lampshade         | 3.631  |
+| map                  | 15.512 | shop              | 0.000  | platter           | 1.018  |
+| airport              | 3.472  | hoodie            | 2.797  | oranges           | 19.248 |
+| woods                | 1.937  | enclosure         | 1.900  | skatepark         | 4.420  |
+| vases                | 4.253  | city              | 4.902  | park              | 3.701  |
+| mailbox              | 3.787  | balloon           | 17.235 | billboard         | 3.221  |
+| pasture              | 1.906  | portrait          | 0.000  | forehead          | 0.945  |
+| ship                 | 2.069  | cookie            | nan    | seaweed           | 0.000  |
+| sofa                 | 12.801 | slats             | 0.000  | tomato slice      | 1.689  |
+| tractor              | 9.101  | bull              | 2.110  | suitcases         | 4.455  |
+| graffiti             | 4.758  | policeman         | 2.713  | remotes           | 0.000  |
+| pens                 | 0.000  | window sill       | 0.101  | suspenders        | 7.421  |
+| easel                | nan    | tray              | 2.701  | straw             | 2.435  |
+| collar               | 6.886  | shower            | 7.953  | bag               | 3.286  |
+| scooter              | 12.040 | tails             | 0.000  | toilet lid        | 7.672  |
+| panda                | 5.050  | comforter         | 1.654  | outlet            | 5.825  |
+| stems                | 0.240  | valley            | 0.000  | flag              | 6.045  |
+| jockey               | 19.318 | gravel            | 3.510  | mouth             | 3.777  |
+| window               | 5.440  | bridge            | 5.286  | corn              | 0.000  |
+| mountains            | 8.590  | beer              | 1.131  | pitcher's mound   | 14.286 |
+| palm tree            | 1.940  | crowd             | 3.672  | skis              | 5.490  |
+| phone                | 6.374  | banana bunch      | nan    | tennis shoe       | 2.474  |
+| ground               | 3.712  | carpet            | 5.583  | eye               | 5.355  |
+| urn                  | nan    | beak              | 8.658  | giraffe head      | 0.866  |
+| steeple              | 1.822  | mattress          | 32.701 | baseball player   | 7.109  |
+| wine                 | 12.510 | water bottle      | 2.280  | kitten            | 1.964  |
+| archway              | 1.002  | candle            | 5.285  | croissant         | nan    |
+| tennis ball          | 4.523  | dress             | 6.061  | column            | 0.538  |
+| utensils             | 0.862  | cell phone        | 6.268  | computer mouse    | 2.109  |
+| cap                  | 2.441  | lawn              | 1.178  | airplanes         | 5.894  |
+| carriage             | 11.216 | snout             | 3.641  | cabinets          | 9.046  |
+| lemons               | 0.000  | grill             | 7.952  | umbrellas         | 2.603  |
+| meat                 | 3.484  | wagon             | 17.464 | ipod              | 0.000  |
+| bookshelf            | 12.198 | cart              | 2.095  | roof              | 3.128  |
+| hay                  | 2.325  | ski pants         | 1.007  | seat              | 5.378  |
+| mane                 | 4.294  | bikes             | 0.380  | drawer            | 3.748  |
+| game                 | 5.212  | clock face        | 6.749  | boys              | 8.779  |
+| rider                | 5.548  | fire escape       | 0.000  | slope             | 2.015  |
+| iphone               | 0.000  | pumpkin           | nan    | pan               | 2.107  |
+| chopsticks           | 0.000  | hill              | 3.605  | uniforms          | nan    |
+| cleat                | 9.562  | costume           | 0.000  | cabin             | 0.000  |
+| police officer       | 1.617  | ears              | 3.804  | egg               | 4.520  |
+| trash can            | 11.696 | horn              | 3.146  | arrow             | 5.362  |
+| toothbrush           | 5.679  | carrot            | 11.989 | banana            | 8.462  |
+| planes               | 8.231  | garden            | 1.683  | forest            | 1.551  |
+| brocolli             | 4.100  | aircraft          | 0.543  | front window      | 0.000  |
+| dashboard            | 0.000  | statue            | 7.573  | saucer            | 14.974 |
+| people               | 2.473  | silverware        | 8.748  | fruit             | 2.719  |
+| drain                | 4.852  | jet               | 12.601 | speaker           | 10.293 |
+| eyes                 | 1.926  | railway           | 0.000  | lid               | 7.570  |
+| soap                 | 1.651  | rocks             | 3.102  | office chair      | 17.954 |
+| door knob            | 0.594  | banana peel       | 0.000  | baseball game     | 1.710  |
+| asparagus            | 0.000  | spoon             | 4.837  | cabinet door      | 1.088  |
+| pineapple            | 0.000  | traffic cone      | 3.600  | nightstand        | 11.696 |
+| teapot               | 7.153  | taxi              | 3.511  | chimney           | 5.950  |
+| lake                 | 1.206  | suit jacket       | 0.000  | train engine      | 0.702  |
+| ball                 | 3.427  | wrist band        | 2.147  | pickle            | 10.268 |
+| fruits               | 0.178  | pad               | 0.095  | dispenser         | 6.196  |
+| bridle               | 0.365  | breast            | 0.000  | cones             | 3.218  |
+| headlight            | 2.654  | necktie           | 13.465 | skater            | 2.592  |
+| toilet paper         | 17.205 | skyscraper        | 0.267  | telephone         | 3.441  |
+| ox                   | nan    | roadway           | 0.000  | sock              | 7.302  |
+| paddle               | 0.000  | dishes            | 0.000  | hills             | 1.913  |
+| street sign          | 3.517  | headlights        | 1.595  | benches           | 1.911  |
+| fuselage             | 0.000  | card              | 0.000  | napkins           | 11.222 |
+| bush                 | 2.187  | rice              | 13.149 | computer screen   | 1.531  |
+| spokes               | 0.641  | flowers           | 4.889  | bucket            | 6.596  |
+| rock                 | 5.127  | pole              | 2.836  | pear              | 22.500 |
+| sauce                | 3.360  | store             | 2.878  | juice             | 0.000  |
+| knobs                | 6.541  | mustard           | 6.145  | ski               | 5.514  |
+| stands               | 3.679  | cabinet           | 6.413  | dirt              | 1.600  |
+| goats                | 0.000  | wine glass        | 2.574  | spectators        | 1.856  |
+| crate                | 7.044  | pancakes          | 3.861  | kids              | 6.308  |
+| engines              | 1.147  | shade             | 2.150  | feeder            | 2.037  |
+| cellphone            | 3.737  | pepper            | 3.169  | blanket           | 2.909  |
+| sunglasses           | 6.382  | train car         | 5.507  | magnet            | 0.737  |
+| donuts               | 2.692  | sweater           | 2.327  | signal            | 0.539  |
+| advertisement        | 4.628  | log               | 4.228  | vent              | 2.472  |
+| whiskers             | 4.552  | adult             | 0.000  | arch              | 1.506  |
+| locomotive           | 4.176  | tennis match      | nan    | tent              | 5.393  |
+| motorbike            | 4.678  | magnets           | 0.000  | night             | 0.000  |
+| marina               | 1.683  | wool              | 0.028  | vest              | 3.907  |
+| railroad tracks      | 0.000  | stuffed bear      | 0.000  | moustache         | 17.673 |
+| bib                  | 0.000  | frame             | 1.320  | snow pants        | 15.149 |
+| tank                 | 4.414  | undershirt        | 0.000  | icons             | 1.262  |
+| neck tie             | 6.007  | beams             | 0.000  | baseball bat      | 2.368  |
+| safety cone          | 1.667  | paper towel       | 0.000  | bedspread         | 8.919  |
+| can                  | 2.611  | container         | 2.768  | flower            | 4.396  |
+| vehicle              | 2.766  | tomatoes          | 2.614  | back wheel        | 0.452  |
+| soccer field         | 0.000  | nostril           | 1.638  | suv               | 3.037  |
+| buildings            | 2.165  | canopy            | 1.610  | flame             | 13.850 |
+| kid                  | 3.804  | baseball          | 2.623  | throw pillow      | 0.000  |
+| belt                 | 5.191  | rainbow           | 0.000  | lemon             | 1.362  |
+| oven door            | 20.435 | tag               | 2.849  | books             | 8.143  |
+| monument             | 0.000  | men               | 1.269  | shadow            | 6.701  |
+| bicycles             | 2.669  | cars              | 4.201  | lamp shade        | 16.146 |
+| pine tree            | 0.037  | bouquet           | 2.199  | toothpaste        | 0.000  |
+| potato               | 0.000  | sinks             | nan    | hook              | 2.510  |
+| switch               | 12.465 | lamp post         | 0.839  | lapel             | 0.000  |
+| desert               | 1.603  | knob              | 4.133  | chairs            | 0.906  |
+| pasta                | 0.642  | feathers          | 7.344  | hole              | 0.210  |
+| meal                 | 2.071  | station wagon     | 0.000  | kites             | 5.224  |
+| boots                | 5.282  | baby              | 4.940  | biker             | 3.791  |
+| gate                 | 0.632  | signal light      | 0.000  | headphones        | 0.000  |
+| goat                 | 9.280  | waves             | 2.051  | bumper            | 3.777  |
+| bud                  | nan    | logo              | 3.731  | curtains          | 2.443  |
+| american flag        | 12.489 | yacht             | 17.822 | box               | 2.921  |
+| baseball cap         | 2.875  | fries             | 1.652  | controller        | 1.668  |
+| awning               | 0.606  | path              | 0.585  | front legs        | 0.475  |
+| life jacket          | 10.099 | purse             | 4.230  | outfield          | 0.000  |
+| pigeon               | 1.716  | toddler           | 0.552  | beard             | 8.489  |
+| thumb                | 11.235 | water tank        | 0.000  | board             | 2.482  |
+| parade               | 10.099 | robe              | 15.149 | newspaper         | 4.757  |
+| wires                | 1.271  | camera            | 1.774  | pastries          | 0.594  |
+| deck                 | 0.339  | watermelon        | 4.825  | clouds            | 2.119  |
+| deer                 | 36.733 | motorcyclist      | 8.812  | kneepad           | 15.007 |
+| sneakers             | 2.416  | women             | 0.563  | onions            | 0.343  |
+| eyebrow              | 4.206  | gas station       | nan    | vane              | 1.165  |
+| girls                | 0.634  | trash             | 0.018  | numerals          | 0.000  |
+| knife                | 5.059  | tags              | 0.000  | light             | 1.652  |
+| bunch                | 1.056  | outfit            | 0.909  | groom             | nan    |
+| infield              | 0.000  | frosting          | 1.467  | forks             | 21.455 |
+| entertainment center | 0.000  | stuffed animal    | 4.090  | yard              | 0.136  |
+| numeral              | 1.075  | ladder            | 0.230  | shoes             | 2.681  |
+| bracelet             | 5.617  | teeth             | 0.515  | guy               | 0.716  |
+| display case         | 30.297 | cushion           | 4.803  | post              | 1.838  |
+| pathway              | 10.297 | tablecloth        | 3.167  | skiers            | 0.364  |
+| trouser              | 0.000  | cloud             | 2.134  | hands             | 2.470  |
+| produce              | 0.000  | beam              | 1.386  | ketchup           | 12.594 |
+| paw                  | 4.507  | dish              | 0.790  | raft              | 0.000  |
+| crosswalk            | 3.841  | front wheel       | 3.453  | toast             | 0.273  |
+| cattle               | 0.822  | players           | 1.554  | group             | 2.062  |
+| coffee pot           | 1.584  | track             | 2.432  | cowboy hat        | 25.369 |
+| petal                | 2.227  | eyeglasses        | 2.304  | handle            | 2.812  |
+| table cloth          | 2.701  | jets              | 3.432  | shakers           | 35.347 |
+| remote               | 8.851  | snowsuit          | 9.703  | bushes            | 1.460  |
+| dessert              | 12.335 | leg               | 3.439  | eagle             | 5.771  |
+| fire truck           | 15.149 | game controller   | 0.000  | smartphone        | 0.000  |
+| backsplash           | 1.071  | trains            | 3.197  | shore             | 1.528  |
+| signs                | 2.268  | bell              | 6.506  | cupboards         | 0.000  |
+| sweat band           | 0.000  | sack              | 0.000  | ankle             | 0.000  |
+| coin slot            | nan    | bagel             | 0.000  | masts             | 0.000  |
+| police               | 0.000  | drawing           | 0.000  | biscuit           | 5.611  |
+| toy                  | 1.219  | legs              | 1.347  | pavement          | 0.559  |
+| outside              | 0.000  | wheels            | 1.855  | driver            | 3.199  |
+| numbers              | 2.423  | blazer            | 0.000  | pen               | 2.583  |
+| cabbage              | 0.871  | trucks            | 2.376  | key               | 1.993  |
+| saddle               | 3.886  | pillow case       | 0.000  | goose             | nan    |
+| label                | 9.703  | boulder           | 3.259  | pajamas           | 5.891  |
+| wrist                | 2.141  | shelf             | 3.947  | cross             | 5.292  |
+| coffee cup           | 2.491  | foliage           | 0.000  | lot               | 1.318  |
+| fry                  | 5.945  | air               | 1.133  | officer           | 3.256  |
+| pepperoni            | 2.888  | cheese            | 1.039  | lady              | 1.327  |
+| kickstand            | 7.112  | counter top       | 0.578  | veggies           | 2.228  |
+| baseball uniform     | 3.366  | book shelf        | 11.400 | bags              | 0.091  |
+| pickles              | 12.437 | stand             | 2.877  | netting           | 3.181  |
+| lettuce              | 4.620  | facial hair       | 1.098  | lime              | 10.099 |
+| animals              | 2.497  | drape             | 0.000  | boot              | 7.183  |
+| railing              | 1.532  | end table         | 6.226  | shin guards       | 0.000  |
+| steps                | 2.687  | trashcan          | 1.103  | tusk              | 9.507  |
+| head light           | 0.000  | walkway           | 0.990  | cockpit           | 1.818  |
+| tennis net           | 7.574  | animal            | 7.371  | boardwalk         | 0.000  |
+| keypad               | 3.587  | bookcase          | 4.530  | blueberry         | 4.809  |
+| trash bag            | 0.000  | ski poles         | 1.160  | parking lot       | 9.490  |
+| gas tank             | 9.307  | beds              | 0.000  | fan               | 3.021  |
+| base                 | 4.886  | soap dispenser    | 17.703 | banner            | 2.226  |
+| life vest            | 0.000  | train front       | 0.000  | word              | 0.145  |
+| cab                  | 0.255  | liquid            | 1.368  | exhaust pipe      | 5.041  |
+| sneaker              | 1.443  | light fixture     | 0.849  | power lines       | 0.456  |
+| curb                 | 0.574  | scene             | 0.000  | buttons           | 4.362  |
+| roman numerals       | 0.198  | muzzle            | 0.000  | sticker           | 3.756  |
+| bacon                | 0.030  | pizzas            | 0.000  | paper             | 2.098  |
+| feet                 | 0.880  | stairs            | 5.074  | triangle          | 5.905  |
+| plants               | 0.398  | rope              | 0.655  | beans             | 0.000  |
+| brim                 | 0.000  | beverage          | 3.267  | letters           | 1.214  |
+| soda                 | 0.000  | menu              | 9.001  | finger            | 2.714  |
+| dvds                 | 2.574  | candles           | 0.580  | picnic table      | 13.465 |
+| wine bottle          | 0.000  | pencil            | 0.635  | tree trunk        | 4.391  |
+| nail                 | 0.000  | mantle            | 16.843 | countertop        | 1.828  |
+| view                 | 0.000  | line              | 3.420  | motor bike        | 0.000  |
+| audience             | 1.683  | traffic sign      | 0.000  | arm               | 1.456  |
+| pedestrian           | 0.000  | stabilizer        | 0.000  | dock              | 2.183  |
+| doorway              | 1.973  | bedding           | 0.000  | end               | 0.000  |
+| worker               | 4.717  | canal             | 0.000  | crane             | 4.072  |
+| grate                | 1.188  | little girl       | 0.000  | rims              | 0.000  |
+| passenger car        | nan    | plates            | 1.248  | background        | 0.257  |
+| peel                 | 0.000  | brake light       | 0.000  | roman numeral     | 2.848  |
+| string               | 0.848  | tines             | 0.000  | turf              | 0.000  |
+| armrest              | 1.886  | shower head       | 8.612  | leash             | 7.523  |
+| stones               | 0.000  | stoplight         | nan    | handle bars       | 0.000  |
+| front                | 4.523  | scarf             | 0.928  | band              | 3.678  |
+| jean                 | 0.000  | tennis            | 0.092  | pile              | 0.000  |
+| doorknob             | 0.942  | foot              | 1.826  | houses            | 0.263  |
+| windows              | 1.831  | restaurant        | 1.061  | booth             | 1.188  |
+| cardboard box        | 2.129  | fingers           | 1.625  | mountain range    | nan    |
+| bleachers            | 1.238  | rail              | 1.047  | pastry            | 0.749  |
+| canoe                | 3.897  | sun               | 10.539 | eye glasses       | 0.000  |
+| salt shaker          | 3.298  | number            | 1.825  | fish              | 0.918  |
+| knee pad             | 1.683  | fur               | 2.266  | she               | 0.000  |
+| shower door          | 0.000  | rod               | 0.045  | branches          | 0.043  |
+| birds                | 2.689  | printer           | 41.106 | sunset            | 1.386  |
+| median               | 0.000  | shutter           | 4.045  | slice             | 1.987  |
+| heater               | 6.499  | prongs            | 3.366  | bathing suit      | 1.122  |
+| skiier               | 0.000  | rack              | 2.575  | book              | 4.514  |
+| blade                | 6.761  | apartment         | 0.000  | manhole cover     | 8.845  |
+| stools               | 0.000  | overhang          | 0.000  | door handle       | 1.996  |
+| couple               | 8.990  | picture frame     | 2.855  | chicken           | 3.697  |
+| planter              | 2.069  | seats             | 2.561  | hour hand         | 0.000  |
+| dvd player           | 4.488  | ski slope         | 0.000  | french fry        | 12.700 |
+| bowls                | 0.000  | top               | 1.762  | landing gear      | 0.155  |
+| coffee maker         | 8.632  | melon             | 0.000  | computers         | 1.287  |
+| light switch         | 4.597  | jar               | 2.565  | tv stand          | 3.888  |
+| overalls             | 0.000  | garage            | 0.000  | tabletop          | 0.000  |
+| writing              | 0.908  | doors             | 7.418  | stadium           | 7.955  |
+| placemat             | 0.792  | air vent          | 50.495 | trick             | 0.000  |
+| sled                 | nan    | mast              | 0.727  | pond              | 1.830  |
+| steering wheel       | 0.975  | baseball glove    | 1.778  | watermark         | 7.665  |
+| pie                  | 5.792  | sandwhich         | 0.046  | cpu               | nan    |
+| mushroom             | 3.009  | power pole        | 0.000  | dirt road         | 0.000  |
+| handles              | 1.428  | speakers          | 22.500 | fender            | 4.410  |
+| telephone pole       | 0.000  | strawberry        | 9.371  | mask              | 0.792  |
+| children             | 8.333  | crust             | 2.969  | art               | 0.000  |
+| rim                  | 1.647  | branch            | 1.643  | display           | 0.638  |
+| grasses              | 0.000  | photo             | 0.514  | receipt           | 70.000 |
+| instructions         | 26.931 | herbs             | 0.000  | toys              | 1.584  |
+| handlebars           | 2.490  | trailer           | 1.776  | sandal            | 3.691  |
+| skull                | 2.079  | hangar            | 0.000  | pipe              | 1.072  |
+| office               | 49.153 | chest             | 1.833  | lamps             | 8.911  |
+| horizon              | 0.045  | calendar          | 0.000  | foam              | 0.070  |
+| stone                | 1.059  | bars              | 0.282  | button            | 4.523  |
+| poles                | 0.073  | heart             | 2.045  | hose              | 0.052  |
+| jet engine           | nan    | potatoes          | 2.000  | rain              | 0.990  |
+| magazine             | 3.544  | chain             | 5.250  | footboard         | 40.000 |
+| tee shirt            | 0.000  | design            | 0.516  | walls             | 0.924  |
+| copyright            | 0.620  | pictures          | 5.999  | pillar            | 0.752  |
+| drink                | 1.044  | barrier           | 0.616  | boxes             | 1.309  |
+| chocolate            | 0.851  | chef              | 20.000 | slot              | 0.000  |
+| sweatpants           | 0.000  | face mask         | 0.281  | icing             | 0.636  |
+| wipers               | 4.622  | circle            | 0.363  | bin               | 0.041  |
+| kitty                | 0.000  | electronics       | 0.000  | wild              | 6.436  |
+| tiles                | 1.579  | steam             | 10.072 | lettering         | 0.211  |
+| bathroom sink        | 0.000  | laptop computer   | 3.386  | cherry            | 0.000  |
+| spire                | 0.068  | conductor         | nan    | sheet             | 6.467  |
+| slab                 | 0.000  | windshield wipers | 3.054  | storefront        | 0.000  |
+| hill side            | 0.000  | spatula           | 6.238  | tail light        | 6.102  |
+| bean                 | 0.000  | wire              | 0.205  | intersection      | 0.000  |
+| pier                 | 1.016  | snow board        | 0.000  | trunks            | 0.000  |
+| website              | 0.000  | bolt              | 0.603  | kayak             | 0.000  |
+| nuts                 | 0.000  | holder            | 0.968  | turbine           | nan    |
+| stop light           | 0.616  | olives            | 0.098  | ball cap          | 0.000  |
+| burger               | 0.000  | barrel            | 0.600  | fans              | 1.473  |
+| beanie               | 0.000  | stem              | 1.270  | lines             | 2.170  |
+| traffic signal       | 0.976  | sweatshirt        | 1.147  | handbag           | 0.475  |
+| mulch                | 0.000  | socks             | 3.166  | landscape         | 3.432  |
+| soda can             | 0.000  | shelves           | 3.287  | ski lift          | 0.000  |
+| cord                 | 0.952  | vegetable         | 5.360  | apron             | 11.113 |
+| blind                | 4.160  | bracelets         | 2.376  | stickers          | 0.000  |
+| traffic              | 2.691  | strip             | 0.000  | tennis shoes      | 0.825  |
+| swim trunks          | 5.723  | hillside          | 0.013  | sandals           | 0.738  |
+| concrete             | 0.541  | lips              | 9.689  | butter knife      | 0.000  |
+| words                | 0.064  | leaves            | 0.526  | train cars        | 0.000  |
+| spoke                | 0.156  | cereal            | 13.366 | pine trees        | 0.000  |
+| cooler               | 7.765  | bangs             | 5.626  | half              | 0.000  |
+| sheets               | 2.769  | figurine          | 0.000  | park bench        | 2.605  |
+| stack                | 0.000  | second floor      | 0.000  | motor             | 12.624 |
+| hand towel           | 0.000  | wristwatch        | 1.528  | spectator         | 5.912  |
+| tissues              | 0.000  | flip flops        | 0.000  | quilt             | 0.318  |
+| floret               | 0.000  | calf              | 0.936  | back pack         | 4.040  |
+| grapes               | 5.045  | ski tracks        | 0.000  | skin              | 2.079  |
+| bow                  | 0.501  | controls          | nan    | dinner            | 0.000  |
+| baseball players     | 0.000  | ad                | 0.000  | ribbon            | 2.279  |
+| hotel                | 26.931 | sea               | 0.250  | cover             | 2.737  |
+| tarp                 | 2.574  | weather           | nan    | notebook          | 2.292  |
+| mustache             | 7.018  | stone wall        | 0.000  | closet            | 0.000  |
+| statues              | 0.806  | bank              | 11.584 | skateboards       | 13.465 |
+| butter               | 12.580 | dress shirt       | 0.000  | knee              | 0.082  |
+| wood                 | 0.458  | laptops           | 16.262 | cuff              | 0.000  |
+| hubcap               | 0.000  | wings             | 0.893  | range             | 0.000  |
+| structure            | 0.387  | balls             | 0.231  | tunnel            | 0.000  |
+| globe                | 1.814  | utensil           | 0.839  | dumpster          | 8.207  |
+| cd                   | 0.000  | floors            | 0.000  | wrapper           | 0.850  |
+| folder               | 0.000  | pocket            | 4.459  | mother            | 0.000  |
+| ski goggles          | 0.000  | posts             | 0.000  | power line        | 0.601  |
+| wake                 | 2.079  | roses             | 9.010  | train track       | 0.113  |
+| reflection           | 0.320  | air conditioner   | 0.135  | referee           | 25.248 |
+| barricade            | 15.000 | baseball mitt     | 0.000  | mouse pad         | 25.488 |
+| garbage can          | 0.861  | buckle            | 3.787  | footprints        | 0.891  |
+| lights               | 0.801  | muffin            | 0.000  | bracket           | 0.000  |
+| plug                 | 0.000  | taxi cab          | 0.000  | drinks            | 0.000  |
+| surfers              | 0.891  | arrows            | 0.000  | control panel     | 0.624  |
+| ring                 | 3.836  | twigs             | 0.000  | soil              | 0.000  |
+| skies                | 0.000  | clock hand        | 0.062  | caboose           | 0.000  |
+| playground           | nan    | mango             | 0.000  | stump             | 0.606  |
+| brick wall           | 0.432  | screw             | 0.000  | minivan           | 0.000  |
+| leaf                 | 2.540  | fencing           | 1.615  | ledge             | 0.294  |
+| clothes              | 0.019  | grass field       | 0.000  | plumbing          | nan    |
+| blouse               | 10.297 | patch             | 2.165  | scaffolding       | 0.000  |
+| hamburger            | 0.000  | utility pole      | 1.103  | teddy             | 0.000  |
+| rose                 | 5.092  | skillet           | 3.787  | cycle             | 0.000  |
+| cable                | 1.535  | gloves            | 1.652  | bark              | 1.386  |
+| decoration           | 0.187  | tables            | 0.000  | palm              | 0.000  |
+| wii                  | 1.964  | mountain top      | 0.000  | shrub             | 2.199  |
+| hoof                 | 3.507  | celery            | 15.512 | beads             | 0.000  |
+| plaque               | 13.545 | flooring          | 0.000  | surf              | 0.000  |
+| cloth                | 0.442  | passenger         | 0.052  | spot              | 1.757  |
+| plastic              | 0.000  | knives            | 0.000  | case              | 0.105  |
+| railroad             | 0.000  | pony              | 0.000  | muffler           | 2.613  |
+| hot dogs             | 4.487  | stripe            | 0.503  | scale             | 2.104  |
+| block                | 0.190  | recliner          | nan    | body              | 0.556  |
+| shades               | 0.000  | tap               | 0.396  | tools             | 4.647  |
+| cupboard             | 0.000  | wallpaper         | 0.000  | sculpture         | 0.194  |
+| surface              | 0.164  | sedan             | 0.000  | distance          | 0.724  |
+| shrubs               | 0.000  | skiis             | 0.198  | lift              | 0.000  |
+| bottom               | 0.711  | cleats            | 2.963  | roll              | 0.000  |
+| clothing             | 0.263  | bed frame         | 0.000  | slacks            | 0.000  |
+| tail lights          | 0.000  | doll              | 5.024  | traffic lights    | 0.032  |
+| symbol               | 0.019  | strings           | 1.562  | fixtures          | 0.000  |
+| short                | 0.000  | paint             | 0.047  | candle holder     | 1.357  |
+| guard rail           | 0.000  | cyclist           | 0.000  | tree branches     | 0.000  |
+| ripples              | 0.004  | gear              | 0.408  | waist             | 11.782 |
+| trash bin            | 0.000  | onion             | 0.484  | home              | 0.000  |
+| side mirror          | 2.185  | brush             | 3.106  | sweatband         | 0.905  |
+| handlebar            | 0.306  | light pole        | 0.367  | street lamp       | 0.000  |
+| pads                 | 0.000  | ham               | 1.080  | artwork           | 0.557  |
+| reflector            | 0.419  | figure            | 0.377  | tile              | 3.130  |
+| mountainside         | 10.099 | black             | 0.000  | bricks            | 0.234  |
+| paper plate          | 0.000  | stick             | 0.700  | beef              | 0.460  |
+| patio                | 0.000  | weeds             | 2.052  | back              | 0.028  |
+| sausage              | 5.544  | paws              | 2.576  | farm              | 0.000  |
+| decal                | 0.000  | harness           | 7.885  | monkey            | 0.000  |
+| fence post           | 0.000  | door frame        | 2.337  | stripes           | 0.186  |
+| clocks               | 1.717  | ponytail          | 0.466  | toppings          | 0.902  |
+| strap                | 1.163  | carton            | 5.738  | greens            | 0.000  |
+| chin                 | 2.040  | lunch             | 0.000  | name              | 1.080  |
+| earring              | 1.209  | area              | 0.000  | tshirt            | 2.487  |
+| cream                | 5.445  | rails             | 0.000  | cushions          | 0.000  |
+| lanyard              | 8.904  | brick             | 0.058  | hallway           | 0.000  |
+| cucumber             | 3.894  | wire fence        | 0.000  | fern              | 0.000  |
+| tangerine            | 0.427  | windowsill        | 0.000  | pipes             | 0.462  |
+| package              | 0.842  | wheelchair        | 0.000  | chips             | 0.466  |
+| driveway             | 0.000  | tattoo            | 3.416  | side window       | 0.000  |
+| stairway             | 1.949  | basin             | 1.566  | machine           | 0.941  |
+| table lamp           | nan    | radio             | 7.366  | pony tail         | 0.437  |
+| ocean water          | 0.000  | inside            | 0.000  | cargo             | 0.000  |
+| overpass             | 11.426 | mat               | 4.087  | socket            | 11.458 |
+| flower pot           | 13.465 | tree line         | 0.000  | sign post         | 0.000  |
+| tube                 | 0.000  | dial              | 0.000  | splash            | 0.000  |
+| male                 | 0.000  | lantern           | 0.000  | lipstick          | 2.611  |
+| lip                  | 0.743  | tongs             | 7.723  | ski suit          | 2.977  |
+| trail                | 0.000  | passenger train   | 0.000  | bandana           | 1.377  |
+| antelope             | 21.034 | designs           | 0.000  | tents             | nan    |
+| photograph           | 0.437  | catcher's mitt    | 1.942  | electrical outlet | 5.050  |
+| tires                | 1.638  | boulders          | 0.000  | mannequin         | 0.156  |
+| plain                | 1.262  | layer             | 4.790  | mushrooms         | 5.320  |
+| strawberries         | 12.491 | piece             | 0.000  | oar               | 3.019  |
+| bike rack            | 0.842  | slices            | 0.000  | arms              | 2.935  |
+| fin                  | 0.063  | shadows           | 0.000  | hood              | 2.607  |
+| windshield wiper     | 2.911  | letter            | 1.214  | dot               | 0.000  |
+| bus stop             | 0.416  | railings          | 0.000  | pebbles           | 0.000  |
+| mud                  | 0.000  | claws             | 1.607  | police car        | 0.000  |
+| crown                | 0.000  | meters            | 60.198 | name tag          | 2.244  |
+| entrance             | 0.174  | staircase         | 1.874  | shrimp            | 0.000  |
+| ladies               | 0.000  | peak              | 0.000  | vines             | 1.202  |
+| computer keyboard    | 13.465 | glass door        | 0.000  | pears             | nan    |
+| pant                 | 0.000  | wine glasses      | 16.436 | stall             | 0.000  |
+| asphalt              | 0.000  | columns           | 0.165  | sleeve            | 2.115  |
+| pack                 | 0.000  | cheek             | 0.495  | baskets           | 0.000  |
+| land                 | 1.796  | day               | 0.000  | blocks            | 0.000  |
+| courtyard            | 2.723  | pedal             | 0.000  | panel             | 0.000  |
+| seeds                | 0.000  | balcony           | 4.203  | yellow            | 0.000  |
+| disc                 | 0.000  | young man         | 0.000  | eyebrows          | 3.824  |
+| crumbs               | 0.505  | spinach           | 0.244  | emblem            | 0.609  |
+| object               | 0.012  | bar               | 2.126  | cardboard         | 2.142  |
+| tissue               | 21.776 | light post        | 0.000  | ski jacket        | 0.000  |
+| seasoning            | 0.000  | parasol           | 0.000  | terminal          | 5.792  |
+| surfing              | 0.000  | streetlight       | 0.998  | alley             | 0.000  |
+| cords                | 0.745  | image             | 2.248  | jug               | 5.487  |
+| antenna              | 0.419  | puppy             | 3.091  | berries           | 0.000  |
+| diamond              | 0.000  | pans              | 0.000  | fountain          | 2.079  |
+| foreground           | 0.000  | syrup             | 17.393 | bride             | nan    |
+| spray                | 0.000  | license           | 0.000  | peppers           | 0.256  |
+| passengers           | 3.787  | cement            | 0.000  | flags             | 4.199  |
+| shack                | 0.000  | trough            | nan    | objects           | 0.000  |
+| arches               | 11.881 | streamer          | 0.000  | pots              | 0.884  |
+| border               | 0.000  | baseboard         | 1.212  | beer bottle       | 0.000  |
+| wrist watch          | 0.000  | tile floor        | 0.000  | page              | 5.050  |
+| pin                  | 0.000  | items             | 0.353  | baseline          | 0.000  |
+| hanger               | 0.000  | tree branch       | 0.000  | tusks             | 6.697  |
+| donkey               | 0.000  | containers        | 0.182  | condiments        | 0.000  |
+| device               | 0.186  | envelope          | 3.366  | parachute         | 29.175 |
+| mesh                 | 0.000  | hut               | 0.000  | butterfly         | 26.931 |
+| salt                 | 0.000  | restroom          | 0.000  | twig              | 0.700  |
+| pilot                | 0.000  | ivy               | 0.000  | furniture         | 0.000  |
+| clay                 | 0.000  | print             | 0.000  | sandwiches        | 0.132  |
+| lion                 | 0.000  | shingles          | 0.000  | pillars           | 0.000  |
+| vehicles             | 0.106  | panes             | 2.640  | shoreline         | 0.000  |
+| stream               | 0.000  | control           | 0.000  | lock              | 2.262  |
+| microphone           | 7.067  | blades            | 0.000  | towel rack        | 42.954 |
+| coaster              | 1.163  | star              | 1.084  | petals            | 0.000  |
+| text                 | 0.083  | feather           | 0.000  | spots             | 0.173  |
+| buoy                 | 5.397  |                   |        |                   |        |
+[32m[11/07 10:39:47 d2.evaluation.testing]: [0mcopypaste: Task: bbox
+[32m[11/07 10:39:47 d2.evaluation.testing]: [0mcopypaste: AP,AP50,AP75,APs,APm,APl
+[32m[11/07 10:39:47 d2.evaluation.testing]: [0mcopypaste: 4.4164,7.5937,4.3832,2.5132,5.1972,6.4536
+
+
+Job done.
+Date:  lun 7 nov 2022, 10.40.33, CET

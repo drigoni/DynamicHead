@@ -390,6 +390,7 @@ class COCOEvaluator(DatasetEvaluator):
             numalign="left",
         )
         self._logger.info("Per-category {} AP: \n".format(iou_type) + table)
+        print("Per-category {} AP: \n".format(iou_type) + table)
 
         results.update({"AP-" + name: ap for name, ap in results_per_category})
         return results

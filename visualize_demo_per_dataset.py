@@ -1,3 +1,27 @@
+# set up Python environment: numpy for numerical routines, and matplotlib for plotting
+import numpy as np
+import matplotlib.pyplot as plt
+import pylab
+from skimage import transform
+import argparse
+import os
+import sys
+import torch
+import tqdm
+import cv2
+import numpy as np
+import detectron2.utils.comm as comm
+from detectron2.checkpoint import DetectionCheckpointer
+from detectron2.data import build_detection_test_loader, build_detection_train_loader
+from detectron2.config import get_cfg
+from detectron2.engine import DefaultTrainer, default_setup, launch
+from detectron2.evaluation import COCOEvaluator, verify_results
+from utils import mkdir, save_features
+from extract_utils import get_image_blob
+from bua.caffe import add_bottom_up_attention_config
+from bua.caffe.modeling.layers.nms import nms
+from bua.d2 import add_attribute_config
+import os
 #!/usr/bin/env python
 """
 Created on 20/12/21
@@ -115,6 +139,21 @@ class AsyncPredictor:
             self.result_rank.insert(insert, idx)
             self.result_data.insert(insert, (res, concepts))
 
+    def __len__(self):
+        return self.put_idx - self.get_idx
+
+    def __call__(self, image, concepts):
+        self.put(image, concepts)
+        return self.get()
+
+    def shutdown(self):
+        for _ in self.procs:
+            self.task_queue.put(AsyncPredictor._StopToken())
+
+    @property
+    def default_buffer_size(self):
+        return len(self.procs) * 5
+
 
 class DefaultPredictor:
     """
@@ -182,21 +221,15 @@ class DefaultPredictor:
             return predictions
 
 
-class VisualizationDemo(object):
-    def __init__(self, cfg, instance_mode=ColorMode.IMAGE, parallel=False):
+class ProposalExtractor(object):
+    def __init__(self, cfg, parallel=False):
         """
         Args:
             cfg (CfgNode):
-            instance_mode (ColorMode):
             parallel (bool): whether to run the model in different processes from visualization.
                 Useful since the visualization logic can be slow.
         """
-        self.metadata = MetadataCatalog.get(
-            cfg.DATASETS.TEST[0] if len(cfg.DATASETS.TEST) else "__unused"
-        )
         self.cpu_device = torch.device("cpu")
-        self.instance_mode = instance_mode
-
         self.parallel = parallel
         if self.parallel == True:
             num_gpu = torch.cuda.device_count()
@@ -215,34 +248,18 @@ class VisualizationDemo(object):
             predictions (dict): the output of the model.
             vis_output (VisImage): the visualized image output.
         """
-        vis_output = None
         predictions = self.predictor(image, concepts)
-        # Convert image from OpenCV BGR format to Matplotlib RGB format.
-        image = image[:, :, ::-1]
-        visualizer = Visualizer(image, self.metadata, instance_mode=self.instance_mode)
-        if "panoptic_seg" in predictions:
-            panoptic_seg, segments_info = predictions["panoptic_seg"]
-            vis_output = visualizer.draw_panoptic_seg_predictions(
-                panoptic_seg.to(self.cpu_device), segments_info
-            )
-        else:
-            if "sem_seg" in predictions:
-                vis_output = visualizer.draw_sem_seg(
-                    predictions["sem_seg"].argmax(dim=0).to(self.cpu_device)
-                )
-            if "instances" in predictions:
-                instances = predictions["instances"].to(self.cpu_device)
-                vis_output = visualizer.draw_instance_predictions(predictions=instances)
-
         instances = predictions["instances"].to(self.cpu_device)
-        instances_converted = dict()
+        results = dict()
         for k, v in instances.get_fields().items():
             if isinstance(v, Boxes):
                 boxes_list = v.tensor
-                instances_converted[k] = boxes_list.tolist()
+                results[k] = boxes_list.tolist()
             else:
-                instances_converted[k] = v.tolist()
-        return instances_converted, vis_output
+                results[k] = v.tolist()
+
+        assert len(results['features']) ==  len(results['pred_boxes']) == len(results['probs']), 'Error in the results.'
+        return results
 
 
 def extract_flickr30k_concepts(ewiser_path):
@@ -285,19 +302,23 @@ def setup_cfg(args):
     cfg.MODEL.ATSS.PRE_NMS_TOP_N = args.pre_nms_top_n
     cfg.MODEL.ATSS.NMS_TH = args.nms_th
     cfg.TEST.DETECTIONS_PER_IMAGE = args.detection_per_image
-
+    
     cfg.freeze()
     default_setup(cfg, args)
     return cfg
 
 
 def get_parser():
-    parser = argparse.ArgumentParser(description="Detectron2 demo for Concept ATSS")
+    parser = argparse.ArgumentParser(description="Detectron2 demo for Concept-Conditioned Models")
     parser.add_argument(
         "--config",
-        default="configs/drigoni_dyhead_swint_catss_fpn_2x_ms_pretrained_bigger_head.yaml",
-        metavar="FILE",
-        help="path to config file",
+        default='/configs/COCO/retinanet/r50/retinanet_r50_fpn_COCO_concepts_test_cat.yaml',
+        help="Path to config file",
+    )
+    parser.add_argument(
+        "--parallel",
+        help="=True if the GPUs are used",
+        default=lambda x: True if x.lower() == 'true' else False,
     )
     parser.add_argument(
         "--images_folder",
@@ -311,8 +332,7 @@ def get_parser():
     parser.add_argument(
         "--output",
         default='./demo/',
-        help="A file or directory to save output visualizations. "
-             "If not given, will show output in an OpenCV window.",
+        help="A file or directory to save output visualizations. If not given, will show output in an OpenCV window.",
     )
     parser.add_argument(
         "--inference_th",
@@ -335,7 +355,7 @@ def get_parser():
     parser.add_argument(
         "--detection_per_image",
         type=int,
-        default=100,
+        default=30,
         help="cfg.TEST.DETECTIONS_PER_IMAGE.",
     )
     parser.add_argument(
@@ -343,11 +363,6 @@ def get_parser():
         help="Modify config options using the command-line 'KEY VALUE' pairs",
         default=[],
         nargs=argparse.REMAINDER,
-    )
-    parser.add_argument(
-        "--parallel",
-        help="=True if the GPUs are used",
-        default=lambda x: True if x.lower() == 'true' else False,
     )
     return parser
 
@@ -361,43 +376,42 @@ if __name__ == "__main__":
 
     cfg = setup_cfg(args)
 
-    demo = VisualizationDemo(cfg, args.parallel)
+    extractor = ProposalExtractor(cfg, args.parallel)
 
-    if args.images_folder and args.concepts:
-        images_folder = args.images_folder
-        concepts_folder = os.path.dirname(args.concepts[0])
-        for concept_path in tqdm.tqdm(args.concepts, disable=not args.output):
-            concept_filename = os.path.basename(concept_path)
-            image_filename = '{}.jpg'.format(concept_filename[:-9])  # remove ".txt.json" and add ".jpg"
-            image_path = os.path.join(images_folder, image_filename)
+    n_proposals = []
+    n_concepts = []
 
-            # get concepts
-            current_concepts = extract_flickr30k_concepts(concept_path)
+    images_folder = args.images_folder
+    concepts_folder = os.path.dirname(args.concepts[0])
+    for concept_path in tqdm.tqdm(args.concepts, disable=not args.output):
+        concept_filename = os.path.basename(concept_path)
+        image_filename = '{}.jpg'.format(concept_filename[:-9])  # remove ".txt.json" and add ".jpg"
+        image_path = os.path.join(images_folder, image_filename)
 
-            # use PIL, to be consistent with evaluation
-            # use PIL, to be consistent with evaluation
-            img = read_image(image_path, format="BGR")
-            start_time = time.time()
-            predictions, visualized_output = demo.run_on_image(img, current_concepts)
-            logger.info(
-                "Done {} in {:.2f}s with {} proposals and {} concepts".format(
-                    image_path,
-                    time.time() - start_time,
-                    len(predictions['pred_boxes']),
-                    len(current_concepts)
-                )
+        # get concepts
+        current_concepts = extract_flickr30k_concepts(concept_path)
+
+        # use PIL, to be consistent with evaluation
+        img = read_image(image_path, format="BGR")
+        start_time = time.time()
+        predictions = extractor.run_on_image(img, current_concepts)
+        logger.info(
+            "Done {} in {:.2f}s with {} proposals and {} concepts".format(
+                image_path,
+                time.time() - start_time,
+                len(predictions['pred_boxes']),
+                len(current_concepts)
             )
+        )
 
-            if args.output:
-                if os.path.isdir(args.output):
-                    assert os.path.isdir(args.output), args.output
-                    out_filename = os.path.join(args.output, os.path.basename(image_path))
-                else:
-                    assert len(args.input) == 1, "Please specify a directory with args.output"
-                    out_filename = args.output
-                visualized_output.save(out_filename)
-            else:
-                cv2.namedWindow(WINDOW_NAME, cv2.WINDOW_NORMAL)
-                cv2.imshow(WINDOW_NAME, visualized_output.get_image()[:, :, ::-1])
-                if cv2.waitKey(0) == 27:
-                    break  # esc to quit
+        # update statistics
+        n_proposals.append(len(predictions['pred_boxes']))
+        n_concepts.append(len(current_concepts))
+
+        # save predictions
+        out_filename = os.path.join(args.output, os.path.basename(image_path))
+        out_filename = '{}.json'.format(out_filename[:-4])
+        # logger.info(out_filename)
+        # print('Features: ', len(predictions['features']), len(predictions['features'][0]))
+        with open(out_filename, 'w') as outfile:
+            json.dump(predictions, outfile)
