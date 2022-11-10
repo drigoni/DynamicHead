@@ -1,0 +1,5638 @@
+{
+    "/m/011k07": [
+        "tortoise.n.01",
+        "gopher_tortoise.n.01",
+        "european_tortoise.n.01",
+        "texas_tortoise.n.01",
+        "giant_tortoise.n.01",
+        "desert_tortoise.n.01"
+    ],
+    "/m/011q46kg": [
+        "bag.n.01",
+        "can.n.01",
+        "cassette.n.01",
+        "storage_ring.n.01",
+        "grab_bag.n.02",
+        "capsule.n.01",
+        "bowl.n.08",
+        "vessel.n.03",
+        "watering_can.n.01",
+        "spoon.n.01",
+        "canister.n.02",
+        "drawer.n.01",
+        "box.n.01",
+        "magnetic_bottle.n.01",
+        "time_capsule.n.01",
+        "reliquary.n.01",
+        "dumpster.n.01",
+        "pot.n.04",
+        "envelope.n.01",
+        "empty.n.01",
+        "saltcellar.n.01",
+        "case.n.20",
+        "dispenser.n.01",
+        "cargo_container.n.01",
+        "pod.n.04",
+        "shaker.n.03",
+        "manger.n.01",
+        "bread-bin.n.01",
+        "basket.n.01",
+        "powder_horn.n.01",
+        "dice_cup.n.01",
+        "pan.n.03",
+        "package.n.02",
+        "cup.n.01",
+        "wastepaper_basket.n.01",
+        "measure.n.09",
+        "glass.n.02",
+        "savings_bank.n.02",
+        "thimble.n.02",
+        "bag.n.04",
+        "bin.n.01",
+        "workbasket.n.01",
+        "dish.n.01",
+        "container.n.01",
+        "bunker.n.02",
+        "case.n.05",
+        "cylinder.n.04",
+        "mold.n.02",
+        "scuttle.n.01",
+        "receptacle.n.01",
+        "mailer.n.04",
+        "wheeled_vehicle.n.01"
+    ],
+    "/m/012074": [
+        "european_magpie.n.01",
+        "american_magpie.n.01",
+        "magpie.n.01"
+    ],
+    "/m/0120dh": [
+        "ridley.n.01",
+        "green_turtle.n.01",
+        "hawksbill_turtle.n.01",
+        "sea_turtle.n.01",
+        "loggerhead.n.02",
+        "leatherback_turtle.n.01"
+    ],
+    "/m/01226z": [
+        "football.n.01",
+        "rugby.n.01",
+        "american_football.n.01",
+        "soccer.n.01",
+        "professional_football.n.01"
+    ],
+    "/m/012n7d": [
+        "funny_wagon.n.01",
+        "ambulance.n.01"
+    ],
+    "/m/012w5l": [
+        "extension_ladder.n.01",
+        "articulated_ladder.n.01",
+        "sea_ladder.n.01",
+        "monkey_ladder.n.01",
+        "step_ladder.n.01",
+        "ladder.n.01",
+        "scaling_ladder.n.01",
+        "jacob's_ladder.n.02",
+        "rope_ladder.n.01"
+    ],
+    "/m/012xff": [
+        "electric_toothbrush.n.01",
+        "toothbrush.n.01"
+    ],
+    "/m/012ysf": [
+        "hypodermic_syringe.n.01",
+        "douche.n.01",
+        "syringe.n.01"
+    ],
+    "/m/0130jx": [
+        "kitchen_sink.n.01",
+        "washbasin.n.01",
+        "sink.n.01"
+    ],
+    "/m/0138tl": [
+        "pinata.n.01",
+        "jungle_gym.n.01",
+        "lego.n.01",
+        "pinwheel.n.03",
+        "water_pistol.n.01",
+        "sandbox.n.02",
+        "slide.n.04",
+        "top.n.08",
+        "slingshot.n.01",
+        "ball.n.06",
+        "yo-yo.n.01",
+        "pogo_stick.n.01",
+        "swing.n.02",
+        "hobby.n.02",
+        "popgun.n.01",
+        "meccano.n.01",
+        "dollhouse.n.02",
+        "kite.n.03",
+        "plaything.n.01",
+        "jack-in-the-box.n.01",
+        "train_set.n.01",
+        "cockhorse.n.01",
+        "kaleidoscope.n.02",
+        "stick_horse.n.01",
+        "balloon.n.02",
+        "jumping_jack.n.01",
+        "teddy.n.01",
+        "playhouse.n.01",
+        "frisbee.n.01",
+        "seesaw.n.01",
+        "doll.n.01",
+        "hula-hoop.n.01",
+        "pea_shooter.n.01",
+        "rattle.n.02"
+    ],
+    "/m/013y1f": [
+        "target_organ.n.01",
+        "internal_organ.n.01",
+        "stinger.n.04",
+        "sense_organ.n.01",
+        "contractile_organ.n.01",
+        "foot.n.06",
+        "tongue.n.01",
+        "vital_organ.n.01",
+        "external_organ.n.01",
+        "sucker.n.06",
+        "taret_organ.n.01",
+        "speech_organ.n.01",
+        "siphon.n.02",
+        "effector.n.03",
+        "erectile_organ.n.01",
+        "organ.n.01",
+        "organelle.n.01",
+        "reproductive_organ.n.01",
+        "ctene.n.01",
+        "primordium.n.01",
+        "wing.n.01",
+        "lens.n.04",
+        "ovipositor.n.01",
+        "end_organ.n.01",
+        "gland.n.01"
+    ],
+    "/m/01432t": [
+        "cassette_deck.n.01"
+    ],
+    "/m/014j1m": [
+        "crab_apple.n.03",
+        "eating_apple.n.01",
+        "cooking_apple.n.01",
+        "apple.n.01"
+    ],
+    "/m/014sv8": [
+        "eye.n.01",
+        "naked_eye.n.01",
+        "simple_eye.n.01",
+        "compound_eye.n.01",
+        "oculus_dexter.n.01",
+        "peeper.n.02",
+        "oculus_sinister.n.01"
+    ],
+    "/m/014trl": [
+        "highlighter.n.01",
+        "depilatory.n.02",
+        "makeup.n.01",
+        "pencil.n.04",
+        "cosmetic.n.01",
+        "nail_polish.n.01"
+    ],
+    "/m/014y4n": [
+        "table-tennis_racquet.n.01",
+        "paddle.n.01"
+    ],
+    "/m/0152hh": [
+        "snowman.n.01"
+    ],
+    "/m/01599": [
+        "suds.n.02",
+        "ale.n.01",
+        "beer.n.01",
+        "lager.n.02",
+        "draft_beer.n.01"
+    ],
+    "/m/01_5g": [
+        "chopstick.n.01"
+    ],
+    "/m/015h_t": [
+        "beard.n.01",
+        "goatee.n.01",
+        "beaver.n.03",
+        "fuzz.n.04",
+        "vandyke_beard.n.01",
+        "soul_patch.n.01",
+        "imperial.n.01",
+        "stubble.n.02"
+    ],
+    "/m/015p6": [
+        "aquatic_bird.n.01",
+        "sinornis.n.01",
+        "archaeornis.n.01",
+        "hen.n.02",
+        "ibero-mesornis.n.01",
+        "night_bird.n.01",
+        "trogon.n.01",
+        "bird_of_prey.n.01",
+        "cuculiform_bird.n.01",
+        "apodiform_bird.n.01",
+        "protoavis.n.01",
+        "dickeybird.n.01",
+        "bird_of_passage.n.02",
+        "piciform_bird.n.01",
+        "caprimulgiform_bird.n.01",
+        "cock.n.05",
+        "nonpasserine_bird.n.01",
+        "bird.n.01",
+        "coraciiform_bird.n.01",
+        "passerine.n.01",
+        "archaeopteryx.n.01",
+        "nester.n.02",
+        "gallinaceous_bird.n.01",
+        "parrot.n.01",
+        "carinate.n.01",
+        "ratite.n.01",
+        "twitterer.n.01"
+    ],
+    "/m/015qbp": [
+        "parking_meter.n.01"
+    ],
+    "/m/015qff": [
+        "yellow_light.n.01",
+        "red_light.n.02",
+        "traffic_light.n.01",
+        "green_light.n.01"
+    ],
+    "/m/015wgc": [
+        "crescent_roll.n.01"
+    ],
+    "/m/015x4r": [
+        "cucumber.n.01"
+    ],
+    "/m/015x5n": [
+        "radish.n.01"
+    ],
+    "/m/0162_1": [
+        "towel.n.01",
+        "roller_towel.n.01",
+        "dishtowel.n.01",
+        "beach_towel.n.01",
+        "hand_towel.n.01",
+        "bath_towel.n.01",
+        "paper_towel.n.01"
+    ],
+    "/m/0167gd": [
+        "rag_doll.n.01",
+        "puppet.n.03",
+        "paper_doll.n.01",
+        "sawdust_doll.n.01",
+        "golliwog.n.01",
+        "kachina.n.03",
+        "doll.n.01",
+        "toy_soldier.n.01"
+    ],
+    "/m/016m2d": [
+        "skull.n.01"
+    ],
+    "/m/0174k2": [
+        "washer.n.03"
+    ],
+    "/m/0174n1": [
+        "baseball_glove.n.01"
+    ],
+    "/m/0175cv": [
+        "ticktock.n.01",
+        "tick.n.01"
+    ],
+    "/m/0176mf": [
+        "driving_belt.n.01",
+        "belt.n.01",
+        "fan_belt.n.01",
+        "band.n.10",
+        "conveyer_belt.n.01",
+        "track.n.06"
+    ],
+    "/m/017ftj": [
+        "sunglasses.n.01"
+    ],
+    "/m/018j2": [
+        "banjo.n.01"
+    ],
+    "/m/018p4k": [
+        "dumpcart.n.01",
+        "jinrikisha.n.01",
+        "jaunting_car.n.01",
+        "dogcart.n.01",
+        "cart.n.01",
+        "oxcart.n.01",
+        "pony_cart.n.01",
+        "water_cart.n.01",
+        "horse_cart.n.01"
+    ],
+    "/m/018xm": [
+        "softball.n.01",
+        "tennis_ball.n.01",
+        "lacrosse_ball.n.01",
+        "ball.n.01",
+        "racquetball.n.01",
+        "ninepin_ball.n.01",
+        "bowling_ball.n.01",
+        "basketball.n.02",
+        "soccer_ball.n.01",
+        "bowl.n.07",
+        "rugby_ball.n.01",
+        "bocce_ball.n.01",
+        "cricket_ball.n.01",
+        "marble.n.02",
+        "polo_ball.n.01",
+        "billiard_ball.n.01",
+        "pool_ball.n.01",
+        "punching_bag.n.02",
+        "squash_ball.n.01",
+        "ping-pong_ball.n.01",
+        "roulette_ball.n.01",
+        "wiffle.n.01",
+        "field_hockey_ball.n.01",
+        "jack.n.05",
+        "croquet_ball.n.01",
+        "medicine_ball.n.01",
+        "baseball.n.02",
+        "football.n.02",
+        "volleyball.n.02",
+        "golf_ball.n.01",
+        "handball.n.01"
+    ],
+    "/m/01940j": [
+        "kitbag.n.01",
+        "backpack.n.01"
+    ],
+    "/m/0199g": [
+        "push-bike.n.01",
+        "velocipede.n.01",
+        "bicycle.n.01",
+        "safety_bicycle.n.01",
+        "mountain_bike.n.01",
+        "ordinary.n.04",
+        "bicycle-built-for-two.n.01"
+    ],
+    "/m/019dx1": [
+        "vacuum.n.04",
+        "iron.n.04",
+        "home_appliance.n.01",
+        "sewing_machine.n.01",
+        "kitchen_appliance.n.01",
+        "curling_iron.n.01",
+        "trouser_press.n.01",
+        "white_goods.n.01"
+    ],
+    "/m/019h78": [
+        "house_centipede.n.01",
+        "centipede.n.01"
+    ],
+    "/m/019jd": [
+        "scow.n.01",
+        "canal_boat.n.01",
+        "sea_boat.n.01",
+        "longboat.n.01",
+        "lugger.n.01",
+        "tugboat.n.01",
+        "guard_boat.n.01",
+        "pilot_boat.n.01",
+        "gunboat.n.01",
+        "ferry.n.01",
+        "steamboat.n.01",
+        "fireboat.n.01",
+        "punt.n.02",
+        "small_boat.n.01",
+        "junk.n.02",
+        "tender.n.05",
+        "mackinaw.n.03",
+        "ark.n.02",
+        "motorboat.n.01",
+        "police_boat.n.01",
+        "barge.n.01",
+        "boat.n.01",
+        "bumboat.n.01",
+        "mailboat.n.01",
+        "surfboat.n.01",
+        "river_boat.n.01",
+        "gondola.n.02"
+    ],
+    "/m/019w40": [
+        "surfboard.n.01"
+    ],
+    "/m/01b638": [
+        "cowboy_boot.n.01",
+        "riding_boot.n.01",
+        "rubber_boot.n.01",
+        "hip_boot.n.01",
+        "boot.n.01",
+        "hessian_boot.n.01",
+        "buskin.n.01",
+        "ski_boot.n.01"
+    ],
+    "/m/01b7fy": [
+        "earphone.n.01",
+        "telephone_receiver.n.01",
+        "earplug.n.01"
+    ],
+    "/m/01b9xk": [
+        "hotdog.n.01"
+    ],
+    "/m/01bfm9": [
+        "short_pants.n.01",
+        "bermuda_shorts.n.01",
+        "lederhosen.n.01",
+        "hot_pants.n.02"
+    ],
+    "/m/01_bhs": [
+        "fast_food.n.01"
+    ],
+    "/m/01bjv": [
+        "trolleybus.n.01",
+        "minibus.n.01",
+        "bus.n.01",
+        "school_bus.n.01"
+    ],
+    "/m/01bl7v": [
+        "cub.n.02",
+        "catamite.n.01",
+        "male_child.n.01",
+        "farm_boy.n.01",
+        "fauntleroy.n.01",
+        "ball_boy.n.01",
+        "bat_boy.n.01",
+        "shop_boy.n.01",
+        "plowboy.n.01",
+        "altar_boy.n.01",
+        "schoolboy.n.01",
+        "scout.n.02"
+    ],
+    "/m/01bms0": [
+        "phillips_screwdriver.n.01",
+        "flat_tip_screwdriver.n.01",
+        "spiral_ratchet_screwdriver.n.01",
+        "screwdriver.n.01"
+    ],
+    "/m/01bqk0": [
+        "bicycle_wheel.n.01"
+    ],
+    "/m/01btn": [
+        "wherry.n.01",
+        "barge.n.01",
+        "dredger.n.01",
+        "pontoon.n.01",
+        "houseboat.n.01",
+        "scow.n.02"
+    ],
+    "/m/01c648": [
+        "laptop.n.01"
+    ],
+    "/m/01cmb2": [
+        "miniskirt.n.01"
+    ],
+    "/m/01d380": [
+        "bore_bit.n.01",
+        "reamer.n.02",
+        "core_drill.n.01",
+        "dentist's_drill.n.01",
+        "drill.n.01",
+        "trepan.n.02",
+        "brace_and_bit.n.01",
+        "hand_drill.n.01",
+        "power_drill.n.01",
+        "auger.n.02",
+        "breast_drill.n.01"
+    ],
+    "/m/01d40f": [
+        "kirtle.n.02",
+        "cocktail_dress.n.01",
+        "polonaise.n.01",
+        "strapless.n.01",
+        "caftan.n.01",
+        "jumper.n.07",
+        "dress.n.01",
+        "sari.n.01",
+        "morning_dress.n.02",
+        "mother_hubbard.n.01",
+        "shirtdress.n.01",
+        "dirndl.n.02",
+        "coatdress.n.01",
+        "gown.n.01",
+        "sundress.n.01",
+        "chemise.n.02"
+    ],
+    "/m/01dws": [
+        "asiatic_black_bear.n.01",
+        "bruin.n.01",
+        "brown_bear.n.01",
+        "ice_bear.n.01",
+        "bear_cub.n.01",
+        "sloth_bear.n.01",
+        "bear.n.01",
+        "american_black_bear.n.01"
+    ],
+    "/m/01dwsz": [
+        "waffle.n.01",
+        "belgian_waffle.n.01"
+    ],
+    "/m/01dwwc": [
+        "potato_pancake.n.01",
+        "tortilla.n.01",
+        "blintz.n.01",
+        "buckwheat_cake.n.01",
+        "pfannkuchen.n.01",
+        "blini.n.01",
+        "buttermilk_pancake.n.01",
+        "crape.n.01",
+        "pancake.n.01"
+    ],
+    "/m/01dxs": [
+        "grizzly.n.01",
+        "brown_bear.n.01",
+        "alaskan_brown_bear.n.01",
+        "syrian_bear.n.01"
+    ],
+    "/m/01dy8n": [
+        "green_woodpecker.n.01",
+        "piculet.n.01",
+        "redheaded_woodpecker.n.01",
+        "ivorybill.n.01",
+        "wryneck.n.02",
+        "sapsucker.n.01",
+        "flicker.n.02",
+        "downy_woodpecker.n.01",
+        "woodpecker.n.01"
+    ],
+    "/m/01f8m5": [
+        "blue_jay.n.01"
+    ],
+    "/m/01f91_": [
+        "pretzel.n.01",
+        "soft_pretzel.n.01"
+    ],
+    "/m/01fb_0": [
+        "bagel.n.01",
+        "onion_bagel.n.01"
+    ],
+    "/m/01fdzj": [
+        "mooring_tower.n.01",
+        "turret.n.01",
+        "pylon.n.01",
+        "tower.n.01",
+        "barbican.n.01",
+        "bell_tower.n.01",
+        "shot_tower.n.01",
+        "control_tower.n.01",
+        "minaret.n.01",
+        "silo.n.01",
+        "supporting_tower.n.01",
+        "watchtower.n.01",
+        "beacon.n.03",
+        "steeple.n.01",
+        "clock_tower.n.01",
+        "high-rise.n.01",
+        "pylon.n.02",
+        "church_tower.n.01"
+    ],
+    "/m/01fh4r": [
+        "teapot.n.01"
+    ],
+    "/m/01g317": [
+        "kink.n.03",
+        "defecator.n.01",
+        "elizabethan.n.01",
+        "nonmember.n.01",
+        "sensualist.n.01",
+        "unskilled_person.n.01",
+        "perspirer.n.01",
+        "ward.n.01",
+        "seeder.n.01",
+        "domestic_partner.n.01",
+        "primitive.n.01",
+        "fugitive.n.01",
+        "dieter.n.01",
+        "ouster.n.01",
+        "winker.n.01",
+        "amerindian.n.01",
+        "buster.n.04",
+        "acquaintance.n.03",
+        "enrollee.n.01",
+        "baby_buster.n.01",
+        "acquirer.n.01",
+        "subject.n.06",
+        "mother_hen.n.01",
+        "preserver.n.03",
+        "percher.n.01",
+        "tapper.n.02",
+        "walk-in.n.01",
+        "amateur.n.01",
+        "nonreligious_person.n.01",
+        "signer.n.02",
+        "advisee.n.01",
+        "revenant.n.01",
+        "color-blind_person.n.01",
+        "occultist.n.01",
+        "hope.n.04",
+        "scratcher.n.02",
+        "abomination.n.01",
+        "dribbler.n.02",
+        "orphan.n.02",
+        "smasher.n.01",
+        "chutzpanik.n.01",
+        "showman.n.01",
+        "sneezer.n.01",
+        "insured.n.01",
+        "turner.n.07",
+        "worker.n.01",
+        "explorer.n.01",
+        "traveler.n.01",
+        "bad_guy.n.01",
+        "peer.n.01",
+        "latin.n.03",
+        "masturbator.n.01",
+        "candidate.n.02",
+        "thrower.n.02",
+        "dissenter.n.01",
+        "mesomorph.n.01",
+        "groaner.n.01",
+        "rescuer.n.02",
+        "nonperson.n.01",
+        "mailer.n.02",
+        "expert.n.01",
+        "anti-american.n.01",
+        "lover.n.01",
+        "gambler.n.01",
+        "enjoyer.n.01",
+        "posturer.n.01",
+        "individualist.n.01",
+        "contestant.n.01",
+        "birth.n.05",
+        "weakling.n.01",
+        "smiler.n.01",
+        "emotional_person.n.01",
+        "person.n.01",
+        "snuffer.n.02",
+        "dead_person.n.01",
+        "man.n.03",
+        "roundhead.n.01",
+        "heterosexual.n.01",
+        "abator.n.01",
+        "junior.n.03",
+        "fastener.n.01",
+        "relative.n.01",
+        "linguist.n.02",
+        "learner.n.01",
+        "authority.n.02",
+        "gentile.n.02",
+        "anomaly.n.02",
+        "quarter.n.11",
+        "waker.n.02",
+        "perceiver.n.01",
+        "asthmatic.n.01",
+        "charmer.n.02",
+        "pussycat.n.01",
+        "disentangler.n.01",
+        "chameleon.n.01",
+        "self.n.02",
+        "dyslectic.n.01",
+        "african.n.01",
+        "romper.n.01",
+        "anti.n.01",
+        "mouse.n.03",
+        "jat.n.01",
+        "computer_user.n.01",
+        "national.n.01",
+        "ostrich.n.01",
+        "tiger.n.01",
+        "first-rater.n.01",
+        "faddist.n.01",
+        "pardoner.n.01",
+        "visionary.n.01",
+        "undoer.n.02",
+        "victim.n.02",
+        "sex_symbol.n.01",
+        "literate.n.01",
+        "yawner.n.01",
+        "aries.n.01",
+        "baldhead.n.01",
+        "experimenter.n.02",
+        "planner.n.01",
+        "debaser.n.01",
+        "misogamist.n.01",
+        "bather.n.02",
+        "greeter.n.01",
+        "adversary.n.01",
+        "loose_cannon.n.01",
+        "captor.n.01",
+        "sphinx.n.01",
+        "tagger.n.02",
+        "achiever.n.01",
+        "bereaved.n.01",
+        "handicapped_person.n.01",
+        "propositus.n.01",
+        "native.n.01",
+        "outdoorsman.n.01",
+        "adoptee.n.01",
+        "debtor.n.01",
+        "pursuer.n.02",
+        "married.n.01",
+        "owner.n.02",
+        "left-hander.n.02",
+        "grunter.n.01",
+        "kneeler.n.01",
+        "jew.n.01",
+        "middlebrow.n.01",
+        "segregate.n.01",
+        "user.n.01",
+        "socializer.n.01",
+        "entertainer.n.01",
+        "innocent.n.01",
+        "suspect.n.01",
+        "crawler.n.02",
+        "best.n.02",
+        "rester.n.01",
+        "visually_impaired_person.n.01",
+        "right-hander.n.02",
+        "ethnic.n.01",
+        "juvenile.n.01",
+        "namesake.n.01",
+        "grinner.n.01",
+        "affiant.n.01",
+        "black.n.05",
+        "life.n.08",
+        "huddler.n.02",
+        "capitalist.n.02",
+        "simpleton.n.01",
+        "tyrant.n.03",
+        "gatherer.n.01",
+        "abstainer.n.02",
+        "rusher.n.03",
+        "gainer.n.02",
+        "toucher.n.01",
+        "partner.n.03",
+        "hugger.n.01",
+        "snuffler.n.01",
+        "mutilator.n.01",
+        "archaist.n.01",
+        "sloucher.n.01",
+        "inhabitant.n.01",
+        "bodybuilder.n.01",
+        "liver.n.03",
+        "optimist.n.01",
+        "hater.n.01",
+        "termer.n.01",
+        "arrogator.n.01",
+        "hoper.n.01",
+        "endomorph.n.01",
+        "neighbor.n.01",
+        "combatant.n.01",
+        "creator.n.02",
+        "personage.n.01",
+        "brunet.n.01",
+        "active.n.03",
+        "witness.n.05",
+        "extrovert.n.01",
+        "nonresident.n.01",
+        "lightning_rod.n.01",
+        "slave.n.01",
+        "pamperer.n.01",
+        "actor.n.02",
+        "survivor.n.02",
+        "measurer.n.01",
+        "bad_person.n.01",
+        "cripple.n.01",
+        "autodidact.n.01",
+        "precursor.n.02",
+        "small_person.n.01",
+        "sleepyhead.n.01",
+        "man_jack.n.01",
+        "dresser.n.02",
+        "delayer.n.01",
+        "manipulator.n.02",
+        "gemini.n.01",
+        "sniffer.n.01",
+        "surrenderer.n.01",
+        "child.n.03",
+        "wanter.n.01",
+        "white.n.01",
+        "miracle_man.n.01",
+        "free_agent.n.02",
+        "female.n.02",
+        "bullfighter.n.01",
+        "thin_person.n.01",
+        "stifler.n.01",
+        "blogger.n.01",
+        "knocker.n.02",
+        "introvert.n.01",
+        "second-rater.n.01",
+        "divider.n.02",
+        "transsexual.n.02",
+        "abjurer.n.01",
+        "adult.n.01",
+        "spitter.n.01",
+        "six-footer.n.01",
+        "unfortunate.n.01",
+        "adventurer.n.01",
+        "beard.n.03",
+        "riser.n.01",
+        "stranger.n.02",
+        "counter.n.05",
+        "third-rater.n.01",
+        "public_relations_person.n.01",
+        "nonparticipant.n.01",
+        "admirer.n.02",
+        "nonpartisan.n.01",
+        "money_handler.n.01",
+        "deliverer.n.04",
+        "nondescript.n.01",
+        "testator.n.01",
+        "killer.n.01",
+        "seeker.n.01",
+        "supernumerary.n.01",
+        "machine.n.02",
+        "redhead.n.01",
+        "waiter.n.02",
+        "disputant.n.01",
+        "changer.n.01",
+        "skidder.n.01",
+        "libra.n.01",
+        "double.n.03",
+        "reliever.n.02",
+        "slav.n.01",
+        "good_guy.n.01",
+        "rectifier.n.02",
+        "picker.n.01",
+        "follower.n.01",
+        "homunculus.n.02",
+        "sport.n.04",
+        "good_person.n.01",
+        "wiggler.n.01",
+        "applicant.n.01",
+        "knower.n.01",
+        "balker.n.01",
+        "laugher.n.01",
+        "modern.n.01",
+        "rich_person.n.01",
+        "pisces.n.02",
+        "watcher.n.03",
+        "pansexual.n.01",
+        "censor.n.01",
+        "weasel.n.01",
+        "ectomorph.n.01",
+        "passer.n.02",
+        "biter.n.01",
+        "repeater.n.01",
+        "trier.n.02",
+        "quitter.n.01",
+        "contemplative.n.01",
+        "ruler.n.01",
+        "nonsmoker.n.01",
+        "vanisher.n.01",
+        "native.n.02",
+        "apprehender.n.02",
+        "immune.n.01",
+        "celebrant.n.01",
+        "realist.n.02",
+        "religious_person.n.01",
+        "sniffler.n.01",
+        "clumsy_person.n.01",
+        "compulsive.n.01",
+        "drug_user.n.01",
+        "sprawler.n.01",
+        "differentiator.n.01",
+        "baby_boomer.n.01",
+        "collector.n.01",
+        "squinter.n.01",
+        "tagger.n.01",
+        "intellectual.n.01",
+        "terror.n.02",
+        "bluecoat.n.01",
+        "large_person.n.01",
+        "aquarius.n.01",
+        "scientist.n.01",
+        "nude.n.03",
+        "taurus.n.02",
+        "player.n.04",
+        "sounding_board.n.01",
+        "coward.n.01",
+        "gatekeeper.n.01",
+        "cashier.n.02",
+        "sagittarius.n.01",
+        "appointee.n.02",
+        "demander.n.01",
+        "convert.n.01",
+        "loved_one.n.01",
+        "adjudicator.n.01",
+        "jewel.n.02",
+        "homosexual.n.01",
+        "struggler.n.01",
+        "leo.n.01",
+        "complexifier.n.01",
+        "mestizo.n.01",
+        "radical.n.03",
+        "advocate.n.01",
+        "transfer.n.02",
+        "deaf_person.n.01",
+        "totemist.n.01",
+        "appreciator.n.01",
+        "granter.n.01",
+        "leader.n.01",
+        "virgo.n.01",
+        "counterterrorist.n.01",
+        "interpreter.n.02",
+        "dancer.n.02",
+        "monolingual.n.01",
+        "effecter.n.01",
+        "malcontent.n.01",
+        "stigmatic.n.01",
+        "engineer.n.01",
+        "survivalist.n.01",
+        "closer.n.01",
+        "male.n.02",
+        "sort.n.03",
+        "jumper.n.01",
+        "transvestite.n.01",
+        "friend.n.01",
+        "spurner.n.01",
+        "copycat.n.01",
+        "outcaste.n.01",
+        "nurser.n.01",
+        "tempter.n.01",
+        "faller.n.02",
+        "agnostic.n.01",
+        "warrior.n.01",
+        "blond.n.01",
+        "unwelcome_person.n.01",
+        "neutral.n.01",
+        "gainer.n.01",
+        "slave.n.03",
+        "commoner.n.01",
+        "mixed-blood.n.01",
+        "ancient.n.02",
+        "powderer.n.01",
+        "creature.n.02",
+        "victorian.n.01",
+        "neglecter.n.01",
+        "longer.n.01",
+        "restrainer.n.02",
+        "bomber.n.02",
+        "cancer.n.02",
+        "communicator.n.01",
+        "philosopher.n.02",
+        "face.n.05",
+        "withholder.n.01",
+        "fiduciary.n.01",
+        "scorpio.n.01",
+        "sex_object.n.01",
+        "guesser.n.01",
+        "party.n.05",
+        "pisser.n.01",
+        "nonworker.n.01",
+        "sentimentalist.n.01",
+        "assessee.n.01",
+        "bedfellow.n.02",
+        "shaker.n.01",
+        "registrant.n.01",
+        "namer.n.01",
+        "stooper.n.02",
+        "worldling.n.01",
+        "person_of_color.n.01",
+        "creditor.n.01",
+        "personification.n.01",
+        "case.n.06",
+        "capricorn.n.01"
+    ],
+    "/m/01g3x7": [
+        "bow_and_arrow.n.01"
+    ],
+    "/m/01gkx_": [
+        "swimsuit.n.01",
+        "bikini.n.02",
+        "swimming_trunks.n.01",
+        "maillot.n.01"
+    ],
+    "/m/01gllr": [
+        "beehive.n.01"
+    ],
+    "/m/01gmv2": [
+        "uplift.n.02",
+        "brassiere.n.01"
+    ],
+    "/m/01h3n": [
+        "bee.n.01",
+        "potter_bee.n.01",
+        "honeybee.n.01",
+        "andrena.n.01",
+        "nomia_melanderi.n.01",
+        "drone.n.01",
+        "bumblebee.n.01",
+        "leaf-cutting_bee.n.01",
+        "mason_bee.n.01",
+        "carpenter_bee.n.01",
+        "cuckoo-bumblebee.n.01"
+    ],
+    "/m/01h44": [
+        "carnivorous_bat.n.01",
+        "fruit_bat.n.01",
+        "bat.n.01"
+    ],
+    "/m/01h8tj": [
+        "starfish.n.01"
+    ],
+    "/m/01hrv5": [
+        "popcorn.n.01"
+    ],
+    "/m/01j3zr": [
+        "quesadilla.n.01",
+        "beef_burrito.n.01",
+        "burrito.n.01"
+    ],
+    "/m/01j4z9": [
+        "chain_saw.n.01"
+    ],
+    "/m/01j51": [
+        "meteorological_balloon.n.01",
+        "trial_balloon.n.02",
+        "balloon.n.01",
+        "hot-air_balloon.n.01"
+    ],
+    "/m/01j5ks": [
+        "wrench.n.01",
+        "sprain.n.01"
+    ],
+    "/m/01j61q": [
+        "umbrella_tent.n.01",
+        "pavilion.n.01",
+        "pup_tent.n.01",
+        "pyramidal_tent.n.01",
+        "pop_tent.n.01",
+        "cottage_tent.n.01",
+        "mountain_tent.n.01",
+        "tepee.n.01",
+        "tupik.n.01",
+        "two-man_tent.n.01",
+        "fly_tent.n.01",
+        "cabana.n.01",
+        "lean-to_tent.n.01",
+        "canvas_tent.n.01",
+        "bell_tent.n.01",
+        "backpacking_tent.n.01",
+        "tent.n.01",
+        "praetorium.n.01"
+    ],
+    "/m/01jfm_": [
+        "license_plate.n.01"
+    ],
+    "/m/01jfsr": [
+        "lantern.n.01",
+        "dark_lantern.n.01",
+        "chinese_lantern.n.01",
+        "jack-o'-lantern.n.02"
+    ],
+    "/m/01k6s3": [
+        "toaster.n.01"
+    ],
+    "/m/01kb5b": [
+        "flashlight.n.01",
+        "penlight.n.01"
+    ],
+    "/m/01knjb": [
+        "billboard.n.01"
+    ],
+    "/m/01krhy": [
+        "tiara.n.01"
+    ],
+    "/m/01lcw4": [
+        "limousine.n.01",
+        "berlin.n.03"
+    ],
+    "/m/01llwg": [
+        "chain.n.09",
+        "chain.n.10",
+        "necklace.n.01",
+        "choker.n.03"
+    ],
+    "/m/01lrl": [
+        "musteline_mammal.n.01",
+        "fissiped_mammal.n.01",
+        "carnivore.n.01",
+        "canine.n.02",
+        "bear.n.01",
+        "feline.n.01",
+        "viverrine.n.01",
+        "procyonid.n.01"
+    ],
+    "/m/01lsmm": [
+        "scissors.n.01",
+        "snuffers.n.01",
+        "clipper.n.04",
+        "shears.n.01"
+    ],
+    "/m/01lynh": [
+        "stairs.n.01",
+        "ladder.n.01"
+    ],
+    "/m/01m2v": [
+        "computer_keyboard.n.01"
+    ],
+    "/m/01m4t": [
+        "printer.n.01",
+        "proofreader.n.01",
+        "compositor.n.01"
+    ],
+    "/m/01mqdt": [
+        "address.n.05",
+        "street_sign.n.01"
+    ],
+    "/m/01mzpv": [
+        "barber_chair.n.01",
+        "lawn_chair.n.01",
+        "armchair.n.01",
+        "highchair.n.01",
+        "chair_of_state.n.01",
+        "wheelchair.n.01",
+        "eames_chair.n.01",
+        "ladder-back.n.01",
+        "chaise_longue.n.01",
+        "rocking_chair.n.01",
+        "straight_chair.n.01",
+        "folding_chair.n.01",
+        "fighting_chair.n.01",
+        "tablet-armed_chair.n.01",
+        "swivel_chair.n.01",
+        "chair.n.01"
+    ],
+    "/m/01n4qj": [
+        "camise.n.01",
+        "dress_shirt.n.01",
+        "kurta.n.01",
+        "jersey.n.03",
+        "dashiki.n.01",
+        "tank_top.n.01",
+        "work-shirt.n.01",
+        "shirt.n.01",
+        "hair_shirt.n.01",
+        "polo_shirt.n.01"
+    ],
+    "/m/01n5jq": [
+        "poster.n.01",
+        "show_bill.n.01",
+        "flash_card.n.01"
+    ],
+    "/m/01nkt": [
+        "grated_cheese.n.01",
+        "gouda.n.01",
+        "quark_cheese.n.01",
+        "mozzarella.n.01",
+        "limburger.n.01",
+        "brie.n.01",
+        "cheddar.n.02",
+        "ricotta.n.01",
+        "camembert.n.01",
+        "muenster.n.01",
+        "cheese.n.01",
+        "cheshire_cheese.n.01",
+        "cottage_cheese.n.01",
+        "double_gloucester.n.01",
+        "hand_cheese.n.01",
+        "triple_cream.n.01",
+        "liederkranz.n.01",
+        "velveeta.n.01",
+        "swiss_cheese.n.01",
+        "goat_cheese.n.01",
+        "string_cheese.n.01",
+        "brick_cheese.n.01",
+        "edam.n.01",
+        "bleu.n.01",
+        "cream_cheese.n.01",
+        "parmesan.n.01",
+        "process_cheese.n.01"
+    ],
+    "/m/01nq26": [
+        "sock.n.01",
+        "anklet.n.02",
+        "athletic_sock.n.01",
+        "tabi.n.01",
+        "argyle.n.03",
+        "knee-high.n.01"
+    ],
+    "/m/01pns0": [
+        "fireplug.n.01"
+    ],
+    "/m/01prls": [
+        "bumper_car.n.01",
+        "vehicle.n.01",
+        "rocket.n.01",
+        "skibob.n.01",
+        "craft.n.02",
+        "sled.n.01",
+        "steamroller.n.02",
+        "military_vehicle.n.01",
+        "wheeled_vehicle.n.01"
+    ],
+    "/m/01r546": [
+        "earring.n.01",
+        "pendant_earring.n.01"
+    ],
+    "/m/01rkbr": [
+        "windsor_tie.n.01",
+        "old_school_tie.n.01",
+        "four-in-hand.n.01",
+        "necktie.n.01",
+        "bolo_tie.n.01",
+        "bow_tie.n.01",
+        "string_tie.n.01"
+    ],
+    "/m/01rzcn": [
+        "watercraft.n.01"
+    ],
+    "/m/01s105": [
+        "cabinetwork.n.02"
+    ],
+    "/m/01s55n": [
+        "carpetbag.n.01",
+        "overnighter.n.02",
+        "bag.n.06",
+        "portmanteau.n.02",
+        "weekender.n.02",
+        "garment_bag.n.01",
+        "gripsack.n.01"
+    ],
+    "/m/01tcjp": [
+        "muffin.n.01",
+        "popover.n.01",
+        "corn_muffin.n.01",
+        "bran_muffin.n.01"
+    ],
+    "/m/01vbnl": [
+        "bidet.n.01"
+    ],
+    "/m/01ww8y": [
+        "bite.n.04",
+        "nosh.n.01",
+        "refreshment.n.01",
+        "coffee_break.n.01"
+    ],
+    "/m/01x3jk": [
+        "snowmobile.n.01",
+        "sno-cat.n.01"
+    ],
+    "/m/01x3z": [
+        "wall_clock.n.01",
+        "system_clock.n.01",
+        "analog_clock.n.01",
+        "chronometer.n.01",
+        "time_clock.n.01",
+        "water_clock.n.01",
+        "cuckoo_clock.n.01",
+        "turret_clock.n.01",
+        "pendulum_clock.n.01",
+        "alarm_clock.n.01",
+        "digital_clock.n.01",
+        "clock.n.01",
+        "electric_clock.n.01"
+    ],
+    "/m/01xgg_": [
+        "electromyograph.n.01",
+        "fiberscope.n.01",
+        "laryngoscope.n.01",
+        "diathermy_machine.n.01",
+        "speculum.n.02",
+        "thermograph.n.01",
+        "bronchoscope.n.01",
+        "dialyzer.n.01",
+        "surgical_instrument.n.01",
+        "polygraph.n.01",
+        "keratoscope.n.01",
+        "medical_instrument.n.01",
+        "rhinoscope.n.01",
+        "ballistocardiograph.n.01",
+        "electroencephalograph.n.01",
+        "endoscope.n.01",
+        "stethoscope.n.01",
+        "cardiograph.n.01",
+        "ophthalmoscope.n.01",
+        "syringe.n.01",
+        "otoscope.n.01"
+    ],
+    "/m/01xq0k1": [
+        "beef.n.01",
+        "bullock.n.02",
+        "dairy_cattle.n.01",
+        "stirk.n.01",
+        "cattle.n.01",
+        "ox.n.01",
+        "africander.n.01",
+        "welsh.n.03",
+        "grade.n.09",
+        "red_poll.n.01",
+        "bull.n.01",
+        "cow.n.01",
+        "devon.n.02"
+    ],
+    "/m/01xqw": [
+        "cello.n.01"
+    ],
+    "/m/01xs3r": [
+        "shrimper.n.01",
+        "galley.n.02",
+        "patrol_boat.n.01",
+        "bareboat.n.01",
+        "weather_ship.n.01",
+        "galley.n.01",
+        "fishing_boat.n.01",
+        "iceboat.n.02",
+        "boat.n.01",
+        "sailing_vessel.n.01",
+        "yacht.n.01",
+        "ship.n.01",
+        "vessel.n.02"
+    ],
+    "/m/01x_v": [
+        "arabian_camel.n.01",
+        "bactrian_camel.n.01",
+        "camel.n.01"
+    ],
+    "/m/01xygc": [
+        "topper.n.05",
+        "duffel_coat.n.01",
+        "coat.n.01",
+        "sack_coat.n.01",
+        "lab_coat.n.01",
+        "frock_coat.n.01",
+        "mackinaw.n.01",
+        "coatee.n.01",
+        "newmarket.n.01",
+        "fur_coat.n.01",
+        "box_coat.n.01",
+        "sheepskin_coat.n.01",
+        "cutaway.n.02",
+        "raincoat.n.01",
+        "greatcoat.n.01",
+        "surcoat.n.01",
+        "jacket.n.01"
+    ],
+    "/m/01xyhv": [
+        "business_suit.n.01",
+        "double-breasted_suit.n.01",
+        "pinstripe.n.01",
+        "single-breasted_suit.n.01",
+        "slack_suit.n.01",
+        "zoot_suit.n.01",
+        "suit.n.01"
+    ],
+    "/m/01y9k5": [
+        "writing_desk.n.02",
+        "desk.n.01",
+        "davenport.n.02",
+        "secretary.n.04"
+    ],
+    "/m/01yrx": [
+        "domestic_cat.n.01",
+        "wildcat.n.03",
+        "cat.n.01"
+    ],
+    "/m/01yx86": [
+        "bronze.n.02"
+    ],
+    "/m/01z1kdw": [
+        "papaya_juice.n.01",
+        "lime_juice.n.01",
+        "carrot_juice.n.01",
+        "lemon_juice.n.01",
+        "gravy.n.02",
+        "tomato_juice.n.01",
+        "juice.n.01",
+        "v-8_juice.n.01"
+    ],
+    "/m/02068x": [
+        "gondola_car.n.01"
+    ],
+    "/m/020jm": [
+        "leaf_beetle.n.01",
+        "weevil.n.01",
+        "lamellicorn_beetle.n.01",
+        "firefly.n.02",
+        "deathwatch_beetle.n.01",
+        "carpet_beetle.n.01",
+        "asian_longhorned_beetle.n.01",
+        "tiger_beetle.n.01",
+        "rove_beetle.n.01",
+        "ground_beetle.n.01",
+        "water_beetle.n.01",
+        "elaterid_beetle.n.01",
+        "whirligig_beetle.n.01",
+        "beetle.n.01",
+        "blister_beetle.n.01",
+        "clerid_beetle.n.01",
+        "long-horned_beetle.n.01",
+        "ladybug.n.01",
+        "bark_beetle.n.01"
+    ],
+    "/m/020kz": [
+        "culverin.n.01",
+        "harpoon_gun.n.01",
+        "long_tom.n.01",
+        "cannon.n.01",
+        "basilisk.n.02",
+        "high-angle_gun.n.01"
+    ],
+    "/m/020lf": [
+        "mouse.n.04"
+    ],
+    "/m/021mn": [
+        "teacake.n.01",
+        "oatmeal_cookie.n.01",
+        "refrigerator_cookie.n.01",
+        "dog_biscuit.n.01",
+        "fruit_bar.n.01",
+        "wafer.n.02",
+        "chocolate_chip_cookie.n.01",
+        "fortune_cookie.n.01",
+        "gingerbread_man.n.01",
+        "cookie.n.01",
+        "oreo.n.01",
+        "raisin-nut_cookie.n.01",
+        "ladyfinger.n.01",
+        "raisin_cookie.n.01",
+        "anise_cookie.n.01",
+        "macaroon.n.01",
+        "granola_bar.n.01",
+        "brownie.n.03",
+        "almond_cookie.n.01",
+        "kiss.n.02",
+        "gingersnap.n.01",
+        "spice_cookie.n.01",
+        "butter_cookie.n.01",
+        "molasses_cookie.n.01",
+        "sugar_cookie.n.01"
+    ],
+    "/m/021sj1": [
+        "office_building.n.01"
+    ],
+    "/m/0220r2": [
+        "drinking_fountain.n.01",
+        "fountain.n.01"
+    ],
+    "/m/0242l": [
+        "eightpence.n.01",
+        "sixpence.n.01",
+        "penny.n.02",
+        "guinea.n.01",
+        "stater.n.01",
+        "maundy_money.n.01",
+        "louis_d'or.n.01",
+        "nickel.n.02",
+        "half_dollar.n.01",
+        "fourpence.n.01",
+        "halfpenny.n.01",
+        "dollar.n.03",
+        "half_eagle.n.01",
+        "coin.n.01",
+        "fivepence.n.01",
+        "real.n.03",
+        "half_crown.n.01",
+        "shilling.n.06",
+        "slug.n.03",
+        "double_eagle.n.02",
+        "ninepence.n.01",
+        "change.n.08",
+        "quarter.n.10",
+        "bezant.n.01",
+        "crown.n.06",
+        "denier.n.02",
+        "doubloon.n.01",
+        "farthing.n.01",
+        "twopence.n.01",
+        "piece_of_eight.n.01",
+        "bawbee.n.01",
+        "ducat.n.01",
+        "dime.n.01",
+        "eagle.n.03",
+        "medallion.n.01",
+        "threepence.n.01",
+        "sou.n.01",
+        "tenpence.n.01"
+    ],
+    "/m/024d2": [
+        "number_cruncher.n.01",
+        "calculator.n.01",
+        "adder.n.01",
+        "subtracter.n.01",
+        "statistician.n.02"
+    ],
+    "/m/024g6": [
+        "cocktail.n.01",
+        "pink_lady.n.01",
+        "daiquiri.n.01",
+        "bullshot.n.01",
+        "white_russian.n.02",
+        "grasshopper.n.02",
+        "manhattan.n.02",
+        "sour.n.01",
+        "martini.n.01",
+        "gimlet.n.01",
+        "gin_and_it.n.01",
+        "harvey_wallbanger.n.01",
+        "screwdriver.n.02",
+        "sidecar.n.01",
+        "stinger.n.01",
+        "old_fashioned.n.01",
+        "bloody_mary.n.02",
+        "margarita.n.01",
+        "planter's_punch.n.01",
+        "sazerac.n.01"
+    ],
+    "/m/02522": [
+        "computer_monitor.n.01"
+    ],
+    "/m/025dyy": [
+        "snuffbox.n.01",
+        "flat.n.02",
+        "tinderbox.n.02",
+        "pyxis.n.03",
+        "poor_box.n.01",
+        "playbox.n.01",
+        "box.n.01",
+        "strongbox.n.01",
+        "window_box.n.01",
+        "ballot_box.n.01",
+        "carton.n.02",
+        "mailbox.n.01",
+        "pencil_box.n.01",
+        "shoebox.n.02",
+        "bandbox.n.01",
+        "coffin.n.01",
+        "cereal_box.n.01",
+        "matchbox.n.01",
+        "tuck_box.n.01",
+        "hod.n.01",
+        "cigar_box.n.01",
+        "crate.n.01",
+        "paintbox.n.01",
+        "casket.n.02",
+        "chest.n.02",
+        "shadow_box.n.01"
+    ],
+    "/m/025fsf": [
+        "stapler.n.01"
+    ],
+    "/m/025nd": [
+        "christmas_bush.n.01"
+    ],
+    "/m/025rp__": [
+        "cowboy_hat.n.01"
+    ],
+    "/m/0268lbt": [
+        "boxing_equipment.n.01",
+        "spike.n.02",
+        "baseball_equipment.n.01",
+        "target.n.04",
+        "shot.n.12",
+        "javelin.n.02",
+        "discus.n.02",
+        "mat.n.03",
+        "weight.n.02",
+        "sports_equipment.n.01",
+        "stick.n.06",
+        "golf_equipment.n.01",
+        "mouthpiece.n.04",
+        "basketball_equipment.n.01",
+        "cricket_equipment.n.01",
+        "badminton_equipment.n.01",
+        "croquet_equipment.n.01",
+        "sporting_goods.n.01",
+        "hammer.n.05",
+        "gymnastic_apparatus.n.01",
+        "skate.n.01"
+    ],
+    "/m/026qbn5": [
+        "studio_couch.n.01"
+    ],
+    "/m/026t6": [
+        "tambourine.n.01",
+        "timbrel.n.01",
+        "drum.n.01",
+        "tabor.n.01",
+        "snare_drum.n.01",
+        "tambour.n.02",
+        "bongo.n.01",
+        "bass_drum.n.01",
+        "tenor_drum.n.01"
+    ],
+    "/m/0270h": [
+        "tiramisu.n.01",
+        "pudding.n.02",
+        "dumpling.n.02",
+        "dessert.n.01",
+        "frozen_dessert.n.01",
+        "pavlova.n.02",
+        "baked_alaska.n.01",
+        "mousse.n.01",
+        "ambrosia.n.03",
+        "pudding.n.03",
+        "junket.n.01",
+        "mold.n.06",
+        "flan.n.01",
+        "peach_melba.n.01",
+        "syllabub.n.02",
+        "zabaglione.n.01",
+        "charlotte.n.02",
+        "whip.n.03",
+        "compote.n.01",
+        "blancmange.n.01"
+    ],
+    "/m/0271qf7": [
+        "coatrack.n.01",
+        "hayrack.n.01",
+        "rack.n.01",
+        "dish_rack.n.01",
+        "pipe_rack.n.01",
+        "bicycle_rack.n.01",
+        "tie_rack.n.01",
+        "towel_rack.n.01",
+        "toastrack.n.01",
+        "carrier.n.10",
+        "barbecue.n.03",
+        "plate_rack.n.01"
+    ],
+    "/m/0271t": [
+        "frappe.n.01",
+        "stirrup_cup.n.01",
+        "posset.n.01",
+        "sundowner.n.02",
+        "eye_opener.n.01",
+        "nightcap.n.01",
+        "syllabub.n.01",
+        "whiskey_neat.n.01",
+        "whiskey_on_the_rocks.n.01",
+        "sangaree.n.01",
+        "chaser.n.02",
+        "milkshake.n.01",
+        "libation.n.01",
+        "shandygaff.n.01",
+        "draft.n.04",
+        "ice-cream_soda.n.01",
+        "drink.n.01",
+        "pledge.n.03",
+        "hair_of_the_dog.n.01"
+    ],
+    "/m/027pcv": [
+        "zucchini.n.01"
+    ],
+    "/m/027rl48": [
+        "scoop.n.06",
+        "dipper.n.01",
+        "soup_ladle.n.01",
+        "ladle.n.01"
+    ],
+    "/m/0283dt1": [
+        "beak.n.01",
+        "cytostome.n.01",
+        "mouth.n.02",
+        "beak.n.02"
+    ],
+    "/m/0284d": [
+        "dairy.n.01"
+    ],
+    "/m/029b3": [
+        "die.n.01",
+        "five-spot.n.03",
+        "six-spot.n.01",
+        "one-spot.n.01",
+        "four-spot.n.01"
+    ],
+    "/m/029bxz": [
+        "rotisserie.n.01",
+        "gas_oven.n.02",
+        "oven.n.01",
+        "tandoor.n.01",
+        "broiler.n.01",
+        "dutch_oven.n.01"
+    ],
+    "/m/029tx": [
+        "titanosaur.n.01",
+        "saurischian.n.01",
+        "diplodocus.n.01",
+        "ornithischian.n.01",
+        "argentinosaur.n.01",
+        "dinosaur.n.01",
+        "iguanodon.n.01",
+        "ground-shaker.n.01"
+    ],
+    "/m/02bm9n": [
+        "ratchet.n.01"
+    ],
+    "/m/02crq1": [
+        "daybed.n.01",
+        "sofa.n.01",
+        "settee.n.02",
+        "squab.n.02",
+        "divan.n.01",
+        "love_seat.n.01",
+        "convertible.n.03"
+    ],
+    "/m/02ctlc": [
+        "cricket_ball.n.01"
+    ],
+    "/m/02cvgx": [
+        "winter_melon.n.01"
+    ],
+    "/m/02d1br": [
+        "spatula.n.01"
+    ],
+    "/m/02d9qx": [
+        "blackboard.n.01"
+    ],
+    "/m/02ddwp": [
+        "pencil_sharpener.n.01"
+    ],
+    "/m/02dgv": [
+        "trap_door.n.01",
+        "swing_door.n.01",
+        "car_door.n.01",
+        "storm_door.n.01",
+        "door.n.01",
+        "french_door.n.01",
+        "double_door.n.01",
+        "fire_door.n.01",
+        "interior_door.n.01",
+        "screen_door.n.01",
+        "revolving_door.n.02",
+        "sliding_door.n.01",
+        "cargo_door.n.01"
+    ],
+    "/m/02dl1y": [
+        "campaign_hat.n.01",
+        "deerstalker.n.01",
+        "cavalier_hat.n.01",
+        "snap-brim_hat.n.01",
+        "fedora.n.01",
+        "cocked_hat.n.01",
+        "millinery.n.02",
+        "bearskin.n.02",
+        "sunhat.n.01",
+        "dress_hat.n.01",
+        "sou'wester.n.02",
+        "hat.n.01",
+        "tyrolean.n.02",
+        "dunce_cap.n.01",
+        "cowboy_hat.n.01",
+        "toque.n.01",
+        "sombrero.n.02",
+        "shovel_hat.n.01",
+        "bonnet.n.01",
+        "fur_hat.n.01",
+        "bowler_hat.n.01",
+        "boater.n.01",
+        "titfer.n.01"
+    ],
+    "/m/02f9f_": [
+        "shower.n.01"
+    ],
+    "/m/02fh7f": [
+        "blackboard_eraser.n.01",
+        "ink_eraser.n.01",
+        "rubber_eraser.n.01",
+        "eraser.n.01"
+    ],
+    "/m/02fq_6": [
+        "fedora.n.01"
+    ],
+    "/m/02g30s": [
+        "guacamole.n.01"
+    ],
+    "/m/02gzp": [
+        "poniard.n.01",
+        "kirpan.n.01",
+        "dirk.n.01",
+        "stiletto.n.01",
+        "kris.n.01",
+        "dagger.n.01"
+    ],
+    "/m/02h19r": [
+        "scarf.n.01",
+        "fichu.n.01",
+        "sable.n.04",
+        "stole.n.01",
+        "feather_boa.n.01",
+        "patka.n.01",
+        "lambrequin.n.01",
+        "muffler.n.02",
+        "rebozo.n.01",
+        "mantilla.n.01",
+        "kerchief.n.01",
+        "tudung.n.01"
+    ],
+    "/m/02hj4": [
+        "coryphaena_equisetis.n.01",
+        "dolphinfish.n.02",
+        "coryphaena_hippurus.n.01"
+    ],
+    "/m/02jfl0": [
+        "sombrero.n.01"
+    ],
+    "/m/02jnhm": [
+        "tin_can.n.01"
+    ],
+    "/m/02jvh9": [
+        "mug.n.01"
+    ],
+    "/m/02jz0l": [
+        "pitter-patter.n.01",
+        "pat.n.01"
+    ],
+    "/m/02l8p9": [
+        "harbor_seal.n.01"
+    ],
+    "/m/02lbcq": [
+        "stretcher.n.01"
+    ],
+    "/m/02mqfb": [
+        "church_key.n.01",
+        "can_opener.n.01"
+    ],
+    "/m/02_n6y": [
+        "goggles.n.01"
+    ],
+    "/m/02p0tk3": [
+        "person.n.02",
+        "human_body.n.01",
+        "male_body.n.01",
+        "female_body.n.01",
+        "adult_body.n.01",
+        "juvenile_body.n.01"
+    ],
+    "/m/02p3w7d": [
+        "roller_skate.n.01"
+    ],
+    "/m/02p5f1q": [
+        "coffee_cup.n.01",
+        "demitasse.n.02"
+    ],
+    "/m/02pdsw": [
+        "chopping_board.n.01"
+    ],
+    "/m/02pjr4": [
+        "blender.n.01"
+    ],
+    "/m/02pkr5": [
+        "toilet.n.02",
+        "plumbing_fixture.n.01",
+        "urinal.n.01",
+        "fountain.n.04",
+        "water_faucet.n.01",
+        "sink.n.01",
+        "shower.n.01"
+    ],
+    "/m/02pv19": [
+        "checkpoint.n.01",
+        "bus_stop.n.01",
+        "stopover.n.01",
+        "stop.n.05",
+        "loading_zone.n.01"
+    ],
+    "/m/02rdsp": [
+        "file.n.03",
+        "office_furniture.n.01"
+    ],
+    "/m/02rgn06": [
+        "volleyball.n.01"
+    ],
+    "/m/02s195": [
+        "vase.n.01",
+        "urn.n.01"
+    ],
+    "/m/02tsc9": [
+        "cooker.n.01",
+        "crock_pot.n.01",
+        "popper.n.03"
+    ],
+    "/m/02vkqh8": [
+        "armoire.n.01",
+        "wardrobe.n.01",
+        "clothes_closet.n.01",
+        "coat_closet.n.01"
+    ],
+    "/m/02vqfm": [
+        "cafe_au_lait.n.01",
+        "drip_coffee.n.01",
+        "turkish_coffee.n.01",
+        "decaffeinated_coffee.n.01",
+        "cafe_royale.n.01",
+        "espresso.n.01",
+        "coffee.n.01",
+        "iced_coffee.n.01",
+        "mocha.n.03",
+        "instant_coffee.n.01",
+        "cafe_noir.n.01",
+        "cappuccino.n.01",
+        "coffee_substitute.n.01",
+        "irish_coffee.n.01"
+    ],
+    "/m/02vwcm": [
+        "whisk.n.01"
+    ],
+    "/m/02w3r3": [
+        "paper_towel.n.01"
+    ],
+    "/m/02w3_ws": [
+        "personal_care.n.01"
+    ],
+    "/m/02wbm": [
+        "culture_medium.n.01",
+        "comfort_food.n.01",
+        "yolk.n.02",
+        "beverage.n.01",
+        "foodstuff.n.02",
+        "micronutrient.n.01",
+        "miraculous_food.n.01",
+        "soul_food.n.01",
+        "fare.n.04",
+        "comestible.n.01",
+        "commissariat.n.01",
+        "feed.n.01",
+        "food.n.01",
+        "chyme.n.01",
+        "water.n.06",
+        "nutriment.n.01"
+    ],
+    "/m/02wbtzl": [
+        "sunbonnet.n.01",
+        "sunhat.n.01",
+        "pith_hat.n.01"
+    ],
+    "/m/02wg_p": [
+        "tree_house.n.01"
+    ],
+    "/m/02wmf": [
+        "frisbee.n.01"
+    ],
+    "/m/02wv6h6": [
+        "skirt.n.01"
+    ],
+    "/m/02wv84t": [
+        "gas_range.n.01"
+    ],
+    "/m/02x8cch": [
+        "shaker.n.01"
+    ],
+    "/m/02x984l": [
+        "electric_fan.n.01"
+    ],
+    "/m/02xb7qb": [
+        "face_powder.n.01"
+    ],
+    "/m/02xqq": [
+        "facsimile.n.02"
+    ],
+    "/m/02xwb": [
+        "juniper_berry.n.01",
+        "aggregate_fruit.n.01",
+        "berry.n.02",
+        "schizocarp.n.01",
+        "drupe.n.01",
+        "seed.n.01",
+        "accessory_fruit.n.01",
+        "edible_fruit.n.01",
+        "fruitlet.n.01",
+        "quandong.n.02",
+        "pod.n.02",
+        "wild_cherry.n.01",
+        "olive.n.01",
+        "prairie_gourd.n.01",
+        "cubeb.n.01",
+        "hagberry.n.01",
+        "fruit.n.01",
+        "achene.n.01",
+        "pyxidium.n.01",
+        "rowanberry.n.01",
+        "hip.n.05",
+        "marasca.n.01",
+        "may_apple.n.01",
+        "pome.n.01",
+        "gourd.n.02",
+        "buffalo_nut.n.01",
+        "ear.n.05",
+        "chokecherry.n.01",
+        "buckthorn_berry.n.01",
+        "acorn.n.01"
+    ],
+    "/m/02y6n": [
+        "french_fries.n.01"
+    ],
+    "/m/02z51p": [
+        "lectern.n.01",
+        "stand.n.04"
+    ],
+    "/m/02zn6n": [
+        "barrel.n.01"
+    ],
+    "/m/02zt3": [
+        "kite.n.01"
+    ],
+    "/m/02zvsm": [
+        "camp_follower.n.01",
+        "demimondaine.n.01",
+        "white_slave.n.01",
+        "streetwalker.n.01",
+        "prostitute.n.01",
+        "comfort_woman.n.01",
+        "call_girl.n.01"
+    ],
+    "/m/030610": [
+        "treadmill.n.01"
+    ],
+    "/m/0306r": [
+        "arctic_fox.n.01",
+        "kit_fox.n.01",
+        "red_fox.n.02",
+        "red_fox.n.03",
+        "reynard.n.01",
+        "fox.n.01",
+        "kit_fox.n.02",
+        "vixen.n.02",
+        "grey_fox.n.01"
+    ],
+    "/m/03120": [
+        "jack.n.08",
+        "pennant.n.03",
+        "flag.n.01",
+        "national_flag.n.01",
+        "stars_and_bars.n.01",
+        "battle_flag.n.01",
+        "banner.n.01",
+        "white_flag.n.01",
+        "colors.n.01",
+        "american_flag.n.01",
+        "fanion.n.01",
+        "tricolor.n.01",
+        "union_jack.n.01",
+        "yellow_jack.n.02",
+        "standard.n.06",
+        "black_flag.n.01"
+    ],
+    "/m/0319l": [
+        "horn.n.01"
+    ],
+    "/m/031b6r": [
+        "venetian_blind.n.01",
+        "window_blind.n.01",
+        "window_shade.n.01"
+    ],
+    "/m/031n1": [
+        "foot.n.01",
+        "flatfoot.n.02"
+    ],
+    "/m/0323sq": [
+        "golfcart.n.01"
+    ],
+    "/m/032b3c": [
+        "dressing_sack.n.01",
+        "lumberjack.n.02",
+        "mao_jacket.n.01",
+        "blazer.n.01",
+        "bolero.n.02",
+        "mess_jacket.n.01",
+        "parka.n.01",
+        "sack.n.05",
+        "banyan.n.02",
+        "doublet.n.01",
+        "bush_jacket.n.01",
+        "jerkin.n.01",
+        "jumper.n.06",
+        "dolman.n.01",
+        "jacket.n.01",
+        "donkey_jacket.n.01",
+        "swallow-tailed_coat.n.01",
+        "bed_jacket.n.01",
+        "hug-me-tight.n.01",
+        "norfolk_jacket.n.01",
+        "single-breasted_jacket.n.01",
+        "pea_jacket.n.01",
+        "double-breasted_jacket.n.01",
+        "bomber_jacket.n.01",
+        "eton_jacket.n.01"
+    ],
+    "/m/033cnk": [
+        "roe.n.02",
+        "nit.n.02",
+        "spawn.n.01",
+        "roe.n.04",
+        "egg.n.01",
+        "silkworm_seed.n.01"
+    ],
+    "/m/033rq4": [
+        "streetlight.n.01"
+    ],
+    "/m/0342h": [
+        "acoustic_guitar.n.01",
+        "electric_guitar.n.01",
+        "hawaiian_guitar.n.01",
+        "cittern.n.01",
+        "uke.n.01",
+        "guitar.n.01",
+        "bass_guitar.n.01"
+    ],
+    "/m/034c16": [
+        "bolster.n.01",
+        "pillow.n.01",
+        "bed_pillow.n.01"
+    ],
+    "/m/035r7c": [
+        "spindlelegs.n.02",
+        "bowleg.n.01",
+        "shank's_mare.n.01",
+        "pin.n.05",
+        "leg.n.01"
+    ],
+    "/m/035vxb": [
+        "woodlouse.n.01",
+        "sea_louse.n.01",
+        "isopod.n.01"
+    ],
+    "/m/0388q": [
+        "muscadine.n.02",
+        "vinifera_grape.n.02",
+        "grape.n.01",
+        "slipskin_grape.n.01"
+    ],
+    "/m/039xj_": [
+        "ear.n.01"
+    ],
+    "/m/03bbps": [
+        "socket.n.03",
+        "electric_socket.n.01"
+    ],
+    "/m/03bj1": [
+        "giant_panda.n.01"
+    ],
+    "/m/03bk1": [
+        "giraffe.n.01",
+        "okapi.n.01"
+    ],
+    "/m/03bt1vf": [
+        "yellow_woman.n.01",
+        "ball-buster.n.01",
+        "maenad.n.01",
+        "geisha.n.01",
+        "eyeful.n.01",
+        "matriarch.n.02",
+        "dame.n.02",
+        "nymph.n.03",
+        "unmarried_woman.n.01",
+        "nymphet.n.01",
+        "lady.n.01",
+        "vestal.n.01",
+        "girlfriend.n.01",
+        "shiksa.n.01",
+        "baggage.n.02",
+        "gold_digger.n.02",
+        "white_woman.n.01",
+        "cat.n.03",
+        "mistress.n.01",
+        "inamorata.n.01",
+        "divorcee.n.01",
+        "sylph.n.01",
+        "coquette.n.01",
+        "broad.n.01",
+        "nanny.n.01",
+        "old_woman.n.01",
+        "enchantress.n.01",
+        "ex-wife.n.01",
+        "gravida.n.02",
+        "mother_figure.n.01",
+        "dominatrix.n.01",
+        "bachelor_girl.n.01",
+        "jilt.n.01",
+        "matriarch.n.01",
+        "girlfriend.n.02",
+        "widow.n.01",
+        "maenad.n.02",
+        "bridesmaid.n.01",
+        "wave.n.09",
+        "prostitute.n.01",
+        "black_woman.n.01",
+        "amazon.n.01",
+        "girl.n.05",
+        "nullipara.n.01",
+        "wonder_woman.n.01",
+        "heroine.n.02",
+        "woman.n.01",
+        "girl.n.01",
+        "jezebel.n.02",
+        "smasher.n.02",
+        "cinderella.n.01",
+        "matron.n.03",
+        "b-girl.n.01",
+        "wife.n.01",
+        "mestiza.n.01",
+        "debutante.n.01",
+        "wac.n.01",
+        "bluestocking.n.01",
+        "donna.n.01"
+    ],
+    "/m/03c7gz": [
+        "panhandle.n.02",
+        "pommel.n.02",
+        "broomstick.n.01",
+        "crop.n.05",
+        "stock.n.03",
+        "hilt.n.01",
+        "hoe_handle.n.01",
+        "rake_handle.n.01",
+        "pommel.n.01",
+        "knob.n.02",
+        "stock.n.15",
+        "ax_handle.n.01",
+        "mop_handle.n.01",
+        "handle.n.01",
+        "haft.n.01"
+    ],
+    "/m/03d443": [
+        "white_rhinoceros.n.01",
+        "black_rhinoceros.n.01",
+        "rhinoceros.n.01",
+        "indian_rhinoceros.n.01",
+        "woolly_rhinoceros.n.01"
+    ],
+    "/m/03dnzn": [
+        "bathtub.n.01",
+        "hot_tub.n.01",
+        "footbath.n.01",
+        "sitz_bath.n.01"
+    ],
+    "/m/03fj2": [
+        "goldfish.n.01",
+        "silverfish.n.02"
+    ],
+    "/m/03fp41": [
+        "plectranthus.n.01",
+        "persian_violet.n.01",
+        "velvet_plant.n.02",
+        "episcia.n.01",
+        "bloodberry.n.01",
+        "houseplant.n.01",
+        "anthurium.n.01",
+        "gloxinia.n.01",
+        "kohleria.n.01",
+        "chinese_evergreen.n.01"
+    ],
+    "/m/03fwl": [
+        "domestic_goat.n.01",
+        "kid.n.05",
+        "wild_goat.n.01",
+        "billy.n.02",
+        "nanny.n.02",
+        "goat.n.01"
+    ],
+    "/m/03g8mr": [
+        "baseball_bat.n.01"
+    ],
+    "/m/03grzl": [
+        "baseball_glove.n.01"
+    ],
+    "/m/03hj559": [
+        "mixing_bowl.n.01"
+    ],
+    "/m/03hl4l9": [
+        "zoophyte.n.01",
+        "worm.n.01",
+        "bryozoan.n.01",
+        "arthropod.n.01",
+        "ctenophore.n.01",
+        "rotifer.n.01",
+        "sponge.n.04",
+        "symbion_pandora.n.01",
+        "invertebrate.n.01",
+        "coelenterate.n.01",
+        "entoproct.n.01",
+        "brachiopod.n.01",
+        "mollusk.n.01",
+        "ectoproct.n.01",
+        "peanut_worm.n.01",
+        "woodborer.n.01",
+        "phoronid.n.01",
+        "echinoderm.n.01"
+    ],
+    "/m/03hlz0c": [
+        "mixer.n.04",
+        "cooking_utensil.n.01",
+        "rolling_pin.n.01",
+        "seeder.n.03",
+        "cheese_cutter.n.01",
+        "grater.n.01",
+        "mincer.n.01",
+        "kitchen_utensil.n.01",
+        "squeezer.n.01",
+        "cookie_cutter.n.01",
+        "masher.n.02",
+        "kitchenware.n.01",
+        "ricer.n.01",
+        "tea_ball.n.01"
+    ],
+    "/m/03jbxj": [
+        "commutator.n.01",
+        "toggle_switch.n.01",
+        "push_button.n.01",
+        "switch.n.01",
+        "cutout.n.01",
+        "three-way_switch.n.01",
+        "time-switch.n.01",
+        "ignition_switch.n.01",
+        "selector.n.02"
+    ],
+    "/m/03jm5": [
+        "country_house.n.01",
+        "lodging_house.n.01",
+        "beach_house.n.01",
+        "cabin.n.02",
+        "chapterhouse.n.02",
+        "chalet.n.01",
+        "safe_house.n.01",
+        "bungalow.n.01",
+        "mansion.n.02",
+        "residence.n.02",
+        "maisonette.n.02",
+        "villa.n.02",
+        "saltbox.n.01",
+        "gatehouse.n.01",
+        "boarding_house.n.01",
+        "lodge.n.04",
+        "dollhouse.n.01",
+        "row_house.n.01",
+        "house.n.01",
+        "detached_house.n.01",
+        "duplex_house.n.01",
+        "ranch_house.n.01",
+        "farmhouse.n.01",
+        "hacienda.n.02",
+        "sod_house.n.01",
+        "solar_house.n.01",
+        "tract_house.n.01",
+        "guesthouse.n.01"
+    ],
+    "/m/03k3r": [
+        "saddle_horse.n.01",
+        "stepper.n.03",
+        "liver_chestnut.n.01",
+        "racehorse.n.01",
+        "hack.n.06",
+        "horse.n.01",
+        "sorrel.n.05",
+        "roan.n.02",
+        "protohippus.n.01",
+        "post_horse.n.01",
+        "wild_horse.n.01",
+        "bay.n.07",
+        "chestnut.n.06",
+        "pony.n.01",
+        "steeplechaser.n.01",
+        "stalking-horse.n.04",
+        "eohippus.n.01",
+        "stablemate.n.01",
+        "polo_pony.n.01",
+        "mesohippus.n.01",
+        "male_horse.n.01",
+        "harness_horse.n.01",
+        "hack.n.07",
+        "mare.n.01",
+        "pinto.n.01",
+        "pacer.n.02",
+        "pony.n.05",
+        "workhorse.n.02",
+        "gee-gee.n.01",
+        "palomino.n.01"
+    ],
+    "/m/03kt2w": [
+        "exercise_bike.n.01"
+    ],
+    "/m/03l9g": [
+        "hammer.n.01"
+    ],
+    "/m/03ldnb": [
+        "electric_fan.n.01",
+        "fan.n.01",
+        "punkah.n.01",
+        "exhaust_fan.n.01"
+    ],
+    "/m/03m3pdh": [
+        "davenport.n.03",
+        "convertible.n.03",
+        "studio_couch.n.01"
+    ],
+    "/m/03m3vtv": [
+        "cellulose_tape.n.01",
+        "plaster.n.05",
+        "duct_tape.n.01",
+        "friction_tape.n.01",
+        "masking_tape.n.01",
+        "adhesive_tape.n.01"
+    ],
+    "/m/03m5k": [
+        "harp.n.01",
+        "aeolian_harp.n.01",
+        "lyre.n.01"
+    ],
+    "/m/03nfch": [
+        "flip-flop.n.02",
+        "scuffer.n.01",
+        "pusher.n.04",
+        "huarache.n.01",
+        "sandal.n.01",
+        "talaria.n.01",
+        "espadrille.n.01"
+    ],
+    "/m/03p3bw": [
+        "morion.n.01",
+        "basinet.n.01",
+        "pickelhaube.n.01",
+        "helmet.n.01",
+        "heaume.n.01",
+        "armet.n.01",
+        "sallet.n.01",
+        "casque.n.01"
+    ],
+    "/m/03q5c7": [
+        "point.n.09",
+        "intervertebral_disc.n.01",
+        "disk.n.01"
+    ],
+    "/m/03q5t": [
+        "spinet.n.02",
+        "harpsichord.n.01",
+        "virginal.n.01"
+    ],
+    "/m/03q69": [
+        "mane.n.02",
+        "body_hair.n.01",
+        "lock.n.02",
+        "pubic_hair.n.01",
+        "hair.n.01",
+        "hairdo.n.01",
+        "mane.n.01",
+        "beard.n.04",
+        "guard_hair.n.01",
+        "coat.n.03",
+        "eyelash.n.01",
+        "eyebrow.n.01",
+        "facial_hair.n.01",
+        "down.n.05",
+        "cowlick.n.01",
+        "forelock.n.02"
+    ],
+    "/m/03qhv5": [
+        "radiator.n.02",
+        "oil_heater.n.01",
+        "solar_heater.n.01",
+        "water_heater.n.01",
+        "brazier.n.01",
+        "defroster.n.01",
+        "heater.n.01",
+        "gas_heater.n.01",
+        "convector.n.01",
+        "heating_pad.n.01",
+        "stove.n.02",
+        "space_heater.n.01",
+        "demister.n.01"
+    ],
+    "/m/03qjg": [
+        "harmonica.n.01"
+    ],
+    "/m/03qrc": [
+        "golden_hamster.n.01",
+        "eurasian_hamster.n.01",
+        "hamster.n.01"
+    ],
+    "/m/03rszm": [
+        "shower_curtain.n.01",
+        "curtain.n.01",
+        "theater_curtain.n.01",
+        "portiere.n.01",
+        "frontal.n.02",
+        "drop_curtain.n.01",
+        "festoon.n.01"
+    ],
+    "/m/03ssj5": [
+        "double_bed.n.01",
+        "platform_bed.n.01",
+        "marriage_bed.n.01",
+        "bunk.n.03",
+        "cot.n.03",
+        "plank-bed.n.01",
+        "bed.n.01",
+        "couch.n.03",
+        "four-poster.n.01",
+        "bunk_bed.n.01",
+        "built-in_bed.n.01",
+        "berth.n.03",
+        "sleigh_bed.n.01",
+        "deathbed.n.02",
+        "single_bed.n.01",
+        "trundle_bed.n.01",
+        "murphy_bed.n.01",
+        "hammock.n.02",
+        "sickbed.n.01",
+        "water_bed.n.01",
+        "twin_bed.n.01"
+    ],
+    "/m/03s_tn": [
+        "kettle.n.01",
+        "teakettle.n.01"
+    ],
+    "/m/03tw93": [
+        "fire.n.04",
+        "fireplace.n.01"
+    ],
+    "/m/03txqz": [
+        "index.n.01",
+        "beaufort_scale.n.01",
+        "temperature_scale.n.01",
+        "mercalli_scale.n.01",
+        "mohs_scale.n.01",
+        "moment_magnitude_scale.n.01",
+        "wage_scale.n.01",
+        "logarithmic_scale.n.01",
+        "scale.n.01",
+        "richter_scale.n.01"
+    ],
+    "/m/03v5tg": [
+        "straw.n.04"
+    ],
+    "/m/03vt0": [
+        "psocopterous_insect.n.01",
+        "social_insect.n.01",
+        "queen.n.01",
+        "homopterous_insect.n.01",
+        "orthopterous_insect.n.01",
+        "stonefly.n.01",
+        "earwig.n.01",
+        "collembolan.n.01",
+        "pupa.n.01",
+        "thysanopter.n.01",
+        "louse.n.01",
+        "lepidopterous_insect.n.01",
+        "dictyopterous_insect.n.01",
+        "heteropterous_insect.n.01",
+        "imago.n.02",
+        "flea.n.01",
+        "dipterous_insect.n.01",
+        "mecopteran.n.01",
+        "bug.n.01",
+        "bird_louse.n.01",
+        "holometabola.n.01",
+        "leaf_miner.n.01",
+        "ephemeron.n.01",
+        "insect.n.01",
+        "hymenopterous_insect.n.01",
+        "odonate.n.01",
+        "proturan.n.01",
+        "worker.n.03",
+        "ephemerid.n.01",
+        "trichopterous_insect.n.01",
+        "beetle.n.01",
+        "defoliator.n.01",
+        "termite.n.01",
+        "neuropteron.n.01",
+        "thysanuran_insect.n.01",
+        "hemipterous_insect.n.01",
+        "phasmid.n.01",
+        "gallfly.n.03",
+        "web_spinner.n.01",
+        "pollinator.n.01"
+    ],
+    "/m/03wvsk": [
+        "hand_blower.n.01"
+    ],
+    "/m/03_wxk": [
+        "kitchenware.n.01"
+    ],
+    "/m/03wym": [
+        "oarsman.n.01",
+        "stroke.n.07",
+        "oarswoman.n.01",
+        "sculler.n.01"
+    ],
+    "/m/03xxp": [
+        "zoophyte.n.01",
+        "worm.n.01",
+        "bryozoan.n.01",
+        "arthropod.n.01",
+        "ctenophore.n.01",
+        "rotifer.n.01",
+        "sponge.n.04",
+        "symbion_pandora.n.01",
+        "invertebrate.n.01",
+        "coelenterate.n.01",
+        "entoproct.n.01",
+        "brachiopod.n.01",
+        "mollusk.n.01",
+        "ectoproct.n.01",
+        "peanut_worm.n.01",
+        "woodborer.n.01",
+        "phoronid.n.01",
+        "echinoderm.n.01"
+    ],
+    "/m/03y6mg": [
+        "food_processor.n.01"
+    ],
+    "/m/03__z0": [
+        "bookcase.n.01"
+    ],
+    "/m/040b_t": [
+        "electric_refrigerator.n.01",
+        "cooler.n.01",
+        "refrigerator.n.01"
+    ],
+    "/m/04169hn": [
+        "radiator.n.02",
+        "oil_heater.n.01",
+        "solar_heater.n.01",
+        "water_heater.n.01",
+        "brazier.n.01",
+        "defroster.n.01",
+        "heater.n.01",
+        "gas_heater.n.01",
+        "convector.n.01",
+        "heating_pad.n.01",
+        "stove.n.02",
+        "space_heater.n.01",
+        "demister.n.01"
+    ],
+    "/m/0420v5": [
+        "punching_bag.n.01"
+    ],
+    "/m/043nyj": [
+        "fig.n.02",
+        "caprifig.n.01"
+    ],
+    "/m/0440zs": [
+        "cocktail_shaker.n.01"
+    ],
+    "/m/0449p": [
+        "jaguar.n.01"
+    ],
+    "/m/044r5d": [
+        "golf_ball.n.01"
+    ],
+    "/m/0463sg": [
+        "epaulet.n.01",
+        "boutonniere.n.01",
+        "fob.n.02",
+        "sequin.n.01",
+        "pendant.n.01",
+        "frill.n.03",
+        "circlet.n.02",
+        "plume.n.02",
+        "war_paint.n.01",
+        "frontlet.n.01",
+        "pectoral.n.02",
+        "frog.n.03",
+        "tassel.n.01",
+        "jewelry.n.01",
+        "trimming.n.02",
+        "band.n.04",
+        "adornment.n.01",
+        "beauty_spot.n.01",
+        "bangle.n.02",
+        "rosette.n.01",
+        "cordon.n.03",
+        "pompon.n.01"
+    ],
+    "/m/046dlr": [
+        "alarm_clock.n.01"
+    ],
+    "/m/047j0r": [
+        "vertical_file.n.01",
+        "file.n.03",
+        "card_index.n.01"
+    ],
+    "/m/047v4b": [
+        "artichoke.n.01"
+    ],
+    "/m/04bcr3": [
+        "contents.n.01",
+        "actuarial_table.n.01",
+        "correlation_table.n.01",
+        "file_allocation_table.n.01",
+        "periodic_table.n.01",
+        "table.n.01",
+        "calendar.n.03"
+    ],
+    "/m/04brg2": [
+        "tea_service.n.01",
+        "dinnerware.n.01",
+        "chopstick.n.01",
+        "gold_plate.n.01",
+        "silver_plate.n.01",
+        "glassware.n.01",
+        "cutlery.n.02",
+        "silverware.n.01",
+        "crockery.n.01",
+        "tableware.n.01",
+        "service.n.09",
+        "flatware.n.01"
+    ],
+    "/m/04c0y": [
+        "rat_kangaroo.n.01",
+        "musk_kangaroo.n.01",
+        "giant_kangaroo.n.01",
+        "wallaby.n.01",
+        "kangaroo.n.01"
+    ],
+    "/m/04cp_": [
+        "koala.n.01"
+    ],
+    "/m/04ctx": [
+        "surgical_knife.n.01",
+        "bread_knife.n.01",
+        "parer.n.02",
+        "linoleum_knife.n.01",
+        "bolo.n.02",
+        "cleaver.n.01",
+        "case_knife.n.02",
+        "carving_knife.n.01",
+        "slicer.n.03",
+        "table_knife.n.01",
+        "drawknife.n.01",
+        "parang.n.01",
+        "hunting_knife.n.01",
+        "pocketknife.n.01",
+        "letter_opener.n.01",
+        "pruning_knife.n.01",
+        "knife.n.01",
+        "barong.n.01",
+        "butcher_knife.n.01",
+        "bowie_knife.n.01"
+    ],
+    "/m/04dr76w": [
+        "carafe.n.01",
+        "bottle.n.01",
+        "ink_bottle.n.01",
+        "carboy.n.01",
+        "pill_bottle.n.01",
+        "cruet.n.01",
+        "wine_bottle.n.01",
+        "flask.n.01",
+        "beer_bottle.n.01",
+        "phial.n.01",
+        "pop_bottle.n.01",
+        "jug.n.01",
+        "gourd.n.01",
+        "smelling_bottle.n.01",
+        "demijohn.n.01",
+        "specimen_bottle.n.01",
+        "catsup_bottle.n.01",
+        "water_bottle.n.01",
+        "whiskey_bottle.n.01"
+    ],
+    "/m/04f5ws": [
+        "bottle_opener.n.01",
+        "cap_opener.n.01",
+        "corkscrew.n.01"
+    ],
+    "/m/04g2r": [
+        "lynx.n.01"
+    ],
+    "/m/04gth": [
+        "english_lavender.n.01",
+        "spike_lavender.n.01",
+        "lavender.n.01",
+        "french_lavender.n.02"
+    ],
+    "/m/04h7h": [
+        "beacon.n.03"
+    ],
+    "/m/04h8sr": [
+        "dumbbell.n.01"
+    ],
+    "/m/04hgtk": [
+        "human_head.n.01",
+        "bullethead.n.01",
+        "attic.n.03"
+    ],
+    "/m/04kkgm": [
+        "mazer.n.01",
+        "toilet_bowl.n.01",
+        "jorum.n.01",
+        "bowl.n.01",
+        "fishbowl.n.02"
+    ],
+    "/m/04lvq_": [
+        "clothes_dryer.n.01",
+        "dryer.n.01",
+        "hand_blower.n.01"
+    ],
+    "/m/04m6gz": [
+        "deck.n.04",
+        "porch.n.01",
+        "portico.n.01",
+        "front_porch.n.01",
+        "back_porch.n.01",
+        "stoop.n.03",
+        "veranda.n.01"
+    ],
+    "/m/04m9y": [
+        "night_lizard.n.01",
+        "anguid_lizard.n.01",
+        "lizard.n.01",
+        "gecko.n.01",
+        "lanthanotus_borneensis.n.01",
+        "teiid_lizard.n.01",
+        "monitor.n.07",
+        "iguanid.n.01",
+        "skink.n.01",
+        "agamid.n.01",
+        "worm_lizard.n.01",
+        "chameleon.n.03",
+        "legless_lizard.n.01",
+        "venomous_lizard.n.01",
+        "lacertid_lizard.n.01"
+    ],
+    "/m/04p0qw": [
+        "pool_table.n.01"
+    ],
+    "/m/04rky": [
+        "fossorial_mammal.n.01",
+        "placental.n.01",
+        "metatherian.n.01",
+        "tusker.n.01",
+        "prototherian.n.01",
+        "female_mammal.n.01",
+        "mammal.n.01"
+    ],
+    "/m/04rmv": [
+        "harvest_mouse.n.02",
+        "field_mouse.n.02",
+        "house_mouse.n.01",
+        "mouse.n.01",
+        "wood_mouse.n.01",
+        "nude_mouse.n.01"
+    ],
+    "/m/04_sv": [
+        "trail_bike.n.01",
+        "motorcycle.n.01",
+        "minibike.n.01"
+    ],
+    "/m/04szw": [
+        "bass.n.07",
+        "jew's_harp.n.01",
+        "percussion_instrument.n.01",
+        "electronic_instrument.n.01",
+        "calliope.n.02",
+        "musical_instrument.n.01",
+        "keyboard_instrument.n.01",
+        "stringed_instrument.n.01",
+        "music_box.n.01",
+        "barrel_organ.n.01",
+        "wind_instrument.n.01"
+    ],
+    "/m/04tn4x": [
+        "bathing_cap.n.01"
+    ],
+    "/m/04v6l4": [
+        "frying_pan.n.01",
+        "spider.n.03",
+        "electric_frying_pan.n.01"
+    ],
+    "/m/04vv5k": [
+        "snowplow.n.01"
+    ],
+    "/m/04y4h8h": [
+        "cabinet.n.01",
+        "medicine_chest.n.01",
+        "china_cabinet.n.01",
+        "dresser.n.05"
+    ],
+    "/m/04ylt": [
+        "sidewinder.n.02",
+        "ballistic_missile.n.01",
+        "air-to-ground_missile.n.01",
+        "air-to-air_missile.n.01",
+        "missile.n.01",
+        "guided_missile.n.01",
+        "heat-seeking_missile.n.01"
+    ],
+    "/m/04yqq2": [
+        "flop.n.03",
+        "turkey.n.05"
+    ],
+    "/m/04yx4": [
+        "hunk.n.01",
+        "bull.n.02",
+        "senhor.n.01",
+        "stud.n.01",
+        "dandy.n.01",
+        "galoot.n.01",
+        "geezer.n.01",
+        "ponce.n.01",
+        "grass_widower.n.01",
+        "shaver.n.01",
+        "ex-boyfriend.n.01",
+        "bey.n.01",
+        "guy.n.01",
+        "eunuch.n.01",
+        "gentleman.n.01",
+        "old_man.n.01",
+        "esquire.n.02",
+        "patriarch.n.02",
+        "hooray_henry.n.01",
+        "signor.n.01",
+        "peter_pan.n.01",
+        "monsieur.n.01",
+        "man.n.01",
+        "middle-aged_man.n.01",
+        "iron_man.n.01",
+        "signore.n.01",
+        "tarzan.n.01",
+        "white_man.n.01",
+        "sir.n.01",
+        "boy.n.02",
+        "inamorato.n.01",
+        "ironside.n.01",
+        "babu.n.01",
+        "housefather.n.01",
+        "stiff.n.01",
+        "adonis.n.01",
+        "father_figure.n.01",
+        "black_man.n.01",
+        "bachelor.n.01",
+        "father-figure.n.01",
+        "widower.n.01",
+        "young_buck.n.01",
+        "fellow.n.06",
+        "herr.n.01",
+        "wonder_boy.n.01",
+        "yellow_man.n.01",
+        "ejaculator.n.01",
+        "boyfriend.n.01",
+        "posseman.n.01",
+        "old_boy.n.01",
+        "ex-husband.n.01",
+        "womanizer.n.01"
+    ],
+    "/m/04z4wx": [
+        "waffle_iron.n.01"
+    ],
+    "/m/04zpv": [
+        "powdered_milk.n.01",
+        "milk.n.01",
+        "certified_milk.n.01",
+        "goats'_milk.n.01",
+        "buttermilk.n.01",
+        "condensed_milk.n.01",
+        "whole_milk.n.01",
+        "homogenized_milk.n.01",
+        "low-fat_milk.n.01",
+        "raw_milk.n.01",
+        "chocolate_milk.n.01",
+        "evaporated_milk.n.01",
+        "semi-skimmed_milk.n.01",
+        "sour_milk.n.01",
+        "acidophilus_milk.n.01",
+        "scalded_milk.n.01",
+        "yak's_milk.n.01",
+        "pasteurized_milk.n.01",
+        "skim_milk.n.01",
+        "cows'_milk.n.01"
+    ],
+    "/m/04zwwv": [
+        "binder.n.03"
+    ],
+    "/m/050gv4": [
+        "home_plate.n.01"
+    ],
+    "/m/050k8": [
+        "cellular_telephone.n.01"
+    ],
+    "/m/052lwg6": [
+        "baked_goods.n.01",
+        "cake.n.03",
+        "pastry.n.02",
+        "bread.n.01"
+    ],
+    "/m/052sf": [
+        "mushroom.n.01"
+    ],
+    "/m/05441v": [
+        "crutch.n.01"
+    ],
+    "/m/054fyh": [
+        "reliever.n.03",
+        "right-handed_pitcher.n.01",
+        "screwballer.n.01",
+        "left-handed_pitcher.n.01",
+        "starting_pitcher.n.01",
+        "pitcher.n.01"
+    ],
+    "/m/054_l": [
+        "cheval_glass.n.01",
+        "hand_glass.n.01",
+        "pier_glass.n.01",
+        "mirror.n.01",
+        "looking_glass.n.01",
+        "speculum.n.01",
+        "car_mirror.n.01"
+    ],
+    "/m/054xkw": [
+        "life_jacket.n.01",
+        "mae_west.n.02"
+    ],
+    "/m/05_5p_0": [
+        "table-tennis_racquet.n.01"
+    ],
+    "/m/05676x": [
+        "pencil_box.n.01"
+    ],
+    "/m/057cc": [
+        "celesta.n.01",
+        "synthesizer.n.02",
+        "accordion.n.01",
+        "clavier.n.02",
+        "organ.n.05",
+        "keyboard_instrument.n.01",
+        "piano.n.01",
+        "clavichord.n.01"
+    ],
+    "/m/057p5t": [
+        "scoreboard.n.01"
+    ],
+    "/m/0584n8": [
+        "attache_case.n.01",
+        "briefcase.n.01"
+    ],
+    "/m/058qzx": [
+        "table_knife.n.01",
+        "fish_knife.n.01",
+        "case_knife.n.01",
+        "butter_knife.n.01",
+        "steak_knife.n.01"
+    ],
+    "/m/05bm6": [
+        "fingernail.n.01",
+        "toenail.n.01",
+        "nail.n.01"
+    ],
+    "/m/05ctyq": [
+        "tennis_ball.n.01"
+    ],
+    "/m/05gqfk": [
+        "bin_liner.n.01",
+        "plastic_bag.n.01"
+    ],
+    "/m/05kms": [
+        "oboe_d'amore.n.01",
+        "heckelphone.n.01",
+        "shawm.n.01",
+        "oboe_da_caccia.n.01",
+        "musette_pipe.n.01",
+        "oboe.n.01"
+    ],
+    "/m/05kyg_": [
+        "chiffonier.n.01",
+        "lowboy.n.01",
+        "chest_of_drawers.n.01",
+        "highboy.n.01"
+    ],
+    "/m/05n4y": [
+        "ostrich.n.01"
+    ],
+    "/m/05r5c": [
+        "piano.n.01",
+        "grand_piano.n.01",
+        "upright.n.02",
+        "mechanical_piano.n.01"
+    ],
+    "/m/05r655": [
+        "sex_kitten.n.01",
+        "gamine.n.02",
+        "sweater_girl.n.01",
+        "working_girl.n.01",
+        "maid.n.02",
+        "gal.n.03",
+        "valley_girl.n.01",
+        "baby.n.05",
+        "tomboy.n.01",
+        "flapper.n.01",
+        "colleen.n.01",
+        "bimbo.n.01",
+        "may_queen.n.01",
+        "soubrette.n.01",
+        "peri.n.01",
+        "rosebud.n.02",
+        "party_girl.n.01",
+        "dame.n.01",
+        "ring_girl.n.01",
+        "shop_girl.n.01",
+        "mill-girl.n.01",
+        "chachka.n.01",
+        "girl.n.01",
+        "belle.n.01",
+        "lass.n.01",
+        "gibson_girl.n.01",
+        "chit.n.01"
+    ],
+    "/m/05s2s": [
+        "sewage_disposal_plant.n.01",
+        "brewery.n.01",
+        "mint.n.06",
+        "factory.n.01",
+        "recycling_plant.n.01",
+        "plant.n.01",
+        "bottling_plant.n.01",
+        "distillery.n.01",
+        "smelter.n.01",
+        "packinghouse.n.02",
+        "saltworks.n.01",
+        "refinery.n.01"
+    ],
+    "/m/05vtc": [
+        "uruguay_potato.n.02",
+        "mashed_potato.n.01",
+        "potato.n.01",
+        "french_fries.n.01",
+        "home_fries.n.01",
+        "baked_potato.n.01"
+    ],
+    "/m/05w9t9": [
+        "hair_spray.n.01"
+    ],
+    "/m/05y5lj": [
+        "boxing_equipment.n.01",
+        "spike.n.02",
+        "baseball_equipment.n.01",
+        "target.n.04",
+        "shot.n.12",
+        "javelin.n.02",
+        "discus.n.02",
+        "mat.n.03",
+        "weight.n.02",
+        "sports_equipment.n.01",
+        "stick.n.06",
+        "golf_equipment.n.01",
+        "mouthpiece.n.04",
+        "basketball_equipment.n.01",
+        "cricket_equipment.n.01",
+        "badminton_equipment.n.01",
+        "croquet_equipment.n.01",
+        "sporting_goods.n.01",
+        "hammer.n.05",
+        "gymnastic_apparatus.n.01",
+        "skate.n.01"
+    ],
+    "/m/05z55": [
+        "macaroni_and_cheese.n.01",
+        "pasta.n.01",
+        "lasagna.n.01",
+        "cannelloni.n.01",
+        "spaghetti.n.01"
+    ],
+    "/m/05z6w": [
+        "emperor_penguin.n.01",
+        "penguin.n.01",
+        "rock_hopper.n.01",
+        "king_penguin.n.01",
+        "jackass_penguin.n.01",
+        "adelie.n.01"
+    ],
+    "/m/05zsy": [
+        "pumpkin.n.01"
+    ],
+    "/m/061_f": [
+        "bartlett.n.03",
+        "seckel.n.01",
+        "anjou.n.02",
+        "pear.n.01",
+        "bosc.n.01"
+    ],
+    "/m/061hd_": [
+        "cradle.n.01"
+    ],
+    "/m/0633h": [
+        "ice_bear.n.01"
+    ],
+    "/m/063rgb": [
+        "sociable.n.01"
+    ],
+    "/m/0642b4": [
+        "safe.n.02",
+        "broom_closet.n.01",
+        "airing_cupboard.n.01",
+        "supply_closet.n.01",
+        "cupboard.n.01"
+    ],
+    "/m/065h6l": [
+        "bathtub.n.01",
+        "hot_tub.n.01",
+        "footbath.n.01",
+        "sitz_bath.n.01"
+    ],
+    "/m/0663v": [
+        "anchovy_pizza.n.01",
+        "pizza.n.01",
+        "sausage_pizza.n.01",
+        "sicilian_pizza.n.01",
+        "cheese_pizza.n.01",
+        "pepperoni_pizza.n.01"
+    ],
+    "/m/06_72j": [
+        "digital_clock.n.01"
+    ],
+    "/m/068zj": [
+        "porker.n.01",
+        "hog.n.03"
+    ],
+    "/m/06bt6": [
+        "anapsid.n.01",
+        "diapsida.n.01",
+        "reptile.n.01",
+        "synapsid.n.01",
+        "diapsid.n.01"
+    ],
+    "/m/06c54": [
+        "rifle.n.01",
+        "carbine.n.01",
+        "sniper_rifle.n.01",
+        "winchester.n.02",
+        "garand_rifle.n.01"
+    ],
+    "/m/06c7f7": [
+        "lipstick.n.01"
+    ],
+    "/m/06_fw": [
+        "skateboard.n.01"
+    ],
+    "/m/06j2d": [
+        "raven.n.01"
+    ],
+    "/m/06k2mb": [
+        "spike_heel.n.01"
+    ],
+    "/m/06l9r": [
+        "lesser_panda.n.01"
+    ],
+    "/m/06m11": [
+        "cherokee_rose.n.01",
+        "ground_rose.n.01",
+        "mountain_rose.n.01",
+        "sweetbrier.n.01",
+        "damask_rose.n.01",
+        "tea_rose.n.01",
+        "china_rose.n.01",
+        "multiflora.n.01",
+        "rose.n.01",
+        "dog_rose.n.01",
+        "musk_rose.n.01",
+        "banksia_rose.n.01"
+    ],
+    "/m/06mf6": [
+        "european_rabbit.n.01",
+        "angora.n.03",
+        "rabbit.n.01",
+        "lapin.n.02",
+        "wood_rabbit.n.01",
+        "bunny.n.02",
+        "rabbit_ears.n.02",
+        "belgian_hare.n.01"
+    ],
+    "/m/06msq": [
+        "carving.n.01",
+        "stabile.n.01",
+        "bust.n.03",
+        "marble.n.03",
+        "sculpture.n.01",
+        "relief.n.10",
+        "bronze.n.02",
+        "mobile.n.03",
+        "statue.n.01",
+        "mold.n.08"
+    ],
+    "/m/06ncr": [
+        "sax.n.02"
+    ],
+    "/m/06nrc": [
+        "fowling_piece.n.01",
+        "sawed-off_shotgun.n.01",
+        "shotgun.n.01"
+    ],
+    "/m/06nwz": [
+        "freshwater_fish.n.01",
+        "saltwater_fish.n.01",
+        "roe.n.01",
+        "squid.n.01",
+        "periwinkle.n.03",
+        "milt.n.01",
+        "prawn.n.01",
+        "whitefish.n.01",
+        "octopus.n.01",
+        "seafood.n.01",
+        "shellfish.n.01",
+        "whelk.n.01"
+    ],
+    "/m/06pcq": [
+        "bomber.n.03"
+    ],
+    "/m/06__v": [
+        "snowboard.n.01"
+    ],
+    "/m/06y5r": [
+        "rapier.n.01",
+        "backsword.n.02",
+        "falchion.n.01",
+        "fencing_sword.n.01",
+        "cutlas.n.01",
+        "sword.n.01",
+        "cavalry_sword.n.01",
+        "broadsword.n.01"
+    ],
+    "/m/06z37_": [
+        "picture_frame.n.01"
+    ],
+    "/m/07030": [
+        "sushi.n.01"
+    ],
+    "/m/0703r8": [
+        "love_seat.n.01"
+    ],
+    "/m/071p9": [
+        "ski.n.01",
+        "water_ski.n.01"
+    ],
+    "/m/071qp": [
+        "american_flying_squirrel.n.01",
+        "baronduki.n.01",
+        "asiatic_flying_squirrel.n.01",
+        "squirrel.n.01",
+        "chipmunk.n.01",
+        "eastern_chipmunk.n.01",
+        "ground_squirrel.n.02",
+        "tree_squirrel.n.01"
+    ],
+    "/m/073bxn": [
+        "tripod.n.01",
+        "easel.n.01",
+        "camera_tripod.n.01"
+    ],
+    "/m/073g6": [
+        "stethoscope.n.01",
+        "fetoscope.n.01"
+    ],
+    "/m/074d1": [
+        "attack_submarine.n.01",
+        "auxiliary_research_submarine.n.01",
+        "fleet_ballistic_missile_submarine.n.01",
+        "nautilus.n.01",
+        "submarine.n.01"
+    ],
+    "/m/0755b": [
+        "scorpio.n.01"
+    ],
+    "/m/076bq": [
+        "segway.n.01"
+    ],
+    "/m/076lb9": [
+        "bench_press.n.01",
+        "incline_bench_press.n.01"
+    ],
+    "/m/078jl": [
+        "blind_snake.n.01",
+        "elapid.n.01",
+        "constrictor.n.01",
+        "sea_snake.n.01",
+        "snake.n.01",
+        "colubrid_snake.n.01",
+        "viper.n.01"
+    ],
+    "/m/078n6m": [
+        "coffee_table.n.01"
+    ],
+    "/m/079cl": [
+        "skyscraper.n.01"
+    ],
+    "/m/07bgp": [
+        "ram.n.05",
+        "black_sheep.n.02",
+        "ewe.n.03",
+        "wether.n.01",
+        "domestic_sheep.n.01",
+        "sheep.n.01"
+    ],
+    "/m/07c52": [
+        "television.n.01",
+        "cable_television.n.01",
+        "high-definition_television.n.01"
+    ],
+    "/m/07c6l": [
+        "trombone.n.01",
+        "sackbut.n.01"
+    ],
+    "/m/07clx": [
+        "ice_tea.n.01",
+        "tea.n.01",
+        "cambric_tea.n.01",
+        "sun_tea.n.01",
+        "cuppa.n.01",
+        "herb_tea.n.01"
+    ],
+    "/m/07cmd": [
+        "panzer.n.01",
+        "tank.n.01"
+    ],
+    "/m/07crc": [
+        "greaser.n.01"
+    ],
+    "/m/07cx4": [
+        "speakerphone.n.01",
+        "pay-phone.n.01",
+        "dial_telephone.n.01",
+        "desk_phone.n.01",
+        "radiotelephone.n.02",
+        "telephone.n.01",
+        "extension.n.10",
+        "handset.n.01"
+    ],
+    "/m/07dd4": [
+        "flambeau.n.01",
+        "torch.n.01"
+    ],
+    "/m/07dm6": [
+        "tiger.n.01"
+    ],
+    "/m/07fbm7": [
+        "strawberry.n.01"
+    ],
+    "/m/07gql": [
+        "cornet.n.01",
+        "serpent.n.03"
+    ],
+    "/m/07j7r": [
+        "willow.n.01",
+        "brazilian_pepper_tree.n.01",
+        "winter's_bark.n.02",
+        "dhawa.n.01",
+        "soapberry.n.01",
+        "cork_tree.n.01",
+        "bottle-tree.n.01",
+        "satinwood.n.03",
+        "fig_tree.n.01",
+        "spanish_tamarind.n.01",
+        "chestnut.n.02",
+        "keurboom.n.01",
+        "obeche.n.02",
+        "aalii.n.01",
+        "kingwood.n.02",
+        "gliricidia.n.01",
+        "lancewood.n.02",
+        "gutta-percha_tree.n.02",
+        "calabash.n.02",
+        "anise_tree.n.01",
+        "tree_of_knowledge.n.01",
+        "hydnocarpus_laurifolia.n.01",
+        "oak.n.02",
+        "pollard.n.01",
+        "nakedwood.n.01",
+        "brazilian_ironwood.n.01",
+        "mescal_bean.n.01",
+        "guama.n.01",
+        "prickly_ash.n.01",
+        "camwood.n.01",
+        "plane_tree.n.01",
+        "granadilla_tree.n.01",
+        "quandong.n.01",
+        "calaba.n.01",
+        "teak.n.02",
+        "scarlet_wisteria_tree.n.01",
+        "carib_wood.n.01",
+        "bloodwood_tree.n.01",
+        "casuarina.n.01",
+        "chaulmoogra.n.01",
+        "tanbark_oak.n.01",
+        "pepper_tree.n.01",
+        "locust_tree.n.01",
+        "shingle_tree.n.01",
+        "albizzia.n.01",
+        "blackwood.n.02",
+        "gum_tree.n.01",
+        "bayberry.n.01",
+        "black_mangrove.n.01",
+        "keurboom.n.02",
+        "ivory_tree.n.01",
+        "hop_hornbeam.n.01",
+        "silver_tree.n.01",
+        "tolu_tree.n.01",
+        "sapling.n.01",
+        "palm.n.03",
+        "clusia.n.01",
+        "rose_chestnut.n.01",
+        "elm.n.01",
+        "coffee.n.02",
+        "lead_tree.n.01",
+        "cinchona.n.02",
+        "giant_chinkapin.n.01",
+        "sandalwood_tree.n.01",
+        "idesia.n.01",
+        "tree.n.01",
+        "chinaberry.n.02",
+        "necklace_tree.n.01",
+        "lanseh_tree.n.01",
+        "peruvian_balsam.n.01",
+        "wild_fig.n.02",
+        "coral_tree.n.01",
+        "gutta-percha_tree.n.01",
+        "sissoo.n.01",
+        "fever_tree.n.01",
+        "snag.n.02",
+        "montezuma.n.01",
+        "linden.n.02",
+        "ribbon_tree.n.01",
+        "christmas_bush.n.01",
+        "silver_tree.n.02",
+        "cassia.n.01",
+        "fringe_tree.n.01",
+        "hackberry.n.01",
+        "angiospermous_tree.n.01",
+        "dhak.n.01",
+        "african_walnut.n.01",
+        "lacebark.n.01",
+        "white_mangrove.n.01",
+        "bean_tree.n.01",
+        "prickly_ash.n.02",
+        "laurelwood.n.01",
+        "dagame.n.01",
+        "red_sandalwood.n.02",
+        "scrub_beefwood.n.01",
+        "yellowwood.n.02",
+        "incense_tree.n.01",
+        "nitta_tree.n.01",
+        "cockspur.n.02",
+        "jamaica_dogwood.n.01",
+        "poon.n.02",
+        "wild_tamarind.n.02",
+        "ebony.n.03",
+        "msasa.n.01",
+        "angelim.n.01",
+        "tulipwood_tree.n.01",
+        "guinea_pepper.n.02",
+        "chinese_parasol_tree.n.01",
+        "hazel.n.01",
+        "pepper_tree.n.02",
+        "princewood.n.01",
+        "wild_medlar.n.01",
+        "button_tree.n.01",
+        "timber_tree.n.01",
+        "cabbage_tree.n.03",
+        "bonduc.n.02",
+        "conacaste.n.01",
+        "shade_tree.n.01",
+        "tipu.n.01",
+        "australian_nettle.n.01",
+        "treelet.n.01",
+        "zebrawood.n.02",
+        "red_silk-cotton_tree.n.01",
+        "manila_tamarind.n.01",
+        "burma_padauk.n.01",
+        "trifoliate_orange.n.01",
+        "kino.n.02",
+        "birch.n.02",
+        "beech.n.01",
+        "ice-cream_bean.n.01",
+        "lepidobotrys.n.01",
+        "dipterocarp.n.01",
+        "puka.n.02",
+        "lemonwood.n.02",
+        "pandanus.n.02",
+        "jamaican_cherry.n.01",
+        "bitterwood_tree.n.01",
+        "silver_ash.n.01",
+        "marblewood.n.02",
+        "mayeng.n.01",
+        "dita.n.01",
+        "kowhai.n.01",
+        "millettia.n.01",
+        "white_mangrove.n.02",
+        "cocobolo.n.01",
+        "arbor.n.01",
+        "brazilwood.n.02",
+        "opepe.n.01",
+        "turreae.n.01",
+        "hornbeam.n.01",
+        "southern_beech.n.01",
+        "rosewood.n.02",
+        "quandong.n.03",
+        "divi-divi.n.02",
+        "alder.n.02",
+        "mahogany.n.02",
+        "balata.n.02",
+        "aroeira_blanca.n.01",
+        "shaving-brush_tree.n.01",
+        "oak_chestnut.n.01",
+        "neem.n.01",
+        "wheel_tree.n.01",
+        "kentucky_coffee_tree.n.01",
+        "ash.n.02",
+        "ketembilla.n.01",
+        "quira.n.02",
+        "padauk.n.01",
+        "indian_beech.n.01",
+        "bonsai.n.01",
+        "caracolito.n.01",
+        "gymnospermous_tree.n.01",
+        "souari.n.01",
+        "devilwood.n.01",
+        "breakax.n.01",
+        "acacia.n.01",
+        "japanese_pagoda_tree.n.01",
+        "palo_verde.n.01",
+        "inga.n.01",
+        "marmalade_tree.n.01",
+        "coralwood.n.01",
+        "maria.n.02"
+    ],
+    "/m/07j87": [
+        "cherry_tomato.n.02",
+        "beefsteak_tomato.n.01",
+        "tomato.n.01"
+    ],
+    "/m/07jdr": [
+        "mail_train.n.01",
+        "freight_train.n.01",
+        "train.n.01",
+        "passenger_train.n.01",
+        "hospital_train.n.01",
+        "subway_train.n.01",
+        "boat_train.n.01",
+        "car_train.n.01",
+        "streamliner.n.01"
+    ],
+    "/m/07k1x": [
+        "hand_tool.n.01",
+        "tool.n.01",
+        "pestle.n.02",
+        "stylus.n.02",
+        "punch.n.03",
+        "shaping_tool.n.01",
+        "rake.n.03",
+        "upset.n.04",
+        "rounder.n.02",
+        "bender.n.01",
+        "abrader.n.01",
+        "strickle.n.03",
+        "cutting_implement.n.01",
+        "power_tool.n.01",
+        "paleolith.n.01",
+        "saw_set.n.01",
+        "jaws_of_life.n.01",
+        "drill.n.01",
+        "eolith.n.01",
+        "tamp.n.01",
+        "clincher.n.03",
+        "fork.n.04",
+        "jack.n.10",
+        "comb.n.03",
+        "ram.n.04",
+        "grapnel.n.01",
+        "neolith.n.01",
+        "hack.n.04",
+        "garden_tool.n.01",
+        "gang.n.04",
+        "hoe.n.01",
+        "tap.n.05",
+        "plow.n.01"
+    ],
+    "/m/07kng9": [
+        "punnet.n.01",
+        "skep.n.01",
+        "wicker_basket.n.01",
+        "shopping_basket.n.01",
+        "basket.n.01",
+        "creel.n.01",
+        "frail.n.02",
+        "breadbasket.n.03",
+        "bushel_basket.n.01",
+        "hamper.n.02"
+    ],
+    "/m/07mcwg": [
+        "atomizer.n.01",
+        "airbrush.n.01"
+    ],
+    "/m/07mhn": [
+        "trouser.n.01",
+        "salwar.n.01",
+        "bellbottom_trousers.n.01",
+        "chino.n.01",
+        "short_pants.n.01",
+        "cords.n.01",
+        "flannel.n.03",
+        "breeches.n.01",
+        "pedal_pusher.n.01",
+        "slacks.n.01",
+        "pajama.n.01",
+        "jean.n.01",
+        "stretch_pants.n.01",
+        "jodhpurs.n.01",
+        "pantaloon.n.03",
+        "long_trousers.n.01",
+        "sweat_pants.n.01",
+        "trews.n.01",
+        "churidars.n.01"
+    ],
+    "/m/07pj7bq": [
+        "bowling_pin.n.01",
+        "bowling_equipment.n.01"
+    ],
+    "/m/07qxg_": [
+        "football_helmet.n.01"
+    ],
+    "/m/07r04": [
+        "sound_truck.n.01",
+        "lorry.n.02",
+        "truck.n.01",
+        "trailer_truck.n.01",
+        "tow_truck.n.01",
+        "transporter.n.01",
+        "fire_engine.n.01",
+        "pickup.n.01",
+        "garbage_truck.n.01",
+        "van.n.05",
+        "dump_truck.n.01",
+        "tractor.n.02"
+    ],
+    "/m/07v9_z": [
+        "measuring_cup.n.01"
+    ],
+    "/m/07xyvk": [
+        "espresso_maker.n.01",
+        "coffee_maker.n.01",
+        "silex.n.02"
+    ],
+    "/m/07y_7": [
+        "stradavarius.n.01",
+        "amati.n.02",
+        "guarnerius.n.03",
+        "violin.n.01"
+    ],
+    "/m/07yv9": [
+        "bumper_car.n.01",
+        "vehicle.n.01",
+        "rocket.n.01",
+        "skibob.n.01",
+        "craft.n.02",
+        "sled.n.01",
+        "steamroller.n.02",
+        "military_vehicle.n.01",
+        "wheeled_vehicle.n.01"
+    ],
+    "/m/080hkjn": [
+        "etui.n.01",
+        "clutch_bag.n.01",
+        "bag.n.04",
+        "evening_bag.n.01",
+        "shoulder_bag.n.01",
+        "reticule.n.01"
+    ],
+    "/m/080n7g": [
+        "paper_cutter.n.01"
+    ],
+    "/m/081qc": [
+        "burgundy.n.02",
+        "dubonnet.n.01",
+        "tokay.n.01",
+        "generic.n.01",
+        "vermouth.n.01",
+        "fortified_wine.n.01",
+        "table_wine.n.01",
+        "white_wine.n.01",
+        "macon.n.02",
+        "jug_wine.n.01",
+        "red_wine.n.01",
+        "blush_wine.n.01",
+        "vintage.n.01",
+        "plonk.n.01",
+        "mulled_wine.n.01",
+        "rhone_wine.n.01",
+        "wine.n.01",
+        "dessert_wine.n.01",
+        "retsina.n.01",
+        "bordeaux.n.02",
+        "varietal.n.01",
+        "california_wine.n.01",
+        "altar_wine.n.01",
+        "sparkling_wine.n.01",
+        "cotes_de_provence.n.01"
+    ],
+    "/m/083kb": [
+        "weapon.n.01",
+        "missile.n.01",
+        "bow_and_arrow.n.01",
+        "fire_ship.n.01",
+        "stun_gun.n.01",
+        "pike.n.04",
+        "sling.n.04",
+        "light_arm.n.01",
+        "slasher.n.02",
+        "tomahawk.n.01",
+        "gun.n.01",
+        "greek_fire.n.01",
+        "projectile.n.01",
+        "spear.n.01",
+        "brass_knucks.n.01",
+        "weapon_of_mass_destruction.n.01",
+        "flamethrower.n.01",
+        "sword.n.01",
+        "bow.n.04",
+        "knife.n.02"
+    ],
+    "/m/083wq": [
+        "grinding_wheel.n.01",
+        "trundle.n.02",
+        "bicycle_wheel.n.01",
+        "daisy_print_wheel.n.01",
+        "potter's_wheel.n.01",
+        "car_wheel.n.01",
+        "waterwheel.n.02",
+        "roller.n.03",
+        "waterwheel.n.01",
+        "paddlewheel.n.01",
+        "ratchet_wheel.n.01",
+        "sprocket.n.02",
+        "handwheel.n.01",
+        "balance_wheel.n.01",
+        "rowel.n.01",
+        "cartwheel.n.01",
+        "gear.n.01",
+        "buffing_wheel.n.01",
+        "roulette.n.02",
+        "pinwheel.n.02",
+        "wheel.n.01",
+        "wagon_wheel.n.01",
+        "driving_wheel.n.01",
+        "nosewheel.n.01"
+    ],
+    "/m/084hf": [
+        "annelid.n.01",
+        "arrowworm.n.01",
+        "worm.n.01",
+        "nematode.n.01",
+        "acanthocephalan.n.01",
+        "beard_worm.n.01",
+        "helminth.n.01",
+        "flatworm.n.01",
+        "ribbon_worm.n.01",
+        "woodworm.n.01"
+    ],
+    "/m/084rd": [
+        "wok.n.01"
+    ],
+    "/m/084zz": [
+        "giant.n.04"
+    ],
+    "/m/0898b": [
+        "mountain_zebra.n.01",
+        "zebra.n.01",
+        "grevy's_zebra.n.01",
+        "common_zebra.n.01"
+    ],
+    "/m/08dz3q": [
+        "auto_part.n.01"
+    ],
+    "/m/08hvt4": [
+        "whiskey_jug.n.01",
+        "bellarmine.n.02",
+        "jug.n.01",
+        "water_jug.n.01"
+    ],
+    "/m/08ks85": [
+        "edge_tool.n.01",
+        "cigar_cutter.n.01",
+        "tile_cutter.n.01",
+        "cutter.n.06",
+        "glass_cutter.n.03",
+        "bolt_cutter.n.01",
+        "die.n.03"
+    ],
+    "/m/08p92x": [
+        "cream.n.01"
+    ],
+    "/m/08pbxl": [
+        "new_world_monkey.n.01",
+        "monkey.n.01",
+        "old_world_monkey.n.01"
+    ],
+    "/m/096mb": [
+        "lion.n.01",
+        "lioness.n.01",
+        "lion_cub.n.01",
+        "lionet.n.01"
+    ],
+    "/m/09728": [
+        "matzo.n.01",
+        "raisin_bread.n.01",
+        "salt-rising_bread.n.01",
+        "bread.n.01",
+        "challah.n.01",
+        "simnel.n.01",
+        "gluten_bread.n.01",
+        "rye_bread.n.01",
+        "barmbrack.n.01",
+        "dark_bread.n.01",
+        "crouton.n.01",
+        "breadstick.n.01",
+        "bun.n.01",
+        "sour_bread.n.01",
+        "caraway_seed_bread.n.01",
+        "wafer.n.03",
+        "onion_bread.n.01",
+        "quick_bread.n.01",
+        "cracked-wheat_bread.n.01",
+        "brown_bread.n.02",
+        "host.n.09",
+        "flatbread.n.01",
+        "garlic_bread.n.01",
+        "cracker.n.01",
+        "loaf_of_bread.n.01",
+        "white_bread.n.01",
+        "anadama_bread.n.01",
+        "toast.n.01",
+        "bap.n.01",
+        "cinnamon_bread.n.01",
+        "nan.n.04",
+        "english_muffin.n.01"
+    ],
+    "/m/099ssp": [
+        "platter.n.01"
+    ],
+    "/m/09b5t": [
+        "broiler.n.02",
+        "fryer.n.01",
+        "hen.n.03",
+        "chicken.n.01",
+        "capon.n.01",
+        "roaster.n.03",
+        "spatchcock.n.01"
+    ],
+    "/m/09csl": [
+        "golden_eagle.n.01",
+        "bald_eagle.n.01",
+        "eagle.n.01",
+        "sea_eagle.n.02",
+        "eaglet.n.01",
+        "tawny_eagle.n.01",
+        "harpy.n.04"
+    ],
+    "/m/09ct_": [
+        "single-rotor_helicopter.n.01",
+        "skyhook.n.01",
+        "shuttle_helicopter.n.01",
+        "cargo_helicopter.n.01",
+        "helicopter.n.01"
+    ],
+    "/m/09d5_": [
+        "owl.n.01",
+        "little_owl.n.01",
+        "tawny_owl.n.01",
+        "great_grey_owl.n.01",
+        "horned_owl.n.01",
+        "long-eared_owl.n.01",
+        "barn_owl.n.01",
+        "owlet.n.01",
+        "barred_owl.n.01",
+        "screech_owl.n.02",
+        "screech_owl.n.01",
+        "scops_owl.n.01",
+        "hoot_owl.n.01",
+        "laughing_owl.n.01",
+        "spotted_owl.n.01",
+        "hawk_owl.n.01"
+    ],
+    "/m/09ddx": [
+        "black_duck.n.01",
+        "teal.n.02",
+        "dabbling_duck.n.01",
+        "sea_duck.n.01",
+        "quack-quack.n.01",
+        "pintail.n.01",
+        "redhead.n.02",
+        "widgeon.n.01",
+        "duck.n.01",
+        "wood_duck.n.01",
+        "canvasback.n.01",
+        "sheldrake.n.02",
+        "bufflehead.n.01",
+        "pochard.n.01",
+        "goldeneye.n.02",
+        "diving_duck.n.01",
+        "duckling.n.02",
+        "drake.n.02",
+        "ruddy_duck.n.01",
+        "mallard.n.01",
+        "muscovy_duck.n.01",
+        "shoveler.n.02",
+        "wild_duck.n.01",
+        "mandarin_duck.n.01",
+        "scaup.n.01"
+    ],
+    "/m/09dzg": [
+        "turtleneck.n.01"
+    ],
+    "/m/09f20": [
+        "hippopotamus.n.01"
+    ],
+    "/m/09f_2": [
+        "african_crocodile.n.01",
+        "crocodile.n.01",
+        "asian_crocodile.n.01",
+        "morlett's_crocodile.n.01"
+    ],
+    "/m/09g1w": [
+        "washroom.n.01",
+        "toilet.n.01",
+        "head.n.30",
+        "water_closet.n.01",
+        "public_toilet.n.01"
+    ],
+    "/m/09gtd": [
+        "toilet_roll.n.01",
+        "toilet_tissue.n.01"
+    ],
+    "/m/09gys": [
+        "squid.n.01"
+    ],
+    "/m/09j2d": [
+        "street_clothes.n.01",
+        "vestiture.n.01",
+        "grey.n.06",
+        "drag.n.04",
+        "beachwear.n.01",
+        "black.n.07",
+        "handwear.n.01",
+        "uniform.n.01",
+        "neckpiece.n.01",
+        "attire.n.01",
+        "man's_clothing.n.01",
+        "ready-to-wear.n.01",
+        "work-clothing.n.01",
+        "slops.n.02",
+        "change.n.07",
+        "knitwear.n.01",
+        "headdress.n.01",
+        "nightwear.n.01",
+        "array.n.03",
+        "outerwear.n.01",
+        "blue.n.02",
+        "togs.n.01",
+        "civilian_clothing.n.01",
+        "apparel.n.01",
+        "slip-on.n.01",
+        "tailor-made.n.01",
+        "accessory.n.01",
+        "protective_garment.n.01",
+        "garment.n.01",
+        "clothing.n.01",
+        "woman's_clothing.n.01",
+        "loungewear.n.01",
+        "footwear.n.01",
+        "leisure_wear.n.01"
+    ],
+    "/m/09j5n": [
+        "hosiery.n.01",
+        "footwear.n.01"
+    ],
+    "/m/09k_b": [
+        "lemon.n.01"
+    ],
+    "/m/09kmb": [
+        "black_widow.n.01",
+        "barn_spider.n.01",
+        "tarantula.n.02",
+        "black_and_gold_garden_spider.n.01",
+        "orb-weaving_spider.n.01",
+        "wolf_spider.n.01",
+        "trap-door_spider.n.01",
+        "spider.n.01",
+        "comb-footed_spider.n.01",
+        "garden_spider.n.01"
+    ],
+    "/m/09kx5": [
+        "brocket.n.01",
+        "musk_deer.n.01",
+        "red_deer.n.01",
+        "fallow_deer.n.01",
+        "caribou.n.01",
+        "fawn.n.02",
+        "virginia_deer.n.01",
+        "wapiti.n.01",
+        "roe_deer.n.01",
+        "pricket.n.02",
+        "deer.n.01",
+        "pere_david's_deer.n.01",
+        "elk.n.01",
+        "mule_deer.n.01",
+        "sambar.n.01",
+        "japanese_deer.n.01",
+        "muntjac.n.01"
+    ],
+    "/m/09ld4": [
+        "frog.n.01",
+        "fire-bellied_toad.n.01",
+        "leptodactylid_frog.n.01",
+        "eastern_narrow-mouthed_toad.n.01",
+        "spadefoot.n.01",
+        "tailed_frog.n.01",
+        "western_narrow-mouthed_toad.n.01",
+        "south_american_poison_toad.n.01",
+        "midwife_toad.n.01",
+        "liopelma_hamiltoni.n.01",
+        "crapaud.n.01",
+        "barking_frog.n.01",
+        "tree_toad.n.01",
+        "robber_frog.n.02",
+        "true_toad.n.01",
+        "true_frog.n.01",
+        "sheep_frog.n.01",
+        "obstetrical_toad.n.01",
+        "tongueless_frog.n.01",
+        "tree_frog.n.02"
+    ],
+    "/m/09qck": [
+        "banana.n.01",
+        "edible_banana.n.01",
+        "dwarf_banana.n.01",
+        "japanese_banana.n.01",
+        "abaca.n.02",
+        "plantain.n.02"
+    ],
+    "/m/09rvcxw": [
+        "rocket.n.01",
+        "missile.n.01",
+        "multistage_rocket.n.01",
+        "test_rocket.n.01"
+    ],
+    "/m/09tvcd": [
+        "flute.n.02",
+        "wineglass.n.01"
+    ],
+    "/m/0b3fp9": [
+        "countertop.n.01"
+    ],
+    "/m/0bh9flk": [
+        "portable_computer.n.01",
+        "laptop.n.01",
+        "briefcase_computer.n.01",
+        "notebook.n.02",
+        "hand-held_computer.n.01"
+    ],
+    "/m/0bjyj5": [
+        "ashcan.n.01"
+    ],
+    "/m/0b_rs": [
+        "swimming_pool.n.01"
+    ],
+    "/m/0bt9lr": [
+        "corgi.n.01",
+        "toy_dog.n.01",
+        "pug.n.01",
+        "hunting_dog.n.01",
+        "cur.n.01",
+        "mexican_hairless.n.01",
+        "newfoundland.n.01",
+        "lapdog.n.01",
+        "dog.n.01",
+        "spitz.n.01",
+        "puppy.n.01",
+        "poodle.n.01",
+        "leonberg.n.01",
+        "basenji.n.01",
+        "pooch.n.01",
+        "griffon.n.02",
+        "great_pyrenees.n.01",
+        "working_dog.n.01",
+        "dalmatian.n.02"
+    ],
+    "/m/0bt_c3": [
+        "songbook.n.01",
+        "formulary.n.01",
+        "phrase_book.n.01",
+        "catechism.n.02",
+        "review_copy.n.01",
+        "storybook.n.01",
+        "catalog.n.01",
+        "booklet.n.01",
+        "pop-up_book.n.01",
+        "workbook.n.01",
+        "prayer_book.n.01",
+        "textbook.n.01",
+        "bestiary.n.01",
+        "reference_book.n.01",
+        "tome.n.01",
+        "appointment_book.n.01",
+        "yearbook.n.01",
+        "trade_book.n.01",
+        "curiosa.n.01",
+        "authority.n.07",
+        "copybook.n.01",
+        "playbook.n.02",
+        "book.n.01"
+    ],
+    "/m/0bwd_0j": [
+        "elephant.n.01",
+        "indian_elephant.n.01",
+        "gomphothere.n.01",
+        "african_elephant.n.01",
+        "rogue_elephant.n.01",
+        "mammoth.n.01"
+    ],
+    "/m/0by6g": [
+        "shark.n.01",
+        "thresher.n.02",
+        "nurse_shark.n.01",
+        "requiem_shark.n.01",
+        "dogfish.n.02",
+        "cow_shark.n.01",
+        "whale_shark.n.01",
+        "angel_shark.n.01",
+        "sand_tiger.n.01",
+        "mackerel_shark.n.01",
+        "cat_shark.n.01",
+        "carpet_shark.n.01",
+        "hammerhead.n.03"
+    ],
+    "/m/0c06p": [
+        "dip.n.07",
+        "rushlight.n.01",
+        "chandlery.n.01",
+        "candle.n.01",
+        "vigil_light.n.01"
+    ],
+    "/m/0c29q": [
+        "leopard.n.01"
+    ],
+    "/m/0c2jj": [
+        "poleax.n.01",
+        "ax.n.01",
+        "fireman's_ax.n.01",
+        "ice_ax.n.01",
+        "hatchet.n.02",
+        "broadax.n.01",
+        "common_ax.n.01",
+        "double-bitted_ax.n.01"
+    ],
+    "/m/0c3m8g": [
+        "hand_blower.n.01"
+    ],
+    "/m/0c3mkw": [
+        "soap_dispenser.n.01"
+    ],
+    "/m/0c568": [
+        "old_world_porcupine.n.01",
+        "new_world_porcupine.n.01",
+        "porcupine.n.01"
+    ],
+    "/m/0c9ph5": [
+        "poppy.n.01",
+        "ageratum.n.02",
+        "pheasant's-eye.n.01",
+        "veronica.n.01",
+        "coneflower.n.03",
+        "gentian.n.01",
+        "globe_amaranth.n.01",
+        "lychnis.n.01",
+        "lesser_celandine.n.01",
+        "sandwort.n.03",
+        "rue_anemone.n.01",
+        "bloomer.n.01",
+        "streptocarpus.n.01",
+        "calendula.n.01",
+        "florest's_cineraria.n.01",
+        "lace-flower_vine.n.01",
+        "gerardia.n.01",
+        "spring_beauty.n.01",
+        "easter_daisy.n.01",
+        "ammobium.n.01",
+        "carolina_spring_beauty.n.01",
+        "begonia.n.01",
+        "china_aster.n.01",
+        "dahlia.n.01",
+        "african_violet.n.01",
+        "composite.n.02",
+        "soapwort.n.01",
+        "flower.n.01",
+        "african_daisy.n.02",
+        "blue_daisy.n.01",
+        "cornflower.n.02",
+        "red_valerian.n.01",
+        "silene.n.01",
+        "horn_poppy.n.01",
+        "orchid.n.01",
+        "christmas_bells.n.01",
+        "sweet_sultan.n.02",
+        "calceolaria.n.01",
+        "four_o'clock.n.01",
+        "cape_marigold.n.01",
+        "wandflower.n.01",
+        "wallflower.n.02",
+        "cosmos.n.02",
+        "aster.n.01",
+        "centaury.n.01",
+        "verbena.n.01",
+        "catananche.n.01",
+        "spathiphyllum.n.01",
+        "cyclamen.n.01",
+        "mexican_sunflower.n.01",
+        "portulaca.n.01",
+        "billy_buttons.n.01",
+        "scorpionweed.n.01",
+        "cotton_rose.n.02",
+        "bartonia.n.01",
+        "african_daisy.n.01",
+        "african_daisy.n.03",
+        "umbrellawort.n.01",
+        "bellwort.n.01",
+        "bush_violet.n.01",
+        "tuberose.n.01",
+        "swan_river_daisy.n.01",
+        "marigold.n.01",
+        "daisy.n.01",
+        "corydalis.n.01",
+        "western_wall_flower.n.01",
+        "coral_drops.n.01",
+        "sandwort.n.01",
+        "ursinia.n.01",
+        "scabious.n.01",
+        "achimenes.n.01",
+        "wallflower.n.01",
+        "stock.n.12",
+        "coneflower.n.01",
+        "stokes'_aster.n.01",
+        "prairie_rocket.n.02",
+        "sunflower.n.01",
+        "tidytips.n.01",
+        "cineraria.n.01",
+        "gazania.n.01",
+        "sandwort.n.02",
+        "snapdragon.n.01",
+        "blue-eyed_african_daisy.n.01",
+        "xeranthemum.n.01",
+        "toadflax.n.01",
+        "white-topped_aster.n.01",
+        "blazing_star.n.01",
+        "valerian.n.01",
+        "sweet_sultan.n.03",
+        "columbine.n.01",
+        "rocket_larkspur.n.01",
+        "brass_buttons.n.01",
+        "nigella.n.01",
+        "painted_daisy.n.01",
+        "calla_lily.n.01",
+        "sowbread.n.01",
+        "butterfly_flower.n.01",
+        "scarlet_musk_flower.n.01",
+        "texas_star.n.02",
+        "malcolm_stock.n.01",
+        "virginia_spring_beauty.n.01",
+        "cowherb.n.01",
+        "damask_violet.n.01",
+        "heliophila.n.01",
+        "kingfisher_daisy.n.01",
+        "delphinium.n.01",
+        "woodland_star.n.01",
+        "schizopetalon.n.01",
+        "sweet_alyssum.n.01",
+        "shortia.n.01",
+        "pink.n.02",
+        "virginian_stock.n.01",
+        "fig_marigold.n.01",
+        "petunia.n.01",
+        "commelina.n.01",
+        "anemone.n.01",
+        "baby's_breath.n.01",
+        "zinnia.n.01",
+        "mistflower.n.01",
+        "candytuft.n.01",
+        "prairie_rocket.n.01",
+        "chrysanthemum.n.02",
+        "peony.n.01",
+        "oxeye_daisy.n.02"
+    ],
+    "/m/0ccs93": [
+        "fink.n.01"
+    ],
+    "/m/0cd4d": [
+        "cheetah.n.01"
+    ],
+    "/m/0cdl1": [
+        "corozo.n.01",
+        "lady_palm.n.01",
+        "palm.n.03",
+        "coconut.n.03",
+        "fishtail_palm.n.01",
+        "cabbage_palm.n.02",
+        "fan_palm.n.01",
+        "cabbage_palm.n.04",
+        "feather_palm.n.01",
+        "nipa_palm.n.01",
+        "raffia_palm.n.01",
+        "royal_palm.n.01",
+        "sago_palm.n.01",
+        "calamus.n.01",
+        "cabbage_palm.n.03"
+    ],
+    "/m/0cdn1": [
+        "cheeseburger.n.01",
+        "hamburger.n.01"
+    ],
+    "/m/0cffdh": [
+        "maple.n.01",
+        "bird's-eye_maple.n.01"
+    ],
+    "/m/0cgh4": [
+        "firetrap.n.01",
+        "planetarium.n.01",
+        "center.n.03",
+        "medical_building.n.01",
+        "feedlot.n.01",
+        "morgue.n.01",
+        "ruin.n.02",
+        "packinghouse.n.01",
+        "rest_house.n.01",
+        "aviary.n.01",
+        "farm_building.n.01",
+        "outbuilding.n.01",
+        "presbytery.n.01",
+        "government_building.n.01",
+        "greenhouse.n.01",
+        "theater.n.01",
+        "hotel-casino.n.02",
+        "whorehouse.n.01",
+        "tavern.n.01",
+        "gazebo.n.01",
+        "ministry.n.02",
+        "hall.n.12",
+        "bowling_alley.n.01",
+        "telecom_hotel.n.01",
+        "skyscraper.n.01",
+        "rotunda.n.01",
+        "hotel.n.01",
+        "office_building.n.01",
+        "chapterhouse.n.01",
+        "building.n.01",
+        "gambling_house.n.01",
+        "hall_of_fame.n.01",
+        "house.n.12",
+        "temple.n.03",
+        "rink.n.01",
+        "abattoir.n.01",
+        "shooting_gallery.n.01",
+        "clubhouse.n.01",
+        "library.n.05",
+        "observatory.n.01",
+        "school.n.02",
+        "hall.n.13",
+        "house.n.01",
+        "bathhouse.n.01",
+        "opium_den.n.01",
+        "dormitory.n.01",
+        "place_of_worship.n.01",
+        "student_union.n.01",
+        "restaurant.n.01",
+        "architecture.n.01",
+        "roman_building.n.01",
+        "apartment_building.n.01",
+        "signal_box.n.01"
+    ],
+    "/m/0ch_cf": [
+        "game_fish.n.01",
+        "cartilaginous_fish.n.01",
+        "spawner.n.01",
+        "bottom_lurkers.n.01",
+        "bony_fish.n.01",
+        "rough_fish.n.01",
+        "fish.n.01",
+        "bottom-feeder.n.02",
+        "fingerling.n.01",
+        "young_fish.n.01",
+        "food_fish.n.01",
+        "mouthbreeder.n.01",
+        "northern_snakehead.n.01",
+        "climbing_perch.n.01"
+    ],
+    "/m/0cjq5": [
+        "lobster.n.01",
+        "lobster_tail.n.01",
+        "european_lobster.n.01",
+        "norwegian_lobster.n.01",
+        "american_lobster.n.01"
+    ],
+    "/m/0cjs7": [
+        "asparagus.n.01"
+    ],
+    "/m/0c_jw": [
+        "table.n.02",
+        "lamp.n.02",
+        "lawn_furniture.n.01",
+        "nest.n.05",
+        "wall_unit.n.01",
+        "wardrobe.n.01",
+        "fitment.n.01",
+        "sectional.n.01",
+        "table.n.03",
+        "bedroom_furniture.n.01",
+        "cabinet.n.01",
+        "etagere.n.01",
+        "seat.n.03",
+        "hallstand.n.01",
+        "dining-room_furniture.n.01",
+        "baby_bed.n.01",
+        "chest_of_drawers.n.01",
+        "bookcase.n.01",
+        "sleeper.n.07",
+        "washstand.n.01",
+        "furniture.n.01",
+        "buffet.n.01",
+        "office_furniture.n.01",
+        "sheraton.n.01",
+        "bedstead.n.01"
+    ],
+    "/m/0cl4p": [
+        "old_world_porcupine.n.01",
+        "new_world_porcupine.n.01",
+        "porcupine.n.01"
+    ],
+    "/m/0cmf2": [
+        "biplane.n.01",
+        "jet.n.01",
+        "tanker_plane.n.01",
+        "delta_wing.n.01",
+        "propeller_plane.n.01",
+        "monoplane.n.01",
+        "multiengine_airplane.n.01",
+        "reconnaissance_plane.n.01",
+        "airplane.n.01",
+        "amphibian.n.02",
+        "hangar_queen.n.01",
+        "fighter.n.02",
+        "airliner.n.01",
+        "ski-plane.n.01",
+        "seaplane.n.01",
+        "bomber.n.01"
+    ],
+    "/m/0cmx8": [
+        "dessert_spoon.n.01",
+        "soupspoon.n.01",
+        "runcible_spoon.n.01",
+        "tea_maker.n.01",
+        "teaspoon.n.02",
+        "sugar_spoon.n.01",
+        "spoon.n.01",
+        "tablespoon.n.02",
+        "wooden_spoon.n.02"
+    ],
+    "/m/0cn6p": [
+        "otter.n.01"
+    ],
+    "/m/0cnyhnx": [
+        "bullock.n.01",
+        "bull.n.01"
+    ],
+    "/m/0_cp5": [
+        "japanese_oyster.n.01",
+        "virginia_oyster.n.01",
+        "bluepoint.n.02",
+        "pearl_oyster.n.01",
+        "seed_oyster.n.01",
+        "window_oyster.n.01",
+        "oyster.n.01",
+        "saddle_oyster.n.01"
+    ],
+    "/m/0cqn2": [
+        "horizontal_bar.n.01"
+    ],
+    "/m/0crjs": [
+        "convenience_store.n.01"
+    ],
+    "/m/0ct4f": [
+        "stink_bomb.n.01",
+        "chemical_bomb.n.01",
+        "bombshell.n.03",
+        "grenade.n.01",
+        "car_bomb.n.01",
+        "cruise_missile.n.01",
+        "bomb.n.01",
+        "thermobaric_bomb.n.01",
+        "megaton_bomb.n.01",
+        "penetration_bomb.n.01",
+        "dumb_bomb.n.01",
+        "remote-control_bomb.n.01",
+        "time_bomb.n.02",
+        "fragmentation_bomb.n.01",
+        "microwave_bomb.n.01",
+        "briefcase_bomb.n.01",
+        "gas_shell.n.01",
+        "general-purpose_bomb.n.01",
+        "plastic_bomb.n.01",
+        "incendiary_bomb.n.01",
+        "letter_bomb.n.01",
+        "smart_bomb.n.01",
+        "hydrogen_bomb.n.01",
+        "atom_bomb.n.01",
+        "depth_charge.n.01",
+        "balloon_bomb.n.01",
+        "cluster_bomb.n.01",
+        "bomblet.n.01",
+        "pipe_bomb.n.01",
+        "smoke_bomb.n.01"
+    ],
+    "/m/0cvnqh": [
+        "prie-dieu.n.01",
+        "window_seat.n.01",
+        "park_bench.n.01",
+        "flat_bench.n.01",
+        "settle.n.01",
+        "bench.n.01",
+        "penalty_box.n.01",
+        "banquette.n.01",
+        "pew.n.01"
+    ],
+    "/m/0cxn2": [
+        "ice_cream.n.01",
+        "tutti-frutti.n.01",
+        "vanilla_ice_cream.n.01",
+        "chocolate_ice_cream.n.01",
+        "peach_ice_cream.n.01",
+        "neapolitan_ice_cream.n.01",
+        "strawberry_ice_cream.n.01"
+    ],
+    "/m/0cydv": [
+        "woolly_bear.n.01",
+        "corn_borer.n.01",
+        "webworm.n.01",
+        "bollworm.n.01",
+        "cankerworm.n.01",
+        "tussock_caterpillar.n.01",
+        "beet_armyworm.n.01",
+        "measuring_worm.n.01",
+        "tent_caterpillar.n.01",
+        "lappet_caterpillar.n.01",
+        "tobacco_hornworm.n.01",
+        "cabbageworm.n.01",
+        "caterpillar.n.01",
+        "armyworm.n.01",
+        "fall_armyworm.n.01",
+        "silkworm.n.01",
+        "tomato_hornworm.n.01",
+        "cutworm.n.01",
+        "silkworm.n.02",
+        "potato_tuberworm.n.01"
+    ],
+    "/m/0cyf8": [
+        "lycaenid.n.01",
+        "pierid.n.01",
+        "ringlet.n.04",
+        "butterfly.n.01",
+        "sulphur_butterfly.n.01",
+        "danaid.n.01",
+        "nymphalid.n.01"
+    ],
+    "/m/0cyfs": [
+        "drogue_parachute.n.01",
+        "parasail.n.01",
+        "parachute.n.01",
+        "drogue.n.04"
+    ],
+    "/m/0cyhj_": [
+        "orange.n.01",
+        "temple_orange.n.02",
+        "bitter_orange.n.02",
+        "sweet_orange.n.01"
+    ],
+    "/m/0czz2": [
+        "saiga.n.01",
+        "mountain_nyala.n.01",
+        "puku.n.01",
+        "dik-dik.n.01",
+        "blackbuck.n.01",
+        "gnu.n.01",
+        "harnessed_antelope.n.01",
+        "antelope.n.01",
+        "addax.n.01",
+        "waterbuck.n.01",
+        "impala.n.01",
+        "gazelle.n.01",
+        "eland.n.01",
+        "steenbok.n.01",
+        "nilgai.n.01",
+        "sable_antelope.n.01",
+        "hartebeest.n.01",
+        "sassaby.n.01",
+        "kudu.n.01",
+        "bongo.n.02",
+        "oryx.n.01",
+        "gerenuk.n.01"
+    ],
+    "/m/0d20w4": [
+        "beaker.n.01"
+    ],
+    "/m/0d_2m": [
+        "moth.n.01",
+        "butterfly.n.01",
+        "lepidopterous_insect.n.01"
+    ],
+    "/m/0d4v4": [
+        "window.n.01",
+        "casement_window.n.01",
+        "stained-glass_window.n.01",
+        "display_window.n.01",
+        "louvered_window.n.01",
+        "rose_window.n.01",
+        "fanlight.n.03",
+        "lancet_window.n.01",
+        "pivoting_window.n.01",
+        "bay_window.n.02",
+        "sliding_window.n.01",
+        "clerestory.n.01",
+        "oeil_de_boeuf.n.01",
+        "porthole.n.01",
+        "double_glazing.n.01",
+        "sash_window.n.01",
+        "skylight.n.01",
+        "storm_window.n.01",
+        "dormer.n.01",
+        "picture_window.n.01",
+        "dormer_window.n.01",
+        "double-hung_window.n.01",
+        "transom.n.01"
+    ],
+    "/m/0d4w1": [
+        "safe.n.02",
+        "broom_closet.n.01",
+        "airing_cupboard.n.01",
+        "supply_closet.n.01",
+        "cupboard.n.01"
+    ],
+    "/m/0d5gx": [
+        "palace.n.01"
+    ],
+    "/m/0d8zb": [
+        "portuguese_man-of-war.n.01"
+    ],
+    "/m/0dbvp": [
+        "greylag.n.01",
+        "honker.n.03",
+        "goose.n.01",
+        "brant.n.01",
+        "barnacle_goose.n.01",
+        "gander.n.01",
+        "blue_goose.n.01",
+        "chinese_goose.n.01",
+        "gosling.n.01"
+    ],
+    "/m/0dbzx": [
+        "mule.n.01"
+    ],
+    "/m/0dftk": [
+        "pen.n.05",
+        "coscoroba.n.01",
+        "tundra_swan.n.01",
+        "swan.n.01",
+        "cob.n.04",
+        "whooper.n.02",
+        "trumpeter.n.04",
+        "mute_swan.n.01",
+        "cygnet.n.01",
+        "black_swan.n.01"
+    ],
+    "/m/0dj6p": [
+        "peach.n.01"
+    ],
+    "/m/0djtd": [
+        "copra.n.01",
+        "coconut.n.01"
+    ],
+    "/m/0dkzw": [
+        "seat_belt.n.01"
+    ],
+    "/m/0dq75": [
+        "raccoon.n.01"
+    ],
+    "/m/0_dqb": [
+        "ripping_chisel.n.01",
+        "firmer_chisel.n.01",
+        "chisel.n.01",
+        "wood_chisel.n.01",
+        "cold_chisel.n.01",
+        "burin.n.01",
+        "drove.n.03"
+    ],
+    "/m/0dt3t": [
+        "salad_fork.n.01",
+        "fork.n.01",
+        "carving_fork.n.01",
+        "toasting_fork.n.01",
+        "tablefork.n.01"
+    ],
+    "/m/0dtln": [
+        "hurricane_lamp.n.01",
+        "electric_lamp.n.01",
+        "sodium-vapor_lamp.n.01",
+        "aladdin's_lamp.n.01",
+        "fluorescent_lamp.n.01",
+        "flash.n.10",
+        "lamp.n.01",
+        "spirit_lamp.n.01",
+        "taillight.n.01",
+        "limelight.n.02",
+        "spotlight.n.02",
+        "streetlight.n.01",
+        "oil_lamp.n.01",
+        "discharge_lamp.n.01",
+        "lantern.n.01",
+        "gas_lamp.n.01",
+        "candle.n.01",
+        "neon_lamp.n.01"
+    ],
+    "/m/0dv5r": [
+        "polaroid_camera.n.01",
+        "candid_camera.n.01",
+        "flash_camera.n.01",
+        "camera.n.01",
+        "portrait_camera.n.01",
+        "motion-picture_camera.n.01",
+        "reflex_camera.n.01",
+        "point-and-shoot_camera.n.01",
+        "digital_camera.n.01",
+        "box_camera.n.01"
+    ],
+    "/m/0dv77": [
+        "pumpkin.n.01",
+        "summer_squash.n.01",
+        "squash.n.01",
+        "winter_squash.n.01"
+    ],
+    "/m/0dv9c": [
+        "racket.n.01"
+    ],
+    "/m/0dzct": [
+        "face.n.01",
+        "countenance.n.03"
+    ],
+    "/m/0dzf4": [
+        "arm.n.01"
+    ],
+    "/m/0f4s2w": [
+        "leek.n.02",
+        "plantain.n.03",
+        "bamboo_shoot.n.01",
+        "cardoon.n.02",
+        "pieplant.n.01",
+        "artichoke_heart.n.01",
+        "fennel.n.02",
+        "truffle.n.02",
+        "artichoke.n.02",
+        "raw_vegetable.n.01",
+        "legume.n.03",
+        "cucumber.n.02",
+        "potherb.n.01",
+        "pumpkin.n.02",
+        "root_vegetable.n.01",
+        "mushroom.n.05",
+        "gumbo.n.03",
+        "solanaceous_vegetable.n.01",
+        "celery.n.02",
+        "vegetable.n.01",
+        "asparagus.n.02",
+        "cruciferous_vegetable.n.01",
+        "squash.n.02",
+        "onion.n.03",
+        "julienne.n.01",
+        "greens.n.01"
+    ],
+    "/m/0f571": [
+        "diaper.n.01"
+    ],
+    "/m/0f6nr": [
+        "unicycle.n.01"
+    ],
+    "/m/0f6wt": [
+        "gyrfalcon.n.01",
+        "kestrel.n.02",
+        "falcon.n.01",
+        "pigeon_hawk.n.01",
+        "sparrow_hawk.n.01",
+        "peregrine.n.01",
+        "caracara.n.01",
+        "hobby.n.03"
+    ],
+    "/m/0f8s22": [
+        "handbell.n.01",
+        "chime.n.01",
+        "carillon.n.01"
+    ],
+    "/m/0f9_l": [
+        "snail.n.01",
+        "garden_snail.n.01",
+        "scorpion_shell.n.01",
+        "edible_snail.n.01"
+    ],
+    "/m/0fbdv": [
+        "crab.n.05",
+        "crayfish.n.02",
+        "lobster.n.01",
+        "scallop.n.02",
+        "huitre.n.01",
+        "clam.n.03",
+        "limpet.n.01",
+        "spiny_lobster.n.01",
+        "cockle.n.01",
+        "mussel.n.01",
+        "shellfish.n.01"
+    ],
+    "/m/0fbw6": [
+        "kale.n.03",
+        "head_cabbage.n.02",
+        "chinese_cabbage.n.02",
+        "cabbage.n.01",
+        "bok_choy.n.02"
+    ],
+    "/m/0fj52s": [
+        "carrot.n.01"
+    ],
+    "/m/0fldg": [
+        "mango.n.01"
+    ],
+    "/m/0fly7": [
+        "jean.n.01",
+        "levi's.n.01"
+    ],
+    "/m/0fm3zh": [
+        "pot.n.04",
+        "planter.n.03"
+    ],
+    "/m/0fp6w": [
+        "pineapple.n.01"
+    ],
+    "/m/0fqfqc": [
+        "drawer.n.01"
+    ],
+    "/m/0fqt361": [
+        "campstool.n.01",
+        "milking_stool.n.01",
+        "footstool.n.01",
+        "step_stool.n.01",
+        "taboret.n.01",
+        "music_stool.n.01",
+        "cutty_stool.n.01",
+        "stool.n.01"
+    ],
+    "/m/0frqm": [
+        "envelope.n.01",
+        "window_envelope.n.01"
+    ],
+    "/m/0fszt": [
+        "tablet.n.03",
+        "cake.n.01"
+    ],
+    "/m/0ft9s": [
+        "dragonfly.n.01"
+    ],
+    "/m/0ftb8": [
+        "common_sunflower.n.01",
+        "swamp_sunflower.n.01",
+        "showy_sunflower.n.01",
+        "giant_sunflower.n.01",
+        "maximilian's_sunflower.n.01",
+        "sunflower.n.01",
+        "prairie_sunflower.n.01",
+        "jerusalem_artichoke.n.02"
+    ],
+    "/m/0fx9l": [
+        "microwave.n.02"
+    ],
+    "/m/0fz0h": [
+        "honeycomb.n.01"
+    ],
+    "/m/0gd2v": [
+        "aquatic_mammal.n.01",
+        "sea_cow.n.01",
+        "cetacean.n.01",
+        "pinniped_mammal.n.01"
+    ],
+    "/m/0gd36": [
+        "sea_lion.n.01",
+        "south_american_sea_lion.n.01",
+        "steller_sea_lion.n.01",
+        "california_sea_lion.n.01",
+        "australian_sea_lion.n.01"
+    ],
+    "/m/0gj37": [
+        "vedalia.n.01",
+        "two-spotted_ladybug.n.01",
+        "ladybug.n.01",
+        "mexican_bean_beetle.n.01",
+        "hippodamia_convergens.n.01"
+    ],
+    "/m/0gjbg72": [
+        "overmantel.n.01",
+        "bookshelf.n.01",
+        "mantel.n.01",
+        "hob.n.04",
+        "shelf.n.01"
+    ],
+    "/m/0gjkl": [
+        "watch.n.01",
+        "stem-winder.n.01",
+        "wristwatch.n.01",
+        "analog_watch.n.01",
+        "pocket_watch.n.01",
+        "hunter.n.04",
+        "digital_watch.n.01",
+        "pendulum_watch.n.01"
+    ],
+    "/m/0gm28": [
+        "peanut_bar.n.01",
+        "truffle.n.03",
+        "candy_cane.n.01",
+        "dragee.n.02",
+        "rock_candy.n.01",
+        "lozenge.n.01",
+        "brittle.n.01",
+        "licorice.n.02",
+        "hard_candy.n.01",
+        "honey_crisp.n.01",
+        "jelly_bean.n.01",
+        "dragee.n.01",
+        "easter_egg.n.01",
+        "nougat_bar.n.01",
+        "gumdrop.n.01",
+        "carob_bar.n.01",
+        "bonbon.n.01",
+        "horehound.n.02",
+        "kiss.n.03",
+        "patty.n.03",
+        "popcorn_ball.n.01",
+        "cotton_candy.n.01",
+        "sugarplum.n.01",
+        "caramel.n.01",
+        "rock_candy.n.02",
+        "butterscotch.n.01",
+        "fudge.n.01",
+        "life_saver.n.01",
+        "sugar_candy.n.01",
+        "marzipan.n.01",
+        "turkish_delight.n.01",
+        "praline.n.01",
+        "marshmallow.n.01",
+        "mint.n.05",
+        "candy_bar.n.01",
+        "brandyball.n.01",
+        "lollipop.n.02",
+        "taffy.n.01",
+        "fondant.n.01",
+        "nut_bar.n.01",
+        "candy.n.01",
+        "nougat.n.01",
+        "candy_corn.n.01"
+    ],
+    "/m/0grw1": [
+        "fruit_salad.n.01",
+        "tabbouleh.n.01",
+        "salad.n.01",
+        "chicken_salad.n.01",
+        "tuna_fish_salad.n.01",
+        "pasta_salad.n.01",
+        "salmagundi.n.02",
+        "tossed_salad.n.01",
+        "crab_louis.n.01",
+        "salad_nicoise.n.01",
+        "molded_salad.n.01",
+        "herring_salad.n.01",
+        "coleslaw.n.01",
+        "potato_salad.n.01"
+    ],
+    "/m/0gv1x": [
+        "cockatoo.n.01",
+        "cockateel.n.01",
+        "kea.n.01",
+        "african_grey.n.01",
+        "parrot.n.01",
+        "amazon.n.04",
+        "lory.n.01",
+        "parakeet.n.01",
+        "macaw.n.01",
+        "poll.n.04",
+        "lovebird.n.02",
+        "popinjay.n.02"
+    ],
+    "/m/0gxl3": [
+        "peacekeeper.n.03",
+        "revolver.n.01",
+        "saturday_night_special.n.01",
+        "gat.n.01",
+        "automatic_pistol.n.01",
+        "pistol.n.01",
+        "horse_pistol.n.01",
+        "forty-five.n.01",
+        "semiautomatic_pistol.n.01",
+        "zip_gun.n.01",
+        "derringer.n.01",
+        "very_pistol.n.01"
+    ],
+    "/m/0h23m": [
+        "english_sparrow.n.01",
+        "sparrow.n.01",
+        "tree_sparrow.n.01"
+    ],
+    "/m/0h2r6": [
+        "avant-garde.n.01"
+    ],
+    "/m/0h8jyh6": [
+        "bomber.n.03"
+    ],
+    "/m/0h8kx63": [
+        "spice_rack.n.01"
+    ],
+    "/m/0h8l4fh": [
+        "light_bulb.n.01"
+    ],
+    "/m/0h8lkj8": [
+        "speakerphone.n.01",
+        "pay-phone.n.01",
+        "dial_telephone.n.01",
+        "desk_phone.n.01",
+        "radiotelephone.n.02",
+        "telephone.n.01",
+        "extension.n.10",
+        "handset.n.01"
+    ],
+    "/m/0h8mhzd": [
+        "livery.n.01",
+        "military_uniform.n.01",
+        "jump_suit.n.02",
+        "uniform.n.01"
+    ],
+    "/m/0h8my_4": [
+        "tennis_racket.n.01"
+    ],
+    "/m/0h8mzrc": [
+        "wall_clock.n.01"
+    ],
+    "/m/0h8n27j": [
+        "cheeseboard.n.01",
+        "turntable.n.02",
+        "salver.n.01",
+        "icetray.n.01",
+        "tea_tray.n.01",
+        "tray.n.01",
+        "inkstand.n.02",
+        "cafeteria_tray.n.01",
+        "alms_dish.n.01"
+    ],
+    "/m/0h8n5zk": [
+        "refectory_table.n.01",
+        "triclinium.n.02",
+        "dining-room_table.n.01",
+        "dining_table.n.01",
+        "high_table.n.01",
+        "dinner_table.n.01"
+    ],
+    "/m/0h8n6f9": [
+        "kennel.n.01"
+    ],
+    "/m/0h8n6ft": [
+        "stand.n.02",
+        "cabstand.n.01"
+    ],
+    "/m/0h8nm9j": [
+        "kennel.n.01"
+    ],
+    "/m/0h8nr_l": [
+        "computer_accessory.n.01",
+        "accessory.n.02",
+        "auto_accessory.n.01",
+        "fixings.n.02",
+        "fitting.n.02"
+    ],
+    "/m/0h8nsvg": [
+        "facial_tissue.n.01"
+    ],
+    "/m/0h8ntjv": [
+        "pressure_cooker.n.01"
+    ],
+    "/m/0h99cwc": [
+        "toaster_oven.n.01",
+        "waffle_iron.n.01",
+        "disposal.n.04",
+        "coffee_maker.n.01",
+        "food_processor.n.01",
+        "microwave.n.02",
+        "oven.n.01",
+        "ice_maker.n.01",
+        "stove.n.01",
+        "hot_plate.n.01",
+        "toaster.n.02",
+        "kitchen_appliance.n.01"
+    ],
+    "/m/0h9mv": [
+        "pneumatic_tire.n.01",
+        "car_tire.n.01",
+        "wagon_tire.n.01",
+        "tire.n.01"
+    ],
+    "/m/0hdln": [
+        "basileus.n.01",
+        "emir.n.01",
+        "caliph.n.01",
+        "tudor.n.03",
+        "tyrant.n.02",
+        "hakim.n.01",
+        "puppet_ruler.n.01",
+        "overlord.n.01",
+        "khan.n.01",
+        "regent.n.02",
+        "mogul.n.02",
+        "dynast.n.01",
+        "hanoverian.n.01",
+        "sultan.n.01",
+        "dictator.n.02",
+        "sovereign.n.01",
+        "ruler.n.01",
+        "bourbon.n.03",
+        "oligarch.n.01",
+        "pharaoh.n.01",
+        "stuart.n.02",
+        "inca.n.01",
+        "sheik.n.01",
+        "ethnarch.n.01"
+    ],
+    "/m/0hf58v5": [
+        "hand_luggage.n.01",
+        "hatbox.n.01",
+        "trunk.n.02",
+        "satchel.n.01",
+        "dressing_case.n.01",
+        "baggage.n.01",
+        "imperial.n.02",
+        "bag.n.06"
+    ],
+    "/m/0hg7b": [
+        "bug.n.03",
+        "directional_microphone.n.01",
+        "spike_mike.n.01",
+        "condenser_microphone.n.01",
+        "crystal_microphone.n.01",
+        "microphone.n.01"
+    ],
+    "/m/0hkxq": [
+        "broccoli.n.01"
+    ],
+    "/m/0hnnb": [
+        "umbrella.n.01",
+        "gamp.n.01"
+    ],
+    "/m/0hnyx": [
+        "pastry.n.01",
+        "puff_paste.n.01"
+    ],
+    "/m/0hqkz": [
+        "grapefruit.n.01"
+    ],
+    "/m/0j496": [
+        "court_plaster.n.01",
+        "plaster.n.05"
+    ],
+    "/m/0jbk": [
+        "fictional_animal.n.01",
+        "captive.n.02",
+        "domestic_animal.n.01",
+        "range_animal.n.01",
+        "stayer.n.01",
+        "female.n.01",
+        "insectivore.n.02",
+        "feeder.n.06",
+        "metazoan.n.01",
+        "larva.n.01",
+        "darter.n.02",
+        "molter.n.01",
+        "stunt.n.02",
+        "migrator.n.02",
+        "varmint.n.02",
+        "pet.n.01",
+        "adult.n.02",
+        "racer.n.03",
+        "invertebrate.n.01",
+        "giant.n.01",
+        "biped.n.01",
+        "critter.n.01",
+        "herbivore.n.01",
+        "poikilotherm.n.01",
+        "acrodont.n.01",
+        "hexapod.n.01",
+        "pest.n.04",
+        "marine_animal.n.01",
+        "animal.n.01",
+        "peeper.n.03",
+        "pleurodont.n.01",
+        "young.n.01",
+        "prey.n.02",
+        "homeotherm.n.01",
+        "scavenger.n.03",
+        "omnivore.n.02",
+        "game.n.04",
+        "male.n.01",
+        "chordate.n.01",
+        "mate.n.03",
+        "survivor.n.03",
+        "work_animal.n.01",
+        "mutant.n.02",
+        "predator.n.02",
+        "thoroughbred.n.03",
+        "zooplankton.n.01",
+        "embryo.n.02",
+        "creepy-crawly.n.01"
+    ],
+    "/m/0jg57": [
+        "sweet_pepper.n.01"
+    ],
+    "/m/0jly1": [
+        "turkey_cock.n.01",
+        "turkey.n.01"
+    ],
+    "/m/0jqgx": [
+        "leopard_lily.n.01",
+        "turk's-cap.n.02",
+        "tiger_lily.n.02",
+        "wood_lily.n.02",
+        "tiger_lily.n.01",
+        "columbia_tiger_lily.n.01",
+        "lily.n.01",
+        "coast_lily.n.01",
+        "easter_lily.n.01",
+        "turk's-cap.n.01",
+        "canada_lily.n.01",
+        "mountain_lily.n.01",
+        "michigan_lily.n.01",
+        "madonna_lily.n.01"
+    ],
+    "/m/0jwn_": [
+        "pomegranate.n.01"
+    ],
+    "/m/0jy4k": [
+        "fairy_ring.n.01",
+        "ring.n.02"
+    ],
+    "/m/0jyfg": [
+        "spectacles.n.01",
+        "sunglasses.n.01",
+        "bifocals.n.01",
+        "pince-nez.n.01",
+        "goggles.n.01",
+        "lorgnette.n.01"
+    ],
+    "/m/0k0pj": [
+        "conk.n.01",
+        "pug_nose.n.01",
+        "snout.n.03",
+        "proboscis.n.01",
+        "beak.n.04",
+        "roman_nose.n.01",
+        "nose.n.01",
+        "hawk_nose.n.01",
+        "snout.n.01"
+    ],
+    "/m/0k1tl": [
+        "sharpie.n.03",
+        "ballpoint.n.01",
+        "pen.n.01",
+        "felt-tip_pen.n.01",
+        "fountain_pen.n.01",
+        "quill.n.01"
+    ],
+    "/m/0_k2": [
+        "wood_ant.n.01",
+        "slave-making_ant.n.01",
+        "fire_ant.n.01",
+        "slave_ant.n.01",
+        "army_ant.n.01",
+        "ant.n.01",
+        "pharaoh_ant.n.01",
+        "carpenter_ant.n.01",
+        "little_black_ant.n.01",
+        "bulldog_ant.n.01"
+    ],
+    "/m/0k4j": [
+        "racer.n.02",
+        "minicar.n.01",
+        "cruiser.n.01",
+        "minivan.n.01",
+        "used-car.n.01",
+        "gas_guzzler.n.01",
+        "beach_wagon.n.01",
+        "sedan.n.01",
+        "convertible.n.01",
+        "subcompact.n.01",
+        "car.n.01",
+        "sports_car.n.01",
+        "hot_rod.n.01",
+        "jeep.n.01",
+        "pace_car.n.01",
+        "loaner.n.02",
+        "coupe.n.01",
+        "hatchback.n.01",
+        "limousine.n.01",
+        "sport_utility.n.01",
+        "touring_car.n.01",
+        "cab.n.03",
+        "horseless_carriage.n.01",
+        "compact.n.03",
+        "stock_car.n.01",
+        "bus.n.04",
+        "model_t.n.01",
+        "electric.n.01",
+        "stanley_steamer.n.01",
+        "roadster.n.01",
+        "hardtop.n.01",
+        "ambulance.n.01"
+    ],
+    "/m/0k5j": [
+        "heavier-than-air_craft.n.01",
+        "bogy.n.01",
+        "aircraft.n.01",
+        "stealth_aircraft.n.01",
+        "cruise_missile.n.01",
+        "lighter-than-air_craft.n.01"
+    ],
+    "/m/0k65p": [
+        "right.n.05",
+        "hand.n.01",
+        "fist.n.01",
+        "left.n.03",
+        "hooks.n.01"
+    ],
+    "/m/0km7z": [
+        "rotter.n.01"
+    ],
+    "/m/0kmg4": [
+        "teddy.n.01"
+    ],
+    "/m/0kpqd": [
+        "watermelon.n.01"
+    ],
+    "/m/0kpt_": [
+        "cantaloupe.n.01"
+    ],
+    "/m/0ky7b": [
+        "dishwasher.n.01"
+    ],
+    "/m/0l14j_": [
+        "flute.n.01",
+        "nose_flute.n.01",
+        "fife.n.01",
+        "piccolo.n.01"
+    ],
+    "/m/0l3ms": [
+        "balance_beam.n.01"
+    ],
+    "/m/0l515": [
+        "bomber.n.03",
+        "club_sandwich.n.01",
+        "ham_sandwich.n.01",
+        "tunaburger.n.01",
+        "western.n.02",
+        "wrap.n.02",
+        "sloppy_joe.n.01",
+        "butty.n.01",
+        "hotdog.n.02",
+        "hamburger.n.01",
+        "reuben.n.02",
+        "chicken_sandwich.n.01",
+        "gyro.n.01",
+        "sandwich.n.01",
+        "open-face_sandwich.n.01",
+        "bacon-lettuce-tomato_sandwich.n.01"
+    ],
+    "/m/0ll1f78": [
+        "runt.n.01"
+    ],
+    "/m/0llzx": [
+        "sewing_machine.n.01",
+        "serger.n.01"
+    ],
+    "/m/0lt4_": [
+        "binoculars.n.01"
+    ],
+    "/m/0m53l": [
+        "skate.n.01",
+        "in-line_skate.n.01",
+        "ice_skate.n.01",
+        "roller_skate.n.01"
+    ],
+    "/m/0mcx2": [
+        "video_ipod.n.01",
+        "ipod.n.01"
+    ],
+    "/m/0mkg": [
+        "accordion.n.01"
+    ],
+    "/m/0mw_6": [
+        "willow.n.01",
+        "arroyo_willow.n.01",
+        "crack_willow.n.01",
+        "dwarf_grey_willow.n.01",
+        "sallow.n.01",
+        "balsam_willow.n.01",
+        "pussy_willow.n.01",
+        "arctic_willow.n.01",
+        "peachleaf_willow.n.01",
+        "wisconsin_weeping_willow.n.01",
+        "shining_willow.n.01",
+        "sitka_willow.n.01",
+        "osier.n.02",
+        "bay_willow.n.01",
+        "swamp_willow.n.01",
+        "weeping_willow.n.01",
+        "cricket-bat_willow.n.01",
+        "creeping_willow.n.01",
+        "prairie_willow.n.01",
+        "white_willow.n.01",
+        "dwarf_willow.n.01",
+        "silver_willow.n.01",
+        "hoary_willow.n.01",
+        "bearberry_willow.n.01",
+        "grey_willow.n.01"
+    ],
+    "/m/0n28_": [
+        "dungeness_crab.n.02",
+        "stone_crab.n.02",
+        "fiddler_crab.n.01",
+        "jonah_crab.n.01",
+        "hard-shell_crab.n.01",
+        "crab.n.01",
+        "soft-shell_crab.n.02",
+        "king_crab.n.03",
+        "spider_crab.n.01",
+        "pea_crab.n.01",
+        "swimming_crab.n.01",
+        "rock_crab.n.01"
+    ],
+    "/m/0nl46": [
+        "crown.n.01"
+    ],
+    "/m/0nybt": [
+        "atlantic_walrus.n.01",
+        "pacific_walrus.n.01",
+        "walrus.n.01"
+    ],
+    "/m/0p833": [
+        "aroma.n.02",
+        "incense.n.02"
+    ],
+    "/m/0pcr": [
+        "alpaca.n.01"
+    ],
+    "/m/0pg52": [
+        "gypsy_cab.n.01",
+        "minicab.n.01",
+        "cab.n.03"
+    ],
+    "/m/0ph39": [
+        "birchbark_canoe.n.01",
+        "canoe.n.01",
+        "kayak.n.01",
+        "outrigger_canoe.n.01",
+        "dugout_canoe.n.01"
+    ],
+    "/m/0qjjc": [
+        "remote_control.n.01"
+    ],
+    "/m/0qmmr": [
+        "wheelchair.n.01",
+        "bath_chair.n.01",
+        "motorized_wheelchair.n.01"
+    ],
+    "/m/0wdt60w": [
+        "rugby_ball.n.01"
+    ],
+    "/m/0xfy": [
+        "pichiciago.n.01",
+        "peba.n.01",
+        "tatouay.n.01",
+        "peludo.n.01",
+        "armadillo.n.01",
+        "greater_pichiciego.n.01",
+        "apar.n.01",
+        "giant_armadillo.n.01"
+    ],
+    "/m/0xzly": [
+        "maraca.n.01"
+    ],
+    "/m/0zvk5": [
+        "morion.n.01",
+        "basinet.n.01",
+        "pickelhaube.n.01",
+        "helmet.n.01",
+        "heaume.n.01",
+        "armet.n.01",
+        "sallet.n.01",
+        "casque.n.01"
+    ]
+}

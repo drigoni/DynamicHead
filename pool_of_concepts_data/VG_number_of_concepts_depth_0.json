@@ -1,0 +1,4802 @@
+{
+    "yolk": [
+        "egg_yolk.n.01"
+    ],
+    "goal": [
+        "goal.n.01"
+    ],
+    "bathroom": [
+        "bathroom.n.01"
+    ],
+    "macaroni": [
+        "macaroni.n.01"
+    ],
+    "umpire": [
+        "umpire.n.01"
+    ],
+    "toothpick": [
+        "toothpick.n.01"
+    ],
+    "alarm clock": [
+        "alarm_clock.n.01"
+    ],
+    "ceiling fan": [
+        "fan.n.01"
+    ],
+    "photos": [
+        "photograph.n.01"
+    ],
+    "parrot": [
+        "parrot.n.01"
+    ],
+    "tail fin": [
+        "vertical_stabilizer.n.01"
+    ],
+    "birthday cake": [
+        "birthday_cake.n.01"
+    ],
+    "calculator": [
+        "calculator.n.01"
+    ],
+    "catcher": [
+        "catcher.n.01"
+    ],
+    "toilet": [
+        "toilet.n.01"
+    ],
+    "batter": [
+        "batter.n.01"
+    ],
+    "stop sign,stopsign": [
+        "stop.n.05"
+    ],
+    "cone": [
+        "cone.n.01"
+    ],
+    "microwave,microwave oven": [
+        "microwave.n.01"
+    ],
+    "skateboard ramp": [
+        "ramp.n.03"
+    ],
+    "tea": [
+        "tea.n.01"
+    ],
+    "dugout": [
+        "dugout.n.01"
+    ],
+    "products": [
+        "merchandise.n.01"
+    ],
+    "halter": [
+        "halter.n.01"
+    ],
+    "kettle": [
+        "kettle.n.01"
+    ],
+    "kitchen": [
+        "kitchen.n.01"
+    ],
+    "refrigerator,fridge": [
+        "refrigerator.n.01"
+    ],
+    "ostrich": [
+        "ostrich.n.01"
+    ],
+    "bathtub": [
+        "bathtub.n.01"
+    ],
+    "blinds": [
+        "blind.n.01"
+    ],
+    "court": [
+        "court.n.01"
+    ],
+    "urinal": [
+        "urinal.n.01"
+    ],
+    "knee pads": [
+        "knee_pad.n.01"
+    ],
+    "bed": [
+        "bed.n.01"
+    ],
+    "flamingo": [
+        "flamingo.n.01"
+    ],
+    "giraffe": [
+        "giraffe.n.01"
+    ],
+    "helmet": [
+        "helmet.n.01"
+    ],
+    "giraffes": [
+        "giraffe.n.01"
+    ],
+    "tennis court": [
+        "tennis_court.n.01"
+    ],
+    "motorcycle": [
+        "motorcycle.n.01"
+    ],
+    "laptop": [
+        "laptop.n.01"
+    ],
+    "tea pot": [
+        "pot.n.01"
+    ],
+    "horse": [
+        "horse.n.01"
+    ],
+    "television,tv": [
+        "television.n.01"
+    ],
+    "shorts": [
+        "short_pants.n.01"
+    ],
+    "manhole": [
+        "manhole.n.01"
+    ],
+    "dishwasher": [
+        "dishwasher.n.01"
+    ],
+    "jeans": [
+        "jean.n.01"
+    ],
+    "sail": [
+        "sail.n.01"
+    ],
+    "monitor": [
+        "proctor.n.01"
+    ],
+    "man": [
+        "man.n.01"
+    ],
+    "shirt": [
+        "shirt.n.01"
+    ],
+    "car": [
+        "car.n.01"
+    ],
+    "cat": [
+        "cat.n.01"
+    ],
+    "garage door": [
+        "door.n.01"
+    ],
+    "bus": [
+        "bus.n.01"
+    ],
+    "radiator": [
+        "radiator.n.01"
+    ],
+    "tights": [
+        "tights.n.01"
+    ],
+    "sailboat,sail boat": [
+        "sailboat.n.01"
+    ],
+    "racket,racquet": [
+        "racket.n.01"
+    ],
+    "plate": [
+        "home_plate.n.01"
+    ],
+    "rock wall": [
+        "wall.n.05"
+    ],
+    "beach": [
+        "beach.n.01"
+    ],
+    "trolley": [
+        "streetcar.n.01"
+    ],
+    "ocean": [
+        "ocean.n.01"
+    ],
+    "headboard,head board": [
+        "headboard.n.01"
+    ],
+    "tea kettle": [
+        "kettle.n.01"
+    ],
+    "wetsuit": [
+        "wet_suit.n.01"
+    ],
+    "tennis racket,tennis racquet": [
+        "tennis_racket.n.01"
+    ],
+    "sink": [
+        "sink.n.01"
+    ],
+    "train": [
+        "train.n.01"
+    ],
+    "keyboard": [
+        "keyboard.n.01"
+    ],
+    "sky": [
+        "sky.n.01"
+    ],
+    "match": [
+        "match.n.01"
+    ],
+    "train station": [
+        "railway_station.n.01"
+    ],
+    "stereo": [
+        "stereo.n.01"
+    ],
+    "bats": [
+        "bat.n.01"
+    ],
+    "tennis player": [
+        "tennis_player.n.01"
+    ],
+    "toilet brush": [
+        "scrub_brush.n.01"
+    ],
+    "lighter": [
+        "igniter.n.01"
+    ],
+    "pepper shaker": [
+        "pepper_shaker.n.01"
+    ],
+    "gazebo": [
+        "gazebo.n.01"
+    ],
+    "hair dryer": [
+        "hand_blower.n.01"
+    ],
+    "elephant": [
+        "elephant.n.01"
+    ],
+    "toilet seat": [
+        "toilet_seat.n.01"
+    ],
+    "zebra": [
+        "zebra.n.01"
+    ],
+    "skateboard,skate board": [
+        "skateboard.n.01"
+    ],
+    "zebras": [
+        "zebra.n.01"
+    ],
+    "floor lamp": [
+        "floor_lamp.n.01"
+    ],
+    "french fries": [
+        "french_fries.n.01"
+    ],
+    "woman": [
+        "woman.n.01"
+    ],
+    "player": [
+        "player.n.01"
+    ],
+    "tower": [
+        "tower.n.01"
+    ],
+    "bicycle": [
+        "bicycle.n.01"
+    ],
+    "magazines": [
+        "magazine.n.01"
+    ],
+    "christmas tree": [
+        "christmas_bush.n.01"
+    ],
+    "umbrella": [
+        "umbrella.n.01"
+    ],
+    "cow": [
+        "cow.n.01"
+    ],
+    "pants": [
+        "bloomers.n.01"
+    ],
+    "bike": [
+        "motorcycle.n.01"
+    ],
+    "field": [
+        "field.n.01"
+    ],
+    "living room": [
+        "living_room.n.01"
+    ],
+    "latch": [
+        "latch.n.01"
+    ],
+    "bedroom": [
+        "bedroom.n.01"
+    ],
+    "grape": [
+        "grape.n.01"
+    ],
+    "castle": [
+        "palace.n.01"
+    ],
+    "table": [
+        "table.n.01"
+    ],
+    "swan": [
+        "swan.n.01"
+    ],
+    "blender": [
+        "blender.n.01"
+    ],
+    "orange": [
+        "orange.n.01"
+    ],
+    "teddy bear": [
+        "teddy.n.01"
+    ],
+    "net": [
+        "internet.n.01"
+    ],
+    "meter": [
+        "meter.n.01"
+    ],
+    "baseball field": [
+        "ball_field.n.01"
+    ],
+    "runway": [
+        "track.n.09"
+    ],
+    "screen": [
+        "screen.n.01"
+    ],
+    "ski boot": [
+        "ski_boot.n.01"
+    ],
+    "dog": [
+        "dog.n.01"
+    ],
+    "clock": [
+        "clock.n.01"
+    ],
+    "hair": [
+        "hair.n.01"
+    ],
+    "avocado": [
+        "avocado.n.01"
+    ],
+    "highway": [
+        "highway.n.01"
+    ],
+    "skirt": [
+        "skirt.n.01"
+    ],
+    "frisbee": [
+        "frisbee.n.01"
+    ],
+    "parasail": [
+        "parasail.n.01"
+    ],
+    "desk": [
+        "desk.n.01"
+    ],
+    "pizza": [
+        "pizza.n.01"
+    ],
+    "mouse": [
+        "mouse.n.01"
+    ],
+    "sign": [
+        "sign.n.01"
+    ],
+    "shower curtain": [
+        "shower_curtain.n.01"
+    ],
+    "polar bear": [
+        "ice_bear.n.01"
+    ],
+    "airplane": [
+        "airplane.n.01"
+    ],
+    "jersey": [
+        "new_jersey.n.01"
+    ],
+    "reigns": [
+        "reign.n.01"
+    ],
+    "hot dog,hotdog": [
+        "hotdog.n.01"
+    ],
+    "surfboard,surf board": [
+        "surfboard.n.01"
+    ],
+    "couch": [
+        "sofa.n.01"
+    ],
+    "glass": [
+        "glass.n.01"
+    ],
+    "snowboard": [
+        "snowboard.n.01"
+    ],
+    "girl": [
+        "girl.n.01"
+    ],
+    "plane": [
+        "airplane.n.01"
+    ],
+    "elephants": [
+        "elephant.n.01"
+    ],
+    "oven": [
+        "oven.n.01"
+    ],
+    "dirt bike": [
+        "trail_bike.n.01"
+    ],
+    "tail wing": [
+        "wing.n.01"
+    ],
+    "area rug": [
+        "rug.n.01"
+    ],
+    "bear": [
+        "bear.n.01"
+    ],
+    "washer": [
+        "washer.n.01"
+    ],
+    "date": [
+        "date.n.01"
+    ],
+    "bow tie": [
+        "bow_tie.n.01"
+    ],
+    "cows": [
+        "cattle.n.01"
+    ],
+    "fire extinguisher": [
+        "fire_extinguisher.n.01"
+    ],
+    "bamboo": [
+        "bamboo.n.01"
+    ],
+    "wallet": [
+        "wallet.n.01"
+    ],
+    "tail feathers": [
+        "tail_feather.n.01"
+    ],
+    "truck": [
+        "truck.n.01"
+    ],
+    "beach chair": [
+        "deck_chair.n.01"
+    ],
+    "boat": [
+        "boat.n.01"
+    ],
+    "tablet": [
+        "tablet.n.01"
+    ],
+    "ceiling": [
+        "ceiling.n.01"
+    ],
+    "chandelier": [
+        "chandelier.n.01"
+    ],
+    "sheep": [
+        "sheep.n.01"
+    ],
+    "glasses": [
+        "spectacles.n.01"
+    ],
+    "ram": [
+        "random-access_memory.n.01"
+    ],
+    "kite": [
+        "kite.n.01"
+    ],
+    "salad": [
+        "salad.n.01"
+    ],
+    "pillow": [
+        "pillow.n.01"
+    ],
+    "fire hydrant,hydrant": [
+        "water_faucet.n.01"
+    ],
+    "mug": [
+        "mug.n.01"
+    ],
+    "tarmac": [
+        "tarmacadam.n.01"
+    ],
+    "computer": [
+        "computer.n.01"
+    ],
+    "swimsuit": [
+        "swimsuit.n.01"
+    ],
+    "tomato": [
+        "tomato.n.01"
+    ],
+    "tire": [
+        "tire.n.01"
+    ],
+    "cauliflower": [
+        "cauliflower.n.01"
+    ],
+    "fireplace": [
+        "fireplace.n.01"
+    ],
+    "snow": [
+        "snow.n.01"
+    ],
+    "building": [
+        "building.n.01"
+    ],
+    "sandwich": [
+        "sandwich.n.01"
+    ],
+    "weather vane": [
+        "weathervane.n.01"
+    ],
+    "bird": [
+        "bird.n.01"
+    ],
+    "jacket": [
+        "jacket.n.01"
+    ],
+    "chair": [
+        "chair.n.01"
+    ],
+    "water": [
+        "water.n.01"
+    ],
+    "cats": [
+        "cat.n.01"
+    ],
+    "soccer ball": [
+        "soccer_ball.n.01"
+    ],
+    "horses": [
+        "horse.n.01"
+    ],
+    "drapes": [
+        "curtain.n.01"
+    ],
+    "barn": [
+        "barn.n.01"
+    ],
+    "engine": [
+        "engine.n.01"
+    ],
+    "cake": [
+        "cake.n.01"
+    ],
+    "head": [
+        "head.n.01"
+    ],
+    "head band": [
+        "headband.n.01"
+    ],
+    "skier": [
+        "skier.n.01"
+    ],
+    "town": [
+        "town.n.01"
+    ],
+    "bath tub": [
+        "bathtub.n.01"
+    ],
+    "bowl": [
+        "bowl.n.01"
+    ],
+    "stove": [
+        "stove.n.01"
+    ],
+    "tongue": [
+        "tongue.n.01"
+    ],
+    "coffee table": [
+        "coffee_table.n.01"
+    ],
+    "floor": [
+        "floor.n.01"
+    ],
+    "uniform": [
+        "uniform.n.01"
+    ],
+    "ottoman": [
+        "ottoman.n.01"
+    ],
+    "broccoli": [
+        "broccoli.n.01"
+    ],
+    "olive": [
+        "olive.n.01"
+    ],
+    "mound": [
+        "mound.n.01"
+    ],
+    "pitcher": [
+        "pitcher.n.01"
+    ],
+    "food": [
+        "food.n.01"
+    ],
+    "paintings": [
+        "painting.n.01"
+    ],
+    "traffic light": [
+        "traffic_light.n.01"
+    ],
+    "parking meter": [
+        "parking_meter.n.01"
+    ],
+    "bananas": [
+        "banana.n.01"
+    ],
+    "mountain": [
+        "mountain.n.01"
+    ],
+    "cage": [
+        "cage.n.01"
+    ],
+    "hedge": [
+        "hedge.n.01"
+    ],
+    "motorcycles": [
+        "motorcycle.n.01"
+    ],
+    "wet suit": [
+        "wet_suit.n.01"
+    ],
+    "radish": [
+        "radish.n.01"
+    ],
+    "teddy bears": [
+        "teddy.n.01"
+    ],
+    "monitors": [
+        "proctor.n.01"
+    ],
+    "suitcase,suit case": [
+        "bag.n.06"
+    ],
+    "drawers": [
+        "drawers.n.01"
+    ],
+    "grass": [
+        "grass.n.01"
+    ],
+    "apple": [
+        "apple.n.01"
+    ],
+    "lamp": [
+        "lamp.n.01"
+    ],
+    "goggles": [
+        "goggles.n.01"
+    ],
+    "boy": [
+        "male_child.n.01"
+    ],
+    "armchair": [
+        "armchair.n.01"
+    ],
+    "ramp": [
+        "ramp.n.01"
+    ],
+    "burner": [
+        "burner.n.01"
+    ],
+    "lamb": [
+        "lamb.n.01"
+    ],
+    "cup": [
+        "cup.n.01"
+    ],
+    "tank top": [
+        "tank_top.n.01"
+    ],
+    "boats": [
+        "boat.n.01"
+    ],
+    "hat": [
+        "hat.n.01"
+    ],
+    "soup": [
+        "soup.n.01"
+    ],
+    "fence": [
+        "fence.n.01"
+    ],
+    "necklace": [
+        "necklace.n.01"
+    ],
+    "visor": [
+        "visor.n.01"
+    ],
+    "coffee": [
+        "coffee.n.01"
+    ],
+    "bottle": [
+        "bottle.n.01"
+    ],
+    "stool": [
+        "stool.n.01"
+    ],
+    "shoe": [
+        "shoe.n.01"
+    ],
+    "surfer": [
+        "surfer.n.01"
+    ],
+    "stop": [
+        "stop.n.01"
+    ],
+    "backpack": [
+        "backpack.n.01"
+    ],
+    "shin guard": [
+        "shin_guard.n.01"
+    ],
+    "wii remote": [
+        "remote_control.n.01"
+    ],
+    "wall": [
+        "wall.n.01"
+    ],
+    "pizza slice": [
+        "pizza.n.01"
+    ],
+    "home plate": [
+        "home_plate.n.01"
+    ],
+    "van": [
+        "avant-garde.n.01"
+    ],
+    "packet": [
+        "package.n.01"
+    ],
+    "earrings": [
+        "earring.n.01"
+    ],
+    "wristband": [
+        "wristband.n.01"
+    ],
+    "tracks": [
+        "path.n.04"
+    ],
+    "mitt": [
+        "hand.n.01"
+    ],
+    "dome": [
+        "dome.n.01"
+    ],
+    "snowboarder": [
+        "snowboarder.n.01"
+    ],
+    "faucet": [
+        "faucet.n.01"
+    ],
+    "toiletries": [
+        "toiletry.n.01"
+    ],
+    "ski boots": [
+        "ski_boot.n.01"
+    ],
+    "room": [
+        "room.n.01"
+    ],
+    "fork": [
+        "fork.n.01"
+    ],
+    "snow suit": [
+        "snowsuit.n.01"
+    ],
+    "banana slice": [
+        "banana.n.01"
+    ],
+    "bench": [
+        "bench.n.01"
+    ],
+    "tie": [
+        "necktie.n.01"
+    ],
+    "burners": [
+        "burner.n.01"
+    ],
+    "stuffed animals": [
+        "puppet.n.03"
+    ],
+    "zoo": [
+        "menagerie.n.02"
+    ],
+    "train platform": [
+        "platform.n.01"
+    ],
+    "cupcake": [
+        "cupcake.n.01"
+    ],
+    "curtain": [
+        "curtain.n.01"
+    ],
+    "ear": [
+        "ear.n.01"
+    ],
+    "tissue box": [
+        "box.n.01"
+    ],
+    "bread": [
+        "bread.n.01"
+    ],
+    "scissors": [
+        "scissors.n.01"
+    ],
+    "vase": [
+        "vase.n.01"
+    ],
+    "herd": [
+        "herd.n.01"
+    ],
+    "smoke": [
+        "smoke.n.01"
+    ],
+    "skylight": [
+        "skylight.n.01"
+    ],
+    "cub": [
+        "cub.n.01"
+    ],
+    "tail": [
+        "tail.n.01"
+    ],
+    "cutting board": [
+        "chopping_board.n.01"
+    ],
+    "wave": [
+        "wave.n.01"
+    ],
+    "hedges": [
+        "hedge.n.01"
+    ],
+    "windshield": [
+        "windshield.n.01"
+    ],
+    "apples": [
+        "apple.n.01"
+    ],
+    "mirror": [
+        "mirror.n.01"
+    ],
+    "license plate": [
+        "license_plate.n.01"
+    ],
+    "tree": [
+        "tree.n.01"
+    ],
+    "wheel": [
+        "wheel.n.01"
+    ],
+    "ski pole": [
+        "ski_pole.n.01"
+    ],
+    "clock tower": [
+        "clock_tower.n.01"
+    ],
+    "freezer": [
+        "deep-freeze.n.01"
+    ],
+    "luggage": [
+        "baggage.n.01"
+    ],
+    "skateboarder": [
+        "skateboarder.n.01"
+    ],
+    "mousepad": [
+        "mousepad.n.01"
+    ],
+    "road": [
+        "road.n.01"
+    ],
+    "bat": [
+        "bat.n.01"
+    ],
+    "toilet tank": [
+        "tank.n.02"
+    ],
+    "vanity": [
+        "amour_propre.n.01"
+    ],
+    "neck": [
+        "neck.n.01"
+    ],
+    "cliff": [
+        "cliff.n.01"
+    ],
+    "tub": [
+        "bathtub.n.01"
+    ],
+    "sprinkles": [
+        "jimmies.n.01"
+    ],
+    "dresser": [
+        "chest_of_drawers.n.01"
+    ],
+    "street": [
+        "street.n.01"
+    ],
+    "wing": [
+        "wing.n.01"
+    ],
+    "suit": [
+        "suit.n.01"
+    ],
+    "veggie": [
+        "vegetable.n.01"
+    ],
+    "palm trees": [
+        "palm.n.03"
+    ],
+    "urinals": [
+        "urinal.n.01"
+    ],
+    "door": [
+        "door.n.01"
+    ],
+    "propeller": [
+        "propeller.n.01"
+    ],
+    "keys": [
+        "key.n.01"
+    ],
+    "skate park": [
+        "park.n.02"
+    ],
+    "platform": [
+        "platform.n.01"
+    ],
+    "pot": [
+        "pot.n.01"
+    ],
+    "towel": [
+        "towel.n.01"
+    ],
+    "computer monitor": [
+        "computer_monitor.n.01"
+    ],
+    "flip flop": [
+        "slipper.n.01"
+    ],
+    "eggs": [
+        "egg.n.02"
+    ],
+    "shed": [
+        "shed.n.01"
+    ],
+    "moped": [
+        "moped.n.01"
+    ],
+    "sand": [
+        "sand.n.01"
+    ],
+    "face": [
+        "face.n.01"
+    ],
+    "scissor": [
+        "scissors.n.01"
+    ],
+    "carts": [
+        "cart.n.01"
+    ],
+    "squash": [
+        "squash.n.01"
+    ],
+    "pillows": [
+        "pillow.n.01"
+    ],
+    "family": [
+        "family.n.01"
+    ],
+    "glove": [
+        "baseball_glove.n.01"
+    ],
+    "rug": [
+        "rug.n.01"
+    ],
+    "watch": [
+        "watch.n.01"
+    ],
+    "grafitti": [
+        "graffito.n.01"
+    ],
+    "dogs": [
+        "dog.n.01"
+    ],
+    "scoreboard": [
+        "scoreboard.n.01"
+    ],
+    "basket": [
+        "basket.n.01"
+    ],
+    "poster": [
+        "poster.n.01"
+    ],
+    "duck": [
+        "duck.n.01"
+    ],
+    "horns": [
+        "horn.n.01"
+    ],
+    "bears": [
+        "bear.n.01"
+    ],
+    "jeep": [
+        "jeep.n.01"
+    ],
+    "painting": [
+        "painting.n.01"
+    ],
+    "lighthouse": [
+        "beacon.n.03"
+    ],
+    "remote control": [
+        "remote_control.n.01"
+    ],
+    "toaster": [
+        "toaster.n.01"
+    ],
+    "vegetables": [
+        "vegetable.n.01"
+    ],
+    "surfboards": [
+        "surfboard.n.01"
+    ],
+    "ducks": [
+        "duck.n.01"
+    ],
+    "lane": [
+        "lane.n.01"
+    ],
+    "carrots": [
+        "carrot.n.01"
+    ],
+    "market": [
+        "market.n.01"
+    ],
+    "paper towels": [
+        "paper_towel.n.01"
+    ],
+    "island": [
+        "island.n.01"
+    ],
+    "blueberries": [
+        "blueberry.n.01"
+    ],
+    "smile": [
+        "smile.n.01"
+    ],
+    "balloons": [
+        "balloon.n.01"
+    ],
+    "stroller": [
+        "saunterer.n.01"
+    ],
+    "napkin": [
+        "napkin.n.01"
+    ],
+    "towels": [
+        "towel.n.01"
+    ],
+    "papers": [
+        "document.n.01"
+    ],
+    "person": [
+        "person.n.01"
+    ],
+    "train tracks": [
+        "railway.n.01"
+    ],
+    "child": [
+        "child.n.01"
+    ],
+    "headband": [
+        "headband.n.01"
+    ],
+    "pool": [
+        "pool.n.01"
+    ],
+    "plant": [
+        "plant.n.01"
+    ],
+    "harbor": [
+        "seaport.n.01"
+    ],
+    "counter": [
+        "counter.n.01"
+    ],
+    "hand": [
+        "hand.n.01"
+    ],
+    "house": [
+        "house.n.01"
+    ],
+    "donut,doughnut": [
+        "doughnut.n.02"
+    ],
+    "knot": [
+        "knot.n.01"
+    ],
+    "soccer player": [
+        "soccer_player.n.01"
+    ],
+    "seagull": [
+        "gull.n.02"
+    ],
+    "bottles": [
+        "bottle.n.01"
+    ],
+    "buses": [
+        "bus.n.01"
+    ],
+    "coat": [
+        "coat.n.01"
+    ],
+    "trees": [
+        "tree.n.01"
+    ],
+    "geese": [
+        "goose.n.01"
+    ],
+    "bun": [
+        "bun.n.01"
+    ],
+    "toilet bowl": [
+        "toilet_bowl.n.01"
+    ],
+    "trunk": [
+        "trunk.n.01"
+    ],
+    "station": [
+        "station.n.01"
+    ],
+    "bikini": [
+        "bikini.n.01"
+    ],
+    "goatee": [
+        "goatee.n.01"
+    ],
+    "lounge chair": [
+        "easy_chair.n.01"
+    ],
+    "breakfast": [
+        "breakfast.n.01"
+    ],
+    "nose": [
+        "nose.n.01"
+    ],
+    "moon": [
+        "moon.n.01"
+    ],
+    "river": [
+        "river.n.01"
+    ],
+    "racer": [
+        "racer.n.01"
+    ],
+    "picture": [
+        "picture.n.01"
+    ],
+    "shaker": [
+        "shaker.n.01"
+    ],
+    "sidewalk,side walk": [
+        "sidewalk.n.01"
+    ],
+    "shutters": [
+        "shutter.n.01"
+    ],
+    "stove top,stovetop": [
+        "cooker.n.01"
+    ],
+    "church": [
+        "church.n.01"
+    ],
+    "lampshade": [
+        "lampshade.n.01"
+    ],
+    "map": [
+        "map.n.01"
+    ],
+    "shop": [
+        "shop.n.01"
+    ],
+    "platter": [
+        "platter.n.01"
+    ],
+    "airport": [
+        "airport.n.01"
+    ],
+    "hoodie": [
+        "sweatshirt.n.01"
+    ],
+    "oranges": [
+        "orange.n.01"
+    ],
+    "woods": [
+        "forest.n.01"
+    ],
+    "enclosure": [
+        "enclosure.n.01"
+    ],
+    "skatepark": [
+        "park.n.02"
+    ],
+    "vases": [
+        "vase.n.01"
+    ],
+    "city": [
+        "city.n.01"
+    ],
+    "park": [
+        "park.n.01"
+    ],
+    "mailbox": [
+        "mailbox.n.01"
+    ],
+    "balloon": [
+        "balloon.n.01"
+    ],
+    "billboard": [
+        "billboard.n.01"
+    ],
+    "pasture": [
+        "pasture.n.01"
+    ],
+    "portrait": [
+        "portrayal.n.01"
+    ],
+    "forehead": [
+        "brow.n.01"
+    ],
+    "ship": [
+        "ship.n.01"
+    ],
+    "cookie": [
+        "cookie.n.01"
+    ],
+    "seaweed": [
+        "seaweed.n.01"
+    ],
+    "sofa": [
+        "sofa.n.01"
+    ],
+    "slats": [
+        "slat.n.01"
+    ],
+    "tomato slice": [
+        "tomato.n.01"
+    ],
+    "tractor": [
+        "tractor.n.01"
+    ],
+    "bull": [
+        "bull.n.01"
+    ],
+    "suitcases": [
+        "bag.n.06"
+    ],
+    "graffiti": [
+        "graffito.n.01"
+    ],
+    "policeman": [
+        "policeman.n.01"
+    ],
+    "remotes": [
+        "remote_control.n.01"
+    ],
+    "pens": [
+        "pen.n.01"
+    ],
+    "window sill": [
+        "sill.n.01"
+    ],
+    "suspenders": [
+        "brace.n.06"
+    ],
+    "easel": [
+        "easel.n.01"
+    ],
+    "tray": [
+        "tray.n.01"
+    ],
+    "straw": [
+        "straw.n.01"
+    ],
+    "collar": [
+        "collar.n.01"
+    ],
+    "shower": [
+        "shower.n.01"
+    ],
+    "bag": [
+        "bag.n.01"
+    ],
+    "scooter": [
+        "water_scooter.n.01"
+    ],
+    "tails": [
+        "dress_suit.n.01"
+    ],
+    "toilet lid": [
+        "lid.n.02"
+    ],
+    "panda": [
+        "giant_panda.n.01"
+    ],
+    "comforter": [
+        "sympathizer.n.01"
+    ],
+    "outlet": [
+        "mercantile_establishment.n.01"
+    ],
+    "stems": [
+        "root.n.03"
+    ],
+    "valley": [
+        "valley.n.01"
+    ],
+    "flag": [
+        "flag.n.01"
+    ],
+    "jockey": [
+        "jockey.n.01"
+    ],
+    "gravel": [
+        "gravel.n.01"
+    ],
+    "mouth": [
+        "mouth.n.01"
+    ],
+    "window": [
+        "window.n.01"
+    ],
+    "bridge": [
+        "bridge.n.01"
+    ],
+    "corn": [
+        "corn.n.01"
+    ],
+    "mountains": [
+        "mountain.n.01"
+    ],
+    "beer": [
+        "beer.n.01"
+    ],
+    "pitcher's mound": [
+        "mound.n.01"
+    ],
+    "palm tree": [
+        "palm.n.03"
+    ],
+    "crowd": [
+        "crowd.n.01"
+    ],
+    "skis": [
+        "ski.n.01"
+    ],
+    "phone": [
+        "telephone.n.01"
+    ],
+    "banana bunch": [
+        "banana.n.01"
+    ],
+    "tennis shoe": [
+        "gym_shoe.n.01"
+    ],
+    "ground": [
+        "land.n.04"
+    ],
+    "carpet": [
+        "rug.n.01"
+    ],
+    "eye": [
+        "eye.n.01"
+    ],
+    "urn": [
+        "urn.n.01"
+    ],
+    "beak": [
+        "beak.n.01"
+    ],
+    "giraffe head": [
+        "head.n.01"
+    ],
+    "steeple": [
+        "steeple.n.01"
+    ],
+    "mattress": [
+        "mattress.n.01"
+    ],
+    "baseball player": [
+        "ballplayer.n.01"
+    ],
+    "wine": [
+        "wine.n.01"
+    ],
+    "water bottle": [
+        "water_bottle.n.01"
+    ],
+    "kitten": [
+        "kitten.n.01"
+    ],
+    "archway": [
+        "arch.n.03"
+    ],
+    "candle": [
+        "candle.n.01"
+    ],
+    "croissant": [
+        "crescent_roll.n.01"
+    ],
+    "tennis ball": [
+        "tennis_ball.n.01"
+    ],
+    "dress": [
+        "dress.n.01"
+    ],
+    "column": [
+        "column.n.01"
+    ],
+    "utensils": [
+        "utensil.n.01"
+    ],
+    "cell phone": [
+        "telephone.n.01"
+    ],
+    "computer mouse": [
+        "mouse.n.04"
+    ],
+    "cap": [
+        "cap.n.01"
+    ],
+    "lawn": [
+        "lawn.n.01"
+    ],
+    "airplanes": [
+        "airplane.n.01"
+    ],
+    "carriage": [
+        "passenger_car.n.01"
+    ],
+    "snout": [
+        "snout.n.01"
+    ],
+    "cabinets": [
+        "cabinet.n.01"
+    ],
+    "lemons": [
+        "lemon.n.01"
+    ],
+    "grill": [
+        "grillroom.n.01"
+    ],
+    "umbrellas": [
+        "umbrella.n.01"
+    ],
+    "meat": [
+        "meat.n.01"
+    ],
+    "wagon": [
+        "wagon.n.01"
+    ],
+    "ipod": [
+        "ipod.n.01"
+    ],
+    "bookshelf": [
+        "bookshelf.n.01"
+    ],
+    "cart": [
+        "cart.n.01"
+    ],
+    "roof": [
+        "roof.n.01"
+    ],
+    "hay": [
+        "hay.n.01"
+    ],
+    "ski pants": [
+        "trouser.n.01"
+    ],
+    "seat": [
+        "seat.n.01"
+    ],
+    "mane": [
+        "mane.n.01"
+    ],
+    "bikes": [
+        "motorcycle.n.01"
+    ],
+    "drawer": [
+        "drawer.n.01"
+    ],
+    "game": [
+        "game.n.01"
+    ],
+    "clock face": [
+        "clock_face.n.01"
+    ],
+    "boys": [
+        "male_child.n.01"
+    ],
+    "rider": [
+        "rider.n.01"
+    ],
+    "fire escape": [
+        "fire_escape.n.01"
+    ],
+    "slope": [
+        "slope.n.01"
+    ],
+    "iphone": [
+        "ipod.n.01"
+    ],
+    "pumpkin": [
+        "pumpkin.n.01"
+    ],
+    "pan": [
+        "pan.n.01"
+    ],
+    "chopsticks": [
+        "chopstick.n.01"
+    ],
+    "hill": [
+        "hill.n.01"
+    ],
+    "uniforms": [
+        "uniform.n.01"
+    ],
+    "cleat": [
+        "cleat.n.01"
+    ],
+    "costume": [
+        "costume.n.01"
+    ],
+    "cabin": [
+        "cabin.n.01"
+    ],
+    "police officer": [
+        "policeman.n.01"
+    ],
+    "ears": [
+        "ear.n.01"
+    ],
+    "egg": [
+        "egg.n.01"
+    ],
+    "trash can": [
+        "ashcan.n.01"
+    ],
+    "horn": [
+        "horn.n.01"
+    ],
+    "arrow": [
+        "arrow.n.01"
+    ],
+    "toothbrush": [
+        "toothbrush.n.01"
+    ],
+    "carrot": [
+        "carrot.n.01"
+    ],
+    "banana": [
+        "banana.n.01"
+    ],
+    "planes": [
+        "airplane.n.01"
+    ],
+    "garden": [
+        "garden.n.01"
+    ],
+    "forest": [
+        "forest.n.01"
+    ],
+    "brocolli": [
+        "broccoli.n.01"
+    ],
+    "aircraft": [
+        "aircraft.n.01"
+    ],
+    "front window": [
+        "window.n.01"
+    ],
+    "dashboard": [
+        "splashboard.n.02"
+    ],
+    "statue": [
+        "statue.n.01"
+    ],
+    "saucer": [
+        "disk.n.01"
+    ],
+    "people": [
+        "people.n.01"
+    ],
+    "silverware": [
+        "silverware.n.01"
+    ],
+    "fruit": [
+        "fruit.n.01"
+    ],
+    "drain": [
+        "drain.n.01"
+    ],
+    "jet": [
+        "jet.n.01"
+    ],
+    "speaker": [
+        "speaker.n.01"
+    ],
+    "eyes": [
+        "eyes.n.01"
+    ],
+    "railway": [
+        "railway.n.01"
+    ],
+    "lid": [
+        "eyelid.n.01"
+    ],
+    "soap": [
+        "soap.n.01"
+    ],
+    "rocks": [
+        "rock.n.01"
+    ],
+    "office chair": [
+        "chair.n.01"
+    ],
+    "door knob": [
+        "doorknob.n.01"
+    ],
+    "banana peel": [
+        "banana_peel.n.01"
+    ],
+    "baseball game": [
+        "baseball.n.01"
+    ],
+    "asparagus": [
+        "asparagus.n.01"
+    ],
+    "spoon": [
+        "spoon.n.01"
+    ],
+    "cabinet door": [
+        "door.n.01"
+    ],
+    "pineapple": [
+        "pineapple.n.01"
+    ],
+    "traffic cone": [
+        "cone.n.01"
+    ],
+    "nightstand,night stand": [
+        "desk.n.01"
+    ],
+    "teapot": [
+        "teapot.n.01"
+    ],
+    "taxi": [
+        "cab.n.03"
+    ],
+    "chimney": [
+        "chimney.n.01"
+    ],
+    "lake": [
+        "lake.n.01"
+    ],
+    "suit jacket": [
+        "jacket.n.01"
+    ],
+    "train engine": [
+        "engine.n.01"
+    ],
+    "ball": [
+        "ball.n.01"
+    ],
+    "wrist band": [
+        "wristlet.n.01"
+    ],
+    "pickle": [
+        "pickle.n.01"
+    ],
+    "fruits": [
+        "fruit.n.01"
+    ],
+    "pad": [
+        "pad.n.01"
+    ],
+    "dispenser": [
+        "dispenser.n.01"
+    ],
+    "bridle": [
+        "bridle.n.01"
+    ],
+    "breast": [
+        "breast.n.01"
+    ],
+    "cones": [
+        "cone.n.01"
+    ],
+    "headlight": [
+        "headlight.n.01"
+    ],
+    "necktie": [
+        "necktie.n.01"
+    ],
+    "skater": [
+        "skater.n.01"
+    ],
+    "toilet paper": [
+        "toilet_tissue.n.01"
+    ],
+    "skyscraper": [
+        "skyscraper.n.01"
+    ],
+    "telephone": [
+        "telephone.n.01"
+    ],
+    "ox": [
+        "ox.n.01"
+    ],
+    "roadway": [
+        "roadway.n.01"
+    ],
+    "sock": [
+        "sock.n.01"
+    ],
+    "paddle": [
+        "paddle.n.01"
+    ],
+    "dishes": [
+        "dish.n.01"
+    ],
+    "hills": [
+        "hill.n.01"
+    ],
+    "street sign": [
+        "street_sign.n.01"
+    ],
+    "headlights": [
+        "headlight.n.01"
+    ],
+    "benches": [
+        "bench.n.01"
+    ],
+    "fuselage": [
+        "fuselage.n.01"
+    ],
+    "card": [
+        "card.n.01"
+    ],
+    "napkins": [
+        "napkin.n.01"
+    ],
+    "bush": [
+        "shrub.n.01"
+    ],
+    "rice": [
+        "rice.n.01"
+    ],
+    "computer screen": [
+        "computer_screen.n.01"
+    ],
+    "spokes": [
+        "spoke.n.01"
+    ],
+    "flowers": [
+        "flower.n.01"
+    ],
+    "bucket": [
+        "bucket.n.01"
+    ],
+    "rock": [
+        "rock.n.01"
+    ],
+    "pole": [
+        "pole.n.01"
+    ],
+    "pear": [
+        "pear.n.01"
+    ],
+    "sauce": [
+        "sauce.n.01"
+    ],
+    "store": [
+        "shop.n.01"
+    ],
+    "juice": [
+        "juice.n.01"
+    ],
+    "knobs": [
+        "knob.n.01"
+    ],
+    "mustard": [
+        "mustard.n.01"
+    ],
+    "ski": [
+        "ski.n.01"
+    ],
+    "stands": [
+        "base.n.08"
+    ],
+    "cabinet": [
+        "cabinet.n.01"
+    ],
+    "dirt": [
+        "soil.n.02"
+    ],
+    "goats": [
+        "goat.n.01"
+    ],
+    "wine glass": [
+        "wineglass.n.01"
+    ],
+    "spectators": [
+        "spectator.n.01"
+    ],
+    "crate": [
+        "crate.n.01"
+    ],
+    "pancakes": [
+        "pancake.n.01"
+    ],
+    "kids": [
+        "child.n.01"
+    ],
+    "engines": [
+        "engine.n.01"
+    ],
+    "shade": [
+        "shade.n.01"
+    ],
+    "feeder": [
+        "feeder.n.01"
+    ],
+    "cellphone": [
+        "cellular_telephone.n.01"
+    ],
+    "pepper": [
+        "pepper.n.01"
+    ],
+    "blanket": [
+        "blanket.n.01"
+    ],
+    "sunglasses": [
+        "sunglasses.n.01"
+    ],
+    "train car": [
+        "caravan.n.01"
+    ],
+    "magnet": [
+        "magnet.n.01"
+    ],
+    "donuts,doughnuts": [
+        "doughnut.n.02"
+    ],
+    "sweater": [
+        "sweater.n.01"
+    ],
+    "signal": [
+        "signal.n.01"
+    ],
+    "advertisement": [
+        "ad.n.01"
+    ],
+    "log": [
+        "log.n.01"
+    ],
+    "vent": [
+        "vent.n.01"
+    ],
+    "whiskers": [
+        "beard.n.01"
+    ],
+    "adult": [
+        "adult.n.01"
+    ],
+    "arch": [
+        "arch.n.01"
+    ],
+    "locomotive": [
+        "locomotive.n.01"
+    ],
+    "tennis match": [
+        "tennis_match.n.01"
+    ],
+    "tent": [
+        "tent.n.01"
+    ],
+    "motorbike": [
+        "minibike.n.01"
+    ],
+    "magnets": [
+        "magnet.n.01"
+    ],
+    "night": [
+        "night.n.01"
+    ],
+    "marina": [
+        "marina.n.01"
+    ],
+    "wool": [
+        "wool.n.01"
+    ],
+    "vest": [
+        "vest.n.01"
+    ],
+    "railroad tracks": [
+        "railroad_track.n.01"
+    ],
+    "stuffed bear": [
+        "bear.n.01"
+    ],
+    "moustache": [
+        "mustache.n.01"
+    ],
+    "bib": [
+        "bib.n.01"
+    ],
+    "frame": [
+        "frame.n.01"
+    ],
+    "snow pants": [
+        "trouser.n.01"
+    ],
+    "tank": [
+        "tank.n.01"
+    ],
+    "undershirt": [
+        "singlet.n.01"
+    ],
+    "icons": [
+        "icon.n.01"
+    ],
+    "neck tie": [
+        "necktie.n.01"
+    ],
+    "beams": [
+        "radio_beam.n.01"
+    ],
+    "baseball bat": [
+        "baseball_bat.n.01"
+    ],
+    "safety cone": [
+        "cone.n.01"
+    ],
+    "paper towel": [
+        "paper_towel.n.01"
+    ],
+    "bedspread": [
+        "bedspread.n.01"
+    ],
+    "can": [
+        "can.n.01"
+    ],
+    "container": [
+        "container.n.01"
+    ],
+    "flower": [
+        "flower.n.01"
+    ],
+    "vehicle": [
+        "vehicle.n.01"
+    ],
+    "tomatoes": [
+        "tomato.n.01"
+    ],
+    "back wheel": [
+        "wheel.n.04"
+    ],
+    "soccer field": [
+        "field.n.01"
+    ],
+    "nostril": [
+        "nostril.n.01"
+    ],
+    "suv": [
+        "sport_utility.n.01"
+    ],
+    "buildings": [
+        "building.n.01"
+    ],
+    "canopy": [
+        "canopy.n.01"
+    ],
+    "flame": [
+        "fire.n.03"
+    ],
+    "kid": [
+        "child.n.01"
+    ],
+    "baseball": [
+        "baseball.n.01"
+    ],
+    "throw pillow": [
+        "throw_pillow.n.01"
+    ],
+    "belt": [
+        "belt.n.01"
+    ],
+    "rainbow": [
+        "rainbow.n.01"
+    ],
+    "lemon": [
+        "lemon.n.01"
+    ],
+    "oven door": [
+        "oven.n.01"
+    ],
+    "tag": [
+        "tag.n.01"
+    ],
+    "books": [
+        "book.n.01"
+    ],
+    "monument": [
+        "memorial.n.03"
+    ],
+    "men": [
+        "work_force.n.01"
+    ],
+    "shadow": [
+        "shadow.n.01"
+    ],
+    "bicycles": [
+        "bicycle.n.01"
+    ],
+    "cars": [
+        "car.n.01"
+    ],
+    "lamp shade": [
+        "lampshade.n.01"
+    ],
+    "pine tree": [
+        "pine.n.01"
+    ],
+    "bouquet": [
+        "bouquet.n.01"
+    ],
+    "toothpaste": [
+        "toothpaste.n.01"
+    ],
+    "potato": [
+        "potato.n.01"
+    ],
+    "sinks": [
+        "sink.n.01"
+    ],
+    "hook": [
+        "hook.n.01"
+    ],
+    "switch": [
+        "switch.n.01"
+    ],
+    "lamp post,lamppost": [
+        "lamppost.n.01"
+    ],
+    "lapel": [
+        "lapel.n.01"
+    ],
+    "desert": [
+        "desert.n.01"
+    ],
+    "knob": [
+        "knob.n.01"
+    ],
+    "chairs": [
+        "chair.n.01"
+    ],
+    "pasta": [
+        "pasta.n.01"
+    ],
+    "feathers": [
+        "feather.n.01"
+    ],
+    "hole": [
+        "hole.n.01"
+    ],
+    "meal": [
+        "meal.n.01"
+    ],
+    "station wagon": [
+        "beach_wagon.n.01"
+    ],
+    "kites": [
+        "kite.n.01"
+    ],
+    "boots": [
+        "boot.n.01"
+    ],
+    "baby": [
+        "baby.n.01"
+    ],
+    "biker": [
+        "cyclist.n.01"
+    ],
+    "gate": [
+        "gate.n.01"
+    ],
+    "signal light": [
+        "signal_fire.n.01"
+    ],
+    "headphones": [
+        "earphone.n.01"
+    ],
+    "goat": [
+        "goat.n.01"
+    ],
+    "waves": [
+        "wave.n.01"
+    ],
+    "bumper": [
+        "bumper.n.01"
+    ],
+    "bud": [
+        "bud.n.01"
+    ],
+    "logo": [
+        "logo.n.01"
+    ],
+    "curtains": [
+        "curtain.n.01"
+    ],
+    "american flag": [
+        "american_flag.n.01"
+    ],
+    "yacht": [
+        "yacht.n.01"
+    ],
+    "box": [
+        "box.n.01"
+    ],
+    "baseball cap": [
+        "baseball_cap.n.01"
+    ],
+    "fries": [
+        "french_fries.n.01"
+    ],
+    "controller": [
+        "accountant.n.01"
+    ],
+    "awning": [
+        "awning.n.01"
+    ],
+    "path": [
+        "way.n.05"
+    ],
+    "front legs": [
+        "leg.n.01"
+    ],
+    "life jacket": [
+        "life_jacket.n.01"
+    ],
+    "purse": [
+        "bag.n.04"
+    ],
+    "outfield": [
+        "outfield.n.01"
+    ],
+    "pigeon": [
+        "pigeon.n.01"
+    ],
+    "toddler": [
+        "toddler.n.01"
+    ],
+    "beard": [
+        "beard.n.01"
+    ],
+    "thumb": [
+        "thumb.n.01"
+    ],
+    "water tank": [
+        "cistern.n.02"
+    ],
+    "board": [
+        "board.n.01"
+    ],
+    "parade": [
+        "parade.n.01"
+    ],
+    "robe": [
+        "robe.n.01"
+    ],
+    "newspaper": [
+        "newspaper.n.01"
+    ],
+    "wires": [
+        "wire.n.01"
+    ],
+    "camera": [
+        "camera.n.01"
+    ],
+    "pastries": [
+        "pastry.n.01"
+    ],
+    "deck": [
+        "deck.n.01"
+    ],
+    "watermelon": [
+        "watermelon.n.01"
+    ],
+    "clouds": [
+        "cloud.n.01"
+    ],
+    "deer": [
+        "deer.n.01"
+    ],
+    "motorcyclist": [
+        "motorcyclist.n.01"
+    ],
+    "kneepad": [
+        "knee_pad.n.01"
+    ],
+    "sneakers": [
+        "gym_shoe.n.01"
+    ],
+    "women": [
+        "woman.n.01"
+    ],
+    "onions": [
+        "onion.n.01"
+    ],
+    "eyebrow": [
+        "eyebrow.n.01"
+    ],
+    "gas station": [
+        "gasoline_station.n.01"
+    ],
+    "vane": [
+        "weathervane.n.01"
+    ],
+    "girls": [
+        "girl.n.01"
+    ],
+    "trash": [
+        "rubbish.n.01"
+    ],
+    "numerals": [
+        "numeral.n.01"
+    ],
+    "knife": [
+        "knife.n.01"
+    ],
+    "tags": [
+        "tag.n.01"
+    ],
+    "light": [
+        "light.n.01"
+    ],
+    "bunch": [
+        "bunch.n.01"
+    ],
+    "outfit": [
+        "outfit.n.01"
+    ],
+    "groom": [
+        "groom.n.01"
+    ],
+    "infield": [
+        "baseball_diamond.n.01"
+    ],
+    "frosting": [
+        "frosting.n.01"
+    ],
+    "forks": [
+        "fork.n.01"
+    ],
+    "entertainment center": [
+        "entertainment_center.n.01"
+    ],
+    "stuffed animal": [
+        "puppet.n.03"
+    ],
+    "yard": [
+        "yard.n.01"
+    ],
+    "numeral": [
+        "numeral.n.01"
+    ],
+    "ladder": [
+        "ladder.n.01"
+    ],
+    "shoes": [
+        "place.n.06"
+    ],
+    "bracelet": [
+        "watchband.n.01"
+    ],
+    "teeth": [
+        "dentition.n.02"
+    ],
+    "guy": [
+        "guy.n.01"
+    ],
+    "display case": [
+        "case.n.20"
+    ],
+    "cushion": [
+        "shock_absorber.n.01"
+    ],
+    "post": [
+        "post.n.01"
+    ],
+    "pathway": [
+        "nerve_pathway.n.01"
+    ],
+    "tablecloth": [
+        "tablecloth.n.01"
+    ],
+    "skiers": [
+        "skier.n.01"
+    ],
+    "trouser": [
+        "trouser.n.01"
+    ],
+    "cloud": [
+        "cloud.n.01"
+    ],
+    "hands": [
+        "hands.n.01"
+    ],
+    "produce": [
+        "produce.n.01"
+    ],
+    "beam": [
+        "radio_beam.n.01"
+    ],
+    "ketchup": [
+        "catsup.n.01"
+    ],
+    "paw": [
+        "paw.n.01"
+    ],
+    "dish": [
+        "dish.n.01"
+    ],
+    "raft": [
+        "raft.n.01"
+    ],
+    "crosswalk": [
+        "crossing.n.05"
+    ],
+    "front wheel": [
+        "wheel.n.04"
+    ],
+    "toast": [
+        "toast.n.01"
+    ],
+    "cattle": [
+        "cattle.n.01"
+    ],
+    "players": [
+        "player.n.01"
+    ],
+    "group": [
+        "group.n.01"
+    ],
+    "coffee pot": [
+        "coffeepot.n.01"
+    ],
+    "track": [
+        "path.n.04"
+    ],
+    "cowboy hat": [
+        "cowboy_hat.n.01"
+    ],
+    "petal": [
+        "petal.n.01"
+    ],
+    "eyeglasses": [
+        "spectacles.n.01"
+    ],
+    "handle": [
+        "handle.n.01"
+    ],
+    "table cloth": [
+        "tablecloth.n.01"
+    ],
+    "jets": [
+        "jet.n.01"
+    ],
+    "shakers": [
+        "shakers.n.01"
+    ],
+    "remote": [
+        "remote_control.n.01"
+    ],
+    "snowsuit": [
+        "snowsuit.n.01"
+    ],
+    "bushes": [
+        "shrub.n.01"
+    ],
+    "dessert": [
+        "dessert.n.01"
+    ],
+    "leg": [
+        "leg.n.01"
+    ],
+    "eagle": [
+        "eagle.n.01"
+    ],
+    "fire truck,firetruck": [
+        "fire_engine.n.01"
+    ],
+    "game controller": [
+        "control.n.09"
+    ],
+    "smartphone": [
+        "telephone.n.01"
+    ],
+    "backsplash": [
+        "tile.n.01"
+    ],
+    "trains": [
+        "train.n.01"
+    ],
+    "shore": [
+        "shore.n.01"
+    ],
+    "signs": [
+        "sign.n.01"
+    ],
+    "bell": [
+        "bell.n.01"
+    ],
+    "cupboards": [
+        "cupboard.n.01"
+    ],
+    "sweat band": [
+        "sweatband.n.01"
+    ],
+    "sack": [
+        "sack.n.01"
+    ],
+    "ankle": [
+        "ankle.n.01"
+    ],
+    "coin slot": [
+        "coin_slot.n.01"
+    ],
+    "bagel": [
+        "bagel.n.01"
+    ],
+    "masts": [
+        "mast.n.01"
+    ],
+    "police": [
+        "police.n.01"
+    ],
+    "drawing": [
+        "drawing.n.01"
+    ],
+    "biscuit": [
+        "biscuit.n.01"
+    ],
+    "toy": [
+        "plaything.n.01"
+    ],
+    "legs": [
+        "legs.n.01"
+    ],
+    "pavement": [
+        "pavement.n.01"
+    ],
+    "outside": [
+        "outside.n.01"
+    ],
+    "wheels": [
+        "wheel.n.01"
+    ],
+    "driver": [
+        "driver.n.01"
+    ],
+    "numbers": [
+        "numbers.n.01"
+    ],
+    "blazer": [
+        "blazer.n.01"
+    ],
+    "pen": [
+        "pen.n.01"
+    ],
+    "cabbage": [
+        "cabbage.n.01"
+    ],
+    "trucks": [
+        "truck.n.01"
+    ],
+    "key": [
+        "key.n.01"
+    ],
+    "saddle": [
+        "saddle.n.01"
+    ],
+    "pillow case": [
+        "case.n.19"
+    ],
+    "goose": [
+        "goose.n.01"
+    ],
+    "label": [
+        "label.n.01"
+    ],
+    "boulder": [
+        "boulder.n.01"
+    ],
+    "pajamas": [
+        "pajama.n.01"
+    ],
+    "wrist": [
+        "wrist.n.01"
+    ],
+    "shelf": [
+        "shelf.n.01"
+    ],
+    "cross": [
+        "cross.n.01"
+    ],
+    "coffee cup": [
+        "coffee_cup.n.01"
+    ],
+    "foliage": [
+        "leaf.n.01"
+    ],
+    "lot": [
+        "batch.n.02"
+    ],
+    "fry": [
+        "fry.n.01"
+    ],
+    "air": [
+        "air.n.01"
+    ],
+    "officer": [
+        "military_officer.n.01"
+    ],
+    "pepperoni": [
+        "pepperoni.n.01"
+    ],
+    "cheese": [
+        "cheese.n.01"
+    ],
+    "lady": [
+        "lady.n.01"
+    ],
+    "kickstand": [
+        "kickstand.n.01"
+    ],
+    "counter top": [
+        "countertop.n.01"
+    ],
+    "veggies": [
+        "vegetable.n.01"
+    ],
+    "baseball uniform": [
+        "uniform.n.01"
+    ],
+    "book shelf": [
+        "bookshelf.n.01"
+    ],
+    "bags": [
+        "bag.n.01"
+    ],
+    "pickles": [
+        "pickle.n.01"
+    ],
+    "stand": [
+        "base.n.08"
+    ],
+    "netting": [
+        "gauze.n.02"
+    ],
+    "lettuce": [
+        "boodle.n.01"
+    ],
+    "facial hair": [
+        "facial_hair.n.01"
+    ],
+    "lime": [
+        "calcium_hydroxide.n.01"
+    ],
+    "animals": [
+        "animal.n.01"
+    ],
+    "drape": [
+        "curtain.n.01"
+    ],
+    "boot": [
+        "boot.n.01"
+    ],
+    "railing": [
+        "railing.n.01"
+    ],
+    "end table": [
+        "table.n.01"
+    ],
+    "shin guards": [
+        "shin_guard.n.01"
+    ],
+    "steps": [
+        "stairs.n.01"
+    ],
+    "trashcan": [
+        "ashcan.n.01"
+    ],
+    "tusk": [
+        "ivory.n.01"
+    ],
+    "head light": [
+        "headlight.n.01"
+    ],
+    "walkway": [
+        "walk.n.05"
+    ],
+    "cockpit": [
+        "cockpit.n.01"
+    ],
+    "tennis net": [
+        "net.n.06"
+    ],
+    "animal": [
+        "animal.n.01"
+    ],
+    "boardwalk": [
+        "boardwalk.n.01"
+    ],
+    "keypad": [
+        "computer_keyboard.n.01"
+    ],
+    "bookcase": [
+        "bookcase.n.01"
+    ],
+    "blueberry": [
+        "blueberry.n.01"
+    ],
+    "trash bag": [
+        "bag.n.01"
+    ],
+    "ski poles": [
+        "ski_pole.n.01"
+    ],
+    "parking lot": [
+        "parking_lot.n.01"
+    ],
+    "gas tank": [
+        "gas_tank.n.01"
+    ],
+    "beds": [
+        "bed.n.01"
+    ],
+    "fan": [
+        "fan.n.01"
+    ],
+    "base": [
+        "base.n.01"
+    ],
+    "soap dispenser": [
+        "soap_dispenser.n.01"
+    ],
+    "banner": [
+        "banner.n.01"
+    ],
+    "life vest": [
+        "life_jacket.n.01"
+    ],
+    "train front": [
+        "train.n.01"
+    ],
+    "word": [
+        "word.n.01"
+    ],
+    "cab": [
+        "cab.n.01"
+    ],
+    "liquid": [
+        "liquid.n.01"
+    ],
+    "exhaust pipe": [
+        "exhaust_pipe.n.01"
+    ],
+    "sneaker": [
+        "gym_shoe.n.01"
+    ],
+    "light fixture": [
+        "lamp.n.01"
+    ],
+    "power lines": [
+        "power_line.n.01"
+    ],
+    "curb": [
+        "curb.n.01"
+    ],
+    "scene": [
+        "scene.n.01"
+    ],
+    "buttons": [
+        "button.n.01"
+    ],
+    "roman numerals": [
+        "roman_numeral.n.01"
+    ],
+    "muzzle": [
+        "gun_muzzle.n.01"
+    ],
+    "sticker": [
+        "spine.n.03"
+    ],
+    "bacon": [
+        "bacon.n.01"
+    ],
+    "pizzas": [
+        "pizza.n.01"
+    ],
+    "paper": [
+        "paper.n.01"
+    ],
+    "feet": [
+        "foot.n.01"
+    ],
+    "stairs": [
+        "stairs.n.01"
+    ],
+    "triangle": [
+        "triangle.n.01"
+    ],
+    "plants": [
+        "plant.n.01"
+    ],
+    "rope": [
+        "rope.n.01"
+    ],
+    "beans": [
+        "bean.n.01"
+    ],
+    "brim": [
+        "brim.n.01"
+    ],
+    "beverage": [
+        "beverage.n.01"
+    ],
+    "letters": [
+        "letters.n.01"
+    ],
+    "soda": [
+        "sodium_carbonate.n.01"
+    ],
+    "menu": [
+        "menu.n.01"
+    ],
+    "finger": [
+        "finger.n.01"
+    ],
+    "dvds": [
+        "videodisk.n.01"
+    ],
+    "candles": [
+        "candle.n.01"
+    ],
+    "picnic table": [
+        "table.n.02"
+    ],
+    "wine bottle": [
+        "wine_bottle.n.01"
+    ],
+    "pencil": [
+        "pencil.n.01"
+    ],
+    "tree trunk": [
+        "trunk.n.01"
+    ],
+    "nail": [
+        "nail.n.01"
+    ],
+    "mantle": [
+        "mantle.n.01"
+    ],
+    "countertop": [
+        "countertop.n.01"
+    ],
+    "view": [
+        "position.n.03"
+    ],
+    "line": [
+        "line.n.01"
+    ],
+    "motor bike": [
+        "minibike.n.01"
+    ],
+    "audience": [
+        "audience.n.01"
+    ],
+    "traffic sign": [
+        "street_sign.n.01"
+    ],
+    "arm": [
+        "arm.n.01"
+    ],
+    "pedestrian": [
+        "pedestrian.n.01"
+    ],
+    "stabilizer": [
+        "stabilizer.n.01"
+    ],
+    "dock": [
+        "dock.n.01"
+    ],
+    "doorway": [
+        "doorway.n.01"
+    ],
+    "bedding": [
+        "bedclothes.n.01"
+    ],
+    "end": [
+        "end.n.01"
+    ],
+    "worker": [
+        "worker.n.01"
+    ],
+    "canal": [
+        "canal.n.01"
+    ],
+    "crane": [
+        "crane.n.01"
+    ],
+    "grate": [
+        "grate.n.01"
+    ],
+    "little girl": [
+        "female_child.n.01"
+    ],
+    "rims": [
+        "rim.n.01"
+    ],
+    "passenger car": [
+        "passenger_car.n.01"
+    ],
+    "plates": [
+        "home_plate.n.01"
+    ],
+    "background": [
+        "background.n.01"
+    ],
+    "peel": [
+        "peel.n.01"
+    ],
+    "brake light": [
+        "stoplight.n.01"
+    ],
+    "roman numeral": [
+        "roman_numeral.n.01"
+    ],
+    "string": [
+        "string.n.01"
+    ],
+    "tines": [
+        "tine.n.01"
+    ],
+    "turf": [
+        "turf.n.01"
+    ],
+    "armrest": [
+        "armrest.n.01"
+    ],
+    "shower head": [
+        "showerhead.n.01"
+    ],
+    "leash": [
+        "leash.n.01"
+    ],
+    "stones": [
+        "rock.n.01"
+    ],
+    "stoplight": [
+        "stoplight.n.01"
+    ],
+    "handle bars": [
+        "handlebar.n.01"
+    ],
+    "front": [
+        "front.n.01"
+    ],
+    "scarf": [
+        "scarf.n.01"
+    ],
+    "band": [
+        "set.n.05"
+    ],
+    "jean": [
+        "jean.n.01"
+    ],
+    "tennis": [
+        "tennis.n.01"
+    ],
+    "pile": [
+        "pile.n.01"
+    ],
+    "doorknob": [
+        "doorknob.n.01"
+    ],
+    "foot": [
+        "foot.n.01"
+    ],
+    "houses": [
+        "house.n.01"
+    ],
+    "windows": [
+        "windows.n.01"
+    ],
+    "restaurant": [
+        "restaurant.n.01"
+    ],
+    "booth": [
+        "booth.n.01"
+    ],
+    "cardboard box": [
+        "box.n.01"
+    ],
+    "fingers": [
+        "finger.n.01"
+    ],
+    "mountain range": [
+        "range.n.04"
+    ],
+    "bleachers": [
+        "bleachers.n.01"
+    ],
+    "rail": [
+        "railing.n.01"
+    ],
+    "pastry": [
+        "pastry.n.01"
+    ],
+    "canoe": [
+        "canoe.n.01"
+    ],
+    "sun": [
+        "sun.n.01"
+    ],
+    "eye glasses": [
+        "spectacles.n.01"
+    ],
+    "salt shaker": [
+        "saltshaker.n.01"
+    ],
+    "number": [
+        "number.n.01"
+    ],
+    "fish": [
+        "fish.n.01"
+    ],
+    "knee pad": [
+        "knee_pad.n.01"
+    ],
+    "fur": [
+        "fur.n.01"
+    ],
+    "she": [
+        "door.n.01"
+    ],
+    "shower door": [
+        "door.n.01"
+    ],
+    "rod": [
+        "rod.n.01"
+    ],
+    "branches": [
+        "branch.n.01"
+    ],
+    "birds": [
+        "bird.n.01"
+    ],
+    "printer": [
+        "printer.n.01"
+    ],
+    "sunset": [
+        "sunset.n.01"
+    ],
+    "median": [
+        "median.n.01"
+    ],
+    "shutter": [
+        "shutter.n.01"
+    ],
+    "slice": [
+        "slice.n.01"
+    ],
+    "heater": [
+        "heater.n.01"
+    ],
+    "prongs": [
+        "prong.n.01"
+    ],
+    "bathing suit": [
+        "swimsuit.n.01"
+    ],
+    "skiier": [
+        "skier.n.01"
+    ],
+    "rack": [
+        "rack.n.01"
+    ],
+    "book": [
+        "book.n.01"
+    ],
+    "blade": [
+        "blade.n.01"
+    ],
+    "apartment": [
+        "apartment.n.01"
+    ],
+    "manhole cover": [
+        "manhole_cover.n.01"
+    ],
+    "stools": [
+        "stool.n.01"
+    ],
+    "overhang": [
+        "overhang.n.01"
+    ],
+    "door handle": [
+        "doorknob.n.01"
+    ],
+    "couple": [
+        "couple.n.01"
+    ],
+    "picture frame": [
+        "picture_frame.n.01"
+    ],
+    "chickenchicken": [
+        "chicken.n.01"
+    ],
+    "planter": [
+        "planter.n.01"
+    ],
+    "seats": [
+        "seating.n.01"
+    ],
+    "hour hand": [
+        "hour_hand.n.01"
+    ],
+    "dvd player": [
+        "reproducer.n.01"
+    ],
+    "ski slope": [
+        "ski_slope.n.01"
+    ],
+    "french fry": [
+        "french_fries.n.01"
+    ],
+    "bowls": [
+        "lawn_bowling.n.01"
+    ],
+    "top": [
+        "top.n.01"
+    ],
+    "landing gear": [
+        "landing_gear.n.01"
+    ],
+    "coffee maker": [
+        "coffee_maker.n.01"
+    ],
+    "melon": [
+        "melon.n.01"
+    ],
+    "computers": [
+        "computer.n.01"
+    ],
+    "light switch": [
+        "switch.n.01"
+    ],
+    "jar": [
+        "jar.n.01"
+    ],
+    "tv stand": [
+        "stand.n.04"
+    ],
+    "overalls": [
+        "overall.n.01"
+    ],
+    "garage": [
+        "garage.n.01"
+    ],
+    "tabletop": [
+        "tabletop.n.01"
+    ],
+    "writing": [
+        "writing.n.01"
+    ],
+    "doors": [
+        "door.n.01"
+    ],
+    "stadium": [
+        "stadium.n.01"
+    ],
+    "placemat": [
+        "tablecloth.n.01"
+    ],
+    "air vent": [
+        "air_passage.n.01"
+    ],
+    "trick": [
+        "trick.n.01"
+    ],
+    "sled": [
+        "sled.n.01"
+    ],
+    "mast": [
+        "mast.n.01"
+    ],
+    "pond": [
+        "pond.n.01"
+    ],
+    "steering wheel": [
+        "steering_wheel.n.01"
+    ],
+    "baseball glove": [
+        "baseball_glove.n.01"
+    ],
+    "watermark": [
+        "water_line.n.02"
+    ],
+    "pie": [
+        "pie.n.01"
+    ],
+    "sandwhich": [
+        "sandwich.n.01"
+    ],
+    "cpu": [
+        "central_processing_unit.n.01"
+    ],
+    "mushroom": [
+        "mushroom.n.01"
+    ],
+    "power pole": [
+        "power_line.n.01"
+    ],
+    "dirt road": [
+        "road.n.01"
+    ],
+    "handles": [
+        "handle.n.01"
+    ],
+    "speakers": [
+        "speaker.n.01"
+    ],
+    "fender": [
+        "fender.n.01"
+    ],
+    "telephone pole": [
+        "telephone_pole.n.01"
+    ],
+    "strawberry": [
+        "strawberry.n.01"
+    ],
+    "mask": [
+        "mask.n.01"
+    ],
+    "children": [
+        "child.n.01"
+    ],
+    "crust": [
+        "crust.n.01"
+    ],
+    "art": [
+        "art.n.01"
+    ],
+    "rim": [
+        "rim.n.01"
+    ],
+    "branch": [
+        "branch.n.01"
+    ],
+    "display": [
+        "display.n.01"
+    ],
+    "grasses": [
+        "grass.n.01"
+    ],
+    "photo": [
+        "photograph.n.01"
+    ],
+    "receipt": [
+        "reception.n.04"
+    ],
+    "instructions": [
+        "instruction_manual.n.01"
+    ],
+    "herbs": [
+        "herb.n.01"
+    ],
+    "toys": [
+        "plaything.n.01"
+    ],
+    "handlebars": [
+        "handlebar.n.01"
+    ],
+    "trailer": [
+        "dawdler.n.01"
+    ],
+    "sandal": [
+        "sandal.n.01"
+    ],
+    "skull": [
+        "skull.n.01"
+    ],
+    "hangar": [
+        "airdock.n.01"
+    ],
+    "pipe": [
+        "pipe.n.01"
+    ],
+    "office": [
+        "office.n.01"
+    ],
+    "chest": [
+        "thorax.n.02"
+    ],
+    "lamps": [
+        "lamp.n.01"
+    ],
+    "horizon": [
+        "horizon.n.01"
+    ],
+    "calendar": [
+        "calendar.n.01"
+    ],
+    "foam": [
+        "foam.n.01"
+    ],
+    "stone": [
+        "rock.n.01"
+    ],
+    "bars": [
+        "parallel_bars.n.01"
+    ],
+    "button": [
+        "button.n.01"
+    ],
+    "poles": [
+        "pole.n.01"
+    ],
+    "heart": [
+        "heart.n.01"
+    ],
+    "hose": [
+        "hosiery.n.01"
+    ],
+    "jet engine": [
+        "jet_engine.n.01"
+    ],
+    "potatoes": [
+        "potato.n.01"
+    ],
+    "rain": [
+        "rain.n.01"
+    ],
+    "magazine": [
+        "magazine.n.01"
+    ],
+    "chain": [
+        "chain.n.01"
+    ],
+    "footboard": [
+        "footboard.n.01"
+    ],
+    "tee shirt": [
+        "jersey.n.03"
+    ],
+    "design": [
+        "design.n.01"
+    ],
+    "walls": [
+        "wall.n.01"
+    ],
+    "copyright": [
+        "copyright.n.01"
+    ],
+    "pictures": [
+        "picture.n.01"
+    ],
+    "pillar": [
+        "pillar.n.01"
+    ],
+    "drink": [
+        "drink.n.01"
+    ],
+    "barrier": [
+        "barrier.n.01"
+    ],
+    "boxes": [
+        "box.n.01"
+    ],
+    "chocolate": [
+        "cocoa.n.01"
+    ],
+    "chef": [
+        "chef.n.01"
+    ],
+    "slot": [
+        "slot.n.01"
+    ],
+    "sweatpants": [
+        "sweat_pants.n.01"
+    ],
+    "face mask": [
+        "face_mask.n.01"
+    ],
+    "icing": [
+        "frost.n.03"
+    ],
+    "wipers": [
+        "wiper.n.01"
+    ],
+    "circle": [
+        "circle.n.01"
+    ],
+    "bin": [
+        "bin.n.01"
+    ],
+    "kitty": [
+        "pool.n.07"
+    ],
+    "electronics": [
+        "electronics.n.01"
+    ],
+    "wild": [
+        "wild.n.01"
+    ],
+    "tiles": [
+        "tile.n.01"
+    ],
+    "steam": [
+        "steam.n.01"
+    ],
+    "lettering": [
+        "inscription.n.01"
+    ],
+    "bathroom sink": [
+        "sink.n.01"
+    ],
+    "laptop computer": [
+        "laptop.n.01"
+    ],
+    "cherry": [
+        "cherry.n.01"
+    ],
+    "spire": [
+        "steeple.n.01"
+    ],
+    "conductor": [
+        "conductor.n.01"
+    ],
+    "sheet": [
+        "sheet.n.01"
+    ],
+    "slab": [
+        "slab.n.01"
+    ],
+    "windshield wipers": [
+        "windshield_wiper.n.01"
+    ],
+    "storefront": [
+        "shopfront.n.01"
+    ],
+    "hill side": [
+        "hillside.n.01"
+    ],
+    "spatula": [
+        "spatula.n.01"
+    ],
+    "tail light,taillight": [
+        "taillight.n.01"
+    ],
+    "bean": [
+        "bean.n.01"
+    ],
+    "wire": [
+        "wire.n.01"
+    ],
+    "intersection": [
+        "intersection.n.01"
+    ],
+    "pier": [
+        "pier.n.01"
+    ],
+    "snow board": [
+        "snowboard.n.01"
+    ],
+    "trunks": [
+        "short_pants.n.01"
+    ],
+    "website": [
+        "web_site.n.01"
+    ],
+    "bolt": [
+        "thunderbolt.n.01"
+    ],
+    "kayak": [
+        "kayak.n.01"
+    ],
+    "nuts": [
+        "nut.n.01"
+    ],
+    "holder": [
+        "holder.n.01"
+    ],
+    "turbine": [
+        "turbine.n.01"
+    ],
+    "stop light": [
+        "stoplight.n.01"
+    ],
+    "olives": [
+        "olive.n.01"
+    ],
+    "ball cap": [
+        "cap.n.01"
+    ],
+    "burger": [
+        "burger.n.01"
+    ],
+    "barrel": [
+        "barrel.n.01"
+    ],
+    "fans": [
+        "fan.n.01"
+    ],
+    "beanie": [
+        "beanie.n.01"
+    ],
+    "stem": [
+        "root.n.03"
+    ],
+    "lines": [
+        "line.n.01"
+    ],
+    "traffic signal": [
+        "traffic_light.n.01"
+    ],
+    "sweatshirt": [
+        "sweatshirt.n.01"
+    ],
+    "handbag": [
+        "bag.n.04"
+    ],
+    "mulch": [
+        "mulch.n.01"
+    ],
+    "socks": [
+        "sock.n.01"
+    ],
+    "landscape": [
+        "landscape.n.01"
+    ],
+    "soda can": [
+        "soda_can.n.01"
+    ],
+    "shelves": [
+        "shelf.n.01"
+    ],
+    "ski lift": [
+        "ski_tow.n.01"
+    ],
+    "cord": [
+        "cord.n.01"
+    ],
+    "vegetable": [
+        "vegetable.n.01"
+    ],
+    "apron": [
+        "apron.n.01"
+    ],
+    "blind": [
+        "blind.n.01"
+    ],
+    "bracelets": [
+        "watchband.n.01"
+    ],
+    "stickers": [
+        "spine.n.03"
+    ],
+    "traffic": [
+        "traffic.n.01"
+    ],
+    "strip": [
+        "strip.n.01"
+    ],
+    "tennis shoes": [
+        "gym_shoe.n.01"
+    ],
+    "swim trunks": [
+        "swimsuit.n.01"
+    ],
+    "hillside": [
+        "hillside.n.01"
+    ],
+    "sandals": [
+        "sandal.n.01"
+    ],
+    "concrete": [
+        "concrete.n.01"
+    ],
+    "lips": [
+        "lip.n.01"
+    ],
+    "butter knife": [
+        "butter_knife.n.01"
+    ],
+    "words": [
+        "words.n.01"
+    ],
+    "leaves": [
+        "leaf.n.01"
+    ],
+    "train cars": [
+        "caravan.n.01"
+    ],
+    "spoke": [
+        "spoke.n.01"
+    ],
+    "cereal": [
+        "cereal.n.01"
+    ],
+    "pine trees": [
+        "pine.n.01"
+    ],
+    "cooler": [
+        "cooler.n.01"
+    ],
+    "bangs": [
+        "knock.n.03"
+    ],
+    "half": [
+        "one-half.n.01"
+    ],
+    "sheets": [
+        "sheet.n.01"
+    ],
+    "figurine": [
+        "figurine.n.01"
+    ],
+    "park bench": [
+        "park_bench.n.01"
+    ],
+    "stack": [
+        "stack.n.01"
+    ],
+    "second floor": [
+        "floor.n.01"
+    ],
+    "motor": [
+        "motor.n.01"
+    ],
+    "hand towel": [
+        "hand_towel.n.01"
+    ],
+    "wristwatch": [
+        "wristwatch.n.01"
+    ],
+    "spectator": [
+        "spectator.n.01"
+    ],
+    "tissues": [
+        "tissue.n.01"
+    ],
+    "flip flops": [
+        "slipper.n.01"
+    ],
+    "quilt": [
+        "quilt.n.01"
+    ],
+    "floret": [
+        "floret.n.01"
+    ],
+    "calf": [
+        "calf.n.01"
+    ],
+    "back pack": [
+        "backpack.n.01"
+    ],
+    "grapes": [
+        "grape.n.01"
+    ],
+    "ski tracks": [
+        "track.n.10"
+    ],
+    "skin": [
+        "skin.n.01"
+    ],
+    "bow": [
+        "bow.n.01"
+    ],
+    "controls": [
+        "control.n.01"
+    ],
+    "dinner": [
+        "dinner.n.01"
+    ],
+    "baseball players": [
+        "ballplayer.n.01"
+    ],
+    "ad": [
+        "ad.n.01"
+    ],
+    "ribbon": [
+        "ribbon.n.01"
+    ],
+    "hotel": [
+        "hotel.n.01"
+    ],
+    "sea": [
+        "sea.n.01"
+    ],
+    "cover": [
+        "screen.n.04"
+    ],
+    "tarp": [
+        "tarpaulin.n.01"
+    ],
+    "weather": [
+        "weather.n.01"
+    ],
+    "notebook": [
+        "notebook.n.01"
+    ],
+    "mustache": [
+        "mustache.n.01"
+    ],
+    "stone wall": [
+        "stone_wall.n.01"
+    ],
+    "closet": [
+        "cupboard.n.01"
+    ],
+    "statues": [
+        "statue.n.01"
+    ],
+    "bank": [
+        "bank.n.01"
+    ],
+    "skateboards": [
+        "skateboard.n.01"
+    ],
+    "butter": [
+        "butter.n.01"
+    ],
+    "dress shirt": [
+        "dress_shirt.n.01"
+    ],
+    "knee": [
+        "knee.n.01"
+    ],
+    "wood": [
+        "wood.n.01"
+    ],
+    "laptops": [
+        "laptop.n.01"
+    ],
+    "cuff": [
+        "cuff.n.01"
+    ],
+    "hubcap": [
+        "hubcap.n.01"
+    ],
+    "wings": [
+        "wings.n.01"
+    ],
+    "range": [
+        "scope.n.01"
+    ],
+    "structure": [
+        "structure.n.01"
+    ],
+    "balls": [
+        "ball.n.01"
+    ],
+    "tunnel": [
+        "tunnel.n.01"
+    ],
+    "globe": [
+        "earth.n.01"
+    ],
+    "utensil": [
+        "utensil.n.01"
+    ],
+    "dumpster": [
+        "dumpster.n.01"
+    ],
+    "cd": [
+        "cadmium.n.01"
+    ],
+    "floors": [
+        "floor.n.01"
+    ],
+    "wrapper": [
+        "negligee.n.01"
+    ],
+    "folder": [
+        "booklet.n.01"
+    ],
+    "pocket": [
+        "pocket.n.01"
+    ],
+    "mother": [
+        "mother.n.01"
+    ],
+    "ski goggles": [
+        "goggles.n.01"
+    ],
+    "posts": [
+        "post.n.01"
+    ],
+    "power line": [
+        "power_line.n.01"
+    ],
+    "wake": [
+        "aftermath.n.01"
+    ],
+    "roses": [
+        "rose.n.01"
+    ],
+    "train track": [
+        "railway.n.01"
+    ],
+    "reflection": [
+        "contemplation.n.02"
+    ],
+    "air conditioner": [
+        "air_conditioner.n.01"
+    ],
+    "referee": [
+        "referee.n.01"
+    ],
+    "barricade": [
+        "roadblock.n.02"
+    ],
+    "baseball mitt": [
+        "baseball_glove.n.01"
+    ],
+    "mouse pad": [
+        "mousepad.n.01"
+    ],
+    "garbage can": [
+        "ashcan.n.01"
+    ],
+    "buckle": [
+        "buckle.n.01"
+    ],
+    "footprints": [
+        "footprint.n.01"
+    ],
+    "lights": [
+        "light.n.01"
+    ],
+    "muffin": [
+        "muffin.n.01"
+    ],
+    "bracket": [
+        "bracket.n.01"
+    ],
+    "plug": [
+        "plug.n.01"
+    ],
+    "taxi cab": [
+        "cab.n.01"
+    ],
+    "drinks": [
+        "drink.n.01"
+    ],
+    "surfers": [
+        "surfer.n.01"
+    ],
+    "arrows": [
+        "arrow.n.01"
+    ],
+    "control panel": [
+        "control_panel.n.01"
+    ],
+    "ring": [
+        "ring.n.01"
+    ],
+    "twigs": [
+        "branchlet.n.01"
+    ],
+    "soil": [
+        "dirt.n.02"
+    ],
+    "skies": [
+        "sky.n.01"
+    ],
+    "clock hand": [
+        "clock.n.01"
+    ],
+    "caboose": [
+        "galley.n.04"
+    ],
+    "playground": [
+        "resort_area.n.01"
+    ],
+    "mango": [
+        "mango.n.01"
+    ],
+    "stump": [
+        "stump.n.01"
+    ],
+    "brick wall": [
+        "wall.n.01"
+    ],
+    "screw": [
+        "prison_guard.n.01"
+    ],
+    "minivan": [
+        "minivan.n.01"
+    ],
+    "leaf": [
+        "leaf.n.01"
+    ],
+    "fencing": [
+        "fence.n.01"
+    ],
+    "ledge": [
+        "ledge.n.01"
+    ],
+    "clothes": [
+        "apparel.n.01"
+    ],
+    "grass field": [
+        "field.n.01"
+    ],
+    "plumbing": [
+        "plumbing.n.01"
+    ],
+    "blouse": [
+        "blouse.n.01"
+    ],
+    "patch": [
+        "spot.n.05"
+    ],
+    "scaffolding": [
+        "scaffolding.n.01"
+    ],
+    "hamburger": [
+        "hamburger.n.01"
+    ],
+    "utility pole": [
+        "power_line.n.01"
+    ],
+    "teddy": [
+        "teddy.n.01"
+    ],
+    "rose": [
+        "rose.n.01"
+    ],
+    "skillet": [
+        "frying_pan.n.01"
+    ],
+    "cycle": [
+        "cycle.n.01"
+    ],
+    "cable": [
+        "cable.n.01"
+    ],
+    "gloves": [
+        "baseball_glove.n.01"
+    ],
+    "bark": [
+        "bark.n.01"
+    ],
+    "decoration": [
+        "decoration.n.01"
+    ],
+    "tables": [
+        "table.n.01"
+    ],
+    "palm": [
+        "palm.n.01"
+    ],
+    "wii": [
+        "console.n.02"
+    ],
+    "mountain top": [
+        "mountain.n.01"
+    ],
+    "shrub": [
+        "shrub.n.01"
+    ],
+    "hoof": [
+        "hoof.n.01"
+    ],
+    "celery": [
+        "celery.n.01"
+    ],
+    "beads": [
+        "beads.n.01"
+    ],
+    "plaque": [
+        "plaque.n.01"
+    ],
+    "flooring": [
+        "floor.n.01"
+    ],
+    "surf": [
+        "surf.n.01"
+    ],
+    "cloth": [
+        "fabric.n.01"
+    ],
+    "passenger": [
+        "passenger.n.01"
+    ],
+    "spot": [
+        "topographic_point.n.01"
+    ],
+    "plastic": [
+        "plastic.n.01"
+    ],
+    "knives": [
+        "knife.n.01"
+    ],
+    "case": [
+        "case.n.01"
+    ],
+    "railroad": [
+        "railway.n.01"
+    ],
+    "pony": [
+        "pony.n.01"
+    ],
+    "muffler": [
+        "silencer.n.02"
+    ],
+    "hot dogs,hotdogs": [
+        "hotdog.n.01"
+    ],
+    "stripe": [
+        "band.n.04"
+    ],
+    "scale": [
+        "scale.n.01"
+    ],
+    "block": [
+        "block.n.01"
+    ],
+    "recliner": [
+        "recliner.n.01"
+    ],
+    "body": [
+        "body.n.01"
+    ],
+    "shades": [
+        "sunglasses.n.01"
+    ],
+    "tap": [
+        "pat.n.01"
+    ],
+    "tools": [
+        "tool.n.01"
+    ],
+    "cupboard": [
+        "cupboard.n.01"
+    ],
+    "wallpaper": [
+        "wallpaper.n.01"
+    ],
+    "sculpture": [
+        "sculpture.n.01"
+    ],
+    "surface": [
+        "surface.n.01"
+    ],
+    "sedan": [
+        "sedan.n.01"
+    ],
+    "distance": [
+        "distance.n.01"
+    ],
+    "shrubs": [
+        "shrub.n.01"
+    ],
+    "skiis": [
+        "ski.n.01"
+    ],
+    "lift": [
+        "lift.n.01"
+    ],
+    "bottom": [
+        "bottom.n.01"
+    ],
+    "cleats": [
+        "cleats.n.01"
+    ],
+    "roll": [
+        "axial_rotation.n.01"
+    ],
+    "clothing": [
+        "clothing.n.01"
+    ],
+    "bed frame": [
+        "bed.n.01"
+    ],
+    "slacks": [
+        "slacks.n.01"
+    ],
+    "tail lights": [
+        "taillight.n.01"
+    ],
+    "doll": [
+        "doll.n.01"
+    ],
+    "traffic lights": [
+        "traffic_light.n.01"
+    ],
+    "symbol": [
+        "symbol.n.01"
+    ],
+    "strings": [
+        "string_section.n.01"
+    ],
+    "fixtures": [
+        "fixture.n.01"
+    ],
+    "short": [
+        "short.n.01"
+    ],
+    "paint": [
+        "paint.n.01"
+    ],
+    "candle holder": [
+        "candlestick.n.01"
+    ],
+    "guard rail": [
+        "safety_rail.n.01"
+    ],
+    "cyclist": [
+        "cyclist.n.01"
+    ],
+    "tree branches": [
+        "limb.n.02"
+    ],
+    "ripples": [
+        "ripple.n.01"
+    ],
+    "gear": [
+        "gear.n.01"
+    ],
+    "waist": [
+        "waist.n.01"
+    ],
+    "trash bin": [
+        "ashcan.n.01"
+    ],
+    "onion": [
+        "onion.n.01"
+    ],
+    "home": [
+        "home.n.01"
+    ],
+    "side mirror": [
+        "mirror.n.01"
+    ],
+    "brush": [
+        "brush.n.01"
+    ],
+    "sweatband": [
+        "sweatband.n.01"
+    ],
+    "handlebar": [
+        "handlebar.n.01"
+    ],
+    "light pole": [
+        "pole.n.01"
+    ],
+    "street lamp": [
+        "streetlight.n.01"
+    ],
+    "pads": [
+        "pad.n.01"
+    ],
+    "ham": [
+        "ham.n.01"
+    ],
+    "artwork": [
+        "artwork.n.01"
+    ],
+    "reflector": [
+        "reflector.n.01"
+    ],
+    "figure": [
+        "figure.n.01"
+    ],
+    "tile": [
+        "tile.n.01"
+    ],
+    "mountainside": [
+        "mountainside.n.01"
+    ],
+    "black": [
+        "black.n.01"
+    ],
+    "bricks": [
+        "brick.n.01"
+    ],
+    "paper plate": [
+        "paper_plate.n.01"
+    ],
+    "stick": [
+        "stick.n.01"
+    ],
+    "beef": [
+        "beef.n.01"
+    ],
+    "patio": [
+        "patio.n.01"
+    ],
+    "weeds": [
+        "weeds.n.01"
+    ],
+    "back": [
+        "back.n.01"
+    ],
+    "sausage": [
+        "sausage.n.01"
+    ],
+    "paws": [
+        "paw.n.01"
+    ],
+    "farm": [
+        "farm.n.01"
+    ],
+    "decal": [
+        "decal.n.01"
+    ],
+    "harness": [
+        "harness.n.01"
+    ],
+    "monkey": [
+        "monkey.n.01"
+    ],
+    "fence post": [
+        "fence.n.01"
+    ],
+    "door frame": [
+        "door.n.01"
+    ],
+    "stripes": [
+        "chevron.n.01"
+    ],
+    "clocks": [
+        "redstem_storksbill.n.01"
+    ],
+    "ponytail": [
+        "ponytail.n.01"
+    ],
+    "toppings": [
+        "topping.n.01"
+    ],
+    "strap": [
+        "strap.n.01"
+    ],
+    "carton": [
+        "carton.n.01"
+    ],
+    "greens": [
+        "greens.n.01"
+    ],
+    "chin": [
+        "chin.n.01"
+    ],
+    "lunch": [
+        "lunch.n.01"
+    ],
+    "name": [
+        "name.n.01"
+    ],
+    "earring": [
+        "earring.n.01"
+    ],
+    "area": [
+        "area.n.01"
+    ],
+    "tshirt,t-shirt,t shirt": [
+        "jersey.n.03"
+    ],
+    "cream": [
+        "cream.n.01"
+    ],
+    "rails": [
+        "track.n.09"
+    ],
+    "cushions": [
+        "shock_absorber.n.01"
+    ],
+    "lanyard": [
+        "lanyard.n.01"
+    ],
+    "brick": [
+        "brick.n.01"
+    ],
+    "hallway": [
+        "hallway.n.01"
+    ],
+    "cucumber": [
+        "cucumber.n.01"
+    ],
+    "wire fence": [
+        "fence.n.01"
+    ],
+    "fern": [
+        "fern.n.01"
+    ],
+    "tangerine": [
+        "tangerine.n.01"
+    ],
+    "windowsill": [
+        "windowsill.n.01"
+    ],
+    "pipes": [
+        "pipe.n.01"
+    ],
+    "package": [
+        "package.n.01"
+    ],
+    "wheelchair": [
+        "wheelchair.n.01"
+    ],
+    "chips": [
+        "french_fries.n.01"
+    ],
+    "driveway": [
+        "driveway.n.01"
+    ],
+    "tattoo": [
+        "tattoo.n.01"
+    ],
+    "side window": [
+        "window.n.01"
+    ],
+    "stairway": [
+        "stairway.n.01"
+    ],
+    "basin": [
+        "basin.n.01"
+    ],
+    "machine": [
+        "machine.n.01"
+    ],
+    "table lamp": [
+        "table_lamp.n.01"
+    ],
+    "radio": [
+        "radio.n.01"
+    ],
+    "pony tail": [
+        "ponytail.n.01"
+    ],
+    "ocean water": [
+        "ocean.n.01"
+    ],
+    "inside": [
+        "inside.n.01"
+    ],
+    "cargo": [
+        "cargo.n.01"
+    ],
+    "overpass": [
+        "overpass.n.01"
+    ],
+    "mat": [
+        "mat.n.01"
+    ],
+    "socket": [
+        "socket.n.01"
+    ],
+    "flower pot": [
+        "pot.n.04"
+    ],
+    "tree line": [
+        "timber_line.n.01"
+    ],
+    "sign post": [
+        "signpost.n.01"
+    ],
+    "tube": [
+        "tube.n.01"
+    ],
+    "dial": [
+        "dial.n.01"
+    ],
+    "splash": [
+        "splash.n.01"
+    ],
+    "male": [
+        "male.n.01"
+    ],
+    "lantern": [
+        "lantern.n.01"
+    ],
+    "lipstick": [
+        "lipstick.n.01"
+    ],
+    "lip": [
+        "lip.n.01"
+    ],
+    "tongs": [
+        "tongs.n.01"
+    ],
+    "ski suit": [
+        "snowsuit.n.01"
+    ],
+    "trail": [
+        "trail.n.01"
+    ],
+    "passenger train": [
+        "passenger_train.n.01"
+    ],
+    "bandana": [
+        "bandanna.n.01"
+    ],
+    "antelope": [
+        "antelope.n.01"
+    ],
+    "designs": [
+        "design.n.01"
+    ],
+    "tents": [
+        "tent.n.01"
+    ],
+    "photograph": [
+        "photograph.n.01"
+    ],
+    "catcher's mitt": [
+        "baseball_glove.n.01"
+    ],
+    "electrical outlet": [
+        "wall_socket.n.01"
+    ],
+    "tires": [
+        "tire.n.01"
+    ],
+    "boulders": [
+        "boulder.n.01"
+    ],
+    "mannequin": [
+        "mannequin.n.01"
+    ],
+    "plain": [
+        "plain.n.01"
+    ],
+    "layer": [
+        "layer.n.01"
+    ],
+    "mushrooms": [
+        "mushroom.n.01"
+    ],
+    "strawberries": [
+        "strawberry.n.01"
+    ],
+    "piece": [
+        "piece.n.01"
+    ],
+    "oar": [
+        "oar.n.01"
+    ],
+    "bike rack": [
+        "rack.n.01"
+    ],
+    "slices": [
+        "slice.n.01"
+    ],
+    "arms": [
+        "weaponry.n.01"
+    ],
+    "fin": [
+        "five.n.01"
+    ],
+    "shadows": [
+        "shadow.n.01"
+    ],
+    "hood": [
+        "hood.n.01"
+    ],
+    "windshield wiper": [
+        "windshield_wiper.n.01"
+    ],
+    "letter": [
+        "letter.n.01"
+    ],
+    "dot": [
+        "point.n.09"
+    ],
+    "bus stop": [
+        "bus_stop.n.01"
+    ],
+    "railings": [
+        "railing.n.01"
+    ],
+    "pebbles": [
+        "pebble.n.01"
+    ],
+    "mud": [
+        "mud.n.01"
+    ],
+    "claws": [
+        "claw.n.01"
+    ],
+    "police car": [
+        "cruiser.n.01"
+    ],
+    "crown": [
+        "crown.n.01"
+    ],
+    "meters": [
+        "meter.n.01"
+    ],
+    "name tag": [
+        "name_tag.n.01"
+    ],
+    "entrance": [
+        "entrance.n.01"
+    ],
+    "staircase": [
+        "stairway.n.01"
+    ],
+    "shrimp": [
+        "runt.n.01"
+    ],
+    "ladies": [
+        "lady.n.01"
+    ],
+    "peak": [
+        "extremum.n.02"
+    ],
+    "vines": [
+        "vine.n.01"
+    ],
+    "computer keyboard": [
+        "computer_keyboard.n.01"
+    ],
+    "glass door": [
+        "door.n.01"
+    ],
+    "pears": [
+        "pear.n.01"
+    ],
+    "pant": [
+        "pant.n.01"
+    ],
+    "wine glasses": [
+        "wineglass.n.01"
+    ],
+    "stall": [
+        "stall.n.01"
+    ],
+    "asphalt": [
+        "asphalt.n.01"
+    ],
+    "columns": [
+        "column.n.01"
+    ],
+    "sleeve": [
+        "sleeve.n.01"
+    ],
+    "pack": [
+        "battalion.n.02"
+    ],
+    "cheek": [
+        "cheek.n.01"
+    ],
+    "baskets": [
+        "basket.n.01"
+    ],
+    "land": [
+        "land.n.01"
+    ],
+    "day": [
+        "day.n.01"
+    ],
+    "blocks": [
+        "block.n.01"
+    ],
+    "courtyard": [
+        "court.n.10"
+    ],
+    "pedal": [
+        "pedal_point.n.01"
+    ],
+    "panel": [
+        "panel.n.01"
+    ],
+    "seeds": [
+        "seed.n.01"
+    ],
+    "balcony": [
+        "balcony.n.01"
+    ],
+    "yellow": [
+        "yellow.n.01"
+    ],
+    "disc": [
+        "phonograph_record.n.01"
+    ],
+    "young man": [
+        "young_buck.n.01"
+    ],
+    "eyebrows": [
+        "eyebrow.n.01"
+    ],
+    "crumbs": [
+        "crumb.n.01"
+    ],
+    "spinach": [
+        "spinach.n.01"
+    ],
+    "emblem": [
+        "emblem.n.01"
+    ],
+    "object": [
+        "object.n.01"
+    ],
+    "bar": [
+        "barroom.n.01"
+    ],
+    "cardboard": [
+        "cardboard.n.01"
+    ],
+    "tissue": [
+        "tissue.n.01"
+    ],
+    "light post": [
+        "pole.n.01"
+    ],
+    "ski jacket": [
+        "ski_parka.n.01"
+    ],
+    "seasoning": [
+        "flavorer.n.01"
+    ],
+    "parasol": [
+        "parasol.n.01"
+    ],
+    "terminal": [
+        "terminal.n.01"
+    ],
+    "surfing": [
+        "surfing.n.01"
+    ],
+    "streetlight,street light": [
+        "streetlight.n.01"
+    ],
+    "alley": [
+        "alley.n.01"
+    ],
+    "cords": [
+        "cords.n.01"
+    ],
+    "image": [
+        "image.n.01"
+    ],
+    "jug": [
+        "jug.n.01"
+    ],
+    "antenna": [
+        "antenna.n.01"
+    ],
+    "puppy": [
+        "puppy.n.01"
+    ],
+    "berries": [
+        "berry.n.01"
+    ],
+    "diamond": [
+        "diamond.n.01"
+    ],
+    "pans": [
+        "pan.n.01"
+    ],
+    "fountain": [
+        "fountain.n.01"
+    ],
+    "foreground": [
+        "foreground.n.01"
+    ],
+    "syrup": [
+        "syrup.n.01"
+    ],
+    "bride": [
+        "bride.n.01"
+    ],
+    "spray": [
+        "spray.n.01"
+    ],
+    "license": [
+        "license.n.01"
+    ],
+    "peppers": [
+        "pepper.n.01"
+    ],
+    "passengers": [
+        "passenger.n.01"
+    ],
+    "cement": [
+        "cement.n.01"
+    ],
+    "flags": [
+        "flag.n.01"
+    ],
+    "shack": [
+        "hovel.n.01"
+    ],
+    "trough": [
+        "trough.n.01"
+    ],
+    "objects": [
+        "object.n.01"
+    ],
+    "arches": [
+        "arch.n.01"
+    ],
+    "streamer": [
+        "streamer.n.01"
+    ],
+    "pots": [
+        "pot.n.01"
+    ],
+    "border": [
+        "boundary_line.n.01"
+    ],
+    "baseboard": [
+        "baseboard.n.01"
+    ],
+    "beer bottle": [
+        "beer_bottle.n.01"
+    ],
+    "wrist watch": [
+        "wristwatch.n.01"
+    ],
+    "tile floor": [
+        "tile.n.01"
+    ],
+    "page": [
+        "page.n.01"
+    ],
+    "pin": [
+        "pin.n.01"
+    ],
+    "items": [
+        "item.n.01"
+    ],
+    "baseline": [
+        "baseline.n.01"
+    ],
+    "hanger": [
+        "hanger.n.01"
+    ],
+    "tree branch": [
+        "limb.n.02"
+    ],
+    "tusks": [
+        "ivory.n.01"
+    ],
+    "donkey": [
+        "donkey.n.01"
+    ],
+    "containers": [
+        "container.n.01"
+    ],
+    "condiments": [
+        "condiment.n.01"
+    ],
+    "device": [
+        "device.n.01"
+    ],
+    "envelope": [
+        "envelope.n.01"
+    ],
+    "parachute": [
+        "parachute.n.01"
+    ],
+    "mesh": [
+        "mesh.n.01"
+    ],
+    "hut": [
+        "hut.n.01"
+    ],
+    "butterfly": [
+        "butterfly.n.01"
+    ],
+    "salt": [
+        "salt.n.01"
+    ],
+    "restroom": [
+        "public_toilet.n.01"
+    ],
+    "twig": [
+        "branchlet.n.01"
+    ],
+    "pilot": [
+        "pilot.n.01"
+    ],
+    "ivy": [
+        "ivy.n.01"
+    ],
+    "furniture": [
+        "furniture.n.01"
+    ],
+    "clay": [
+        "clay.n.01"
+    ],
+    "print": [
+        "print.n.01"
+    ],
+    "sandwiches": [
+        "sandwich.n.01"
+    ],
+    "lion": [
+        "lion.n.01"
+    ],
+    "shingles": [
+        "herpes_zoster.n.01"
+    ],
+    "pillars": [
+        "pillar.n.01"
+    ],
+    "vehicles": [
+        "vehicle.n.01"
+    ],
+    "panes": [
+        "pane.n.01"
+    ],
+    "shoreline": [
+        "shoreline.n.01"
+    ],
+    "stream": [
+        "stream.n.01"
+    ],
+    "control": [
+        "control.n.01"
+    ],
+    "lock": [
+        "lock.n.01"
+    ],
+    "microphone": [
+        "microphone.n.01"
+    ],
+    "blades": [
+        "blade.n.01"
+    ],
+    "towel rack": [
+        "towel_rack.n.01"
+    ],
+    "coaster": [
+        "coaster.n.01"
+    ],
+    "star": [
+        "star.n.01"
+    ],
+    "petals": [
+        "petal.n.01"
+    ],
+    "text": [
+        "text.n.01"
+    ],
+    "feather": [
+        "feather.n.01"
+    ],
+    "spots": [
+        "musca_volitans.n.01"
+    ],
+    "buoy": [
+        "buoy.n.01"
+    ]
+}
