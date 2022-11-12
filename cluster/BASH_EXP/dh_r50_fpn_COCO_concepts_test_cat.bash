@@ -1,12 +1,7 @@
 #!/bin/bash
 
 CONFIG_FILE=./configs/COCO/dh/r50/dh_r50_fpn_COCO_concepts_test_cat.yaml
-DATSETS=('("coco_2017_val_all",)' '("coco_2017_val_all",)' '("coco_2017_val_all",)' '("coco_2017_val_all",)' \
-         '("coco_2017_val_subset_old",)' '("coco_2017_val_subset_old",)' '("coco_2017_val_subset_old",)' )
-APPLY_CONDITION=(True False True False \
-                True False True False)
-EVALUATOR_TYPE=('default' 'default' 'GTFilter' 'GTFilter' \
-                'default' 'default' 'GTFilter' 'GTFilter')
+
 python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus 1 \

@@ -1,0 +1,276 @@
+---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING - dh_r50_fpn_COCO_concepts
+Loading and preparing results...
+DONE (t=0.95s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=23.92s).
+Accumulating evaluation results...
+DONE (t=2.68s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.517
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.733
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.554
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.344
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.549
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.666
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.363
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.610
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.668
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.488
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.717
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.815
+Per-category bbox AP: 
+| category      | AP     | category     | AP     | category       | AP     |
+|:--------------|:-------|:-------------|:-------|:---------------|:-------|
+| person        | 59.232 | bicycle      | 37.082 | car            | 50.811 |
+| motorcycle    | 49.857 | airplane     | 73.319 | bus            | 75.009 |
+| train         | 74.382 | truck        | 46.489 | boat           | 31.247 |
+| traffic light | 31.897 | fire hydrant | 72.570 | stop sign      | 73.991 |
+| parking meter | 65.330 | bench        | 36.237 | bird           | 45.867 |
+| cat           | 73.658 | dog          | 71.468 | horse          | 64.184 |
+| sheep         | 62.198 | cow          | 66.532 | elephant       | 71.570 |
+| bear          | 81.688 | zebra        | 70.840 | giraffe        | 72.611 |
+| backpack      | 25.381 | umbrella     | 52.300 | handbag        | 23.164 |
+| tie           | 41.392 | suitcase     | 48.792 | frisbee        | 73.088 |
+| skis          | 28.319 | snowboard    | 53.779 | sports ball    | 46.760 |
+| kite          | 50.223 | baseball bat | 37.159 | baseball glove | 41.853 |
+| skateboard    | 57.225 | surfboard    | 41.648 | tennis racket  | 48.863 |
+| bottle        | 48.642 | wine glass   | 44.844 | cup            | 51.377 |
+| fork          | 45.599 | knife        | 28.169 | spoon          | 24.547 |
+| bowl          | 50.624 | banana       | 34.228 | apple          | 30.428 |
+| sandwich      | 45.812 | orange       | 39.028 | broccoli       | 33.804 |
+| carrot        | 36.982 | hot dog      | 50.475 | pizza          | 63.376 |
+| donut         | 64.194 | cake         | 48.264 | chair          | 38.181 |
+| couch         | 58.915 | potted plant | 35.303 | bed            | 57.990 |
+| dining table  | 48.061 | toilet       | 66.783 | tv             | 59.983 |
+| laptop        | 70.813 | mouse        | 62.796 | remote         | 43.739 |
+| keyboard      | 58.695 | cell phone   | 49.563 | microwave      | 68.155 |
+| oven          | 46.465 | toaster      | 76.158 | sink           | 43.914 |
+| refrigerator  | 70.579 | book         | 19.692 | clock          | 55.339 |
+| vase          | 50.729 | scissors     | 42.730 | teddy bear     | 59.658 |
+| hair drier    | 35.959 | toothbrush   | 50.128 |                |        |
+OrderedDict([('bbox', {'AP': 51.734170001910144, 'AP50': 73.32728646200192, 'AP75': 55.37160495252426, 'APs': 34.35848604102147, 'APm': 54.927532959723166, 'APl': 66.6409339255767, 'AP-person': 59.2318260198907, 'AP-bicycle': 37.08236126545108, 'AP-car': 50.81113282163303, 'AP-motorcycle': 49.8570735479933, 'AP-airplane': 73.31927544409152, 'AP-bus': 75.00883671594117, 'AP-train': 74.3823759480302, 'AP-truck': 46.488622676844685, 'AP-boat': 31.246907843126483, 'AP-traffic light': 31.896616634825488, 'AP-fire hydrant': 72.56993679862605, 'AP-stop sign': 73.99130551215171, 'AP-parking meter': 65.33033101228322, 'AP-bench': 36.23661691058485, 'AP-bird': 45.86679902184664, 'AP-cat': 73.6576760646522, 'AP-dog': 71.46785600125685, 'AP-horse': 64.18364579072455, 'AP-sheep': 62.19750763823075, 'AP-cow': 66.53215427492387, 'AP-elephant': 71.57045332724394, 'AP-bear': 81.68793042631233, 'AP-zebra': 70.83968301498552, 'AP-giraffe': 72.61078545032792, 'AP-backpack': 25.381260474374685, 'AP-umbrella': 52.30027688169992, 'AP-handbag': 23.16396291575201, 'AP-tie': 41.39224698089791, 'AP-suitcase': 48.7922023330386, 'AP-frisbee': 73.08844555479597, 'AP-skis': 28.318667551447852, 'AP-snowboard': 53.77883031165944, 'AP-sports ball': 46.759731372093604, 'AP-kite': 50.222935376290344, 'AP-baseball bat': 37.1585518509758, 'AP-baseball glove': 41.852695682459846, 'AP-skateboard': 57.224733748348335, 'AP-surfboard': 41.64758827037057, 'AP-tennis racket': 48.86342675915857, 'AP-bottle': 48.64204003138749, 'AP-wine glass': 44.84449682538392, 'AP-cup': 51.37655111684345, 'AP-fork': 45.59939159239176, 'AP-knife': 28.16865037731012, 'AP-spoon': 24.546574085501334, 'AP-bowl': 50.62437487656082, 'AP-banana': 34.227781223482324, 'AP-apple': 30.42751100644215, 'AP-sandwich': 45.81223061686565, 'AP-orange': 39.02836461751, 'AP-broccoli': 33.80362505739159, 'AP-carrot': 36.982002866352865, 'AP-hot dog': 50.47539182851276, 'AP-pizza': 63.37637547968041, 'AP-donut': 64.19369669253156, 'AP-cake': 48.26417171312527, 'AP-chair': 38.18130641358821, 'AP-couch': 58.91506090879015, 'AP-potted plant': 35.3026457629584, 'AP-bed': 57.98988559162386, 'AP-dining table': 48.061306325587275, 'AP-toilet': 66.78279114393544, 'AP-tv': 59.98321870612451, 'AP-laptop': 70.81280887612203, 'AP-mouse': 62.7961800019355, 'AP-remote': 43.7388817538423, 'AP-keyboard': 58.69504056413888, 'AP-cell phone': 49.56278730151177, 'AP-microwave': 68.15482314902711, 'AP-oven': 46.4649130500842, 'AP-toaster': 76.15841584158416, 'AP-sink': 43.91371972381431, 'AP-refrigerator': 70.57901134826359, 'AP-book': 19.691959319788115, 'AP-clock': 55.33880855315625, 'AP-vase': 50.72898972163248, 'AP-scissors': 42.729623416273974, 'AP-teddy bear': 59.65769957043538, 'AP-hair drier': 35.95945308816596, 'AP-toothbrush': 50.127773787812046})])
+
+
+---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING - dh_r101_fpn_COCO_concepts
+Loading and preparing results...
+DONE (t=1.83s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=25.73s).
+Accumulating evaluation results...
+DONE (t=2.74s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.520
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.735
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.560
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.356
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.553
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.664
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.368
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.617
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.670
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.491
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.724
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.811
+Per-category bbox AP: 
+| category      | AP     | category     | AP     | category       | AP     |
+|:--------------|:-------|:-------------|:-------|:---------------|:-------|
+| person        | 59.295 | bicycle      | 38.321 | car            | 50.477 |
+| motorcycle    | 50.265 | airplane     | 73.606 | bus            | 73.200 |
+| train         | 74.162 | truck        | 47.941 | boat           | 31.642 |
+| traffic light | 33.631 | fire hydrant | 72.416 | stop sign      | 73.482 |
+| parking meter | 65.204 | bench        | 37.022 | bird           | 44.776 |
+| cat           | 78.082 | dog          | 71.299 | horse          | 66.139 |
+| sheep         | 63.199 | cow          | 66.848 | elephant       | 70.243 |
+| bear          | 79.404 | zebra        | 72.516 | giraffe        | 74.091 |
+| backpack      | 26.779 | umbrella     | 51.339 | handbag        | 25.051 |
+| tie           | 42.784 | suitcase     | 50.786 | frisbee        | 71.668 |
+| skis          | 27.515 | snowboard    | 50.540 | sports ball    | 48.189 |
+| kite          | 53.978 | baseball bat | 34.969 | baseball glove | 38.555 |
+| skateboard    | 57.834 | surfboard    | 43.537 | tennis racket  | 51.204 |
+| bottle        | 48.660 | wine glass   | 44.070 | cup            | 53.320 |
+| fork          | 44.974 | knife        | 28.549 | spoon          | 25.171 |
+| bowl          | 52.432 | banana       | 35.294 | apple          | 34.341 |
+| sandwich      | 46.592 | orange       | 39.123 | broccoli       | 33.738 |
+| carrot        | 38.432 | hot dog      | 51.695 | pizza          | 60.829 |
+| donut         | 63.837 | cake         | 47.704 | chair          | 38.248 |
+| couch         | 59.932 | potted plant | 35.916 | bed            | 58.593 |
+| dining table  | 47.958 | toilet       | 69.845 | tv             | 61.485 |
+| laptop        | 68.151 | mouse        | 61.934 | remote         | 44.445 |
+| keyboard      | 60.841 | cell phone   | 47.233 | microwave      | 74.732 |
+| oven          | 45.706 | toaster      | 65.738 | sink           | 42.034 |
+| refrigerator  | 69.666 | book         | 19.810 | clock          | 57.077 |
+| vase          | 51.188 | scissors     | 45.600 | teddy bear     | 60.815 |
+| hair drier    | 24.305 | toothbrush   | 54.783 |                |        |
+OrderedDict([('bbox', {'AP': 51.95987492737464, 'AP50': 73.47735985622474, 'AP75': 55.98788420875731, 'APs': 35.634613703102154, 'APm': 55.337302517663865, 'APl': 66.43577802071444, 'AP-person': 59.29545615176743, 'AP-bicycle': 38.32111930449468, 'AP-car': 50.476969471208655, 'AP-motorcycle': 50.26537673966879, 'AP-airplane': 73.6064881527822, 'AP-bus': 73.20027017889157, 'AP-train': 74.16152892127988, 'AP-truck': 47.94084274468413, 'AP-boat': 31.642083165316752, 'AP-traffic light': 33.63107445299103, 'AP-fire hydrant': 72.41646040165121, 'AP-stop sign': 73.48226664221644, 'AP-parking meter': 65.20373051372728, 'AP-bench': 37.022254062433184, 'AP-bird': 44.776366502491946, 'AP-cat': 78.08165946526776, 'AP-dog': 71.29943213247624, 'AP-horse': 66.13942960169541, 'AP-sheep': 63.199461289021826, 'AP-cow': 66.84821408277422, 'AP-elephant': 70.24347130283532, 'AP-bear': 79.40425679875612, 'AP-zebra': 72.51591033731745, 'AP-giraffe': 74.09065893377752, 'AP-backpack': 26.77928667816883, 'AP-umbrella': 51.33882333099581, 'AP-handbag': 25.050881683744496, 'AP-tie': 42.78406346344136, 'AP-suitcase': 50.78613273713416, 'AP-frisbee': 71.66762435683478, 'AP-skis': 27.51475301657184, 'AP-snowboard': 50.54021065947582, 'AP-sports ball': 48.188775580385396, 'AP-kite': 53.97846287316222, 'AP-baseball bat': 34.96949208598066, 'AP-baseball glove': 38.55549435063546, 'AP-skateboard': 57.833503765597996, 'AP-surfboard': 43.5365426165627, 'AP-tennis racket': 51.20381618825983, 'AP-bottle': 48.660484832439934, 'AP-wine glass': 44.06963779111735, 'AP-cup': 53.32016930108284, 'AP-fork': 44.9740271364349, 'AP-knife': 28.548534651006996, 'AP-spoon': 25.170833144347434, 'AP-bowl': 52.43186105765384, 'AP-banana': 35.29357528460126, 'AP-apple': 34.341107147770074, 'AP-sandwich': 46.59221433333708, 'AP-orange': 39.12303534894744, 'AP-broccoli': 33.73811418257984, 'AP-carrot': 38.43158586142557, 'AP-hot dog': 51.69522764581217, 'AP-pizza': 60.828825445614896, 'AP-donut': 63.837020731595075, 'AP-cake': 47.70402761541632, 'AP-chair': 38.24819803654084, 'AP-couch': 59.931790282611, 'AP-potted plant': 35.916142973351704, 'AP-bed': 58.59300903337863, 'AP-dining table': 47.957909715566295, 'AP-toilet': 69.84547781951335, 'AP-tv': 61.4853732911912, 'AP-laptop': 68.1510612827645, 'AP-mouse': 61.93415973145024, 'AP-remote': 44.445189254056174, 'AP-keyboard': 60.84101272910267, 'AP-cell phone': 47.23258128738801, 'AP-microwave': 74.73245614406834, 'AP-oven': 45.70590414048028, 'AP-toaster': 65.73831424580897, 'AP-sink': 42.03419817604469, 'AP-refrigerator': 69.66556574553053, 'AP-book': 19.80990187725585, 'AP-clock': 57.07650266466404, 'AP-vase': 51.18833388076715, 'AP-scissors': 45.60034971648976, 'AP-teddy bear': 60.814926925009786, 'AP-hair drier': 24.305353022271696, 'AP-toothbrush': 54.78335596700329})])
+
+
+
+---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING - dh_swint_fpn_COCO_concepts
+Loading and preparing results...
+DONE (t=0.79s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=23.26s).
+Accumulating evaluation results...
+DONE (t=2.53s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.565
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.778
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.614
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.401
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.602
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.698
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.391
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.648
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.702
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.545
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.750
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.829
+Per-category bbox AP: 
+| category      | AP     | category     | AP     | category       | AP     |
+|:--------------|:-------|:-------------|:-------|:---------------|:-------|
+| person        | 62.493 | bicycle      | 43.858 | car            | 54.944 |
+| motorcycle    | 53.893 | airplane     | 76.641 | bus            | 79.787 |
+| train         | 74.952 | truck        | 50.718 | boat           | 34.566 |
+| traffic light | 36.478 | fire hydrant | 76.897 | stop sign      | 78.629 |
+| parking meter | 67.877 | bench        | 42.308 | bird           | 51.529 |
+| cat           | 79.423 | dog          | 75.737 | horse          | 69.339 |
+| sheep         | 65.119 | cow          | 69.710 | elephant       | 74.942 |
+| bear          | 83.033 | zebra        | 74.545 | giraffe        | 77.366 |
+| backpack      | 32.444 | umbrella     | 53.317 | handbag        | 29.892 |
+| tie           | 47.245 | suitcase     | 56.962 | frisbee        | 75.224 |
+| skis          | 29.665 | snowboard    | 61.079 | sports ball    | 52.029 |
+| kite          | 54.765 | baseball bat | 47.174 | baseball glove | 45.441 |
+| skateboard    | 65.774 | surfboard    | 49.491 | tennis racket  | 59.128 |
+| bottle        | 55.124 | wine glass   | 48.563 | cup            | 57.523 |
+| fork          | 55.465 | knife        | 34.679 | spoon          | 31.909 |
+| bowl          | 54.962 | banana       | 40.321 | apple          | 39.732 |
+| sandwich      | 57.657 | orange       | 42.689 | broccoli       | 40.033 |
+| carrot        | 40.135 | hot dog      | 54.251 | pizza          | 66.842 |
+| donut         | 65.330 | cake         | 51.276 | chair          | 42.784 |
+| couch         | 63.285 | potted plant | 38.749 | bed            | 62.016 |
+| dining table  | 49.496 | toilet       | 72.137 | tv             | 63.443 |
+| laptop        | 73.666 | mouse        | 67.612 | remote         | 54.481 |
+| keyboard      | 62.739 | cell phone   | 53.439 | microwave      | 74.288 |
+| oven          | 50.956 | toaster      | 67.138 | sink           | 46.921 |
+| refrigerator  | 75.530 | book         | 22.582 | clock          | 57.007 |
+| vase          | 53.967 | scissors     | 56.008 | teddy bear     | 64.601 |
+| hair drier    | 43.204 | toothbrush   | 54.645 |                |        |
+OrderedDict([('bbox', {'AP': 56.51996303889102, 'AP50': 77.80239778415559, 'AP75': 61.3951686641948, 'APs': 40.118313132561994, 'APm': 60.151194809290374, 'APl': 69.84254239141215, 'AP-person': 62.49255201575817, 'AP-bicycle': 43.85834330299168, 'AP-car': 54.94367038934955, 'AP-motorcycle': 53.8927683282697, 'AP-airplane': 76.64110566486826, 'AP-bus': 79.78688014314669, 'AP-train': 74.95193372009318, 'AP-truck': 50.718028598485, 'AP-boat': 34.56630458905814, 'AP-traffic light': 36.47758380881189, 'AP-fire hydrant': 76.89687714938333, 'AP-stop sign': 78.62939248324417, 'AP-parking meter': 67.87689839724342, 'AP-bench': 42.308364949213036, 'AP-bird': 51.529063667593974, 'AP-cat': 79.4232856628444, 'AP-dog': 75.73681425990912, 'AP-horse': 69.33932229736396, 'AP-sheep': 65.11899966354005, 'AP-cow': 69.71019201986928, 'AP-elephant': 74.94193478283148, 'AP-bear': 83.0331947864271, 'AP-zebra': 74.54535709420801, 'AP-giraffe': 77.36569462206401, 'AP-backpack': 32.44442068936741, 'AP-umbrella': 53.31679557998822, 'AP-handbag': 29.89151515353001, 'AP-tie': 47.2447585461729, 'AP-suitcase': 56.961613079008586, 'AP-frisbee': 75.2244619887017, 'AP-skis': 29.66466850087451, 'AP-snowboard': 61.078521396478294, 'AP-sports ball': 52.02862027061298, 'AP-kite': 54.76471754356231, 'AP-baseball bat': 47.1740560857418, 'AP-baseball glove': 45.440798075524356, 'AP-skateboard': 65.77416048079662, 'AP-surfboard': 49.49105750501223, 'AP-tennis racket': 59.12823453550629, 'AP-bottle': 55.12384463900503, 'AP-wine glass': 48.56284152578764, 'AP-cup': 57.52283804752177, 'AP-fork': 55.464763723725255, 'AP-knife': 34.67856308138904, 'AP-spoon': 31.909170989005148, 'AP-bowl': 54.96240639468958, 'AP-banana': 40.32058039135851, 'AP-apple': 39.732081334022986, 'AP-sandwich': 57.656706108462274, 'AP-orange': 42.68853353261928, 'AP-broccoli': 40.03305641959293, 'AP-carrot': 40.13473553303218, 'AP-hot dog': 54.250979147697635, 'AP-pizza': 66.84165449786859, 'AP-donut': 65.33005251452091, 'AP-cake': 51.2759879055643, 'AP-chair': 42.783846312104004, 'AP-couch': 63.2849313096805, 'AP-potted plant': 38.74884418896338, 'AP-bed': 62.01583988566913, 'AP-dining table': 49.496447080468656, 'AP-toilet': 72.13655822813432, 'AP-tv': 63.442630359239324, 'AP-laptop': 73.66647212986695, 'AP-mouse': 67.6118910944276, 'AP-remote': 54.48109880664107, 'AP-keyboard': 62.73941928346676, 'AP-cell phone': 53.43919379426135, 'AP-microwave': 74.28790361272355, 'AP-oven': 50.9562238011471, 'AP-toaster': 67.13814238566714, 'AP-sink': 46.92116806913468, 'AP-refrigerator': 75.53049254311009, 'AP-book': 22.581949584091934, 'AP-clock': 57.00688177497744, 'AP-vase': 53.967350429441574, 'AP-scissors': 56.008418743218094, 'AP-teddy bear': 64.60066440093858, 'AP-hair drier': 43.2043204320432, 'AP-toothbrush': 54.64459724855579})])
+
+
+---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING  - retinanet_r50_fpn_COCO_concepts
+Loading and preparing results...
+DONE (t=0.65s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=24.97s).
+Accumulating evaluation results...
+DONE (t=2.78s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.415
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.648
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.434
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.278
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.445
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.532
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.319
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.528
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.578
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.403
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.609
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.718
+Per-category bbox AP: 
+| category      | AP     | category     | AP     | category       | AP     |
+|:--------------|:-------|:-------------|:-------|:---------------|:-------|
+| person        | 50.945 | bicycle      | 30.720 | car            | 41.644 |
+| motorcycle    | 42.788 | airplane     | 62.027 | bus            | 65.921 |
+| train         | 58.925 | truck        | 36.578 | boat           | 24.275 |
+| traffic light | 26.857 | fire hydrant | 65.333 | stop sign      | 65.250 |
+| parking meter | 61.719 | bench        | 27.722 | bird           | 38.869 |
+| cat           | 64.041 | dog          | 62.775 | horse          | 56.563 |
+| sheep         | 53.056 | cow          | 57.508 | elephant       | 59.224 |
+| bear          | 73.497 | zebra        | 63.054 | giraffe        | 64.907 |
+| backpack      | 16.910 | umbrella     | 37.395 | handbag        | 16.206 |
+| tie           | 30.371 | suitcase     | 38.786 | frisbee        | 69.609 |
+| skis          | 13.678 | snowboard    | 29.399 | sports ball    | 45.800 |
+| kite          | 42.211 | baseball bat | 25.132 | baseball glove | 34.224 |
+| skateboard    | 45.978 | surfboard    | 33.729 | tennis racket  | 41.761 |
+| bottle        | 41.653 | wine glass   | 34.689 | cup            | 45.561 |
+| fork          | 20.131 | knife        | 13.580 | spoon          | 11.421 |
+| bowl          | 44.260 | banana       | 23.576 | apple          | 26.582 |
+| sandwich      | 33.879 | orange       | 31.642 | broccoli       | 28.867 |
+| carrot        | 26.972 | hot dog      | 35.188 | pizza          | 53.045 |
+| donut         | 54.604 | cake         | 40.827 | chair          | 27.637 |
+| couch         | 46.559 | potted plant | 25.923 | bed            | 46.127 |
+| dining table  | 34.760 | toilet       | 57.702 | tv             | 54.411 |
+| laptop        | 56.690 | mouse        | 58.297 | remote         | 32.005 |
+| keyboard      | 42.949 | cell phone   | 37.033 | microwave      | 66.724 |
+| oven          | 33.346 | toaster      | 46.931 | sink           | 33.654 |
+| refrigerator  | 54.940 | book         | 12.453 | clock          | 53.493 |
+| vase          | 42.713 | scissors     | 26.975 | teddy bear     | 50.669 |
+| hair drier    | 12.308 | toothbrush   | 22.534 |                |        |
+OrderedDict([('bbox', {'AP': 41.483689454557684, 'AP50': 64.77173505272856, 'AP75': 43.38046521428197, 'APs': 27.79018574693283, 'APm': 44.51345460768461, 'APl': 53.18253652469082, 'AP-person': 50.94465131369098, 'AP-bicycle': 30.719584765273595, 'AP-car': 41.64431523059744, 'AP-motorcycle': 42.7883832505192, 'AP-airplane': 62.027459972282394, 'AP-bus': 65.92115329664432, 'AP-train': 58.924893607570425, 'AP-truck': 36.57822595845099, 'AP-boat': 24.274939427430382, 'AP-traffic light': 26.856915459989704, 'AP-fire hydrant': 65.33324761632453, 'AP-stop sign': 65.25047505584726, 'AP-parking meter': 61.71881275272507, 'AP-bench': 27.72159480206871, 'AP-bird': 38.86901254350648, 'AP-cat': 64.04104471442051, 'AP-dog': 62.77543590159627, 'AP-horse': 56.563447707797245, 'AP-sheep': 53.056116003753715, 'AP-cow': 57.50774473871272, 'AP-elephant': 59.2241389898587, 'AP-bear': 73.49660206575108, 'AP-zebra': 63.054077330068125, 'AP-giraffe': 64.90731835293313, 'AP-backpack': 16.90993680450181, 'AP-umbrella': 37.39492414094682, 'AP-handbag': 16.206380634502533, 'AP-tie': 30.370764116098204, 'AP-suitcase': 38.78590242068894, 'AP-frisbee': 69.60917195511048, 'AP-skis': 13.677585563589068, 'AP-snowboard': 29.39942005574952, 'AP-sports ball': 45.8001889707611, 'AP-kite': 42.210783895461205, 'AP-baseball bat': 25.13152443487572, 'AP-baseball glove': 34.22382791926038, 'AP-skateboard': 45.97834549120812, 'AP-surfboard': 33.72884876026177, 'AP-tennis racket': 41.760991013086674, 'AP-bottle': 41.653079546529206, 'AP-wine glass': 34.689214809788595, 'AP-cup': 45.56108550305488, 'AP-fork': 20.130615621858304, 'AP-knife': 13.579915831853276, 'AP-spoon': 11.421380620053817, 'AP-bowl': 44.25963258374312, 'AP-banana': 23.575545175433156, 'AP-apple': 26.581848839010124, 'AP-sandwich': 33.87900760091939, 'AP-orange': 31.641633224709427, 'AP-broccoli': 28.866665732552647, 'AP-carrot': 26.971715426331876, 'AP-hot dog': 35.18752121471721, 'AP-pizza': 53.044843289571084, 'AP-donut': 54.60409913571765, 'AP-cake': 40.826830790450494, 'AP-chair': 27.63687112617677, 'AP-couch': 46.559077731515345, 'AP-potted plant': 25.922654950671838, 'AP-bed': 46.1274525027428, 'AP-dining table': 34.75966250366066, 'AP-toilet': 57.70231729738066, 'AP-tv': 54.41128460967262, 'AP-laptop': 56.689935145239986, 'AP-mouse': 58.297128845217316, 'AP-remote': 32.00483171372526, 'AP-keyboard': 42.94850330057137, 'AP-cell phone': 37.03259718327395, 'AP-microwave': 66.72438575572659, 'AP-oven': 33.34603164574682, 'AP-toaster': 46.930693069306926, 'AP-sink': 33.65389596999265, 'AP-refrigerator': 54.93972263956041, 'AP-book': 12.452556069088349, 'AP-clock': 53.49273892472296, 'AP-vase': 42.71314218310745, 'AP-scissors': 26.9752966223168, 'AP-teddy bear': 50.669443990567245, 'AP-hair drier': 12.308310662999073, 'AP-toothbrush': 22.533799941421425})])
+
+
+
+---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING - retinanet_r101_fpn_COCO_concepts
+Loading and preparing results...
+DONE (t=0.89s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=25.28s).
+Accumulating evaluation results...
+DONE (t=2.73s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.435
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.669
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.458
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.286
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.473
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.554
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.330
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.543
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.590
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.404
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.634
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.730
+Per-category bbox AP: 
+| category      | AP     | category     | AP     | category       | AP     |
+|:--------------|:-------|:-------------|:-------|:---------------|:-------|
+| person        | 51.977 | bicycle      | 32.661 | car            | 42.565 |
+| motorcycle    | 45.523 | airplane     | 63.832 | bus            | 68.084 |
+| train         | 61.240 | truck        | 39.434 | boat           | 26.811 |
+| traffic light | 27.967 | fire hydrant | 66.705 | stop sign      | 67.050 |
+| parking meter | 62.025 | bench        | 28.073 | bird           | 41.540 |
+| cat           | 65.494 | dog          | 64.524 | horse          | 59.797 |
+| sheep         | 55.692 | cow          | 59.523 | elephant       | 63.245 |
+| bear          | 75.547 | zebra        | 64.722 | giraffe        | 67.268 |
+| backpack      | 21.583 | umbrella     | 40.259 | handbag        | 18.713 |
+| tie           | 32.264 | suitcase     | 41.407 | frisbee        | 69.984 |
+| skis          | 17.438 | snowboard    | 34.243 | sports ball    | 45.542 |
+| kite          | 45.562 | baseball bat | 24.343 | baseball glove | 35.858 |
+| skateboard    | 49.490 | surfboard    | 33.081 | tennis racket  | 42.640 |
+| bottle        | 42.411 | wine glass   | 35.907 | cup            | 45.962 |
+| fork          | 23.221 | knife        | 16.116 | spoon          | 11.931 |
+| bowl          | 45.912 | banana       | 25.962 | apple          | 29.771 |
+| sandwich      | 38.950 | orange       | 32.685 | broccoli       | 30.145 |
+| carrot        | 30.704 | hot dog      | 36.591 | pizza          | 53.035 |
+| donut         | 57.376 | cake         | 41.676 | chair          | 29.554 |
+| couch         | 48.694 | potted plant | 28.856 | bed            | 46.911 |
+| dining table  | 33.667 | toilet       | 59.600 | tv             | 53.795 |
+| laptop        | 59.237 | mouse        | 59.235 | remote         | 34.996 |
+| keyboard      | 45.118 | cell phone   | 41.566 | microwave      | 64.564 |
+| oven          | 34.930 | toaster      | 54.455 | sink           | 36.277 |
+| refrigerator  | 54.196 | book         | 13.500 | clock          | 54.557 |
+| vase          | 44.528 | scissors     | 34.315 | teddy bear     | 53.155 |
+| hair drier    | 10.217 | toothbrush   | 31.608 |                |        |
+OrderedDict([('bbox', {'AP': 43.494872982613884, 'AP50': 66.9161388182521, 'AP75': 45.8466463761159, 'APs': 28.63402755133003, 'APm': 47.32725193533735, 'APl': 55.358577761337926, 'AP-person': 51.976670440469086, 'AP-bicycle': 32.66080553581512, 'AP-car': 42.5651757713818, 'AP-motorcycle': 45.52296804509083, 'AP-airplane': 63.831951654709016, 'AP-bus': 68.08443578804247, 'AP-train': 61.23966223703859, 'AP-truck': 39.434355840365896, 'AP-boat': 26.810542640122627, 'AP-traffic light': 27.966626773278357, 'AP-fire hydrant': 66.70530679925172, 'AP-stop sign': 67.05047453320027, 'AP-parking meter': 62.02450487482088, 'AP-bench': 28.07293653467651, 'AP-bird': 41.540059198939645, 'AP-cat': 65.49371287946414, 'AP-dog': 64.52410145327234, 'AP-horse': 59.79677612704625, 'AP-sheep': 55.6917333087103, 'AP-cow': 59.52321539045528, 'AP-elephant': 63.245087244698475, 'AP-bear': 75.54727585684834, 'AP-zebra': 64.7216103079579, 'AP-giraffe': 67.26758906214363, 'AP-backpack': 21.58324859255266, 'AP-umbrella': 40.25916256065176, 'AP-handbag': 18.713482514343983, 'AP-tie': 32.264382166705644, 'AP-suitcase': 41.40693039759067, 'AP-frisbee': 69.98410269377962, 'AP-skis': 17.43803067138113, 'AP-snowboard': 34.24269920729924, 'AP-sports ball': 45.54205935768359, 'AP-kite': 45.56165045614878, 'AP-baseball bat': 24.343152996649533, 'AP-baseball glove': 35.85833069505478, 'AP-skateboard': 49.48964501502899, 'AP-surfboard': 33.08087225009355, 'AP-tennis racket': 42.639606749307255, 'AP-bottle': 42.41083523799726, 'AP-wine glass': 35.90738792627919, 'AP-cup': 45.96205853344951, 'AP-fork': 23.22142022415482, 'AP-knife': 16.11550109154934, 'AP-spoon': 11.930777388291897, 'AP-bowl': 45.91247415915491, 'AP-banana': 25.961724308629886, 'AP-apple': 29.771049978804708, 'AP-sandwich': 38.95046994986348, 'AP-orange': 32.68458838257833, 'AP-broccoli': 30.14480022519787, 'AP-carrot': 30.703536448900444, 'AP-hot dog': 36.5914471140264, 'AP-pizza': 53.034503609667226, 'AP-donut': 57.37590872394725, 'AP-cake': 41.67578077729948, 'AP-chair': 29.55421815944319, 'AP-couch': 48.693616647574046, 'AP-potted plant': 28.855651229366625, 'AP-bed': 46.910582059010316, 'AP-dining table': 33.66655798541387, 'AP-toilet': 59.60048666944105, 'AP-tv': 53.795440904984936, 'AP-laptop': 59.23734550490934, 'AP-mouse': 59.235010677570074, 'AP-remote': 34.99628449837125, 'AP-keyboard': 45.117767297303814, 'AP-cell phone': 41.56611215638307, 'AP-microwave': 64.56439723698456, 'AP-oven': 34.929697591254126, 'AP-toaster': 54.45544554455446, 'AP-sink': 36.276555086891946, 'AP-refrigerator': 54.19575696221239, 'AP-book': 13.500403009593636, 'AP-clock': 54.55715263897838, 'AP-vase': 44.52794126181111, 'AP-scissors': 34.31469930452566, 'AP-teddy bear': 53.15463626479841, 'AP-hair drier': 10.217196138218474, 'AP-toothbrush': 31.60768507765397})])
+
