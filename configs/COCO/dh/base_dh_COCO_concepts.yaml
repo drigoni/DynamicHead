@@ -49,7 +49,7 @@ DEEPSETS:
   FREEZE: TRUE
   AGGREGATE: 'sum'
   OUTPUT_DIM: 256
-EVALUATOR_TYPE: 'default' # GTFilter
+EVALUATOR_TYPE: 'default' # postProcessing
 SEED: 2022
 VERSION: 2
 

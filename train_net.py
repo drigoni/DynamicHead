@@ -26,7 +26,7 @@ from detectron2.data.samplers import TrainingSampler
 from detectron2.data.build import get_detection_dataset_dicts
 from detectron2.engine import SimpleTrainer, DefaultTrainer, default_argument_parser, default_setup, launch
 from detectron2.evaluation import COCOEvaluator
-from extra import COCOEvaluator as COCOEvaluator_GTFilter
+from extra import COCOEvaluator_postProcessing
 from detectron2.solver.build import maybe_add_gradient_clipping
 from detectron2.utils.logger import setup_logger
 from detectron2.data import MetadataCatalog
@@ -109,15 +109,21 @@ class Trainer(DefaultTrainer):
         For your own dataset, you can simply create an evaluator manually in your
         script and do not have to worry about the hacky if-else logic here.
         """
+        logger = logging.getLogger(__name__)
         if output_folder is None:
             output_folder = os.path.join(cfg.OUTPUT_DIR, "inference")
         
         if cfg.EVALUATOR_TYPE == 'default':
             evaluator = COCOEvaluator
-        elif cfg.EVALUATOR_TYPE == 'GTFilter':
-            evaluator = COCOEvaluator_GTFilter
+            return evaluator(dataset_name, cfg, True, output_folder, use_fast_impl=False)
+        elif cfg.EVALUATOR_TYPE == 'postProcessing':
+            # NOTE: drigoni: add concepts to classes
+            concept_finder = ConceptFinder(cfg.CONCEPT.FILE, depth=cfg.CONCEPT.DEPTH, unique=cfg.CONCEPT.UNIQUE, only_name=cfg.CONCEPT.ONLY_NAME)
+            coco2synset = concept_finder.coco2synset
+            evaluator = COCOEvaluator_postProcessing
+            return evaluator(dataset_name, coco2synset, cfg, True, output_folder, use_fast_impl=False)
         else:
-            logger.error("Error. CONCEPT.FUSION={} not valid. ".format(concept_fusion))
+            logger.error("Error. EVALUATOR_TYPE={} not valid. ".format(cfg.EVALUATOR_TYPE))
             exit(1)
 
         return evaluator(dataset_name, cfg, True, output_folder, use_fast_impl=False)

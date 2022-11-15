@@ -28,4 +28,4 @@ def add_concept_config(cfg):
     cfg.DEEPSETS.AGGREGATE = 'sum'  # 'mean'
 
     # add parameter for new evaluation for the new datasets
-    cfg.EVALUATOR_TYPE = 'default' # ['default', GTFilter']
+    cfg.EVALUATOR_TYPE = 'default' # ['default', postProcessing']

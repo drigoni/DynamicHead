@@ -67,8 +67,8 @@ echo ''
 CONFIG_FILE=./configs/COCO/dh/swint/dh_swint_fpn_COCO_test.yaml
 DATSETS=('("coco_2017_val",)' '("coco_2017_val",)'  \
          '("coco_2017_val_subset_old",)' '("coco_2017_val_subset_old",)')
-EVALUATOR_TYPE=('default' 'GTFilter'\
-                'default' 'GTFilter')
+EVALUATOR_TYPE=('default' 'postProcessing'\
+                'default' 'postProcessing')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \

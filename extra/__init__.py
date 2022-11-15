@@ -25,4 +25,4 @@ from .datasets import *
 
 
 # evaluator
-from .coco_evaluation.coco_evaluation import COCOEvaluator
+from .coco_evaluation.coco_evaluation import COCOEvaluator as COCOEvaluator_postProcessing

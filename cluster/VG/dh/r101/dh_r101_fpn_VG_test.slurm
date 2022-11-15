@@ -67,8 +67,8 @@ echo ''
 CONFIG_FILE=./configs/VG/dh/r101/dh_r101_fpn_VG_test.yaml
 DATSETS=('("vg_test",)' '("vg_test",)'  \
          '("vg_test_subset_old",)' '("vg_test_subset_old",)')
-EVALUATOR_TYPE=('default' 'GTFilter'\
-                'default' 'GTFilter')
+EVALUATOR_TYPE=('default' 'postProcessing'\
+                'default' 'postProcessing')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \

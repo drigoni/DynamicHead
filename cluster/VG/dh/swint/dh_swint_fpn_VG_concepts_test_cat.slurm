@@ -69,8 +69,8 @@ DATSETS=('("vg_test_all",)' '("vg_test_all",)' '("vg_test_all",)' '("vg_test_all
         '("vg_test_subset_old",)' '("vg_test_subset_old",)' '("vg_test_subset_old",)' '("vg_test_subset_old",)' )
 APPLY_CONDITION=(True False True False \
                 True False True False)
-EVALUATOR_TYPE=('default' 'default' 'GTFilter' 'GTFilter' \
-                'default' 'default' 'GTFilter' 'GTFilter')
+EVALUATOR_TYPE=('default' 'default' 'postProcessing' 'postProcessing' \
+                'default' 'default' 'postProcessing' 'postProcessing')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \

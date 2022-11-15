@@ -67,8 +67,8 @@ echo ''
 CONFIG_FILE=./configs/OID/retinanet/r101/retinanet_drigoni_r101_fpn_OID_test.yaml
 DATSETS=('("oid_v4_test",)' '("oid_v4_test",)'  \
          '("oid_v4_test_subset_old",)' '("oid_v4_test_subset_old",)')
-EVALUATOR_TYPE=('default' 'GTFilter'\
-                'default' 'GTFilter')
+EVALUATOR_TYPE=('default' 'postProcessing'\
+                'default' 'postProcessing')
 srun python train_net.py \
                     --config  ${CONFIG_FILE} \
                     --num-gpus ${NUM_GPUS} \
