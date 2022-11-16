@@ -18,6 +18,7 @@ wandb/*
 .idea/*
 
 Dockerfile
+exec_dockerfile.bash
 *.zip
 *.pth
 *.pickle
