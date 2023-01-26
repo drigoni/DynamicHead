@@ -3,6 +3,7 @@ from nltk.corpus import wordnet as wn
 import argparse
 import re
 import os
+import sys
 import json
 
 current_dir = os.path.dirname(os.path.abspath(__file__))

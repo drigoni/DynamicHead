@@ -17,6 +17,8 @@ from itertools import chain, combinations
 import distutils
 from nltk.corpus import wordnet as wn
 import copy
+import sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from extra import ConceptFinder
 
 current_dir = os.path.dirname(os.path.abspath(__file__))

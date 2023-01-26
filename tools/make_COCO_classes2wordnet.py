@@ -1,4 +1,6 @@
 import nltk
+import sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from nltk.corpus import wordnet as wn
 from model_code.linker import linker_vg2yago as lk
 import re

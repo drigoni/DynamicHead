@@ -19,6 +19,8 @@ import warnings
 import tqdm
 import json
 import glob
+import sys
+
 
 import detectron2.data.transforms as T
 from detectron2.data import MetadataCatalog
@@ -30,6 +32,7 @@ from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.modeling import build_model
 from detectron2.structures.boxes import Boxes
 
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from dyhead import add_dyhead_config
 from extra import add_extra_config
 from extra import add_concept_config
@@ -271,7 +274,8 @@ def extract_flickr30k_concepts(ewiser_path, topk=1):
                     best_synset = synsets_filtered[:topk]
                     concepts_per_sentence.extend(best_synset)
         if len(concepts_per_sentence) == 0:
-            print('No noun synset found for file {} and sentence: {}'.format(ewiser_path, textual_sentence))
+            print('No noun synset found for file {} and sentence: {}'.format(ewiser_path, textual_sentence))    # 'entity.n.01'?
+            concepts_per_sentence.append('entity.n.01')
         all_synsets.append(concepts_per_sentence)
     # check if there are at least one concept
     all_synsets_unique = [list(set(s)) for s in all_synsets]
