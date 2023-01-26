@@ -8,7 +8,6 @@ Description:
 import atexit
 import bisect
 import multiprocessing as mp
-import cv2
 import torch
 import argparse
 import glob
@@ -19,10 +18,10 @@ import time
 import warnings
 import tqdm
 import json
+import glob
 
 import detectron2.data.transforms as T
 from detectron2.data import MetadataCatalog
-from detectron2.utils.visualizer import ColorMode, Visualizer
 from detectron2.engine import default_setup
 from detectron2.config import get_cfg
 from detectron2.data.detection_utils import read_image
@@ -239,6 +238,9 @@ class ProposalExtractor(object):
 
 
 def extract_flickr30k_concepts(ewiser_path):
+    """
+    This function load the EWISER concepts extracted from each image.
+    """
     # reading data from file
     with open(ewiser_path, 'r') as f:
         ewiser_data = json.load(f)
@@ -274,10 +276,10 @@ def setup_cfg(args):
     cfg.merge_from_file(args.config)
     cfg.merge_from_list(args.opts)
     # Set score_threshold for builtin models
-    cfg.MODEL.ATSS.INFERENCE_TH = args.inference_th
-    cfg.MODEL.ATSS.PRE_NMS_TOP_N = args.pre_nms_top_n
-    cfg.MODEL.ATSS.NMS_TH = args.nms_th
-    cfg.TEST.DETECTIONS_PER_IMAGE = args.detection_per_image
+    cfg.MODEL.ATSS.INFERENCE_TH = args.inference_th             # default: 0.05
+    cfg.MODEL.ATSS.PRE_NMS_TOP_N = args.pre_nms_top_n           # default: 1000
+    cfg.MODEL.ATSS.NMS_TH = args.nms_th                         # default: 0.6
+    cfg.TEST.DETECTIONS_PER_IMAGE = args.detection_per_image    # default: 100
 
     cfg.freeze()
     default_setup(cfg, args)
@@ -294,18 +296,21 @@ def get_parser():
     )
     parser.add_argument(
         "--images_folder",
-        help="Images folder. "
+        help="Folder containing the images."
     )
     parser.add_argument(
-        "--concepts",
-        nargs="+",
-        help="A list of concepts file . "
+        "--concepts_folder",
+        help="Folder containing the concepts."
     )
     parser.add_argument(
         "--output",
-        default='./demo/',
-        help="A file or directory to save output visualizations. "
-        "If not given, will show output in an OpenCV window.",
+        default='./extracted_features/',
+        help="A file or directory to save the output files. ",
+    )
+    parser.add_argument(
+        "--parallel",
+        help="=True if the GPUs are used",
+        default=lambda x: True if x.lower() == 'true' else False,
     )
     parser.add_argument(
         "--inference_th",
@@ -337,11 +342,6 @@ def get_parser():
         default=[],
         nargs=argparse.REMAINDER,
     )
-    parser.add_argument(
-        "--parallel",
-        help="=True if the GPUs are used",
-        default=lambda x: True if x.lower() == 'true' else False,
-    )
     return parser
 
 
@@ -351,7 +351,6 @@ if __name__ == "__main__":
     setup_logger(name="fvcore")
     logger = setup_logger()
     logger.info("Arguments: " + str(args))
-
     cfg = setup_cfg(args)
 
     extractor = ProposalExtractor(cfg, args.parallel)
@@ -359,55 +358,79 @@ if __name__ == "__main__":
     n_proposals = []
     n_concepts = []
 
-    if args.images_folder and args.concepts:
-        images_folder = args.images_folder
-        concepts_folder = os.path.dirname(args.concepts[0])
-        for concept_path in tqdm.tqdm(args.concepts, disable=not args.output):
-            concept_filename = os.path.basename(concept_path)
-            image_filename = '{}.jpg'.format(concept_filename[:-9])  # remove ".txt.json" and add ".jpg"
-            image_path = os.path.join(images_folder, image_filename)
+    # check if the arguments are not empty
+    if not args.images_folder or not args.concepts_folder:
+        print('Error. Specify the folder of images and the folder of concepts. ')
+        exit(1)
 
-            # get concepts
-            current_concepts = extract_flickr30k_concepts(concept_path)
-
-            # use PIL, to be consistent with evaluation
-            img = read_image(image_path, format="BGR")
-            start_time = time.time()
-            predictions = extractor.run_on_image(img, current_concepts)
-            logger.info(
-                "Done {} in {:.2f}s with {} proposals and {} concepts".format(
-                    image_path,
-                    time.time() - start_time,
-                    len(predictions['pred_boxes']),
-                    len(current_concepts)
-                )
-            )
-
-            # update statistics
-            n_proposals.append(len(predictions['pred_boxes']))
-            n_concepts.append(len(current_concepts))
-
-            # save predictions
-            out_filename = os.path.join(args.output, os.path.basename(image_path))
-            out_filename = '{}.json'.format(out_filename[:-4])
-            # logger.info(out_filename)
-            # print('Features: ', len(predictions['features']), len(predictions['features'][0]))
-            with open(out_filename, 'w') as outfile:
-                json.dump(predictions, outfile)
-
-        logger.info(
-            "Statistics about extracted proposals. Mean: {}, Max: {}, Min: {} .".format(
-                sum(n_proposals)/len(n_proposals),
-                max(n_proposals),
-                min(n_proposals)
-            )
-        )
-        logger.info(
-            "Statistics about number of concepts. Mean: {}, Max: {}, Min: {} .".format(
-                sum(n_concepts)/len(n_concepts),
-                max(n_concepts),
-                min(n_concepts)
-            )
-        )
+    # check if the output folder already exists
+    if os.path.exists(args.output):
+        print('Error. The output folder already exists:', args.output)
+        exit(1)
     else:
-        print('Specify the folder of images and the folder of concepts. ')
+        os.makedirs(args.output)
+
+    images_folder = args.images_folder
+    concepts_folder = args.concepts_folder
+    list_of_images = glob.glob("{}*.jpg".format(images_folder))
+    list_of_concepts = glob.glob("{}*.txt.json".format(concepts_folder))
+
+    # check if the list of concepts is not empty
+    if len(list_of_images)==0 or len(list_of_concepts)==0:
+        print('Error. Empty folder for images or concepts. ')
+        exit(1)
+    else:
+        print('Number of images:', len(list_of_images))
+        print('Number of concept files:', len(list_of_concepts))
+
+    for concept_file in tqdm.tqdm(list_of_concepts, disable=not args.output):
+        # get concepts
+        current_concepts = extract_flickr30k_concepts(concept_file)
+
+        # get image
+        concept_filename = os.path.basename(concept_file)
+        image_filename = '{}.jpg'.format(concept_filename[:-9])  # remove ".txt.json" and add ".jpg"
+        image_path = os.path.join(images_folder, image_filename)
+        if image_path not in list_of_images:
+            print("Warning: image {} not found in list of images.".format(image_path))
+        # use PIL, to be consistent with evaluation
+        current_image = read_image(image_path, format="BGR")
+
+        # get predictions
+        start_time = time.time()
+        predictions = extractor.run_on_image(current_image, current_concepts)
+        # logger.info(
+        #     "Done {} in {:.2f}s with {} proposals and {} concepts".format(
+        #         image_path,
+        #         time.time() - start_time,
+        #         len(predictions['pred_boxes']),
+        #         len(current_concepts)
+        #     )
+        # )
+
+        # update statistics
+        n_proposals.append(len(predictions['pred_boxes']))
+        n_concepts.append(len(current_concepts))
+
+        # save predictions
+        out_filename = os.path.join(args.output, os.path.basename(image_path))
+        out_filename = '{}.json'.format(out_filename[:-4])
+        # logger.info(out_filename)
+        # print('Features: ', len(predictions['features']), len(predictions['features'][0]))
+        with open(out_filename, 'w') as outfile:
+            json.dump(predictions, outfile)
+
+    logger.info(
+        "Statistics about extracted proposals. Mean: {}, Max: {}, Min: {} .".format(
+            sum(n_proposals)/len(n_proposals),
+            max(n_proposals),
+            min(n_proposals)
+        )
+    )
+    logger.info(
+        "Statistics about number of concepts. Mean: {}, Max: {}, Min: {} .".format(
+            sum(n_concepts)/len(n_concepts),
+            max(n_concepts),
+            min(n_concepts)
+        )
+    )
