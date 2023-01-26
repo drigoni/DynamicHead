@@ -14,7 +14,6 @@ corpora/*
 BACKUPS/results_before_vega/*
 BACKUPS/old_exracted_features_before_vega.zip
 BACKUPS_CLUSTER_VEGA/*
-experiments/*
 
 cluster/out/*
 wandb/*
@@ -25,3 +24,6 @@ exec_dockerfile.bash
 *.zip
 *.pth
 *.pickle
+
+
+BACKUPS/.old_exracted_features_before_vega.zip.ZPCx0F
