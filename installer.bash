@@ -17,6 +17,7 @@ if [[ $MODE == "install" ]]; then
   pip install numpy
   pip install setuptools==59.5.0  # https://stackoverflow.com/questions/70520120/attributeerror-module-setuptools-distutils-has-no-attribute-version
   pip install wandb
+  pip install opencv-python
 
   # due to a bug
   # pip uninstall torch
