@@ -12,18 +12,30 @@ from detectron2.data import DatasetCatalog, MetadataCatalog, build_detection_tra
 from detectron2.data import detection_utils as utils
 from detectron2.data.build import filter_images_with_few_keypoints
 from detectron2.utils.logger import setup_logger
+from detectron2.engine import default_setup
 from detectron2.utils.visualizer import Visualizer
 
-# sys.path.insert(1, os.path.join(sys.path[0], '..'))
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from dyhead import add_dyhead_config
+from extra import add_extra_config
+from extra import add_concept_config
 
 
-def setup(args):
+def setup_cfg(args):
+    """
+    Create configs and perform basic setups.
+    """
     cfg = get_cfg()
-    if args.config_file:
-        cfg.merge_from_file(args.config_file)
+    add_dyhead_config(cfg)
+    add_extra_config(cfg)
+    add_concept_config(cfg)
+    cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
+    # Set score_threshold for builtin models
     cfg.DATALOADER.NUM_WORKERS = 0
+
     cfg.freeze()
+    default_setup(cfg, args)
     return cfg
 
 
@@ -51,7 +63,7 @@ if __name__ == "__main__":
     args = parse_args()
     logger = setup_logger()
     logger.info("Arguments: " + str(args))
-    cfg = setup(args)
+    cfg = setup_cfg(args)
 
     dirname = args.output_dir
     os.makedirs(dirname, exist_ok=True)
