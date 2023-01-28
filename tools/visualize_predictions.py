@@ -22,7 +22,14 @@ import json
 import glob
 import sys
 import warnings
+import contextlib
+from pycocotools.coco import COCO
+import io
+import copy
+import nltk
+from nltk.corpus import wordnet as wn
 
+from detectron2.utils.file_io import PathManager
 from detectron2.config import get_cfg
 from detectron2.data import DatasetCatalog, MetadataCatalog, build_detection_train_loader, build_detection_test_loader
 from detectron2.data import detection_utils as utils
@@ -43,9 +50,40 @@ from detectron2.structures.boxes import Boxes
 warnings.filterwarnings("ignore", category=UserWarning) 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from dyhead import add_dyhead_config
-from extra import add_extra_config
-from extra import add_concept_config
+from extra import add_concept_config, add_extra_config, ConceptFinder
 from train_net import Trainer
+
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+
+
+def filtering_process(pred, input_concepts, coco2synset, dataset_metadata):
+    # make the pool of accepted ancestors
+    all_accepted_concepts = {dataset_metadata.thing_dataset_id_to_contiguous_id[k]: val_dict['descendants'] + [val_dict['synset']] for k, val_dict in coco2synset.items() }
+    
+    # select the pool of accepted classes
+    poll_accepted_classes = []
+    for concept in input_concepts:
+        for cat_id, descendants in all_accepted_concepts.items():
+            if concept in descendants:
+                poll_accepted_classes.append(cat_id)
+    
+    # filtering
+    filtered_list = {
+        'pred_boxes': [],
+        'pred_classes': [],
+    }
+    assert len(pred['pred_boxes']) == len(pred['pred_classes'])
+    for i in range(len(pred['pred_boxes'])):  
+        current_class = pred['pred_classes'][i]
+        current_box = pred['pred_boxes'][i]
+        if current_class in poll_accepted_classes:
+            filtered_list['pred_classes'].append(current_class)
+            filtered_list['pred_boxes'].append(current_box)
+
+    return filtered_list
+
 
 class DefaultPredictor:
     """
@@ -89,7 +127,7 @@ class DefaultPredictor:
         self.input_format = cfg.INPUT.FORMAT
         assert self.input_format in ["RGB", "BGR"], self.input_format
 
-    def __call__(self, original_image, concepts):
+    def __call__(self, original_image, concepts=None):
         """
         Args:
             original_image (np.ndarray): an image of shape (H, W, C) (in BGR order).
@@ -125,7 +163,7 @@ class ProposalExtractor(object):
         os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
         self.predictor = DefaultPredictor(cfg)
 
-    def run_on_image(self, image, concepts):
+    def run_on_image(self, image, concepts=None):
         """
         Args:
             image (np.ndarray): an image of shape (H, W, C) (in BGR order).
@@ -135,7 +173,10 @@ class ProposalExtractor(object):
             predictions (dict): the output of the model.
             vis_output (VisImage): the visualized image output.
         """
-        predictions = self.predictor(image, concepts)
+        if concepts:
+            predictions = self.predictor(image, concepts)
+        else:
+            predictions = self.predictor(image)
         instances = predictions["instances"].to(self.cpu_device)
         results = dict()
         for k, v in instances.get_fields().items():
@@ -172,6 +213,7 @@ def parse_args(in_args=None):
     parser.add_argument("--config-file", metavar="FILE", help="path to config file")
     parser.add_argument("--output-dir", default="./", help="path to output directory")
     parser.add_argument("--show", action="store_true", help="show output in a window")
+    parser.add_argument("--filtering", action="store_true", help="apply postprocessing filtering")
     parser.add_argument(
         "opts",
         help="Modify config options using the command-line",
@@ -187,19 +229,23 @@ if __name__ == "__main__":
     logger.info("Arguments: " + str(args))
     cfg = setup_cfg(args)
 
+    # NOTE: drigoni: add concepts to classes
+    concept_finder = ConceptFinder(cfg.CONCEPT.FILE, depth=cfg.CONCEPT.DEPTH, unique=cfg.CONCEPT.UNIQUE, only_name=cfg.CONCEPT.ONLY_NAME)
+    coco2synset = concept_finder.coco2synset
+
     dirname = args.output_dir
     os.makedirs(dirname, exist_ok=True)
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
     extractor = ProposalExtractor(cfg)
 
-    def output(vis, fname, concepts):
+    def output(vis, fname):
         if args.show:
             print(fname)
             cv2.imshow("window", vis.get_image()[:, :, ::-1])
             cv2.waitKey()
         else:
             filepath = os.path.join(dirname, fname)
-            print("Saving to {} ... concepts: {} ".format(filepath, concepts))
+            print("Saving to {} ... ".format(filepath))
             vis.save(filepath)
 
     scale = 1.0
@@ -209,16 +255,24 @@ if __name__ == "__main__":
             # Pytorch tensor is in (C, H, W) format
             # current_image = read_image(per_image["file_name"], format="RGB")
             current_image = per_image["image"].permute(1, 2, 0).cpu().detach().numpy()
-            current_image = utils.convert_image_to_rgb(current_image, cfg.INPUT.FORMAT)
 
-            predictions = extractor.run_on_image(current_image, per_image["concepts"])
-            pred_boxes = predictions['pred_boxes']
-            pred_classes = predictions['pred_classes']
+            # check wether the concepts are used or not.
+            if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"] and cfg.CONCEPT.APPLY_CONDITION:
+                print("Using concepts: {}", per_image["concepts"])
+                predictions = extractor.run_on_image(current_image, per_image["concepts"])
+            else:
+                predictions = extractor.run_on_image(current_image)
+            
+            if args.filtering:
+                print("---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING")
+                predictions = filtering_process(predictions, per_image["concepts"], coco2synset, metadata)
+
             predictions = {
-                'gt_boxes': pred_boxes,
-                'gt_classes': pred_classes,
+                'gt_boxes': predictions['pred_boxes'],
+                'gt_classes': predictions['pred_classes'],
             }
 
+            current_image = utils.convert_image_to_rgb(current_image, cfg.INPUT.FORMAT)
             visualizer = Visualizer(current_image, metadata=metadata, scale=scale)
             # target_fields = per_image["instances"].get_fields() 
             target_fields = predictions
@@ -230,4 +284,4 @@ if __name__ == "__main__":
                 masks=target_fields.get("gt_masks", None),
                 keypoints=target_fields.get("gt_keypoints", None),
             )
-            output(vis, str(per_image["image_id"]) + ".jpg", per_image["concepts"])
+            output(vis, str(per_image["image_id"]) + ".jpg")
