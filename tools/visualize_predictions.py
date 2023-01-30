@@ -50,39 +50,12 @@ from detectron2.structures.boxes import Boxes
 warnings.filterwarnings("ignore", category=UserWarning) 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from dyhead import add_dyhead_config
-from extra import add_concept_config, add_extra_config, ConceptFinder
+from extra import add_concept_config, add_extra_config, ConceptFinder, inference_filtering_process
 from train_net import Trainer
 
 nltk.download('wordnet')
 nltk.download('omw-1.4')
 
-
-
-def filtering_process(pred, input_concepts, coco2synset, dataset_metadata):
-    # make the pool of accepted ancestors
-    all_accepted_concepts = {dataset_metadata.thing_dataset_id_to_contiguous_id[k]: val_dict['descendants'] + [val_dict['synset']] for k, val_dict in coco2synset.items() }
-    
-    # select the pool of accepted classes
-    poll_accepted_classes = []
-    for concept in input_concepts:
-        for cat_id, descendants in all_accepted_concepts.items():
-            if concept in descendants:
-                poll_accepted_classes.append(cat_id)
-    
-    # filtering
-    filtered_list = {
-        'pred_boxes': [],
-        'pred_classes': [],
-    }
-    assert len(pred['pred_boxes']) == len(pred['pred_classes'])
-    for i in range(len(pred['pred_boxes'])):  
-        current_class = pred['pred_classes'][i]
-        current_box = pred['pred_boxes'][i]
-        if current_class in poll_accepted_classes:
-            filtered_list['pred_classes'].append(current_class)
-            filtered_list['pred_boxes'].append(current_box)
-
-    return filtered_list
 
 
 class DefaultPredictor:
@@ -108,7 +81,7 @@ class DefaultPredictor:
         outputs = pred(inputs)
     """
 
-    def __init__(self, cfg):
+    def __init__(self, cfg, args=None):
         self.cfg = cfg.clone()  # cfg can be modified by model
         # self.model = build_model(self.cfg)
         self.model = Trainer.build_model(cfg)
@@ -127,6 +100,13 @@ class DefaultPredictor:
         self.input_format = cfg.INPUT.FORMAT
         assert self.input_format in ["RGB", "BGR"], self.input_format
 
+        self.cpu_device = torch.device("cpu")
+        self.filtering = args is not None and args.filtering is True
+        if self.filtering:
+            print("---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING")
+            concept_finder = ConceptFinder(cfg.CONCEPT.FILE, depth=cfg.CONCEPT.DEPTH, unique=cfg.CONCEPT.UNIQUE, only_name=cfg.CONCEPT.ONLY_NAME)
+            self.coco2synset = concept_finder.coco2synset
+
     def __call__(self, original_image, concepts=None):
         """
         Args:
@@ -137,6 +117,7 @@ class DefaultPredictor:
                 the output of the model for one image only.
                 See :doc:`/tutorials/models` for details about the/myothermodule. format.
         """
+        # if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"] and cfg.CONCEPT.APPLY_CONDITION:
         with torch.no_grad():  # https://github.com/sphinx-doc/sphinx/issues/4258
             # Apply pre-processing to image.
             if self.input_format == "RGB":
@@ -146,21 +127,50 @@ class DefaultPredictor:
             image = self.aug.get_transform(original_image).apply_image(original_image)
             image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
 
+            # concepts pre-processing. NOTE: add ['entity.n.01']
+            if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]:
+                if cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
+                    print("Using concepts: {}. ".format(concepts))
+                elif cfg.CONCEPT.APPLY_CONDITION and concepts is None:
+                    print("Error. Concept not available in input, but should be used. ")
+                    exit(1)
+                elif not cfg.CONCEPT.APPLY_CONDITION:
+                    print("Concept available in input, but not used. ")
+                    concepts = ['entity.n.01']
+            else:
+                if cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
+                    print("Error. Concepts available, and should be used. However, the architecture does not use them. ")
+                    exit(1)
+
+            # make predictions
             inputs = {"image": image, "height": height, "width": width, 'concepts': concepts}
             predictions = self.model([inputs])[0]
-            return predictions
+            
+            # change format
+            instances = predictions["instances"].to(self.cpu_device)
+            results = dict()
+            for k, v in instances.get_fields().items():
+                if isinstance(v, Boxes):
+                    boxes_list = v.tensor
+                    results[k] = boxes_list.tolist()
+                else:
+                    results[k] = v.tolist()
+            assert len(results['features']) ==  len(results['pred_boxes']) == len(results['probs']), 'Error in the results.'
+
+            # filter results
+            if self.filtering:
+                results = inference_filtering_process(results, concepts, self.coco2synset, self.metadata)
+            return results
 
 
 class ProposalExtractor(object):
-    def __init__(self, cfg):
+    def __init__(self, cfg, args=None):
         """
         Args:
             cfg (CfgNode):
             parallel (bool): whether to run the model in different processes from visualization.
                 Useful since the visualization logic can be slow.
         """
-        self.cpu_device = torch.device("cpu")
-        os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
         self.predictor = DefaultPredictor(cfg)
 
     def run_on_image(self, image, concepts=None):
@@ -173,21 +183,8 @@ class ProposalExtractor(object):
             predictions (dict): the output of the model.
             vis_output (VisImage): the visualized image output.
         """
-        if concepts:
-            predictions = self.predictor(image, concepts)
-        else:
-            predictions = self.predictor(image)
-        instances = predictions["instances"].to(self.cpu_device)
-        results = dict()
-        for k, v in instances.get_fields().items():
-            if isinstance(v, Boxes):
-                boxes_list = v.tensor
-                results[k] = boxes_list.tolist()
-            else:
-                results[k] = v.tolist()
-
-        assert len(results['features']) ==  len(results['pred_boxes']) == len(results['probs']), 'Error in the results.'
-        return results
+        predictions = self.predictor(image, concepts)
+        return predictions
 
 
 def setup_cfg(args):
@@ -202,6 +199,16 @@ def setup_cfg(args):
     cfg.merge_from_list(args.opts)
     # Set score_threshold for builtin models
     cfg.DATALOADER.NUM_WORKERS = 0
+    cfg.MODEL.ATSS.NMS_TH = args.nms_th                         # default: 0.6
+    cfg.MODEL.ROI_HEADS.NMS_THRESH_TEST = args.nms_th           # default: 0.5
+    cfg.MODEL.RETINANET.NMS_THRESH_TEST = args.nms_th           # default: 0.5
+
+    cfg.TEST.DETECTIONS_PER_IMAGE = args.detection_per_image    # default: 100
+    
+    cfg.MODEL.ATSS.INFERENCE_TH = args.inference_th             # default: 0.05
+    cfg.MODEL.RETINANET.SCORE_THRESH_TEST = args.inference_th   # default: 0.05
+    # cfg.MODEL.ATSS.PRE_NMS_TOP_N = args.pre_nms_top_n               # default: 1000
+    # cfg.MODEL.RETINANET.TOPK_CANDIDATES_TEST = args.pre_nms_top_n   # default: 1000
 
     cfg.freeze()
     default_setup(cfg, args)
@@ -214,6 +221,9 @@ def parse_args(in_args=None):
     parser.add_argument("--output-dir", default="./", help="path to output directory")
     parser.add_argument("--show", action="store_true", help="show output in a window")
     parser.add_argument("--filtering", action="store_true", help="apply postprocessing filtering")
+    parser.add_argument("--inference_th", default=0.05, type=float, help="Minimum score for instance predictions to be shown")
+    parser.add_argument("--nms_th", default=0.6, type=float, help="cfg.MODEL.ATSS.NMS_TH")
+    parser.add_argument("--detection_per_image", default=100, type=int, help="cfg.TEST.DETECTIONS_PER_IMAGE.")
     parser.add_argument(
         "opts",
         help="Modify config options using the command-line",
@@ -224,19 +234,21 @@ def parse_args(in_args=None):
 
 
 if __name__ == "__main__":
+    # parse inputs
     args = parse_args()
     logger = setup_logger()
     logger.info("Arguments: " + str(args))
     cfg = setup_cfg(args)
-
-    # NOTE: drigoni: add concepts to classes
-    concept_finder = ConceptFinder(cfg.CONCEPT.FILE, depth=cfg.CONCEPT.DEPTH, unique=cfg.CONCEPT.UNIQUE, only_name=cfg.CONCEPT.ONLY_NAME)
-    coco2synset = concept_finder.coco2synset
-
+    # make output folder
     dirname = args.output_dir
     os.makedirs(dirname, exist_ok=True)
+
+    # load dataset
+    train_data_loader = build_detection_train_loader(cfg)
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
-    extractor = ProposalExtractor(cfg)
+
+    # load model
+    extractor = ProposalExtractor(cfg, args)
 
     def output(vis, fname):
         if args.show:
@@ -249,7 +261,6 @@ if __name__ == "__main__":
             vis.save(filepath)
 
     scale = 1.0
-    train_data_loader = build_detection_train_loader(cfg)
     for batch in train_data_loader:
         for per_image in batch:
             # Pytorch tensor is in (C, H, W) format
@@ -257,15 +268,8 @@ if __name__ == "__main__":
             current_image = per_image["image"].permute(1, 2, 0).cpu().detach().numpy()
 
             # check wether the concepts are used or not.
-            if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"] and cfg.CONCEPT.APPLY_CONDITION:
-                print("Using concepts: {}", per_image["concepts"])
-                predictions = extractor.run_on_image(current_image, per_image["concepts"])
-            else:
-                predictions = extractor.run_on_image(current_image)
-            
-            if args.filtering:
-                print("---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING")
-                predictions = filtering_process(predictions, per_image["concepts"], coco2synset, metadata)
+            current_concepts = per_image.get('concepts') 
+            predictions = extractor.run_on_image(current_image, current_concepts)
 
             predictions = {
                 'gt_boxes': predictions['pred_boxes'],

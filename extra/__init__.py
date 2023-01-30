@@ -7,6 +7,7 @@ from .concept.concept_mapper import ConceptMapper
 from .concept.concept_finder import ConceptFinder
 from .concept.concept_net import ConceptNet
 from .concept.parser_EWISER import extract_COCO_concepts
+from .concept.concept_postprocessing_filtering import evaluation_filtering_process, inference_filtering_process
 
 # meta archs
 from .atss import ATSS

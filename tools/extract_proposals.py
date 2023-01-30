@@ -20,6 +20,8 @@ import tqdm
 import json
 import glob
 import sys
+import nltk
+from nltk.corpus import wordnet as wn
 
 import detectron2.data.transforms as T
 from detectron2.data import MetadataCatalog
@@ -33,9 +35,11 @@ from detectron2.structures.boxes import Boxes
 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from dyhead import add_dyhead_config
-from extra import add_extra_config
-from extra import add_concept_config
+from extra import add_concept_config, add_extra_config, ConceptFinder, inference_filtering_process
 from train_net import Trainer
+
+nltk.download('wordnet')
+nltk.download('omw-1.4')
 
 # constants
 WINDOW_NAME = "COCO detections"
@@ -174,7 +178,14 @@ class DefaultPredictor:
         self.input_format = cfg.INPUT.FORMAT
         assert self.input_format in ["RGB", "BGR"], self.input_format
 
-    def __call__(self, original_image, concepts):
+        self.cpu_device = torch.device("cpu")
+        self.filtering = args is not None and args.filtering is True
+        if self.filtering:
+            print("---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING")
+            concept_finder = ConceptFinder(cfg.CONCEPT.FILE, depth=cfg.CONCEPT.DEPTH, unique=cfg.CONCEPT.UNIQUE, only_name=cfg.CONCEPT.ONLY_NAME)
+            self.coco2synset = concept_finder.coco2synset
+
+    def __call__(self, original_image, concepts=None):
         """
         Args:
             original_image (np.ndarray): an image of shape (H, W, C) (in BGR order).
@@ -184,6 +195,7 @@ class DefaultPredictor:
                 the output of the model for one image only.
                 See :doc:`/tutorials/models` for details about the/myothermodule. format.
         """
+        # if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"] and cfg.CONCEPT.APPLY_CONDITION:
         with torch.no_grad():  # https://github.com/sphinx-doc/sphinx/issues/4258
             # Apply pre-processing to image.
             if self.input_format == "RGB":
@@ -193,13 +205,44 @@ class DefaultPredictor:
             image = self.aug.get_transform(original_image).apply_image(original_image)
             image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
 
+            # concepts pre-processing. NOTE: add ['entity.n.01']
+            if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]:
+                if cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
+                    print("Using concepts: {}. ".format(concepts))
+                elif cfg.CONCEPT.APPLY_CONDITION and concepts is None:
+                    print("Error. Concept not available in input, but should be used. ")
+                    exit(1)
+                elif not cfg.CONCEPT.APPLY_CONDITION:
+                    print("Concept available in input, but not used. ")
+                    concepts = ['entity.n.01']
+            else:
+                if cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
+                    print("Error. Concepts available, and should be used. However, the architecture does not use them. ")
+                    exit(1)
+
+            # make predictions
             inputs = {"image": image, "height": height, "width": width, 'concepts': concepts}
             predictions = self.model([inputs])[0]
-            return predictions
+            
+            # change format
+            instances = predictions["instances"].to(self.cpu_device)
+            results = dict()
+            for k, v in instances.get_fields().items():
+                if isinstance(v, Boxes):
+                    boxes_list = v.tensor
+                    results[k] = boxes_list.tolist()
+                else:
+                    results[k] = v.tolist()
+            assert len(results['features']) ==  len(results['pred_boxes']) == len(results['probs']), 'Error in the results.'
+
+            # filter results
+            if self.filtering:
+                results = inference_filtering_process(results, concepts, self.coco2synset, self.metadata)
+            return results
 
 
 class ProposalExtractor(object):
-    def __init__(self, cfg, parallel=False):
+    def __init__(self, cfg, args):
         """
         Args:
             cfg (CfgNode):
@@ -207,7 +250,7 @@ class ProposalExtractor(object):
                 Useful since the visualization logic can be slow.
         """
         self.cpu_device = torch.device("cpu")
-        self.parallel = parallel
+        self.parallel = args.parallel
         if self.parallel == True:
             num_gpu = torch.cuda.device_count()
             self.predictor = AsyncPredictor(cfg, num_gpus=num_gpu)
@@ -215,7 +258,7 @@ class ProposalExtractor(object):
             os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
             self.predictor = DefaultPredictor(cfg)
 
-    def run_on_image(self, image, concepts):
+    def run_on_image(self, image, concepts=None):
         """
         Args:
             image (np.ndarray): an image of shape (H, W, C) (in BGR order).
@@ -226,17 +269,7 @@ class ProposalExtractor(object):
             vis_output (VisImage): the visualized image output.
         """
         predictions = self.predictor(image, concepts)
-        instances = predictions["instances"].to(self.cpu_device)
-        results = dict()
-        for k, v in instances.get_fields().items():
-            if isinstance(v, Boxes):
-                boxes_list = v.tensor
-                results[k] = boxes_list.tolist()
-            else:
-                results[k] = v.tolist()
-
-        assert len(results['features']) ==  len(results['pred_boxes']) == len(results['probs']), 'Error in the results.'
-        return results
+        return predictions
 
 
 def extract_flickr30k_concepts(ewiser_path):
@@ -278,10 +311,18 @@ def setup_cfg(args):
     cfg.merge_from_file(args.config)
     cfg.merge_from_list(args.opts)
     # Set score_threshold for builtin models
-    cfg.MODEL.ATSS.INFERENCE_TH = args.inference_th             # default: 0.05
-    cfg.MODEL.ATSS.PRE_NMS_TOP_N = args.pre_nms_top_n           # default: 1000
     cfg.MODEL.ATSS.NMS_TH = args.nms_th                         # default: 0.6
+    cfg.MODEL.ROI_HEADS.NMS_THRESH_TEST = args.nms_th           # default: 0.5
+    cfg.MODEL.RETINANET.NMS_THRESH_TEST = args.nms_th           # default: 0.5
+
     cfg.TEST.DETECTIONS_PER_IMAGE = args.detection_per_image    # default: 100
+    
+    cfg.MODEL.ATSS.INFERENCE_TH = args.inference_th             # default: 0.05
+    cfg.MODEL.RETINANET.SCORE_THRESH_TEST = args.inference_th   # default: 0.05
+
+    # cfg.MODEL.ATSS.PRE_NMS_TOP_N = args.pre_nms_top_n               # default: 1000
+    # cfg.MODEL.RETINANET.TOPK_CANDIDATES_TEST = args.pre_nms_top_n   # default: 1000
+    
 
     cfg.freeze()
     default_setup(cfg, args)
@@ -290,54 +331,18 @@ def setup_cfg(args):
 
 def get_parser():
     parser = argparse.ArgumentParser(description="Detectron2 demo for Concept ATSS")
-    parser.add_argument(
-        "--config",
-        default="configs/drigoni_dyhead_swint_catss_fpn_2x_ms_pretrained_bigger_head.yaml",
+    parser.add_argument("--config", default="configs/drigoni_dyhead_swint_catss_fpn_2x_ms_pretrained_bigger_head.yaml",
         metavar="FILE",
         help="path to config file",
     )
-    parser.add_argument(
-        "--images_folder",
-        help="Folder containing the images."
-    )
-    parser.add_argument(
-        "--concepts_folder",
-        help="Folder containing the concepts."
-    )
-    parser.add_argument(
-        "--output",
-        default='./extracted_features/',
-        help="A file or directory to save the output files. ",
-    )
-    parser.add_argument(
-        "--parallel",
-        help="=True if the GPUs are used",
-        default=lambda x: True if x.lower() == 'true' else False,
-    )
-    parser.add_argument(
-        "--inference_th",
-        type=float,
-        default=0.05,
-        help="Minimum score for instance predictions to be shown",
-    )
-    parser.add_argument(
-        "--pre_nms_top_n",
-        type=int,
-        default=1000,
-        help="cfg.MODEL.ATSS.PRE_NMS_TOP_N.",
-    )
-    parser.add_argument(
-        "--nms_th",
-        type=float,
-        default=0.6,
-        help="cfg.MODEL.ATSS.NMS_TH",
-    )
-    parser.add_argument(
-        "--detection_per_image",
-        type=int,
-        default=100,
-        help="cfg.TEST.DETECTIONS_PER_IMAGE.",
-    )
+    parser.add_argument("--filtering", action="store_true", help="apply postprocessing filtering")
+    parser.add_argument("--images_folder", help="Folder containing the images.")
+    parser.add_argument("--concepts_folder", help="Folder containing the concepts.")
+    parser.add_argument("--output", default='./extracted_features/', help="A file or directory to save the output files. ")
+    parser.add_argument("--parallel", help="=True if the GPUs are used", default=lambda x: True if x.lower() == 'true' else False,)
+    parser.add_argument("--inference_th", default=0.05, type=float, help="Minimum score for instance predictions to be shown")
+    parser.add_argument("--nms_th", default=0.6, type=float, help="cfg.MODEL.ATSS.NMS_TH")
+    parser.add_argument("--detection_per_image", default=100, type=int, help="cfg.TEST.DETECTIONS_PER_IMAGE.")
     parser.add_argument(
         "--opts",
         help="Modify config options using the command-line 'KEY VALUE' pairs",
@@ -355,7 +360,7 @@ if __name__ == "__main__":
     logger.info("Arguments: " + str(args))
     cfg = setup_cfg(args)
 
-    extractor = ProposalExtractor(cfg, args.parallel)
+    extractor = ProposalExtractor(cfg, args)
 
     n_proposals = []
     n_concepts = []
