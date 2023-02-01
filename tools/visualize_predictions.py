@@ -33,7 +33,7 @@ from detectron2.utils.file_io import PathManager
 from detectron2.config import get_cfg
 from detectron2.data import DatasetCatalog, MetadataCatalog, build_detection_train_loader, build_detection_test_loader
 from detectron2.data import detection_utils as utils
-from detectron2.data.build import filter_images_with_few_keypoints
+from detectron2.data.build import get_detection_dataset_dicts
 from detectron2.utils.logger import setup_logger
 from detectron2.engine import default_setup
 from detectron2.utils.visualizer import Visualizer
@@ -50,6 +50,7 @@ from detectron2.structures.boxes import Boxes
 warnings.filterwarnings("ignore", category=UserWarning) 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from dyhead import add_dyhead_config
+from extra import ConceptMapper
 from extra import add_concept_config, add_extra_config, ConceptFinder, inference_filtering_process
 from train_net import Trainer
 
@@ -86,16 +87,16 @@ class DefaultPredictor:
         # self.model = build_model(self.cfg)
         self.model = Trainer.build_model(cfg)
         self.model.eval()
-        if len(cfg.DATASETS.TRAIN):
-            self.metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
+        if len(cfg.DATASETS.TEST):
+            self.metadata = MetadataCatalog.get(cfg.DATASETS.TEST[0])
 
         # checkpointer = DetectionCheckpointer(self.model)
         # checkpointer.load(cfg.MODEL.WEIGHTS)
         DetectionCheckpointer(self.model, save_dir=cfg.OUTPUT_DIR).resume_or_load(cfg.MODEL.WEIGHTS, resume=True)
 
-        self.aug = T.ResizeShortestEdge(
-            [cfg.INPUT.MIN_SIZE_TEST, cfg.INPUT.MIN_SIZE_TEST], cfg.INPUT.MAX_SIZE_TEST
-        )
+        # self.aug = T.ResizeShortestEdge(
+        #     [cfg.INPUT.MIN_SIZE_TEST, cfg.INPUT.MIN_SIZE_TEST], cfg.INPUT.MAX_SIZE_TEST
+        # )
 
         self.input_format = cfg.INPUT.FORMAT
         assert self.input_format in ["RGB", "BGR"], self.input_format
@@ -124,8 +125,9 @@ class DefaultPredictor:
                 # whether the model expects BGR inputs or RGB
                 original_image = original_image[:, :, ::-1]
             height, width = original_image.shape[:2]
-            image = self.aug.get_transform(original_image).apply_image(original_image)
-            image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
+            # image = self.aug.get_transform(original_image).apply_image(original_image)
+            # image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
+            image = torch.as_tensor(original_image.astype("float32").transpose(2, 0, 1))
 
             # concepts pre-processing. NOTE: add ['entity.n.01']
             if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]:
@@ -244,8 +246,16 @@ if __name__ == "__main__":
     os.makedirs(dirname, exist_ok=True)
 
     # load dataset
-    train_data_loader = build_detection_train_loader(cfg)
-    metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
+    dataset = get_detection_dataset_dicts(
+        cfg.DATASETS.TEST,
+        filter_empty=True
+    )
+    
+    concept_finder = ConceptFinder(cfg.CONCEPT.FILE, depth=cfg.CONCEPT.DEPTH, unique=cfg.CONCEPT.UNIQUE, only_name=cfg.CONCEPT.ONLY_NAME)
+    coco2synset = concept_finder.coco2synset
+    mapper = ConceptMapper(cfg, False, coco2synset=coco2synset)
+    test_data_loader = build_detection_test_loader(dataset, mapper=mapper)
+    metadata = MetadataCatalog.get(cfg.DATASETS.TEST[0])
 
     # load model
     extractor = ProposalExtractor(cfg, args)
@@ -261,7 +271,7 @@ if __name__ == "__main__":
             vis.save(filepath)
 
     scale = 1.0
-    for batch in train_data_loader:
+    for batch in test_data_loader:
         for per_image in batch:
             # Pytorch tensor is in (C, H, W) format
             # current_image = read_image(per_image["file_name"], format="RGB")
