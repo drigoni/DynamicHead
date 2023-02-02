@@ -84,7 +84,6 @@ class DefaultPredictor:
 
     def __init__(self, cfg, args=None):
         self.cfg = cfg.clone()  # cfg can be modified by model
-        # self.model = build_model(self.cfg)
         self.model = Trainer.build_model(cfg)
         self.model.eval()
         if len(cfg.DATASETS.TEST):
@@ -94,10 +93,9 @@ class DefaultPredictor:
         # checkpointer.load(cfg.MODEL.WEIGHTS)
         DetectionCheckpointer(self.model, save_dir=cfg.OUTPUT_DIR).resume_or_load(cfg.MODEL.WEIGHTS, resume=True)
 
-        # NOTE: this is not needed because it is done in the mapper function of the loading dataset.
-        # self.aug = T.ResizeShortestEdge(
-        #     [cfg.INPUT.MIN_SIZE_TEST, cfg.INPUT.MIN_SIZE_TEST], cfg.INPUT.MAX_SIZE_TEST
-        # )
+        self.aug = T.ResizeShortestEdge(
+            [cfg.INPUT.MIN_SIZE_TEST, cfg.INPUT.MIN_SIZE_TEST], cfg.INPUT.MAX_SIZE_TEST
+        )
 
         self.input_format = cfg.INPUT.FORMAT
         assert self.input_format in ["RGB", "BGR"], self.input_format
@@ -126,8 +124,8 @@ class DefaultPredictor:
                 # whether the model expects BGR inputs or RGB
                 original_image = original_image[:, :, ::-1]
             height, width = original_image.shape[:2]
-            # image = self.aug.get_transform(original_image).apply_image(original_image)
-            # image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
+            image = self.aug.get_transform(original_image).apply_image(original_image)
+            image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
             image = torch.as_tensor(original_image.astype("float32").transpose(2, 0, 1))
 
             # concepts pre-processing. NOTE: add ['entity.n.01']
@@ -223,6 +221,7 @@ def parse_args(in_args=None):
     parser.add_argument("--config-file", metavar="FILE", help="path to config file")
     parser.add_argument("--output-dir", default="./", help="path to output directory")
     parser.add_argument("--show", action="store_true", help="show output in a window")
+    parser.add_argument("--images_folder", help="Folder containing the images.")
     parser.add_argument("--filtering", action="store_true", help="apply postprocessing filtering")
     parser.add_argument("--inference_th", default=0.05, type=float, help="Minimum score for instance predictions to be shown")
     parser.add_argument("--nms_th", default=0.6, type=float, help="cfg.MODEL.ATSS.NMS_TH")
@@ -239,8 +238,8 @@ def parse_args(in_args=None):
 if __name__ == "__main__":
     # parse inputs
     args = parse_args()
-    logger = setup_logger()
-    logger.info("Arguments: " + str(args))
+    # logger = setup_logger()
+    # logger.info("Arguments: " + str(args))
     cfg = setup_cfg(args)
     # make output folder
     dirname = args.output_dir
@@ -258,6 +257,14 @@ if __name__ == "__main__":
     test_data_loader = build_detection_test_loader(dataset, mapper=mapper)
     metadata = MetadataCatalog.get(cfg.DATASETS.TEST[0])
 
+    # check if the arguments are not empty
+    if not args.images_folder:
+        print('Error. Specify the folder of images. ')
+        exit(1)
+
+    images_folder = args.images_folder
+    list_of_images = glob.glob("{}*.jpg".format(images_folder))
+
     # load model
     extractor = ProposalExtractor(cfg, args)
 
@@ -272,31 +279,27 @@ if __name__ == "__main__":
             vis.save(filepath)
 
     scale = 1.0
-    for batch in test_data_loader:
-        for per_image in batch:
-            # Pytorch tensor is in (C, H, W) format
-            # current_image = read_image(per_image["file_name"], format="RGB")
-            current_image = per_image["image"].permute(1, 2, 0).cpu().detach().numpy()
+    for per_image in list_of_images:
+        # use PIL, to be consistent with evaluation
+        current_image = read_image(per_image, format="RGB")
 
-            # check wether the concepts are used or not.
-            current_concepts = per_image.get('concepts') 
-            predictions = extractor.run_on_image(current_image, current_concepts)
+        # check wether the concepts are used or not.
+        current_concepts = ['entity.n.01']
+        predictions = extractor.run_on_image(current_image, current_concepts)
 
-            predictions = {
-                'gt_boxes': predictions['pred_boxes'],
-                'gt_classes': predictions['pred_classes'],
-            }
+        predictions = {
+            'gt_boxes': predictions['pred_boxes'],
+            'gt_classes': predictions['pred_classes'],
+        }
 
-            current_image = utils.convert_image_to_rgb(current_image, cfg.INPUT.FORMAT)
-            visualizer = Visualizer(current_image, metadata=metadata, scale=scale)
-            # target_fields = per_image["instances"].get_fields() 
-            target_fields = predictions
-            # print(per_image["instances"].get_fields())  #{'gt_boxes': Boxes(tensor([[720.5811, 601.0906, 803.6583, 672.0000]])), 'gt_classes': tensor([0])}
-            labels = [metadata.thing_classes[i] for i in target_fields["gt_classes"]]
-            vis = visualizer.overlay_instances(
-                labels=labels,
-                boxes=target_fields.get("gt_boxes", None),
-                masks=target_fields.get("gt_masks", None),
-                keypoints=target_fields.get("gt_keypoints", None),
-            )
-            output(vis, str(per_image["image_id"]) + ".jpg")
+        current_image = utils.convert_image_to_rgb(current_image, cfg.INPUT.FORMAT)
+        visualizer = Visualizer(current_image, metadata=metadata, scale=scale)
+        target_fields = predictions
+        labels = [metadata.thing_classes[i] for i in target_fields["gt_classes"]]
+        vis = visualizer.overlay_instances(
+            labels=labels,
+            boxes=target_fields.get("gt_boxes", None),
+            masks=target_fields.get("gt_masks", None),
+            keypoints=target_fields.get("gt_keypoints", None),
+        )
+        output(vis, per_image.split('/')[-1])
