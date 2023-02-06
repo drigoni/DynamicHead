@@ -7,6 +7,7 @@ Description:
 """
 
 import copy
+from collections import defaultdict
 
 
 def evaluation_filtering_process(coco_api, predictions, coco2synset, dataset_metadata):
@@ -72,17 +73,15 @@ def inference_filtering_process(pred, input_concepts, coco2synset, dataset_metad
             if concept in descendants:
                 poll_accepted_classes.append(cat_id)
     
-    # filtering
-    filtered_list = {
-        'pred_boxes': [],
-        'pred_classes': [],
-    }
-    assert len(pred['pred_boxes']) == len(pred['pred_classes'])
-    for i in range(len(pred['pred_boxes'])):  
-        current_class = pred['pred_classes'][i]
-        current_box = pred['pred_boxes'][i]
-        if current_class in poll_accepted_classes:
-            filtered_list['pred_classes'].append(current_class)
-            filtered_list['pred_boxes'].append(current_box)
 
+    # print(pred.keys())  # dict_keys(['pred_boxes', 'scores', 'pred_classes', 'features', 'probs'])
+    assert len(pred['pred_boxes']) == len(pred['pred_classes'])
+
+    # filtering
+    filtered_list = defaultdict(list)
+    for i in range(len(pred['pred_classes'])):  
+        current_class = pred['pred_classes'][i]
+        if current_class in poll_accepted_classes:
+            for key, item in pred.items():
+                filtered_list[key].append(item[i])
     return filtered_list

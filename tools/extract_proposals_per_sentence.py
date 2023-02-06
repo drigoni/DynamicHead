@@ -197,7 +197,24 @@ class DefaultPredictor:
                 the output of the model for one image only.
                 See :doc:`/tutorials/models` for details about the/myothermodule. format.
         """
-        # if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"] and cfg.CONCEPT.APPLY_CONDITION:
+        # concepts pre-processing. NOTE: add ['entity.n.01']
+        if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]:
+            if cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
+                print("Using concepts: {}. ".format(concepts))
+            elif cfg.CONCEPT.APPLY_CONDITION and concepts is None:
+                print("Error. Concept not available in input, but should be used. ")
+                exit(1)
+            elif not cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
+                concepts = ['entity.n.01']
+                print("Concept available in input, but not used. Using concepts: {}. ".format(concepts))
+            else:
+                concepts = ['entity.n.01']
+                print("Using concepts: {}. ".format(concepts))
+        else:
+            if concepts is not None:
+                print("Error. Concepts available. However, the architecture does not use them. ")
+                exit(1)
+
         with torch.no_grad():  # https://github.com/sphinx-doc/sphinx/issues/4258
             # Apply pre-processing to image.
             if self.input_format == "RGB":
@@ -206,21 +223,6 @@ class DefaultPredictor:
             height, width = original_image.shape[:2]
             image = self.aug.get_transform(original_image).apply_image(original_image)
             image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
-
-            # concepts pre-processing. NOTE: add ['entity.n.01']
-            if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]:
-                if cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
-                    print("Using concepts: {}. ".format(concepts))
-                elif cfg.CONCEPT.APPLY_CONDITION and concepts is None:
-                    print("Error. Concept not available in input, but should be used. ")
-                    exit(1)
-                elif not cfg.CONCEPT.APPLY_CONDITION:
-                    print("Concept available in input, but not used. ")
-                    concepts = ['entity.n.01']
-            else:
-                if cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
-                    print("Error. Concepts available, and should be used. However, the architecture does not use them. ")
-                    exit(1)
 
             # make predictions
             inputs = {"image": image, "height": height, "width": width, 'concepts': concepts}
@@ -373,28 +375,21 @@ if __name__ == "__main__":
     logger.info("Arguments: " + str(args))
     cfg = setup_cfg(args)
 
-    extractor = ProposalExtractor(cfg, args)
-
-    n_proposals = []
-    n_concepts = []
 
     # check if the arguments are not empty
     if not args.images_folder or not args.concepts_folder:
         print('Error. Specify the folder of images and the folder of concepts. ')
         exit(1)
-
     # check if the output folder already exists
     if os.path.exists(args.output):
         print('Error. The output folder already exists:', args.output)
         exit(1)
     else:
         os.makedirs(args.output)
-
     images_folder = args.images_folder
     concepts_folder = args.concepts_folder
     list_of_images = glob.glob("{}*.jpg".format(images_folder))
     list_of_concepts = glob.glob("{}*.txt.json".format(concepts_folder))
-
     # check if the list of concepts is not empty
     if len(list_of_images)==0 or len(list_of_concepts)==0:
         print('Error. Empty folder for images or concepts. ')
@@ -403,6 +398,10 @@ if __name__ == "__main__":
         print('Number of images:', len(list_of_images))
         print('Number of concept files:', len(list_of_concepts))
 
+
+    extractor = ProposalExtractor(cfg, args)
+    n_proposals = []
+    n_concepts = []
     for concept_file in tqdm.tqdm(list_of_concepts, disable=not args.output):
         # get concepts
         all_concepts = extract_flickr30k_concepts(concept_file)
