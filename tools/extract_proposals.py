@@ -189,29 +189,18 @@ class DefaultPredictor:
         """
         Args:
             original_image (np.ndarray): an image of shape (H, W, C) (in BGR order).
-            concepts (list of strings): list of concepts.
+            concepts (list of strings): list of concepts. Could be None and also empty list.
         Returns:
             predictions (dict):
                 the output of the model for one image only.
                 See :doc:`/tutorials/models` for details about the/myothermodule. format.
         """
-        # concepts pre-processing. NOTE: add ['entity.n.01']
-        if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]:
-            if cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
-                print("Using concepts: {}. ".format(concepts))
-            elif cfg.CONCEPT.APPLY_CONDITION and concepts is None:
-                print("Error. Concept not available in input, but should be used. ")
-                exit(1)
-            elif not cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
-                concepts = ['entity.n.01']
-                print("Concept available in input, but not used. Using concepts: {}. ".format(concepts))
-            else:
-                concepts = ['entity.n.01']
-                print("Using concepts: {}. ".format(concepts))
-        else:
-            if concepts is not None:
-                print("Error. Concepts available. However, the architecture does not use them. ")
-                exit(1)
+        if concepts is None or len(concepts) == 0:
+            # Add default value for concepts
+            concepts = ['entity.n.01']
+
+        if self.filtering or (cfg.CONCEPT.APPLY_CONDITION and cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]):
+            print("Using concepts (filt: {}, cond: {}, arch: {}): {}. ".format(self.filtering, cfg.CONCEPT.APPLY_CONDITION, cfg.MODEL.META_ARCHITECTURE, concepts))
         
         with torch.no_grad():  # https://github.com/sphinx-doc/sphinx/issues/4258
             # Apply pre-processing to image.
@@ -302,6 +291,32 @@ def extract_flickr30k_concepts(ewiser_path):
     return all_synsets_unique
 
 
+def extract_referit_concepts(ewiser_path):
+    """
+    This function load the EWISER concepts extracted from each image.
+    """
+    # reading data from file
+    with open(ewiser_path, 'r') as f:
+        ewiser_data = json.load(f)
+    # extracting synsets
+    all_synsets = []
+    for sentence in ewiser_data['ewiser']:
+        for part in sentence:
+            n = part['n_synsets']
+            offsets = part['offsets']
+            synsets = part['synsets']
+            if n > 0:
+                synsets_filtered = [s for s in synsets if '.n.' in s]
+                if len(synsets_filtered) > 0:
+                    best_synset = synsets_filtered[0]
+                    all_synsets.append(best_synset)
+    # check if there are at least one concept
+    if len(all_synsets) == 0:
+        print("No noun synset for {}.".format(ewiser_path))
+    all_synsets_unique = list(set(all_synsets))
+    return all_synsets_unique
+
+
 def setup_cfg(args):
     """
     Create configs and perform basic setups.
@@ -338,6 +353,7 @@ def get_parser():
     )
     parser.add_argument("--filtering", action="store_true", help="apply postprocessing filtering")
     parser.add_argument("--images_folder", help="Folder containing the images.")
+    parser.add_argument("--referit", action="store_true", help="Searching recursively for images.")
     parser.add_argument("--concepts_folder", help="Folder containing the concepts.")
     parser.add_argument("--output", default='./extracted_features/', help="A file or directory to save the output files. ")
     parser.add_argument("--parallel", help="=True if the GPUs are used", default=lambda x: True if x.lower() == 'true' else False,)
@@ -363,8 +379,8 @@ if __name__ == "__main__":
 
 
     # check if the arguments are not empty
-    if not args.images_folder or not args.concepts_folder:
-        print('Error. Specify the folder of images and the folder of concepts. ')
+    if not args.images_folder:
+        print('Error. Specify the folder of images. ')
         exit(1)
     # check if the output folder already exists
     if os.path.exists(args.output):
@@ -374,11 +390,16 @@ if __name__ == "__main__":
         os.makedirs(args.output)
     images_folder = args.images_folder
     concepts_folder = args.concepts_folder
-    list_of_images = glob.glob("{}*.jpg".format(images_folder))
-    list_of_concepts = glob.glob("{}*.txt.json".format(concepts_folder))
+    if args.referit:
+        print("{}*/images/*.jpg".format(images_folder))
+        list_of_images = glob.glob("{}*/images/*.jpg".format(images_folder), recursive=True)
+    else:
+        list_of_images = glob.glob("{}*.jpg".format(images_folder))
+    # list_of_concepts = glob.glob("{}*.txt.json".format(concepts_folder))
+    list_of_concepts = glob.glob("{}*.json".format(concepts_folder))
     # check if the list of concepts is not empty
-    if len(list_of_images)==0 or len(list_of_concepts)==0:
-        print('Error. Empty folder for images or concepts. ')
+    if len(list_of_images) == 0:
+        print('Error. The are no images in the folder. ')
         exit(1)
     else:
         print('Number of images:', len(list_of_images))

@@ -63,25 +63,28 @@ def evaluation_filtering_process(coco_api, predictions, coco2synset, dataset_met
 
 
 def inference_filtering_process(pred, input_concepts, coco2synset, dataset_metadata):
-    # make the pool of accepted ancestors
-    all_accepted_concepts = {dataset_metadata.thing_dataset_id_to_contiguous_id[k]: val_dict['descendants'] + [val_dict['synset']] for k, val_dict in coco2synset.items() }
-    
-    # select the pool of accepted classes
-    poll_accepted_classes = []
-    for concept in input_concepts:
-        for cat_id, descendants in all_accepted_concepts.items():
-            if concept in descendants:
-                poll_accepted_classes.append(cat_id)
-    
+    if len(input_concepts) == 0 or (len(input_concepts) == 1 and input_concepts[0] == 'entity.n.01'):
+        print("Filtering function not applied for concepts: {}. ".format(input_concepts))
+        return pred
+    else:
+        # make the pool of accepted ancestors
+        all_accepted_concepts = {dataset_metadata.thing_dataset_id_to_contiguous_id[k]: val_dict['descendants'] + [val_dict['synset']] for k, val_dict in coco2synset.items() }
+        
+        # select the pool of accepted classes
+        poll_accepted_classes = []
+        for concept in input_concepts:
+            for cat_id, descendants in all_accepted_concepts.items():
+                if concept in descendants:
+                    poll_accepted_classes.append(cat_id)
+        
+        # print(pred.keys())  # dict_keys(['pred_boxes', 'scores', 'pred_classes', 'features', 'probs'])
+        assert len(pred['pred_boxes']) == len(pred['pred_classes'])
 
-    # print(pred.keys())  # dict_keys(['pred_boxes', 'scores', 'pred_classes', 'features', 'probs'])
-    assert len(pred['pred_boxes']) == len(pred['pred_classes'])
-
-    # filtering
-    filtered_list = defaultdict(list)
-    for i in range(len(pred['pred_classes'])):  
-        current_class = pred['pred_classes'][i]
-        if current_class in poll_accepted_classes:
-            for key, item in pred.items():
-                filtered_list[key].append(item[i])
-    return filtered_list
+        # filtering
+        filtered_list = defaultdict(list)
+        for i in range(len(pred['pred_classes'])):  
+            current_class = pred['pred_classes'][i]
+            if current_class in poll_accepted_classes:
+                for key, item in pred.items():
+                    filtered_list[key].append(item[i])
+        return filtered_list

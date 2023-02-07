@@ -197,23 +197,12 @@ class DefaultPredictor:
                 the output of the model for one image only.
                 See :doc:`/tutorials/models` for details about the/myothermodule. format.
         """
-        # concepts pre-processing. NOTE: add ['entity.n.01']
-        if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]:
-            if cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
-                print("Using concepts: {}. ".format(concepts))
-            elif cfg.CONCEPT.APPLY_CONDITION and concepts is None:
-                print("Error. Concept not available in input, but should be used. ")
-                exit(1)
-            elif not cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
-                concepts = ['entity.n.01']
-                print("Concept available in input, but not used. Using concepts: {}. ".format(concepts))
-            else:
-                concepts = ['entity.n.01']
-                print("Using concepts: {}. ".format(concepts))
-        else:
-            if concepts is not None:
-                print("Error. Concepts available. However, the architecture does not use them. ")
-                exit(1)
+        if concepts is None or len(concepts) == 0:
+            # Add default value for concepts
+            concepts = ['entity.n.01']
+
+        if self.filtering or (cfg.CONCEPT.APPLY_CONDITION and cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]):
+            print("Using concepts (filt: {}, cond: {}, arch: {}): {}. ".format(self.filtering, cfg.CONCEPT.APPLY_CONDITION, cfg.MODEL.META_ARCHITECTURE, concepts))
 
         with torch.no_grad():  # https://github.com/sphinx-doc/sphinx/issues/4258
             # Apply pre-processing to image.
@@ -317,6 +306,47 @@ def extract_flickr30k_concepts(ewiser_path, topk=1):
     return all_synsets_unique
 
 
+def extract_referit_concepts(ewiser_path, topk=1):
+    """
+    This function load the EWISER concepts extracted from each image.
+    """
+    # reading data from file
+    with open(ewiser_path, 'r') as f:
+        ewiser_data = json.load(f)
+    # extracting synsets
+    all_synsets = []
+    for sentence in ewiser_data['ewiser']:
+        for part in sentence:
+            if part['n_synsets'] > 0:
+                # build the str to the yago class
+                yago_list = []
+                for idx in range(n):
+                    name_part = synsets[idx].split('.')[0]  # es before parsing: show.n.03
+                    # need to check if it is a noun, otherwise it is not present on YAGO and it will be ignored
+                    # this is needed when we extract the features with EWISER for each token and not for each chunks.
+                    if synsets[idx].split('.')[1] == 'n':
+                        # name_Part need to be cleaned due to the fact that it use capitalize character
+                        # and cameltoe format. For example "toy_dog.n.01" is ok for "wordnet_toy_dog_102085374"
+                        # but not the yago class "http://dbpedia.org/class/yago/ToyDog102085374".
+                        name_part_cleaned = ''.join([i.capitalize() for i in name_part.split('_')])
+                        code_part = offsets[idx].split(':')[1][:-1]  # es before parsing: wn:01927608v
+                        yago_name = yago_str + name_part_cleaned + '1' + code_part
+                        yago_list.append(yago_name)
+                        # print(synsets[idx], offsets[idx], yago_name)
+                    else:
+                        yago_list.append(None)
+                        # print(name_part)
+                part['yago'] = yago_list
+    # printing code
+    # print(ewiser_data[0]['sentence'])
+    # [print(i) for i in ewiser_data[0]['phrases']]
+    # [print(i) for i in ewiser_data[0]['ewiser'] if i['synsets'] is not None]
+    # exit(0)
+
+    # note that this return is not necessary because we modify the param in input.
+    return ewiser_data
+
+
 def setup_cfg(args):
     """
     Create configs and perform basic setups.
@@ -352,6 +382,7 @@ def get_parser():
     )
     parser.add_argument("--filtering", action="store_true", help="apply postprocessing filtering")
     parser.add_argument("--images_folder", help="Folder containing the images.")
+    parser.add_argument("--referit", action="store_true", help="Searching recursively for images.")
     parser.add_argument("--concepts_folder", help="Folder containing the concepts.")
     parser.add_argument("--output", default='./extracted_features/', help="A file or directory to save the output files. ")
     parser.add_argument("--parallel", help="=True if the GPUs are used", default=lambda x: True if x.lower() == 'true' else False,)
@@ -377,8 +408,8 @@ if __name__ == "__main__":
 
 
     # check if the arguments are not empty
-    if not args.images_folder or not args.concepts_folder:
-        print('Error. Specify the folder of images and the folder of concepts. ')
+    if not args.images_folder:
+        print('Error. Specify the folder of images. ')
         exit(1)
     # check if the output folder already exists
     if os.path.exists(args.output):
@@ -388,11 +419,15 @@ if __name__ == "__main__":
         os.makedirs(args.output)
     images_folder = args.images_folder
     concepts_folder = args.concepts_folder
-    list_of_images = glob.glob("{}*.jpg".format(images_folder))
+
+    if args.referit:
+        list_of_images = glob.glob("{}*/images/*.jpg".format(images_folder), recursive=True)
+    else:
+        list_of_images = glob.glob("{}*.jpg".format(images_folder))
     list_of_concepts = glob.glob("{}*.txt.json".format(concepts_folder))
     # check if the list of concepts is not empty
-    if len(list_of_images)==0 or len(list_of_concepts)==0:
-        print('Error. Empty folder for images or concepts. ')
+    if len(list_of_images) == 0:
+        print('Error. The are no images in the folder. ')
         exit(1)
     else:
         print('Number of images:', len(list_of_images))
@@ -443,16 +478,18 @@ if __name__ == "__main__":
             json.dump(all_predictions_per_sentence, outfile)
 
     logger.info(
-        "Statistics about extracted proposals. Mean: {}, Max: {}, Min: {} .".format(
+        "Statistics about extracted proposals. Mean: {}, Max: {}, Min: {}, #Zero: {} .".format(
             sum(n_proposals)/len(n_proposals),
             max(n_proposals),
-            min(n_proposals)
+            min(n_proposals),
+            n_proposals.count(0)
         )
     )
     logger.info(
-        "Statistics about number of concepts. Mean: {}, Max: {}, Min: {} .".format(
+        "Statistics about number of concepts. Mean: {}, Max: {}, Min: {}, #Zero: {} .".format(
             sum(n_concepts)/len(n_concepts),
             max(n_concepts),
-            min(n_concepts)
+            min(n_concepts),
+            n_concepts.count(0)
         )
     )
