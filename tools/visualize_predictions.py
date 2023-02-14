@@ -282,21 +282,28 @@ if __name__ == "__main__":
             current_concepts = per_image.get('concepts') 
             predictions = extractor.run_on_image(current_image, current_concepts)
 
-            predictions = {
-                'gt_boxes': predictions['pred_boxes'],
-                'gt_classes': predictions['pred_classes'],
+            target_fields = dict()
+            for k, v in per_image["instances"].get_fields().items():
+                if isinstance(v, Boxes):
+                    boxes_list = v.tensor
+                    target_fields[k] = boxes_list.tolist()
+                else:
+                    target_fields[k] = v.tolist()
+            data_to_plot = {
+                'boxes': predictions['pred_boxes'] + target_fields["gt_boxes"],
+                'classes': (tmp_cls:=predictions['pred_classes'] + target_fields["gt_classes"]),
+                'labels': [metadata.thing_classes[i] for i in tmp_cls],
+                'colors': ['blue' for i in predictions['pred_boxes']] + ['red' for i in target_fields['gt_boxes']],
             }
 
             current_image = utils.convert_image_to_rgb(current_image, cfg.INPUT.FORMAT)
             visualizer = Visualizer(current_image, metadata=metadata, scale=scale)
-            # target_fields = per_image["instances"].get_fields() 
-            target_fields = predictions
             # print(per_image["instances"].get_fields())  #{'gt_boxes': Boxes(tensor([[720.5811, 601.0906, 803.6583, 672.0000]])), 'gt_classes': tensor([0])}
-            labels = [metadata.thing_classes[i] for i in target_fields["gt_classes"]]
             vis = visualizer.overlay_instances(
-                labels=labels,
-                boxes=target_fields.get("gt_boxes", None),
-                masks=target_fields.get("gt_masks", None),
-                keypoints=target_fields.get("gt_keypoints", None),
+                labels=data_to_plot['labels'],
+                boxes=data_to_plot['boxes'],
+                masks=None,
+                keypoints=None,
+                assigned_colors=data_to_plot['colors'],
             )
             output(vis, str(per_image["image_id"]) + ".jpg")

@@ -1,0 +1,202 @@
+"""
+This code is modified from Hengyuan Hu's repository.
+https://github.com/hengyuan-hu/bottom-up-attention-vqa
+
+Reads in a tsv file with pre-trained bottom up attention features 
+of the adaptive number of boxes and stores it in HDF5 format.  
+Also store {image_id: feature_idx} as a pickle file.
+
+Hierarchy of HDF5 file:
+
+{ 'image_features': num_boxes x 2048
+  'image_bb': num_boxes x 4
+  'spatial_features': num_boxes x 6
+  'pos_boxes': num_images x 2 }
+"""
+from __future__ import print_function
+from collections import defaultdict
+import os
+import argparse
+import sys
+import numpy as np
+from tqdm import tqdm
+import json
+import glob
+from detectron2.data import detection_utils as utils
+from detectron2.data.detection_utils import read_image
+from detectron2.utils.visualizer import Visualizer
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
+def load_boxes_classes(file_classes, with_class_background=False):
+	# read labels
+    with open(file_classes, 'r') as f:
+        data = f.readlines()
+    if with_class_background:
+        labels = ["__background__"] + [label.strip() for label in data] # add background class
+    else:
+        labels = [label.strip() for label in data] # add background class
+    return labels
+
+
+def load_dataset(dataset):
+    if dataset == 'flickr':
+        splits = ['./datasets/flickr30k/flickr30k_entities/train.txt',
+                './datasets/flickr30k/flickr30k_entities/val.txt',
+                './datasets/flickr30k/flickr30k_entities/test.txt']
+        dir_img = "./datasets/flickr30k/flickr30k_images/"
+        dir_annotations = './datasets/flickr30k/flickr30k_entities/Annotations/'
+        loading_function = load_flickr30k
+    elif dataset == 'referit':
+        splits = ['./datasets/referit/train.txt',
+                './datasets/referit/val.txt',
+                './datasets/referit/test.txt']
+        dir_img = "./datasets/referit/data/images/saiapr_tc-12/"
+        dir_annotations = None
+        loading_function = load_referit
+    else:
+        print("Dataset not recognized: {} .".format(dataset))
+        exit(1)
+    return dir_img, dir_annotations, splits, loading_function
+
+
+def load_flickr30k(img_id):
+    pass
+
+
+def load_referit(img_id):
+    pass
+
+
+def load_data(img_folder):
+    list_of_images = glob.glob("{}*.json".format(img_folder))
+    print('Number of images: ', len(list_of_images))
+    # load all data 
+    counter = 0
+    all_data = defaultdict(list)
+    for img_file in tqdm(list_of_images):
+        img_id = img_file.split('/')[-1][:-5]   # remove ".json"
+        with open(img_file, 'r') as f_obj:
+            f = json.load(f_obj)
+            # print(f.keys())  # dict_keys(['pred_boxes', 'scores', 'pred_classes', 'features', 'probs'])
+            if len(f['pred_boxes']) == 0: 
+                print("Empty image")
+                counter += 1
+                # no bounding boxes
+                all_data['image_id'].append(img_id)
+                all_data['num_boxes'].append(1)
+                all_data['boxes'].append([0.0, 0.0, 1.0, 1.0])
+                all_data['cls_prob'].append([1.0] + [0.0]*1599)
+                # for the dictionary
+                best_class_idx = [0]
+            else:
+                all_data['image_id'].append(img_id)
+                all_data['num_boxes'].append(len(f['pred_boxes']))
+                all_data['boxes'].append(f['pred_boxes'])
+                all_data['cls_prob'].append(f['probs'])
+                # for the dictionary
+                best_class_idx = np.argmax(f['probs'], axis=-1)
+    print("Empty images: ", counter)
+    return all_data
+
+
+def show_image(image, queries, boxes_pred, boxes_pred2, boxes_gt):
+    """
+    :param image: A numpy array with shape (width, height, depth)
+    :param sentence: A string representing example's sentence
+    :param queries: A list of strings with example's queries
+    :param boxes_pred: A list of bounding box for each query
+    :param boxes_gt: A list of bounding box
+    """
+    import random
+    import matplotlib as pl
+    import matplotlib.pyplot as plt
+    import matplotlib.patches as patches
+
+    pl.rcParams["figure.dpi"] = 230
+
+    colors = ([[1,0,0],[0,1,0],[0,0,1],[1,1,0],[1,0,1],[0,1,1]] * 10)[:len(queries)] #[(random.uniform(0, 1), random.uniform(0, 1), random.uniform(0, 1)) for _ in queries]
+    font_size = 8
+    text_props = dict(facecolor="blue", alpha=0.5)
+
+    gt_color = [255/255,102/255,102/255]      # red
+    model_color = [153/255,255/255,153/255]   # green
+    concept_color = [69/255,205/255,255/255]  # blue
+
+    for i in range(len(queries)):
+        query = queries[i]
+        color = colors[i]
+
+        # for j in range(len(boxes_pred[i])):
+        model_box = boxes_pred[i] # [j]
+        concept_box = boxes_pred2[i]
+        gt_box = boxes_gt[i]
+
+        # shift by 2 pixel model box if it is equal to concept box 
+        if model_box[0] == concept_box[0] and model_box[1] == concept_box[1] and model_box[2] == concept_box[2] and model_box[3] == concept_box[3]:
+            model_box[0] -= 4
+            model_box[1] -= 4
+            model_box[2] -= 4
+            model_box[3] -= 4
+
+        def draw_box(box, color):
+            x1, y1 = box[0], box[1]
+            x2, y2 = box[2], box[3]
+            xy = (x1, y1)
+            width, height = x2 - x1, y2 - y1
+            
+            rect = patches.Rectangle(xy, width, height, linewidth=2, edgecolor=[*color, 1.0], facecolor=[*color, .2])
+            ax.add_patch(rect)
+
+        plt.subplot(1, len(queries), i + 1)
+        plt.imshow(image)
+        plt.title(query, fontdict={"fontsize": font_size}, y=-0.07)
+
+        ax = plt.gca()
+        ax.axes.xaxis.set_visible(False)
+        ax.axes.yaxis.set_visible(False)
+
+        draw_box(model_box, model_color)
+        # draw_box(concept_box, concept_color)
+        draw_box(gt_box, gt_color)
+
+    plt.show()
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dataset', type=str, default='flickr', choices=['flickr', 'referit'], help='Dataset to consider')
+    parser.add_argument('--extracted_features', type=str, default='./extracted_features/', help='Folder of extracted features')
+    parser.add_argument("--output-dir", default="./demo/", help="path to output directory")
+    args = parser.parse_args()
+    return args
+
+if __name__ == '__main__':
+    args = parse_args()
+    if os.path.exists(args.extracted_features):
+        print('Loading all data.')
+        # class_labels = load_boxes_classes('data/objects_vocab.txt')
+        all_data = load_data(args.extracted_features)
+        dir_img, dir_annotations, splits, loading_function = load_dataset(args.dataset)
+        output_folder = args.output_dir
+        exit(1)
+
+        # loading image indexes
+        all_image_indexes = []
+        for split_path in splits:
+            split_name = split_path.split('/')[-1][:-4]
+            with open(split_path, 'r') as f:
+                split_idx = f.read().splitlines()
+            split_idx = [i.strip() for i in split_idx]  # cleaning
+            all_image_indexes.extend(split_idx)
+        
+        # start processing
+        all_image_indexes_sorted = sorted(all_image_indexes)
+        for img_id in all_image_indexes_sorted:
+            path_image = loading_function(img_id)
+            current_image = read_image(path_image, format="RGB")
+            current_image = utils.convert_image_to_rgb(current_image, "RGB")
+
+    else:
+        print("Folder not valid: ", args.extracted_features)
+        exit(1)
