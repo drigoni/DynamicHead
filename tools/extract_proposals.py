@@ -159,7 +159,7 @@ class DefaultPredictor:
         outputs = pred(inputs)
     """
 
-    def __init__(self, cfg):
+    def __init__(self, cfg, args):
         self.cfg = cfg.clone()  # cfg can be modified by model
         # self.model = build_model(self.cfg)
         self.model = Trainer.build_model(cfg)
@@ -199,8 +199,8 @@ class DefaultPredictor:
             # Add default value for concepts
             concepts = ['entity.n.01']
 
-        if self.filtering or (cfg.CONCEPT.APPLY_CONDITION and cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]):
-            print("Using concepts (filt: {}, cond: {}, arch: {}): {}. ".format(self.filtering, cfg.CONCEPT.APPLY_CONDITION, cfg.MODEL.META_ARCHITECTURE, concepts))
+        if self.filtering or (self.cfg.CONCEPT.APPLY_CONDITION and self.cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]):
+            print("Using concepts (filt: {}, cond: {}, arch: {}): {}. ".format(self.filtering, self.cfg.CONCEPT.APPLY_CONDITION, self.cfg.MODEL.META_ARCHITECTURE, concepts))
         
         with torch.no_grad():  # https://github.com/sphinx-doc/sphinx/issues/4258
             # Apply pre-processing to image.
@@ -247,7 +247,7 @@ class ProposalExtractor(object):
             self.predictor = AsyncPredictor(cfg, num_gpus=num_gpu)
         else:
             os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
-            self.predictor = DefaultPredictor(cfg)
+            self.predictor = DefaultPredictor(cfg, args)
 
     def run_on_image(self, image, concepts=None):
         """

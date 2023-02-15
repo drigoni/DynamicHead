@@ -36,7 +36,7 @@ from detectron2.data import detection_utils as utils
 from detectron2.data.build import get_detection_dataset_dicts
 from detectron2.utils.logger import setup_logger
 from detectron2.engine import default_setup
-from detectron2.utils.visualizer import Visualizer
+# from detectron2.utils.visualizer import Visualizer
 import detectron2.data.transforms as T
 from detectron2.data import MetadataCatalog
 from detectron2.engine import default_setup
@@ -50,8 +50,7 @@ from detectron2.structures.boxes import Boxes
 warnings.filterwarnings("ignore", category=UserWarning) 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from dyhead import add_dyhead_config
-from extra import ConceptMapper
-from extra import add_concept_config, add_extra_config, ConceptFinder, inference_filtering_process
+from extra import ConceptMapper, add_concept_config, add_extra_config, ConceptFinder, inference_filtering_process, Visualizer
 from train_net import Trainer
 
 nltk.download('wordnet')
@@ -82,7 +81,7 @@ class DefaultPredictor:
         outputs = pred(inputs)
     """
 
-    def __init__(self, cfg, args=None):
+    def __init__(self, cfg, args):
         self.cfg = cfg.clone()  # cfg can be modified by model
         # self.model = build_model(self.cfg)
         self.model = Trainer.build_model(cfg)
@@ -109,7 +108,7 @@ class DefaultPredictor:
             concept_finder = ConceptFinder(cfg.CONCEPT.FILE, depth=cfg.CONCEPT.DEPTH, unique=cfg.CONCEPT.UNIQUE, only_name=cfg.CONCEPT.ONLY_NAME)
             self.coco2synset = concept_finder.coco2synset
 
-    def __call__(self, original_image, concepts=None):
+    def __call__(self, original_image, concepts):
         """
         Args:
             original_image (np.ndarray): an image of shape (H, W, C) (in BGR order).
@@ -119,6 +118,13 @@ class DefaultPredictor:
                 the output of the model for one image only.
                 See :doc:`/tutorials/models` for details about the/myothermodule. format.
         """
+        if concepts is None or len(concepts) == 0:
+            # Add default value for concepts
+            concepts = ['entity.n.01']
+
+        if self.filtering or (self.cfg.CONCEPT.APPLY_CONDITION and self.cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]):
+            print("Using concepts (filt: {}, cond: {}, arch: {}): {}. ".format(self.filtering, self.cfg.CONCEPT.APPLY_CONDITION, self.cfg.MODEL.META_ARCHITECTURE, concepts))
+
         # if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"] and cfg.CONCEPT.APPLY_CONDITION:
         with torch.no_grad():  # https://github.com/sphinx-doc/sphinx/issues/4258
             # Apply pre-processing to image.
@@ -129,21 +135,6 @@ class DefaultPredictor:
             # image = self.aug.get_transform(original_image).apply_image(original_image)
             # image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
             image = torch.as_tensor(original_image.astype("float32").transpose(2, 0, 1))
-
-            # concepts pre-processing. NOTE: add ['entity.n.01']
-            if cfg.MODEL.META_ARCHITECTURE in ["CATSS", "ConceptGeneralizedRCNN", "ConceptRetinaNet"]:
-                if cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
-                    print("Using concepts: {}. ".format(concepts))
-                elif cfg.CONCEPT.APPLY_CONDITION and concepts is None:
-                    print("Error. Concept not available in input, but should be used. ")
-                    exit(1)
-                elif not cfg.CONCEPT.APPLY_CONDITION:
-                    print("Concept available in input, but not used. ")
-                    concepts = ['entity.n.01']
-            else:
-                if cfg.CONCEPT.APPLY_CONDITION and concepts is not None:
-                    print("Error. Concepts available, and should be used. However, the architecture does not use them. ")
-                    exit(1)
 
             # make predictions
             inputs = {"image": image, "height": height, "width": width, 'concepts': concepts}
@@ -167,14 +158,14 @@ class DefaultPredictor:
 
 
 class ProposalExtractor(object):
-    def __init__(self, cfg, args=None):
+    def __init__(self, cfg, args):
         """
         Args:
             cfg (CfgNode):
             parallel (bool): whether to run the model in different processes from visualization.
                 Useful since the visualization logic can be slow.
         """
-        self.predictor = DefaultPredictor(cfg)
+        self.predictor = DefaultPredictor(cfg, args)
 
     def run_on_image(self, image, concepts=None):
         """
@@ -293,7 +284,8 @@ if __name__ == "__main__":
                 'boxes': predictions['pred_boxes'] + target_fields["gt_boxes"],
                 'classes': (tmp_cls:=predictions['pred_classes'] + target_fields["gt_classes"]),
                 'labels': [metadata.thing_classes[i] for i in tmp_cls],
-                'colors': ['blue' for i in predictions['pred_boxes']] + ['red' for i in target_fields['gt_boxes']],
+                'colors': ['cyan' for i in predictions['pred_boxes']] + ['red' for i in target_fields['gt_boxes']],
+                'gt': [False for i in predictions['pred_boxes']] + [True for i in target_fields['gt_boxes']],
             }
 
             current_image = utils.convert_image_to_rgb(current_image, cfg.INPUT.FORMAT)
@@ -305,5 +297,6 @@ if __name__ == "__main__":
                 masks=None,
                 keypoints=None,
                 assigned_colors=data_to_plot['colors'],
+                gt=data_to_plot['gt'],
             )
             output(vis, str(per_image["image_id"]) + ".jpg")

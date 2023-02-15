@@ -24,6 +24,8 @@ from .resnet import build_resnet_fpn_dyhead_backbone, build_retinanet_resnet_fpn
 # datasets
 from .datasets import *
 
+from .visualizer import Visualizer
+
 
 # evaluator
 from .coco_evaluation.coco_evaluation import COCOEvaluator as COCOEvaluator_postProcessing
