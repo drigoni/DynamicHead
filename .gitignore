@@ -25,3 +25,8 @@ exec_dockerfile.bash
 *.zip
 *.pth
 *.pickle
+
+
+# cluster vega
+cluster/
+BACKUPS/BACKUPS_CLUSTER_VEGA/
