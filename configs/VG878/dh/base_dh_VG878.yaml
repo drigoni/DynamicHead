@@ -22,8 +22,8 @@ MODEL:
   ROI_HEADS:
     NUM_CLASSES: 1600
 DATASETS:
-  TRAIN: ("vg_train",)
-  TEST: ("vg_val",)
+  TRAIN: ("vg878_train",)
+  TEST: ("vg878_val",)
 DATALOADER:
   NUM_WORKERS: 16
 SOLVER:

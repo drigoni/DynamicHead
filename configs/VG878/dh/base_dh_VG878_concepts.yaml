@@ -1,5 +1,5 @@
 MODEL:
-  META_ARCHITECTURE: "ATSS"
+  META_ARCHITECTURE: "CATSS"
   WEIGHTS: "./pretrained/dyhead_swint_atss_fpn_2x_ms.pth"
   PIXEL_MEAN: [123.675, 116.28, 103.53]
   PIXEL_STD: [58.395, 57.12, 57.375]
@@ -22,8 +22,8 @@ MODEL:
   ROI_HEADS:
     NUM_CLASSES: 1600
 DATASETS:
-  TRAIN: ("vg_train",)
-  TEST: ("vg_val",)
+  TRAIN: ("vg878_train",)
+  TEST: ("vg878_val",)
 DATALOADER:
   NUM_WORKERS: 16
 SOLVER:
@@ -37,6 +37,22 @@ SOLVER:
 INPUT:
   FORMAT: "RGB"
   MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)
-EVALUATOR_TYPE: 'default'
+CONCEPT:
+  FILE: './concept/vg_to_synset.json'
+  CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
+  APPLY_CONDITION: TRUE
+  APPLY_CONDITION_FROM_FILE: FALSE
+  EXTERNAL_CONCEPTS_FOLDER: './datasets/ewiser_concepts_VG878_valid/'
+  ACTIVATE_CONCEPT_GENERATOR: TRUE
+  DEPTH: 1
+  UNIQUE: TRUE
+DEEPSETS:
+  EMB: 'wordnet'   # 'random' # 'wordnet'
+  EMB_DIM: 150
+  FREEZE: TRUE
+  AGGREGATE: 'sum'
+  OUTPUT_DIM: 256
+EVALUATOR_TYPE: 'default' # postProcessing
 SEED: 2022
 VERSION: 2
+

@@ -1,0 +1,17 @@
+_BASE_: "../base_retinanet_VG878_concepts.yaml"
+MODEL:
+  WEIGHTS: "./results/VG/retinanet/retinanet_r101_fpn_VG878_concepts_cat/model_final.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 101
+CONCEPT:
+  CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
+  APPLY_CONDITION: TRUE
+  APPLY_CONDITION_FROM_FILE: FALSE
+  ACTIVATE_CONCEPT_GENERATOR: FALSE
+DATASETS:
+  TRAIN: ("vg878_train",)
+  TEST: ("vg878_val",)
+DEEPSETS:
+  EMB: "random"
+OUTPUT_DIR: "./results/VG/retinanet/retinanet_r101_fpn_VG878_concepts_cat/"

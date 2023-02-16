@@ -78,6 +78,28 @@ _PREDEFINED_CONCEPTS_SPLITS['vg'] = {
                         "concept_visual_genome/annotations/visual_genome_test_all.json"),
 }
 
+_PREDEFINED_CONCEPTS_SPLITS['vg878'] = {
+    "vg878_train": ("cleaned_visual_genome/images",
+                "cleaned_visual_genome/annotations/cleaned_visual_genome_train.json"),
+    "vg878_val": ("cleaned_visual_genome/images",
+                "cleaned_visual_genome/annotations/cleaned_visual_genome_val.json"),
+    "vg878_test": ("cleaned_visual_genome/images",
+                "cleaned_visual_genome/annotations/cleaned_visual_genome_test.json"),
+    # concept
+    "vg878_train_subset_old": ("cleaned_visual_genome/images",
+                        "concept_cleaned_visual_genome/annotations/cleaned_visual_genome_train_subset_old.json"),
+    "vg878_train_all": ("cleaned_visual_genome/images",
+                        "concept_cleaned_visual_genome/annotations/cleaned_visual_genome_train_all.json"),
+    "vg878_val_subset_old": ("cleaned_visual_genome/images",
+                        "concept_cleaned_visual_genome/annotations/cleaned_visual_genome_val_subset_old.json"),
+    "vg878_val_all": ("cleaned_visual_genome/images",
+                        "concept_cleaned_visual_genome/annotations/cleaned_visual_genome_val_all.json"),
+    "vg878_test_subset_old": ("cleaned_visual_genome/images",
+                        "concept_cleaned_visual_genome/annotations/cleaned_visual_genome_test_subset_old.json"),
+    "vg878_test_all": ("cleaned_visual_genome/images",
+                        "concept_cleaned_visual_genome/annotations/cleaned_visual_genome_test_all.json"),
+}
+
 _PREDEFINED_CONCEPTS_SPLITS['oid'] = {
     "oid_v4_train": ("OpenImagesDataset/train/",
                     "OpenImagesDataset/annotations/openimages_v4_train_bbox.json"),
@@ -213,6 +235,14 @@ def _get_vg_instances_meta():
     }
     return ret
 
+def _get_vg878_instances_meta():
+    # This is for compatibility with COCO
+    thing_dataset_id_to_contiguous_id = {i: i for i in range(0, 878)} # VG878 annotations start from 0, not 1 as in COCO, and are in [0, 878]. Background class is not included
+    ret = {
+        "thing_dataset_id_to_contiguous_id": thing_dataset_id_to_contiguous_id,
+    }
+    return ret
+
 def _get_oid_instances_meta():
     # This is for compatibility with COCO
     thing_dataset_id_to_contiguous_id = {i: i-1 for i in range(1, 602)}  # OID annotations start from 1 as COCO and are in [1, 601]
@@ -227,6 +257,8 @@ def _get_builtin_metadata(dataset_name):
         return _get_coco_instances_meta()
     elif dataset_name == 'vg':
         return _get_vg_instances_meta()
+    elif dataset_name == 'vg878':
+        return _get_vg878_instances_meta()
     elif dataset_name == 'oid':
         return _get_oid_instances_meta()
     else:

@@ -1,0 +1,10 @@
+_BASE_: "../base_retinanet_VG878_concepts.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+CONCEPT:
+  CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
+  DEPTH: 4
+OUTPUT_DIR: "./results/VG/retinanet/retinanet_r50_fpn_VG878_concepts_cat_depth4/"

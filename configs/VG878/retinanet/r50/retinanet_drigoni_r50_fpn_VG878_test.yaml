@@ -1,0 +1,10 @@
+_BASE_: "../base_retinanet_VG878.yaml"
+MODEL:
+  WEIGHTS: "./results/VG/retinanet/retinanet_drigoni_r50_fpn_VG878/model_final.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+DATASETS:
+  TRAIN: ("vg878_train",)
+  TEST: ("vg878_val",)
+OUTPUT_DIR: "./results/VG/retinanet/retinanet_drigoni_r50_fpn_VG878/"
