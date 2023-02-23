@@ -23,6 +23,8 @@ from extra import ConceptFinder
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
+nltk.download('omw-1.4')
+
 
 # NOTE: this class is not anymore used. It add a new key in the dataset dictionary.
 class MakeConceptDataset:

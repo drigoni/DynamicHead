@@ -39,6 +39,15 @@ SOLVER:
   MAX_ITER: 90000
   WEIGHT_DECAY: 0.0001
   WEIGHT_DECAY_BIAS: 0.0001
+CONCEPT:
+  FILE: './concept/oid_to_synset.json'
+  CONCEPT_FUSION: "cat" # ["cat", "mul", "add", "zeros"]
+  APPLY_CONDITION: TRUE
+  APPLY_CONDITION_FROM_FILE: FALSE
+  EXTERNAL_CONCEPTS_FOLDER: './datasets/ewiser_concepts_oid_valid/'
+  ACTIVATE_CONCEPT_GENERATOR: TRUE
+  DEPTH: 1
+  UNIQUE: TRUE
 EVALUATOR_TYPE: 'default'
 VERSION: 2
 SEED: 2022

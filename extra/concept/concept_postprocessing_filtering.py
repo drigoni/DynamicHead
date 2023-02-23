@@ -11,6 +11,7 @@ from collections import defaultdict
 
 
 def evaluation_filtering_process(coco_api, predictions, coco2synset, dataset_metadata):
+    """Post-processing done using concepts in the dataset file"""
     predictions = copy.deepcopy(predictions)
     # load concept from dataset
     img_ids = sorted(coco_api.imgs.keys())
