@@ -41,6 +41,7 @@ from detectron2.utils.file_io import PathManager
 from detectron2.utils.logger import create_small_table
 import nltk
 from nltk.corpus import wordnet as wn
+from extra import evaluation_filtering_process
 
 
 # from .evaluator import DatasetEvaluator   # not used for now
@@ -56,7 +57,8 @@ COCOeval_opt = COCOeval
 
 
 
-
+nltk.download('omw-1.4')
+nltk.download('wordnet')
 
 
 class COCOEvaluator(DatasetEvaluator):
@@ -220,7 +222,7 @@ class COCOEvaluator(DatasetEvaluator):
         # DRIGONI: new function
         if self.filtering:
             print("---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING")
-            predictions = filtering_process(self._coco_api, predictions, self.coco2synset, self._metadata)
+            predictions = evaluation_filtering_process(self._coco_api, predictions, self.coco2synset, self._metadata)
 
         self._predictions = predictions
 
@@ -747,58 +749,6 @@ class COCOevalMaxDets(COCOeval):
     def __str__(self):
         self.summarize()
 
-
-
-def filtering_process(coco_api, predictions, coco2synset, dataset_metadata):
-    predictions = copy.deepcopy(predictions)
-    # load concept from dataset
-    img_ids = sorted(coco_api.imgs.keys())
-    imgs = coco_api.loadImgs(img_ids) # list of dict for each image
-    images_concepts = {i["id"]:i['concepts'] for i in imgs}
-
-    # make the pool of accepted ancestors
-    all_accepted_concepts = {dataset_metadata.thing_dataset_id_to_contiguous_id[k]: val_dict['descendants'] + [val_dict['synset']] for k, val_dict in coco2synset.items() }
-    
-    # print(predictions) list of dict
-    idx_done = []
-    filtered_predictions = []
-    for pred in predictions:
-        img_id = pred['image_id']
-        img_instances = pred['instances']
-        assert img_id not in idx_done
-        idx_done.append(img_id)
-
-        #  print("IMAGE ID: ", img_id)
-        # all_accepted_concepts = {dataset_metadata.thing_dataset_id_to_contiguous_id[k]: val_dict['ancestors'] + [val_dict['synset']] for k, val_dict in coco2synset.items() }
-        # categories_names = {dataset_metadata.thing_dataset_id_to_contiguous_id[k]: val_dict['category'] for k, val_dict in coco2synset.items() }
-        #  print("Tutte le categorie:", categories_names.items())
-        #  print("Concetti dell'immagine in questione:", images_concepts[img_id])
-        #  set_of_cat_id = {i['category_id'] for i in  img_instances}
-        #  print("Categorie nell'immagine", set_of_cat_id)
-        #  print("Label categorie nell'immagine", [categories_names[i] for i in set_of_cat_id])
-        #  exit(0)
-        
-
-        # select the pool of accepted classes
-        poll_accepted_classes = []
-        for concept in images_concepts[img_id]:
-            for cat_id, descendants in all_accepted_concepts.items():
-                if concept in descendants:
-                    poll_accepted_classes.append(cat_id)
-        
-        # filtering
-        filtered_list = []
-        for box in img_instances:   # {'image_id': 139, 'category_id': 62, 'bbox': [5.903441905975342, 167.05685424804688, 149.45591735839844, 93.53787231445312], 'score': 0.689603865146637}
-            box_cat = box['category_id']
-            if box_cat in poll_accepted_classes:
-                filtered_list.append(box)
-
-        filtered_predictions.append({
-            'img_id': img_id,
-            'instances': filtered_list
-        })
-
-    return filtered_predictions
 
 
 
