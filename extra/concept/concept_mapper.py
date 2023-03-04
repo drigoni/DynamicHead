@@ -224,10 +224,10 @@ class ConceptMapper:
                     metaMapping_reverse = {val: key for key, val in metaMapping.items()}
                     if self.activate_concept_generator:
                         # NOTE: here we generate concepts and ground truths
-                        # standard object detector behaviour or conditioned one
+                        # standard object detector behaviour or conditioned one.
+                        # NOTE: probabilities change according to the comaprison
                         list_categories = [metaMapping_reverse[ann['category_id']] for ann in annos]
-                        is_conditioned = random.randint(0, len(set(list_categories))) > 0     # proportional to number of concepts
-                        if is_conditioned: # this means that we select some of the annotations
+                        if random.random() > 0.5:
                             selected_categories, concepts = ConceptFinder.sample_categories_and_concepts(list_categories, self.coco2synset, type='subset') # subset_old TODO
                             annos_filtered = [ann for ann in annos if metaMapping_reverse[ann['category_id']] in selected_categories]
                         else:
