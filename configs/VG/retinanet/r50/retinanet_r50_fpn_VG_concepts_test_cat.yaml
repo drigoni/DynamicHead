@@ -1,6 +1,6 @@
 _BASE_: "../base_retinanet_VG_concepts.yaml"
 MODEL:
-  WEIGHTS: "./results/VG/retinanet/retinanet_r50_fpn_VG_concepts_cat/model_final.pth"
+  WEIGHTS: "./results/VG/retinanet/retinanet_r50_fpn_VG_concepts_cat/model_0084999.pth"
   MASK_ON: False
   RESNETS:
     DEPTH: 50

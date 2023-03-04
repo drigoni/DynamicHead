@@ -189,6 +189,58 @@ class ConceptFinder:
                 sampled_discendent_concept = random.choice(all_choices)
                 selected_concepts.append(sampled_discendent_concept)
             return categories, selected_concepts
+        elif type=='query-intent-SLD':
+            # This function is to be consistent with: https://arxiv.org/abs/2106.10258
+            # ------ 
+            selected_categories = set()
+            selected_concepts = set()
+            # samples just one label
+            sampled_cat = [random.choice(list_unique_cat)]
+            # select concepts according to sampled categories
+            for cat_idx in sampled_cat:
+                current_synset = coco2synset[cat_idx]['synset']
+                descendants = coco2synset[cat_idx]['descendants']
+                all_choices = descendants + [current_synset]
+                sampled_discendent_concept = random.choice(all_choices)
+                selected_concepts.add(sampled_discendent_concept)
+            # slect all categories, according to concepts
+            for concept in selected_concepts:
+                for cat_idx in list_unique_cat:
+                    current_synset = coco2synset[cat_idx]['synset']
+                    descendants = coco2synset[cat_idx]['descendants']
+                    descendants_of_all = coco2synset[cat_idx]['descendant_of_all']
+                    if concept in descendants + [current_synset]:
+                        selected_categories.add(cat_idx)
+                        selected_categories.union(set(descendants_of_all))
+            # filtering categories
+            selected_categories = selected_categories.intersection(set(list_unique_cat))
+            return list(selected_categories), list(selected_concepts)
+        elif type=='query-intent-KLD':
+            # This function is to be consistent with: https://arxiv.org/abs/2106.10258
+            # ------ 
+            selected_categories = set()
+            selected_concepts = set()
+            # samples just one label
+            sampled_cat = [el for el in list_unique_cat if random.random() > 0.5]
+            # select concepts according to sampled categories
+            for cat_idx in sampled_cat:
+                current_synset = coco2synset[cat_idx]['synset']
+                descendants = coco2synset[cat_idx]['descendants']
+                all_choices = descendants + [current_synset]
+                sampled_discendent_concept = random.choice(all_choices)
+                selected_concepts.add(sampled_discendent_concept)
+            # slect all categories, according to concepts
+            for concept in selected_concepts:
+                for cat_idx in list_unique_cat:
+                    current_synset = coco2synset[cat_idx]['synset']
+                    descendants = coco2synset[cat_idx]['descendants']
+                    descendants_of_all = coco2synset[cat_idx]['descendant_of_all']
+                    if concept in descendants + [current_synset]:
+                        selected_categories.add(cat_idx)
+                        selected_categories.union(set(descendants_of_all))
+            # filtering categories
+            selected_categories = selected_categories.intersection(set(list_unique_cat))
+            return list(selected_categories), list(selected_concepts)
         else:
             print("Yet to be implemented. ")
             exit(1)

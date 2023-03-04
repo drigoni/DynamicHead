@@ -28,4 +28,5 @@ from .visualizer import Visualizer
 
 
 # evaluator
-from .coco_evaluation.coco_evaluation import COCOEvaluator as COCOEvaluator_postProcessing
+from .coco_evaluation.coco_evaluation_postprocessing import COCOEvaluator as COCOEvaluator_postProcessing
+from .coco_evaluation.coco_evaluation_classAgnostic import COCOEvaluator as COCOEvaluator_classAgnostic
