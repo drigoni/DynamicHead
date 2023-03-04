@@ -228,7 +228,7 @@ class ConceptMapper:
                         # NOTE: probabilities change according to the comaprison
                         list_categories = [metaMapping_reverse[ann['category_id']] for ann in annos]
                         if random.random() > 0.5:
-                            selected_categories, concepts = ConceptFinder.sample_categories_and_concepts(list_categories, self.coco2synset, type='subset') # subset_old TODO
+                            selected_categories, concepts = ConceptFinder.sample_categories_and_concepts(list_categories, self.coco2synset, type='query-intent-KLD') # subset_old TODO
                             annos_filtered = [ann for ann in annos if metaMapping_reverse[ann['category_id']] in selected_categories]
                         else:
                             # we keep all the annotations and we use the standard object detector behaviour
