@@ -212,7 +212,8 @@ class ConceptMapper:
                                     concepts.append(conc)
                     concepts = list(set(concepts))
                     if len(concepts) == 0:
-                        concepts = ['entity.n.01']
+                        # concepts = ['entity.n.01']
+                        concepts = [v['synset'] for k, v in self.coco2synset.items()]
                     # do not change annotations
                     # annos = annos
                     dataset_dict["concepts"] = concepts
@@ -233,7 +234,8 @@ class ConceptMapper:
                         else:
                             # we keep all the annotations and we use the standard object detector behaviour
                             annos_filtered = annos 
-                            concepts = ['entity.n.01']
+                            # concepts = ['entity.n.01']
+                            concepts = [v['synset'] for k, v in self.coco2synset.items()]
                     else:
                         # NOTE: the dataset need to include the 'concepts' keyword.
                         assert 'concepts' in dataset_dict, "Wrong dataset, concept not incldued!"
@@ -244,7 +246,8 @@ class ConceptMapper:
             else:
                 # do not change annotations
                 # annos = annos
-                dataset_dict["concepts"] = ['entity.n.01']
+                # dataset_dict["concepts"] = ['entity.n.01']
+                dataset_dict["concepts"] = [v['synset'] for k, v in self.coco2synset.items()]
         elif self.meta_architecture in ["ATSS", "GeneralizedRCNN", "drigoniGeneralizedRCNN", "RetinaNet", "drigoniRetinaNet"]:
             # standard object detector behaviour without concepts.
             pass
