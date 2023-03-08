@@ -143,7 +143,7 @@ class ConceptFinder:
                 selected_concepts.add(sampled_discendent_concept)
             return list_unique_cat, list(selected_concepts)
         elif type=='subset_old':
-            # The one to use
+            # The one that count the objects
             # ------ 
             selected_categories = set()
             selected_concepts = []
@@ -178,6 +178,24 @@ class ConceptFinder:
                 sampled_discendent_concept = random.choice(all_choices)
                 selected_concepts.append(sampled_discendent_concept)
             return sampled_cat, selected_concepts
+        elif type=='aug_subset_as_old':
+            # Here, the idea is to keep the ground truths of the version 'subset' (must used in input) but to augment the concepts considering the 'objects count'.
+            # ------ 
+            classes_already_seen = set()
+            selected_concepts = []
+            for cat_idx in categories:
+                if cat_idx in classes_already_seen:
+                    current_synset = coco2synset[cat_idx]['synset']
+                    descendants = coco2synset[cat_idx]['descendants']
+                    all_choices = descendants + [current_synset]
+                    sampled_discendent_concept = random.choice(all_choices)
+                    selected_concepts.append(sampled_discendent_concept)
+                else:
+                    # if is the first time seeing this class, that mean we can skip the iteration. The old set of concepts includes one concept for class.
+                    # the original concepts should be merged (later)) with the concepts returned by this function
+                    classes_already_seen.add(cat_idx)
+                    continue
+            return categories, selected_concepts
         elif type=='all_old':   # the first tried
             # This function samples for each annotation a concept.
             # ------ 

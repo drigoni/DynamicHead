@@ -33,6 +33,9 @@ _PREDEFINED_CONCEPTS_SPLITS['coco'] = {
                                     "concept_coco/annotations/instances_train2017_subset_old.json"),     
     "coco_2017_val_subset_old": ("coco/val2017",
                                     "concept_coco/annotations/instances_val2017_subset_old.json"),     
+    # augmented subset as subset_old
+    "coco_2017_val_subset_aug_subset_as_old": ("coco/val2017",
+                                    "concept_coco/annotations/instances_val2017_subset_aug_subset_as_old.json"),     
     # depth
     "coco_2017_val_all_depth0": ("coco/val2017",
                                     "concept_coco/annotations/instances_val2017_all_depth0.json"),
@@ -86,7 +89,6 @@ _PREDEFINED_CONCEPTS_SPLITS['vg'] = {
     "vg_test": ("visual_genome/images",
                 "visual_genome/annotations/visual_genome_test.json"),
     # concept
-    
     "vg_train_all": ("visual_genome/images",
                         "concept_visual_genome/annotations/visual_genome_train_all.json"),
     "vg_val_all": ("visual_genome/images",
@@ -111,6 +113,11 @@ _PREDEFINED_CONCEPTS_SPLITS['vg'] = {
                         "concept_visual_genome/annotations/visual_genome_val_subset_old.json"),
     "vg_test_subset_old": ("visual_genome/images",
                         "concept_visual_genome/annotations/visual_genome_test_subset_old.json"),
+    # augmented subset as subset_old                  
+    "vg_val_subset_aug_subset_as_old": ("visual_genome/images",
+                        "concept_visual_genome/annotations/visual_genome_val_subset_aug_subset_as_old.json"),
+    "vg_test_subset_aug_subset_as_old": ("visual_genome/images",
+                        "concept_visual_genome/annotations/visual_genome_test_subset_aug_subset_as_old.json"),
 }
 
 _PREDEFINED_CONCEPTS_SPLITS['vg878'] = {

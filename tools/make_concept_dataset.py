@@ -103,6 +103,11 @@ class MakeConceptDataset:
             image_to_annotations[image_id].append(i)
         n_images = len(image_to_annotations)
 
+        image_to_concepts = dict()
+        for i, img in enumerate(annotations['images']):
+            image_id = img['id']
+            image_to_concepts[image_id] = img['concepts']
+
         # params initialization needed just for the powerset case
         new_annotations = []
         new_concepts = {}
@@ -129,6 +134,15 @@ class MakeConceptDataset:
                     annos_filtered = [ann for ann in curr_annotations if ann['category_id'] in selected_categories]
                     new_annotations.extend(annos_filtered)
                     new_concepts[image_id] = selected_concepts
+                elif self.type == 'aug_subset_as_old': 
+                    # NOTE: the version with all ground truth is not necessary, as the results would be the same of version 'all'.
+                    # Here, the idea is to keep the ground truths of the version 'subset' but to augment the concepts considering the 'objects count'.
+                    curr_image_concepts = annotations
+                    list_categories = [ann['category_id'] for ann in curr_annotations]   # unique list of categories
+                    selected_categories, selected_concepts = ConceptFinder.sample_categories_and_concepts(list_categories, self.concepts, self.type)
+                    annos_filtered = [ann for ann in curr_annotations if ann['category_id'] in selected_categories]
+                    new_annotations.extend(annos_filtered)
+                    new_concepts[image_id] = selected_concepts + image_to_concepts[image_id]
                 else:
                     print("Not implemented yet.")
                     exit(1)
@@ -229,7 +243,7 @@ def parse_args():
                         type=lambda x: True if x.lower() == 'true' else False)
     parser.add_argument('--type', dest='type',
                         help='Generating considering all or subsets',
-                        choices=['subset', 'all', 'powerset', 'subset_old', 'subset_old_v2', 'all_old', 'query-intent-SLD', 'query-intent-KLD'],
+                        choices=['subset', 'all', 'powerset', 'subset_old', 'subset_old_v2', 'all_old', 'query-intent-SLD', 'query-intent-KLD', 'aug_subset_as_old'],
                         default='subset')
     args = parser.parse_args()
     return args
