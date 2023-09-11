@@ -176,7 +176,7 @@ class ConceptFinder:
                         selected_categories.add(cat_idx)
                         selected_categories.union(set(descendants_of_all))
             return list(selected_categories), selected_concepts
-        elif type=='subset_old_v2':     # the first tried
+        elif type=='subset_old_v2':     # the first tried. Note that tis function should not be used! It is logically wrong.
             # This function samples some unique categories, then sample a concept for each annotation belonging to the category sampled
             # ------ 
             selected_concepts = []
