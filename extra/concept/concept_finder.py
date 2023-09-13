@@ -35,6 +35,7 @@ class ConceptFinder:
         # update with descendants and ancestors
         self.extend_descendants(depth, unique, only_name)
         self.extend_ancestors(depth, unique, only_name)
+        self.extend_open_vocabulary_exp(depth+1, only_name)
         self._extend_synset_tree()
         self._extend_all_synset_tree()
 
@@ -259,6 +260,21 @@ class ConceptFinder:
             # filtering categories
             selected_categories = selected_categories.intersection(set(list_unique_cat))
             return list(selected_categories), list(selected_concepts)
+        elif type=='all_old_openvocab':
+            # This function samples concepts for each gt, as all_old. However, the concepts are sampled at the specific level!
+            # When a concept at specific level L does not exist, we remove the ground truth from the image.
+            # ------ 
+            selected_concepts = []
+            selecte_categories = []
+            for cat_idx in categories:
+                concept_to_consider = coco2synset[cat_idx]['open_vocabulary_exp']
+                if len(concept_to_consider) > 0:
+                    selecte_categories.append(cat_idx)
+                    sampled_discendent_concept = random.choice(concept_to_consider)
+                    selected_concepts.append(sampled_discendent_concept)
+                else:
+                    continue
+            return selecte_categories, selected_concepts
         else:
             print("Yet to be implemented. ")
             exit(1)
@@ -287,7 +303,7 @@ class ConceptFinder:
         This function adds for element of self._coco2Synset the field "descendats" where all the synset descendants are added.
         :param depth: distance to consider in traveling the graph
         :param unique: True to return a list of unique synsets. If two synsets are equal but just the jump values change, then the lowest value is kept.
-        :param unique: True to return only a list of synsets. False to return tuples (synset, jump)
+        :param only_name: True to return only a list of synsets. False to return tuples (synset, jump)
         """
         assert depth >= 0, "Error. Concept depth should be a positive number."
         for ids, category in self._coco2synset.items():
@@ -314,6 +330,52 @@ class ConceptFinder:
             if only_name:
                 category['descendants'] = [i[0] for i in category['descendants']]
 
+
+    def extend_open_vocabulary_exp(self, depth=2, only_name=True):
+        """
+        This function adds for element of self._coco2Synset the field "open_vocab_xp" where all the synset descendants, at a specific depth=d,  are added.
+        If a synset S ta depth=d is also synset at level depth=c with c<d, then S is not considered for this task.
+        This function is the last one done for the journal.
+        :param depth: distance to consider in traveling the graph
+        :param unique: True to return a list of unique synsets. If two synsets are equal but just the jump values change, then the lowest value is kept.
+        :param only_name: True to return only a list of synsets. False to return tuples (synset, jump)
+        """
+        assert depth >= 0, "Error. Concept depth should be a positive number."
+        for ids, category in self._coco2synset.items():
+            # find descendant
+            tmp_descendants = ConceptFinder.find_descendants(entity=wn.synset(category['synset']), jump=0, depth=depth)
+            tmp_descendants = [(synset.name(), jump) for synset, jump in tmp_descendants if jump > 0]   # remove descendants jump=0, meaning the same synset
+            # if we need an unique set as synsets.
+            # NOTE: if more occurences are present, than for sure the synset is not to be considered. 
+            tmp_name = []
+            tmp_jump = []
+            tmp_repeated = set()
+            # add just one time all concepts
+            for synset, jump in tmp_descendants:
+                if synset not in tmp_name:
+                    tmp_name.append(synset)
+                    tmp_jump.append(jump)
+                else:
+                    # if it is already in the list, we need to check a special case (similar to "rhombus" structure)!
+                    synset_idx = tmp_name.index(synset)
+                    if tmp_jump[synset_idx] == jump:
+                        # nothing to do. The concepts are the same and even at the same level!
+                        continue
+                    else:
+                        # remove all accurence as the synstes is the same, but the levels are different.
+                        tmp_repeated.add(synset)
+            # remove those concepts that appear more than one time
+            for synset in tmp_repeated:
+                synset_idx = tmp_name.index(synset)
+                del tmp_name[synset_idx]
+                del tmp_jump[synset_idx]
+            # select just the one at the current level
+            category['open_vocabulary_exp'] = [(name, jump) for name, jump in list(zip(tmp_name, tmp_jump)) if jump == depth]
+
+            # print(category['name'], category['synset'], category['descendants'])
+            if only_name:
+                category['open_vocabulary_exp'] = [i[0] for i in category['open_vocabulary_exp']]
+
     @staticmethod
     def find_ancestors(entity, jump, depth=2):
         """
@@ -337,7 +399,7 @@ class ConceptFinder:
         This function adds for element of self._coco2Synset the field "ancestors" where all the synset ancestors are added.
         :param depth: distance to consider in traveling the graph
         :param unique: True to return a list of unique synsets. If two synsets are equal but just the jump values change, then the lowest value is kept.
-        :param unique: True to return only a list of synsets. False to return tuples (synset, jump)
+        :param only_name: True to return only a list of synsets. False to return tuples (synset, jump)
         """
         for ids, category in self._coco2synset.items():
             # find descendant

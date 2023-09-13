@@ -61,6 +61,9 @@ _PREDEFINED_CONCEPTS_SPLITS['coco'] = {
                                     "concept_coco/annotations/instances_val2017_subset_old_depth3.json"),    
     "coco_2017_val_subset_old_depth4": ("coco/val2017",
                                     "concept_coco/annotations/instances_val2017_subset_old_depth4.json"),     
+    # open vocabulary test
+    "coco_2017_val_all_old_openvocab": ("coco/val2017",
+                                    "concept_coco/annotations/instances_val2017_all_old_openvocab.json"),
     # comparison with: https://arxiv.org/abs/2106.10258
     "coco_2017_val_query-intent-SLD": ("coco/val2017",
                                     "concept_comparison_coco/annotations/instances_val2017_query-intent-SLD.json"),     
@@ -113,6 +116,9 @@ _PREDEFINED_CONCEPTS_SPLITS['vg'] = {
                         "concept_visual_genome/annotations/visual_genome_val_subset_old.json"),
     "vg_test_subset_old": ("visual_genome/images",
                         "concept_visual_genome/annotations/visual_genome_test_subset_old.json"),
+    # open vocabulary test
+    "vg_val_all_old_openvocab": ("visual_genome/images",
+                        "concept_visual_genome/annotations/visual_genome_val_all_old_openvocab.json"),
     # augmented subset as subset_old                  
     "vg_val_subset_aug_subset_as_old": ("visual_genome/images",
                         "concept_visual_genome/annotations/visual_genome_val_subset_aug_subset_as_old.json"),

@@ -106,7 +106,7 @@ class MakeConceptDataset:
         image_to_concepts = dict()
         for i, img in enumerate(annotations['images']):
             image_id = img['id']
-            image_to_concepts[image_id] = img['concepts']
+            image_to_concepts[image_id] = img['concepts'] if 'concepts' in img else [] # sometimes "concepts" may be not available
 
         # params initialization needed just for the powerset case
         new_annotations = []
@@ -120,7 +120,7 @@ class MakeConceptDataset:
             curr_annotations = [annotations['annotations'][idx] for idx in curr_annotations_indexes]    # annotations
             # check that at least one bounding box exists
             if len(curr_annotations) > 0:
-                if self.type == 'subset' or self.type == 'all' or self.type == 'subset_old' or self.type == 'all_old':
+                if self.type == 'subset' or self.type == 'all' or self.type == 'subset_old' or self.type == 'all_old' or self.type == 'all_old_openvocab':
                     # list_unique_cat = list(set({ann['category_id'] for ann in curr_annotations}))   # unique list of categories
                     list_categories = [ann['category_id'] for ann in curr_annotations]   # unique list of categories
                     selected_categories, selected_concepts = ConceptFinder.sample_categories_and_concepts(list_categories, self.concepts, self.type)
@@ -243,7 +243,7 @@ def parse_args():
                         type=lambda x: True if x.lower() == 'true' else False)
     parser.add_argument('--type', dest='type',
                         help='Generating considering all or subsets',
-                        choices=['subset', 'all', 'powerset', 'subset_old', 'subset_old_v2', 'all_old', 'query-intent-SLD', 'query-intent-KLD', 'aug_subset_as_old'],
+                        choices=['subset', 'all', 'powerset', 'subset_old', 'subset_old_v2', 'all_old', 'query-intent-SLD', 'query-intent-KLD', 'aug_subset_as_old', 'all_old_openvocab'],
                         default='subset')
     args = parser.parse_args()
     return args
