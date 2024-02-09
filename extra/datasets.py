@@ -117,8 +117,8 @@ _PREDEFINED_CONCEPTS_SPLITS['vg'] = {
     "vg_test_subset_old": ("visual_genome/images",
                         "concept_visual_genome/annotations/visual_genome_test_subset_old.json"),
     # open vocabulary test
-    "vg_val_all_old_openvocab": ("visual_genome/images",
-                        "concept_visual_genome/annotations/visual_genome_val_all_old_openvocab.json"),
+    "vg_test_all_old_openvocab": ("visual_genome/images",
+                        "concept_visual_genome/annotations/visual_genome_test_all_old_openvocab.json"),
     # augmented subset as subset_old                  
     "vg_val_subset_aug_subset_as_old": ("visual_genome/images",
                         "concept_visual_genome/annotations/visual_genome_val_subset_aug_subset_as_old.json"),

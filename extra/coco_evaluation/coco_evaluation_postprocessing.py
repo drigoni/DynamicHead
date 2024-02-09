@@ -201,7 +201,9 @@ class COCOEvaluator(DatasetEvaluator):
         
         # NOTE drigoni: add here filtering
         print("---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING")
+        print("Nubmer of detected objects before filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
         self.predictions = predictions = evaluation_filtering_process(self._coco_api, predictions, self.coco2synset, self._metadata)
+        print("Nubmer of detected objects after filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
 
         if len(predictions) == 0:
             self._logger.warning("[COCOEvaluator] Did not receive valid predictions.")
