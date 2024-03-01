@@ -631,7 +631,7 @@ def _evaluate_predictions_on_coco(
 
     coco_eval.evaluate()
     coco_eval.accumulate()
-    coco_eval.summarize()
+    # coco_eval.summarize()
 
     return coco_eval
 
