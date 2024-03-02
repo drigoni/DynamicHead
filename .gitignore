@@ -29,4 +29,5 @@ exec_dockerfile.bash
 
 # cluster vega
 cluster/
+cluster_vega/
 BACKUPS/BACKUPS_CLUSTER_VEGA/
