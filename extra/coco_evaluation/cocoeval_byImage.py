@@ -410,6 +410,11 @@ class COCOeval:
             'recall':   recall,
             'scores': scores,
         }
+        # print('=== Dimensions', [T, R, I, M])
+        # print('- iouThrs', p.iouThrs)
+        # print('- recThrs', p.recThrs)
+        # print('- maxDets', p.maxDets)
+        # print(self.eval)
         toc = time.time()
         print('DONE (t={:0.2f}s).'.format( toc-tic))
 
@@ -435,7 +440,7 @@ class COCOeval:
                 if iouThr is not None:
                     t = np.where(iouThr == p.iouThrs)[0]
                     s = s[t]
-                s = s[:,:,:,:,mind]
+                s = s[:,:,:,mind]
             else:
                 # dimension of recall: [TxKxAxM]
                 s = self.eval['recall']
@@ -452,7 +457,7 @@ class COCOeval:
         def _summarizeDets():
             stats = np.zeros((3,))
             stats[0] = _summarize(1)
-            stats[1] = _summarize(1, iouThr=.5, maxDets=self.params.maxDets[2])
+            stats[1] = _summarize(1, iouThr=.5, maxDets=self.params.maxDets[-1])
             #stats[2] = _summarize(1, iouThr=.75, maxDets=self.params.maxDets[2])
             #stats[3] = _summarize(1, areaRng='small', maxDets=self.params.maxDets[2])
             #stats[4] = _summarize(1, areaRng='medium', maxDets=self.params.maxDets[2])

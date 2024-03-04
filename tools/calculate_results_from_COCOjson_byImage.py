@@ -1,3 +1,18 @@
+import os
+import sys
+import itertools
+import logging
+import time
+# fmt: off
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from extra import ConceptFinder
+import nltk
+from nltk.corpus import wordnet as wn
+import json
+import argparse
+import collections
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
 # Copyright (c) Facebook, Inc. and its affiliates.
 import contextlib
 import copy
@@ -11,10 +26,8 @@ import pickle
 from collections import OrderedDict
 import pycocotools.mask as mask_util
 import torch
-# from pycocotools.coco import COCO
-from .coco import COCO
-# from pycocotools.cocoeval import COCOeval
-from .cocoeval_byImage import COCOeval
+from extra.coco_evaluation.coco import COCO
+from extra.coco_evaluation.cocoeval_byImage import COCOeval
 from tabulate import tabulate
 
 import detectron2.utils.comm as comm
@@ -25,7 +38,8 @@ from detectron2.structures import Boxes, BoxMode, pairwise_iou
 from detectron2.utils.file_io import PathManager
 from detectron2.utils.logger import create_small_table
 
-# from .evaluator import DatasetEvaluator
+
+# from .evaluator import DatasetEvaluator   # not used for now
 from detectron2.evaluation.evaluator import DatasetEvaluator
 
 try:
@@ -35,6 +49,7 @@ except ImportError:
 
 # NOTE drigoni: forcing to use always the standard pycocotools for evaluating. COCOeval_opt is written in C
 COCOeval_opt = COCOeval
+
 
 class COCOEvaluator(DatasetEvaluator):
     """
@@ -179,36 +194,20 @@ class COCOEvaluator(DatasetEvaluator):
             if len(prediction) > 1:
                 self._predictions.append(prediction)
 
-    def evaluate(self, img_ids=None):
+    def evaluate(self, file_path):
         """
         Args:
             img_ids: a list of image IDs to evaluate on. Default to None for the whole dataset
         """
-        if self._distributed:
-            comm.synchronize()
-            predictions = comm.gather(self._predictions, dst=0)
-            predictions = list(itertools.chain(*predictions))
-
-            if not comm.is_main_process():
-                return {}
-        else:
-            predictions = self._predictions
-
-        if len(predictions) == 0:
-            self._logger.warning("[COCOEvaluator] Did not receive valid predictions.")
-            return {}
-
-        if self._output_dir:
-            PathManager.mkdirs(self._output_dir)
-            file_path = os.path.join(self._output_dir, "instances_predictions.pth")
-            with PathManager.open(file_path, "wb") as f:
-                torch.save(predictions, f)
+        # loading from file
+        with PathManager.open(file_path, "rb") as f:
+            predictions = torch.load(f)
 
         self._results = OrderedDict()
         if "proposals" in predictions[0]:
             self._eval_box_proposals(predictions)
         if "instances" in predictions[0]:
-            self._eval_predictions(predictions, img_ids=img_ids)
+            self._eval_predictions(predictions, img_ids=None)
         # Copy so the caller can do whatever with results
         return copy.deepcopy(self._results)
 
@@ -283,9 +282,17 @@ class COCOEvaluator(DatasetEvaluator):
 
             if self._output_dir:
                 PathManager.mkdirs(self._output_dir)
-                file_path = os.path.join(self._output_dir, "instances_predictions_byImage.pth")
-                with PathManager.open(file_path, "wb") as f:
-                    torch.save(predictions, f)
+                file_path = os.path.join(self._output_dir, "instances_predictions_byImage.json")
+                with PathManager.open(file_path, "w") as f:
+                    # reformat
+                    data_to_save = {
+                        'counts': coco_eval.eval['counts'],
+                        'precision': coco_eval.eval['precision'].tolist(),
+                        'recall': coco_eval.eval['recall'].tolist(),
+                        'scores': coco_eval.eval['scores'].tolist(),
+                    } 
+                    f.write(json.dumps(data_to_save))
+                    f.flush()
                 print("Analysis completed and saved at:", file_path)
 
             # res = self._derive_coco_results(
@@ -638,7 +645,8 @@ def _evaluate_predictions_on_coco(
 
     coco_eval.evaluate()
     coco_eval.accumulate()
-    # coco_eval.summarize()
+    coco_eval.summarize()
+    print(coco_eval.stats)
 
     return coco_eval
 
@@ -732,3 +740,46 @@ class COCOevalMaxDets(COCOeval):
 
     def __str__(self):
         self.summarize()
+
+
+
+
+def parse_args():
+    """
+    Parse input arguments.
+    """
+    parser = argparse.ArgumentParser(description='Inputs')
+    parser.add_argument('--root', dest='root',
+                        help='Root folder.',
+                        default='{}/'.format(current_dir),
+                        type=str)
+    parser.add_argument('--dataset', dest='dataset',
+                        help='Dataset in COCO json format.',
+                        default="coco_2017_val_subset",
+                        type=str)
+    parser.add_argument('--file', dest='file',
+                        help='Results.',
+                        default="./results/COCO/dh/dh_r101_fpn_COCO/inference/instances_predictions.pth",
+                        type=str)
+    parser.add_argument('--output', dest='output',
+                        help='Output folder.',
+                        default='./')
+    args = parser.parse_args()
+    return args
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    print(args)
+
+    evaluator = COCOEvaluator(args.dataset,
+                tasks=None,
+                distributed=False,
+                output_dir='./results/',
+                max_dets_per_image=None,
+                use_fast_impl=False,
+                kpt_oks_sigmas=(),
+                allow_cached_coco=True,
+            )
+    results = evaluator.evaluate(args.file)
+    print(results)
