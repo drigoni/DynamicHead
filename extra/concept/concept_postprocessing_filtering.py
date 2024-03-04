@@ -56,7 +56,7 @@ def evaluation_filtering_process(coco_api, predictions, coco2synset, dataset_met
                 filtered_list.append(box)
 
         filtered_predictions.append({
-            'img_id': img_id,
+            'image_id': img_id,
             'instances': filtered_list
         })
 

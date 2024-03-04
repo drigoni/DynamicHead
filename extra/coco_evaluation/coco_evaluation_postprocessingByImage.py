@@ -1,18 +1,3 @@
-import os
-import sys
-import itertools
-import logging
-import time
-# fmt: off
-sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from extra import ConceptFinder
-import nltk
-from nltk.corpus import wordnet as wn
-import json
-import argparse
-import collections
-
-current_dir = os.path.dirname(os.path.abspath(__file__))
 # Copyright (c) Facebook, Inc. and its affiliates.
 import contextlib
 import copy
@@ -26,8 +11,10 @@ import pickle
 from collections import OrderedDict
 import pycocotools.mask as mask_util
 import torch
-from extra.coco_evaluation.coco import COCO
-from extra.coco_evaluation.cocoeval_byImage import COCOeval
+# from pycocotools.coco import COCO
+from .coco import COCO
+# from pycocotools.cocoeval import COCOeval
+from .cocoeval_postprocessingByImage import COCOeval
 from tabulate import tabulate
 
 import detectron2.utils.comm as comm
@@ -38,10 +25,10 @@ from detectron2.structures import Boxes, BoxMode, pairwise_iou
 from detectron2.utils.file_io import PathManager
 from detectron2.utils.logger import create_small_table
 
-
 # from .evaluator import DatasetEvaluator   # not used for now
 from detectron2.evaluation.evaluator import DatasetEvaluator
 
+from extra import evaluation_filtering_process
 try:
     from detectron2.evaluation.fast_eval_api import COCOeval_opt
 except ImportError:
@@ -67,6 +54,7 @@ class COCOEvaluator(DatasetEvaluator):
     def __init__(
         self,
         dataset_name,
+        coco2synset,
         tasks=None,
         distributed=True,
         output_dir=None,
@@ -117,6 +105,7 @@ class COCOEvaluator(DatasetEvaluator):
         self._logger = logging.getLogger(__name__)
         self._distributed = distributed
         self._output_dir = output_dir
+        self.coco2synset = coco2synset
 
         if use_fast_impl and (COCOeval_opt is COCOeval):
             self._logger.info("Fast COCO eval is not built. Falling back to official COCO eval.")
@@ -194,20 +183,43 @@ class COCOEvaluator(DatasetEvaluator):
             if len(prediction) > 1:
                 self._predictions.append(prediction)
 
-    def evaluate(self, file_path):
+    def evaluate(self, img_ids=None):
         """
         Args:
             img_ids: a list of image IDs to evaluate on. Default to None for the whole dataset
         """
-        # loading from file
-        with PathManager.open(file_path, "rb") as f:
-            predictions = torch.load(f)
+        if self._distributed:
+            comm.synchronize()
+            predictions = comm.gather(self._predictions, dst=0)
+            predictions = list(itertools.chain(*predictions))
+
+            if not comm.is_main_process():
+                return {}
+        else:
+            predictions = self._predictions
+
+        
+        # NOTE drigoni: add here filtering
+        print("---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING")
+        print("Nubmer of detected objects before filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
+        self.predictions = predictions = evaluation_filtering_process(self._coco_api, predictions, self.coco2synset, self._metadata)
+        print("Nubmer of detected objects after filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
+
+        if len(predictions) == 0:
+            self._logger.warning("[COCOEvaluator] Did not receive valid predictions.")
+            return {}
+
+        if self._output_dir:
+            PathManager.mkdirs(self._output_dir)
+            file_path = os.path.join(self._output_dir, "instances_predictions.pth")
+            with PathManager.open(file_path, "wb") as f:
+                torch.save(predictions, f)
 
         self._results = OrderedDict()
         if "proposals" in predictions[0]:
             self._eval_box_proposals(predictions)
         if "instances" in predictions[0]:
-            self._eval_predictions(predictions, img_ids=None)
+            self._eval_predictions(predictions, img_ids=img_ids)
         # Copy so the caller can do whatever with results
         return copy.deepcopy(self._results)
 
@@ -272,7 +284,7 @@ class COCOEvaluator(DatasetEvaluator):
                     coco_results,
                     task,
                     kpt_oks_sigmas=self._kpt_oks_sigmas,
-                    cocoeval_fn=COCOeval_opt if self._use_fast_impl else COCOeval,
+                    use_fast_impl=self._use_fast_impl,
                     img_ids=img_ids,
                     max_dets_per_image=self._max_dets_per_image,
                 )
@@ -280,25 +292,10 @@ class COCOEvaluator(DatasetEvaluator):
                 else None  # cocoapi does not handle empty results very well
             )
 
-            if self._output_dir:
-                PathManager.mkdirs(self._output_dir)
-                file_path = os.path.join(self._output_dir, "instances_predictions_byImage.json")
-                with PathManager.open(file_path, "w") as f:
-                    # reformat
-                    data_to_save = {
-                        'counts': coco_eval.eval['counts'],
-                        'precision': coco_eval.eval['precision'].tolist(),
-                        'recall': coco_eval.eval['recall'].tolist(),
-                        'scores': coco_eval.eval['scores'].tolist(),
-                    } 
-                    f.write(json.dumps(data_to_save))
-                    f.flush()
-                print("Analysis completed and saved at:", file_path)
-
-            # res = self._derive_coco_results(
-            #     coco_eval, task, class_names=self._metadata.get("thing_classes")
-            # )
-            # self._results[task] = res
+            res = self._derive_coco_results(
+                coco_eval, task, class_names=self._metadata.get("thing_classes")
+            )
+            self._results[task] = res
 
     def _eval_box_proposals(self, predictions):
         """
@@ -403,6 +400,7 @@ class COCOEvaluator(DatasetEvaluator):
             numalign="left",
         )
         self._logger.info("Per-category {} AP: \n".format(iou_type) + table)
+        print("Per-category {} AP: \n".format(iou_type) + table)
 
         results.update({"AP-" + name: ap for name, ap in results_per_category})
         return results
@@ -588,7 +586,7 @@ def _evaluate_predictions_on_coco(
     coco_results,
     iou_type,
     kpt_oks_sigmas=None,
-    cocoeval_fn=COCOeval_opt,
+    use_fast_impl=True,
     img_ids=None,
     max_dets_per_image=None,
 ):
@@ -607,7 +605,7 @@ def _evaluate_predictions_on_coco(
             c.pop("bbox", None)
 
     coco_dt = coco_gt.loadRes(coco_results)
-    coco_eval = cocoeval_fn(coco_gt, coco_dt, iou_type)
+    coco_eval = (COCOeval_opt if use_fast_impl else COCOeval)(coco_gt, coco_dt, iou_type)
     # For COCO, the default max_dets_per_image is [1, 10, 100].
     if max_dets_per_image is None:
         max_dets_per_image = [1, 10, 100]  # Default from COCOEval
@@ -646,10 +644,9 @@ def _evaluate_predictions_on_coco(
     coco_eval.evaluate()
     coco_eval.accumulate()
     coco_eval.summarize()
-    print(coco_eval.stats)
 
     return coco_eval
-
+    
 
 class COCOevalMaxDets(COCOeval):
     """
@@ -740,46 +737,3 @@ class COCOevalMaxDets(COCOeval):
 
     def __str__(self):
         self.summarize()
-
-
-
-
-def parse_args():
-    """
-    Parse input arguments.
-    """
-    parser = argparse.ArgumentParser(description='Inputs')
-    parser.add_argument('--root', dest='root',
-                        help='Root folder.',
-                        default='{}/'.format(current_dir),
-                        type=str)
-    parser.add_argument('--dataset', dest='dataset',
-                        help='Dataset in COCO json format.',
-                        default="coco_2017_val_subset",
-                        type=str)
-    parser.add_argument('--file', dest='file',
-                        help='Results.',
-                        default="./results/COCO/dh/dh_r101_fpn_COCO/inference/instances_predictions.pth",
-                        type=str)
-    parser.add_argument('--output', dest='output',
-                        help='Output folder.',
-                        default='./')
-    args = parser.parse_args()
-    return args
-
-
-if __name__ == "__main__":
-    args = parse_args()
-    print(args)
-
-    evaluator = COCOEvaluator(args.dataset,
-                tasks=None,
-                distributed=False,
-                output_dir='./results/',
-                max_dets_per_image=None,
-                use_fast_impl=False,
-                kpt_oks_sigmas=(),
-                allow_cached_coco=True,
-            )
-    results = evaluator.evaluate(args.file)
-    print(results)

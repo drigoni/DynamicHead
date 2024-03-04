@@ -71,6 +71,7 @@ class COCOeval:
         self.cocoDt   = cocoDt              # detections COCO API
         self.evalImgs = defaultdict(list)   # per-image per-category evaluation results [KxAxI] elements
         self.eval     = {}                  # accumulated evaluation results
+        self.eval_byImage  = None
         self._gts = defaultdict(list)       # gt for evaluation
         self._dts = defaultdict(list)       # dt for evaluation
         self.params = Params(iouType=iouType) # parameters
@@ -296,7 +297,7 @@ class COCOeval:
                     gtm[tind,m]     = d['id']
         # set unmatched detections outside of area range to ignore
         #a = np.array([d['area']<aRng[0] or d['area']>aRng[1] for d in dt]).reshape((1, len(dt)))
-        dtIg = np.logical_or(dtIg, dtm==0) #np.logical_and(dtm==0, np.repeat(a,T,0)))
+        dtIg = np.logical_or(dtIg, np.logical_and(dtm==0, False))
         # store results for given image and category
         return {
                 'image_id':     imgId,
@@ -341,17 +342,19 @@ class COCOeval:
         setM = set(_pe.maxDets)
         setI = set(_pe.imgIds)
         # get inds to evaluate
-        k_list = [n for n, k in enumerate(p.catIds)  if k in setK]
-        m_list = [m for n, m in enumerate(p.maxDets) if m in setM]
         i_list = [n for n, i in enumerate(p.imgIds)  if i in setI]
-        K0 = len(_pe.catIds)
-        # retrieve E at each category, area range, and max number of detections
+        m_list = [m for n, m in enumerate(p.maxDets) if m in setM]
+        k_list = [n for n, k in enumerate(p.catIds)  if k in setK]
+        assert len(_pe.catIds) == len(p.catIds)
+        n_exit1=0
+        n_exit2=0
         for i in i_list:
-            Ni = i*K0
+            Ni = i*K
             for m, maxDet in enumerate(m_list):
                 E = [self.evalImgs[Ni + k] for k in k_list]
                 E = [e for e in E if not e is None]
                 if len(E) == 0:
+                    n_exit1 = n_exit1+1
                     continue
                 dtScores = np.concatenate([e['dtScores'][0:maxDet] for e in E])
 
@@ -363,8 +366,9 @@ class COCOeval:
                 dtm  = np.concatenate([e['dtMatches'][:,0:maxDet] for e in E], axis=1)[:,inds]
                 dtIg = np.concatenate([e['dtIgnore'][:,0:maxDet]  for e in E], axis=1)[:,inds]
                 gtIg = np.concatenate([e['gtIgnore'] for e in E])
-                npig = np.count_nonzero(gtIg==0 )
+                npig = np.count_nonzero(gtIg==0)
                 if npig == 0:
+                    n_exit2 = n_exit2+1
                     continue
                 tps = np.logical_and(               dtm,  np.logical_not(dtIg) )
                 fps = np.logical_and(np.logical_not(dtm), np.logical_not(dtIg) )
@@ -410,12 +414,21 @@ class COCOeval:
             'recall':   recall,
             'scores': scores,
         }
-        # print('=== Dimensions', [T, R, I, M])
-        # print('- iouThrs', p.iouThrs)
-        # print('- recThrs', p.recThrs)
-        # print('- maxDets', p.maxDets)
-        # print(self.eval)
+        print("n_exit1", n_exit1)
+        print("n_exit2", n_exit2)
+        print("Precision.unique()", np.unique(precision))
+        self.eval_byImage = precision
+        # self.eval_byImage[self.eval_byImage<=-1] = np.nan
+        # self.eval_byImage = np.nanmean(self.eval_byImage, axis=(0, 1, 3))
+        self.eval_byImage = self.eval_byImage[0, :, :, -1]
+        self.eval_byImage = np.mean(self.eval_byImage, axis=0)
+        print("Precision.nancounts()", np.count_nonzero(np.isnan(self.eval_byImage)))
         toc = time.time()
+
+        print('=== Dimensions', [T, R, I, M])
+        print('- iouThrs', p.iouThrs)
+        print('- recThrs', p.recThrs)
+        print('- maxDets', p.maxDets)
         print('DONE (t={:0.2f}s).'.format( toc-tic))
 
     def summarize(self):

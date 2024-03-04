@@ -30,5 +30,4 @@ from .visualizer import Visualizer
 # evaluator
 from .coco_evaluation.coco_evaluation_postprocessing import COCOEvaluator as COCOEvaluator_postProcessing
 from .coco_evaluation.coco_evaluation_classAgnostic import COCOEvaluator as COCOEvaluator_classAgnostic
-from .coco_evaluation.coco_evaluation_byImage import COCOEvaluator as COCOEvaluator_byImage 
-from .coco_evaluation.coco_evaluation_byImagePostProcessing import COCOEvaluator as COCOEvaluator_byImagePostProcessing
+from .coco_evaluation.coco_evaluation_postprocessingByImage import COCOEvaluator as COCOEvaluator_postProcessingByImage
