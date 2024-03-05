@@ -24,6 +24,9 @@ from detectron2.data.datasets.coco import convert_to_coco_json
 from detectron2.structures import Boxes, BoxMode, pairwise_iou
 from detectron2.utils.file_io import PathManager
 from detectron2.utils.logger import create_small_table
+import nltk
+from nltk.corpus import wordnet as wn
+from extra import evaluation_filtering_process
 
 # from .evaluator import DatasetEvaluator   # not used for now
 from detectron2.evaluation.evaluator import DatasetEvaluator
@@ -36,6 +39,11 @@ except ImportError:
 
 # NOTE drigoni: forcing to use always the standard pycocotools for evaluating. COCOeval_opt is written in C
 COCOeval_opt = COCOeval
+
+
+
+nltk.download('omw-1.4')
+nltk.download('wordnet')
 
 
 class COCOEvaluator(DatasetEvaluator):
@@ -63,6 +71,7 @@ class COCOEvaluator(DatasetEvaluator):
         use_fast_impl=True,
         kpt_oks_sigmas=(),
         allow_cached_coco=True,
+        filtering=True,
     ):
         """
         Args:
@@ -106,6 +115,7 @@ class COCOEvaluator(DatasetEvaluator):
         self._distributed = distributed
         self._output_dir = output_dir
         self.coco2synset = coco2synset
+        self.filtering = filtering
 
         if use_fast_impl and (COCOeval_opt is COCOeval):
             self._logger.info("Fast COCO eval is not built. Falling back to official COCO eval.")
@@ -183,43 +193,29 @@ class COCOEvaluator(DatasetEvaluator):
             if len(prediction) > 1:
                 self._predictions.append(prediction)
 
-    def evaluate(self, img_ids=None):
+    def evaluate(self, file_path):
         """
         Args:
             img_ids: a list of image IDs to evaluate on. Default to None for the whole dataset
         """
-        if self._distributed:
-            comm.synchronize()
-            predictions = comm.gather(self._predictions, dst=0)
-            predictions = list(itertools.chain(*predictions))
+        # loading from file
+        with PathManager.open(file_path, "rb") as f:
+            predictions = torch.load(f)
 
-            if not comm.is_main_process():
-                return {}
-        else:
-            predictions = self._predictions
+        print(len(predictions))
 
-        
-        # NOTE drigoni: add here filtering
-        print("---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING")
-        print("Nubmer of detected objects before filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
-        self.predictions = predictions = evaluation_filtering_process(self._coco_api, predictions, self.coco2synset, self._metadata)
-        print("Nubmer of detected objects after filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
-
-        if len(predictions) == 0:
-            self._logger.warning("[COCOEvaluator] Did not receive valid predictions.")
-            return {}
-
-        if self._output_dir:
-            PathManager.mkdirs(self._output_dir)
-            file_path = os.path.join(self._output_dir, "instances_predictions.pth")
-            with PathManager.open(file_path, "wb") as f:
-                torch.save(predictions, f)
+        # DRIGONI: new function
+        if self.filtering:
+            print("---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING")
+            print("Nubmer of detected objects before filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
+            predictions = evaluation_filtering_process(self._coco_api, predictions, self.coco2synset, self._metadata)
+            print("Nubmer of detected objects after filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
 
         self._results = OrderedDict()
         if "proposals" in predictions[0]:
             self._eval_box_proposals(predictions)
         if "instances" in predictions[0]:
-            self._eval_predictions(predictions, img_ids=img_ids)
+            self._eval_predictions(predictions, img_ids=None)
         # Copy so the caller can do whatever with results
         return copy.deepcopy(self._results)
 
@@ -284,7 +280,7 @@ class COCOEvaluator(DatasetEvaluator):
                     coco_results,
                     task,
                     kpt_oks_sigmas=self._kpt_oks_sigmas,
-                    use_fast_impl=self._use_fast_impl,
+                    cocoeval_fn=COCOeval_opt if self._use_fast_impl else COCOeval,
                     img_ids=img_ids,
                     max_dets_per_image=self._max_dets_per_image,
                 )
@@ -292,10 +288,25 @@ class COCOEvaluator(DatasetEvaluator):
                 else None  # cocoapi does not handle empty results very well
             )
 
-            res = self._derive_coco_results(
-                coco_eval, task, class_names=self._metadata.get("thing_classes")
-            )
-            self._results[task] = res
+            if self._output_dir:
+                PathManager.mkdirs(self._output_dir)
+                file_path = os.path.join(self._output_dir, "instances_predictions_postprocessingByImage.json")
+                with PathManager.open(file_path, "w") as f:
+                    # reformat
+                    # data_to_save = {
+                    #     'counts': coco_eval.eval['counts'],
+                    #     'precision': coco_eval.eval['precision'].tolist(),
+                    #     'recall': coco_eval.eval['recall'].tolist(),
+                    #     'scores': coco_eval.eval['scores'].tolist(),
+                    # } 
+                    f.write(json.dumps(coco_eval.eval_byImage.tolist()))
+                    f.flush()
+                print("Analysis completed and saved at:", file_path)
+
+            # res = self._derive_coco_results(
+            #     coco_eval, task, class_names=self._metadata.get("thing_classes")
+            # )
+            # self._results[task] = res
 
     def _eval_box_proposals(self, predictions):
         """
@@ -400,7 +411,6 @@ class COCOEvaluator(DatasetEvaluator):
             numalign="left",
         )
         self._logger.info("Per-category {} AP: \n".format(iou_type) + table)
-        print("Per-category {} AP: \n".format(iou_type) + table)
 
         results.update({"AP-" + name: ap for name, ap in results_per_category})
         return results
@@ -586,7 +596,7 @@ def _evaluate_predictions_on_coco(
     coco_results,
     iou_type,
     kpt_oks_sigmas=None,
-    use_fast_impl=True,
+    cocoeval_fn=COCOeval_opt,
     img_ids=None,
     max_dets_per_image=None,
 ):
@@ -605,7 +615,7 @@ def _evaluate_predictions_on_coco(
             c.pop("bbox", None)
 
     coco_dt = coco_gt.loadRes(coco_results)
-    coco_eval = (COCOeval_opt if use_fast_impl else COCOeval)(coco_gt, coco_dt, iou_type)
+    coco_eval = cocoeval_fn(coco_gt, coco_dt, iou_type)
     # For COCO, the default max_dets_per_image is [1, 10, 100].
     if max_dets_per_image is None:
         max_dets_per_image = [1, 10, 100]  # Default from COCOEval
@@ -644,9 +654,10 @@ def _evaluate_predictions_on_coco(
     coco_eval.evaluate()
     coco_eval.accumulate()
     coco_eval.summarize()
+    print(coco_eval.stats)
 
     return coco_eval
-    
+
 
 class COCOevalMaxDets(COCOeval):
     """
