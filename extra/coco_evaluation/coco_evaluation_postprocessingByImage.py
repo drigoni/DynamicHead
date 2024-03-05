@@ -193,29 +193,43 @@ class COCOEvaluator(DatasetEvaluator):
             if len(prediction) > 1:
                 self._predictions.append(prediction)
 
-    def evaluate(self, file_path):
+    def evaluate(self, img_ids=None):
         """
         Args:
             img_ids: a list of image IDs to evaluate on. Default to None for the whole dataset
         """
-        # loading from file
-        with PathManager.open(file_path, "rb") as f:
-            predictions = torch.load(f)
+        if self._distributed:
+            comm.synchronize()
+            predictions = comm.gather(self._predictions, dst=0)
+            predictions = list(itertools.chain(*predictions))
 
-        print(len(predictions))
+            if not comm.is_main_process():
+                return {}
+        else:
+            predictions = self._predictions
 
-        # DRIGONI: new function
-        if self.filtering:
-            print("---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING")
-            print("Nubmer of detected objects before filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
-            predictions = evaluation_filtering_process(self._coco_api, predictions, self.coco2synset, self._metadata)
-            print("Nubmer of detected objects after filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
+        
+        # NOTE drigoni: add here filtering
+        print("---- EVALUATING WITH AD-HOC POST-PROCESSING FILTERING")
+        print("Nubmer of detected objects before filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
+        self.predictions = predictions = evaluation_filtering_process(self._coco_api, predictions, self.coco2synset, self._metadata)
+        print("Nubmer of detected objects after filtering: ", np.mean([len(pred['instances']) for pred in predictions]))
+
+        if len(predictions) == 0:
+            self._logger.warning("[COCOEvaluator] Did not receive valid predictions.")
+            return {}
+
+        if self._output_dir:
+            PathManager.mkdirs(self._output_dir)
+            file_path = os.path.join(self._output_dir, "instances_predictions.pth")
+            with PathManager.open(file_path, "wb") as f:
+                torch.save(predictions, f)
 
         self._results = OrderedDict()
         if "proposals" in predictions[0]:
             self._eval_box_proposals(predictions)
         if "instances" in predictions[0]:
-            self._eval_predictions(predictions, img_ids=None)
+            self._eval_predictions(predictions, img_ids=img_ids)
         # Copy so the caller can do whatever with results
         return copy.deepcopy(self._results)
 
@@ -290,16 +304,13 @@ class COCOEvaluator(DatasetEvaluator):
 
             if self._output_dir:
                 PathManager.mkdirs(self._output_dir)
-                file_path = os.path.join(self._output_dir, "instances_predictions_postprocessingByImage.json")
+                file_path = os.path.join(self._output_dir, "instances_predictions_postprocessingByImage.csv")
                 with PathManager.open(file_path, "w") as f:
-                    # reformat
-                    # data_to_save = {
-                    #     'counts': coco_eval.eval['counts'],
-                    #     'precision': coco_eval.eval['precision'].tolist(),
-                    #     'recall': coco_eval.eval['recall'].tolist(),
-                    #     'scores': coco_eval.eval['scores'].tolist(),
-                    # } 
-                    f.write(json.dumps(coco_eval.eval_byImage.tolist()))
+                    # Write the header
+                    f.write("image,mAP\n")
+                    # Write the data
+                    for i, value in enumerate(coco_eval.eval_byImage.tolist(), start=1):
+                        f.write(f"{i},{value}\n")
                     f.flush()
                 print("Analysis completed and saved at:", file_path)
 
@@ -654,7 +665,6 @@ def _evaluate_predictions_on_coco(
     coco_eval.evaluate()
     coco_eval.accumulate()
     coco_eval.summarize()
-    print(coco_eval.stats)
 
     return coco_eval
 

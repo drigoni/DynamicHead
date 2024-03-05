@@ -339,6 +339,8 @@ class COCOeval:
         scores      = -np.ones((T,R,I,A,M))
         n_exit1 = 0
         n_exit2 = 0
+        n_tot = 0
+        n_imgConsidered = set()
 
         # create dictionary for future indexing
         _pe = self._paramsEval
@@ -357,8 +359,8 @@ class COCOeval:
         assert K0 == K
         assert A0 == A
         # retrieve E at each category, area range, and max number of detections
-        for i, i0 in enumerate(i_list):
-            Ni = i0*A0*K0
+        for image_index, _ in enumerate(i_list):
+            Ni = image_index*A0*K0
             for a, a0 in enumerate(a_list):
                 Na = a0*K0
                 for m, maxDet in enumerate(m_list):
@@ -382,6 +384,8 @@ class COCOeval:
                     if npig == 0:
                         n_exit2 = n_exit2 + 1
                         continue
+                    n_tot = n_tot + 1
+                    n_imgConsidered.add(image_index)
                     tps = np.logical_and(               dtm,  np.logical_not(dtIg) )
                     fps = np.logical_and(np.logical_not(dtm), np.logical_not(dtIg) )
 
@@ -397,9 +401,9 @@ class COCOeval:
                         ss = np.zeros((R,))
 
                         if nd:
-                            recall[t,i,a,m] = rc[-1]
+                            recall[t,image_index,a,m] = rc[-1]
                         else:
-                            recall[t,i,a,m] = 0
+                            recall[t,image_index,a,m] = 0
 
                         # numpy is slow without cython optimization for accessing elements
                         # use python array gets significant speed improvement
@@ -417,8 +421,8 @@ class COCOeval:
                                 ss[ri] = dtScoresSorted[pi]
                         except:
                             pass
-                        precision[t,:,i,a,m] = np.array(q)
-                        scores[t,:,i,a,m] = np.array(ss)
+                        precision[t,:,image_index,a,m] = np.array(q)
+                        scores[t,:,image_index,a,m] = np.array(ss)
                     
         self.eval = {
             'params': p,
@@ -428,14 +432,16 @@ class COCOeval:
             'recall':   recall,
             'scores': scores,
         }
-        # self.eval_byImage = precision
-        # self.eval_byImage[self.eval_byImage<=-1] = np.nan
-        # self.eval_byImage = np.nanmean(self.eval_byImage, axis=(0, 1, 3, 4))
-        # self.eval_byImage = self.eval_byImage[:, :, :, 0, 2]
-        # print("Precision.nancounts()", np.count_nonzero(np.isnan(self.eval_byImage)))
         self.eval_byImage = -np.zeros(I)
+        iouThr = None    # None or 0.5
+        aind = [i for i, aRng in enumerate(p.areaRngLbl) if aRng == 'all']
+        mind = [i for i, mDet in enumerate(p.maxDets) if mDet == 100]
         for i, i0 in enumerate(i_list):
-            subset = precision[:, :, i, 0, 2]
+            subset = precision
+            if iouThr is not None:
+                t = np.where(iouThr == p.iouThrs)[0]
+                subset = subset[t]
+            subset = subset[:, :, i, aind, mind]
             if len(subset[subset>-1]) == 0:
                 mean_s = -1
             else:
@@ -443,18 +449,20 @@ class COCOeval:
             self.eval_byImage[i] = mean_s
         toc = time.time()
 
-        print('========= STATISTICS')
-        print('== Number self.evalImgs', len(self.evalImgs))
-        print('== Final Values Cicle', Ni + Na + len(k_list)-1)
-        print('== Dimensions', [T, R, I, M])
-        print('== iouThrs', p.iouThrs)
-        print('== recThrs', p.recThrs)
-        print('== maxDets', p.maxDets)
-        print('== areaRng', p.areaRng)
-        print('== areaRngLbl', p.areaRngLbl)
-        print("== n_exit1", n_exit1)
-        print("== n_exit2", n_exit2)
-        print("== Precision.unique()", np.unique(precision))
+        # print('========= STATISTICS')
+        # print('== Number self.evalImgs', len(self.evalImgs))
+        # print('== Final Values Cicle', Ni + Na + len(k_list)-1)
+        # print('== Dimensions', [T, R, I, A, M])
+        # print('== iouThrs', p.iouThrs)
+        # print('== recThrs', p.recThrs)
+        # print('== maxDets', p.maxDets)
+        # print('== areaRng', p.areaRng)
+        # print('== areaRngLbl', p.areaRngLbl)
+        # print("== n_exit1", n_exit1)
+        # print("== n_exit2", n_exit2)
+        # print("== n_tot", n_tot)
+        # print("== n_imgConsidered:", len(n_imgConsidered), "Over:", len(i_list))
+        # print("== Precision.unique()", np.unique(precision))
         print('DONE (t={:0.2f}s).'.format( toc-tic))
 
     def summarize(self):

@@ -302,17 +302,17 @@ class COCOEvaluator(DatasetEvaluator):
 
             if self._output_dir:
                 PathManager.mkdirs(self._output_dir)
-                file_path = os.path.join(self._output_dir, "instances_predictions_postprocessingByImage.json")
+                # file_path = os.path.join(self._output_dir, "instances_predictions_postprocessingByImage.json")
+                file_path = os.path.join(self._output_dir, "instances_predictions_postprocessingByImage.csv")
                 with PathManager.open(file_path, "w") as f:
-                    # reformat
-                    # data_to_save = {
-                    #     'counts': coco_eval.eval['counts'],
-                    #     'precision': coco_eval.eval['precision'].tolist(),
-                    #     'recall': coco_eval.eval['recall'].tolist(),
-                    #     'scores': coco_eval.eval['scores'].tolist(),
-                    # } 
-                    f.write(json.dumps(coco_eval.eval_byImage.tolist()))
+                    # Write the header
+                    f.write("image,mAP\n")
+                    # Write the data
+                    for i, value in enumerate(coco_eval.eval_byImage.tolist(), start=1):
+                        f.write(f"{i},{value}\n")
                     f.flush()
+                    # f.write(json.dumps(coco_eval.eval_byImage.tolist()))
+                    # f.flush()
                 print("Analysis completed and saved at:", file_path)
 
             # res = self._derive_coco_results(
@@ -666,7 +666,6 @@ def _evaluate_predictions_on_coco(
     coco_eval.evaluate()
     coco_eval.accumulate()
     coco_eval.summarize()
-    print(coco_eval.stats)
 
     return coco_eval
 
